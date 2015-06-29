@@ -1,7 +1,8 @@
 /// <reference path="../../use-strict" />
 
-/// <reference path="ErrorClass" />
 /// <reference path="../Utils/Function" />
+
+/// <reference path="ErrorClass" />
 
 module Format.Errors {
 

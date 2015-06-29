@@ -1,1 +1,1 @@
-module.export = Format;
+module.export = String.format;

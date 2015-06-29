@@ -19,6 +19,8 @@ module Format.Utils.Function {
     var typeNameRegExp = /function +(\w+)/;
 
     /** Returns an empty parameterless function. Useful as the default for optional callback arguments instead of creating new anonymous empty functions. */
-    export function getEmpty() { return empty; }
-    var empty = (): Object => { return undefined; };
+    export function getEmpty<T>() {
+        return empty;
+    }
+    var empty = <T>(): T => { return undefined; };
 }
