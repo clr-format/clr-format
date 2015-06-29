@@ -1,0 +1,17 @@
+environment:
+  nodejs_version: "0.12.2"
+
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - npm install
+  - npm install -g bower
+  - npm install -g gulp@3.9.0
+
+test_script:
+  - node --version
+  - npm --version
+  - bower --version
+  - gulp --version
+  - gulp clean test
+
+build: off

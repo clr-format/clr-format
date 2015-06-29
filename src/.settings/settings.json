@@ -1,0 +1,31 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+
+    //-------- Editor configuration --------
+
+    // Controls the rendering size of tabs in characters. If set to auto, the value will be guessed based on the opened file.
+    "editor.tabSize": 4,
+
+    // Controls if the editor will insert spaces for tabs. If set to auto, the value will be guessed based on the opened file.
+    "editor.insertSpaces": true,
+
+    // Controls if the editor should automatically format the line after typing
+    "editor.formatOnType": true,
+
+    // Controls whether the editor should render whitespace characters
+    "editor.renderWhitespace": true,
+
+    //-------- JavaScript configuration --------
+
+    // Function inside loop.
+    "javascript.validate.lint.functionsInsideLoops": "error",
+
+    // Unused local variable.
+    "javascript.validate.lint.unusedVariables": "error",
+
+    // Unused local function.
+    "javascript.validate.lint.unusedFunctions": "error",
+
+    // Don't use an undeclared variable.
+    "javascript.validate.lint.undeclaredVariables": "error"
+}

@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "target": "ES5",
+        "sourceMap": false,
+        "noImplicitAny": true,
+        "out": "tests.js"
+    }
+}

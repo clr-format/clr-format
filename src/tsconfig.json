@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "target": "ES5",
+        "sourceMap": false,
+        "noImplicitAny": true,
+        "removeComments": true,
+        "declaration": true,
+        "out": "clr-format.js"
+    }
+}

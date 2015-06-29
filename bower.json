@@ -1,0 +1,28 @@
+{
+    "name": "clr-format",
+    "version": "0.1.0",
+    "homepage": "https://github.com/clr-format/clr-format",
+    "description": "A lightweight, modular implementation of .NET's String.Format function for JavaScript runtimes",
+    "main": "dist/clr-format.js",
+    "keywords": [
+        "string",
+        "format",
+        "javascript",
+        ".net",
+        "clr",
+        "number",
+        "date",
+        "globalization",
+        "intl"
+    ],
+    "authors": [
+        "Viktor Mitev"
+    ],
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test"
+    ]
+}
