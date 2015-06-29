@@ -1,7 +1,7 @@
 {
     "name": "clr-format",
     "version": "0.1.0",
-    "description": "A lightweight, modular implementation of .NET's String.Format function for JavaScript runtimes",
+    "description": "A lightweight, modular JavaScript implementation of a string formatting function that supports composite format strings and globalization",
     "main": "dist/clr-format-npm.js",
     "directories": {
         "test": "test"

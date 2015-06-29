@@ -1,5 +1,5 @@
 # [clr-format](https://github.com/clr-format/clr-format)
-A lightweight, modular implementation of .NET's String.Format function for JavaScript runtimes
+A lightweight, modular JavaScript implementation of a string formatting function that supports composite format strings and globalization
 
 Installation (WIP)
 ------------
@@ -16,7 +16,7 @@ Once a stable version is available the following commands can be used to install
 
 Usage
 -----
-Since the primary goal of this implementation is to imitate .NET's (and other Microsoft® products) composite string formatting feature, the [Getting started with the String.Format method](https://msdn.microsoft.com/en-us/library/system.string.format.aspx#Starting) article in MSDN is the best place to explore the function's full behaviour. The main difference is that method names in JavaScript are intrinsically camelcase therefore **String.format** should be used instead.
+The implementation of this string formatting function is inspired by .NET's (and other Microsoft® products') [Composite Formatting](https://msdn.microsoft.com/en-us/library/txafckwd.aspx) feature. Therefore the final behaviour should be similar to what's described in the [Getting started with the String.Format method](https://msdn.microsoft.com/en-us/library/system.string.format.aspx#Starting) article. The main difference is that method names in JavaScript are intrinsically camelcase therefore **String.format** should be used instead.
 
 ```javascript
     expect(
