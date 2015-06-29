@@ -1,32 +1,32 @@
 {
-    "name": "clr-format",
-    "version": "0.1.0",
-    "homepage": "https://github.com/clr-format/clr-format",
-    "description": "A lightweight, modular JavaScript implementation of a string formatting function that supports composite format strings and globalization",
-    "main": "clr-format.js",
-    "keywords": [
-        "string",
-        "format",
-        "javascript",
-        ".net",
-        "clr",
-        "number",
-        "date",
-        "globalization",
-        "intl"
-    ],
-    "authors": [
-        "Viktor Mitev"
-    ],
-    "license": "MIT",
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "build",
-        "gulpfile.js",
-        "*.json",
-        "*.yml",
-        "test"
-    ]
+  "name": "clr-format",
+  "version": "0.1.1",
+  "homepage": "https://github.com/clr-format/clr-format",
+  "description": "A lightweight, modular JavaScript implementation of a string formatting function that supports composite format strings and globalization",
+  "main": "clr-format.js",
+  "keywords": [
+    "string",
+    "format",
+    "javascript",
+    ".net",
+    "clr",
+    "number",
+    "date",
+    "globalization",
+    "intl"
+  ],
+  "authors": [
+    "Viktor Mitev"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "build",
+    "gulpfile.js",
+    "*.json",
+    "*.yml",
+    "test"
+  ]
 }
