@@ -1,11 +1,11 @@
 # [clr-format](https://github.com/clr-format/clr-format)
 A lightweight, modular JavaScript implementation of a string formatting function that supports composite format strings and globalization
 
-Installation (WIP)
+Installation
 ------------
-Once a stable version is available the following commands can be used to install the script in a context of your choice.
+The following commands can be used to install the script in a context of your choice.
 
-#### NuGet
+#### NuGet (WIP)
 ```Install-Package clr-format```
 
 #### Bower
@@ -49,17 +49,17 @@ gulp
 
 Planned releases
 ----------------
-##### 0.1.0 (WIP)
+##### 0.1.1 (Released)
 Support for index and alignment components only; *without* any formatting rules specified by a provider or format string component. Minor versions are reserved for bug-fixes.
 
-##### 0.1.5 (WIP)
+##### 0.2
 Addition of a *clr-format-configuration* sub-module/package which can be optionally installed to compliment the core implementation with various pre-defined configurations.
 
-##### 0.2.0 (WIP)
+##### 0.3
 Implementation of an invariant number formatting provider and numeric format string components.
 
-##### 0.2.5 (WIP)
+##### 0.4
 Addition of a *clr-format-intl* sub-module/package which can be optionally installed to bridge the core implementation with [ECMAScript's Intl namespace](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Intl).
 
-##### 0.3.0 (WIP)
+##### 0.5
 Complete the implementation with a date formatting provider and temporal format string components.
