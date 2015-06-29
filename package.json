@@ -1,49 +1,50 @@
 {
-    "name": "clr-format",
-    "version": "0.1.0",
-    "description": "A lightweight, modular JavaScript implementation of a string formatting function that supports composite format strings and globalization",
-    "main": "dist/clr-format-npm.js",
-    "directories": {
-        "test": "test"
-    },
-    "scripts": {
-        "test": "npm install && gulp test"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/clr-format/clr-format.git"
-    },
-    "keywords": [
-        "string",
-        "format",
-        "javascript",
-        ".net",
-        "clr",
-        "number",
-        "date",
-        "globalization",
-        "intl"
-    ],
-    "author": "Viktor Mitev",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/clr-format/clr-format/issues"
-    },
-    "homepage": "https://github.com/clr-format/clr-format",
-    "devDependencies": {
-        "del": "^1.2.0",
-        "gulp": "^3.9.0",
-        "gulp-add-src": "^0.2.0",
-        "gulp-concat": "^2.6.0",
-        "gulp-jasmine": "^2.0.1",
-        "gulp-rename": "^1.2.2",
-        "gulp-tslint": "^3.0.2-beta",
-        "gulp-typescript": "^2.7.7",
-        "gulp-uglify": "^1.2.0",
-        "mkdirp": "^0.5.1",
-        "typescript": "^1.5.0-beta"
-    },
-    "optionalDependencies": {
-        "tsd": "^0.6.3"
-    }
+  "name": "clr-format",
+  "version": "0.1.0",
+  "description": "A lightweight, modular JavaScript implementation of a string formatting function that supports composite format strings and globalization",
+  "main": "dist/clr-format-npm.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "npm install && gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clr-format/clr-format.git"
+  },
+  "keywords": [
+    "string",
+    "format",
+    "javascript",
+    ".net",
+    "clr",
+    "number",
+    "date",
+    "globalization",
+    "intl"
+  ],
+  "author": "Viktor Mitev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/clr-format/clr-format/issues"
+  },
+  "homepage": "https://github.com/clr-format/clr-format",
+  "devDependencies": {
+    "del": "^1.2.0",
+    "gulp": "^3.9.0",
+    "gulp-add-src": "^0.2.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-empty": "^0.1.1",
+    "gulp-jasmine": "^2.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-tslint": "^3.0.2-beta",
+    "gulp-typescript": "^2.7.7",
+    "gulp-uglify": "^1.2.0",
+    "mkdirp": "^0.5.1",
+    "typescript": "^1.5.0-beta"
+  },
+  "optionalDependencies": {
+    "tsd": "^0.6.3"
+  }
 }

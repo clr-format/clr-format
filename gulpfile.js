@@ -20,6 +20,7 @@ var paths = {
 var gulp = require("gulp");
 var del = require("del");
 var tsc = require("gulp-typescript");
+var empty = require("gulp-empty");
 var tslint = require("gulp-tslint");
 var uglify = require("gulp-uglify");
 var concat = require('gulp-concat');
@@ -61,18 +62,28 @@ gulp.task("build", ["lint"], function (cb) {
         .pipe(gulp.dest(config.outputDir));
 });
 
-gulp.task("test", ["build"], function () {
+function test(minify) {
     return gulp.src(paths.tests)
         .pipe(tsc(testsProject)).js
+        .pipe(minify ? uglify({ mangle: false, output: { beautify: true } }) : empty())
         .pipe(gulp.dest(config.outputDir))
         .pipe(jasmine({ reporter: new testReporter.NUnitXmlReporter({ savePath: config.outputDir }) }));
-});
+}
 
-gulp.task("minify", ["build"], function () {
+gulp.task("test", ["build"], function () { return test(); });
+
+gulp.task("minify", ["clean", "build"], function () {
+
+    gulp.src(paths.dists)
+        .pipe(uglify({ mangle: false, output: { beautify: true } }))
+        .pipe(gulp.dest(config.outputDir));
+
     gulp.src(paths.dists)
         .pipe(uglify())
         .pipe(rename({ suffix: ".min" }))
         .pipe(gulp.dest(config.outputDir));
+
+    return test(true);
 });
 
 gulp.task("watch", function () {
