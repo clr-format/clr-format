@@ -1,6 +1,6 @@
 (function (global) {
     var UNDEFINED,
-        totalSpecsReported = 0,
+        totalSpecsReported,
         exportObject;
 
     if (typeof module !== "undefined" && module.exports) {
@@ -111,6 +111,7 @@
             totalSpecsDefined = summary && summary.totalSpecsDefined || NaN;
             exportObject.startTime = new Date();
             self.started = true;
+            totalSpecsReported = 0;
         };
         self.suiteStarted = function (suite) {
             suite = getSuite(suite);

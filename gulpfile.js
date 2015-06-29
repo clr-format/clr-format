@@ -5,6 +5,7 @@ var config = {
     testsDir: "test",
     outputDir: "dist",
     allTS: "/**/*.ts",
+    allDTS: "/**/*.d.ts",
     allJS: "/**/*.js"
 };
 
@@ -26,8 +27,8 @@ var rename = require('gulp-rename');
 var addsrc = require('gulp-add-src');
 var jasmine = require("gulp-jasmine");
 
-var tslintReporter = require("./build/tslint-reporter.js")
-var testReporter = require("./build/nunit-reporter.js");
+var tslintReporter = require("./build/reporters/tslint-msbuild.js")
+var testReporter = require("./build/reporters/jasmine-nunit.js");
 
 var sourceProject = tsc.createProject(config.sourcesDir + paths.tsConfig, {
     typescript: require('typescript')
@@ -41,7 +42,7 @@ gulp.task("clean", function () {
 });
 
 gulp.task("lint", function () {
-    return gulp.src(paths.sources)
+    return gulp.src([paths.sources, paths.tests, "!" + config.allDTS])
         .pipe(tslint())
         .pipe(tslint.report(tslintReporter.MSBuild));
 });
@@ -61,11 +62,8 @@ gulp.task("build", ["lint"], function (cb) {
 });
 
 gulp.task("test", ["build"], function () {
-
-    var testBuild = gulp.src(paths.tests)
-        .pipe(tsc(testsProject));
-
-    return testBuild.js
+    return gulp.src(paths.tests)
+        .pipe(tsc(testsProject)).js
         .pipe(gulp.dest(config.outputDir))
         .pipe(jasmine({ reporter: new testReporter.NUnitXmlReporter({ savePath: config.outputDir }) }));
 });
