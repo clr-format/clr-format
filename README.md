@@ -74,7 +74,7 @@ gulp
 Planned releases
 ----------------
 ##### 0.1.2 (Released)
-Support for index and alignment components only; *without* any formatting rules specified by a provider or format string component. Minor versions are reserved for bug-fixes.
+Support for index and alignment components only; *without* any formatting rules specified by a provider or format string component.
 
 ##### 0.2
 Addition of a *clr-format-configuration* sub-module/package which can be optionally installed to compliment the core implementation with various pre-defined configurations.
