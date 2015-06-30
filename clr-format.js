@@ -204,14 +204,7 @@ var Format;
 var Format;
 
 !function(Format) {
-    String.format = function() {
-        for (var args = [], _i = 0; _i < arguments.length; _i++) args[_i - 0] = arguments[_i];
-        if ("string" == typeof args[0]) return innerFormat(void 0, args.shift(), args);
-        var provider = args.shift();
-        if (provider && "function" != typeof provider.getFormatter) throw new Format.Errors.ArgumentError(String.format("Argument 'provider' of type '{0}' does not implement the FormatProvider interface", Format.Utils.Function.getName(provider.constructor)));
-        return innerFormat(provider, args.shift(), args);
-    };
-    var innerFormat = function(provider, format, args) {
+    function innerFormat(provider, format, args) {
         if (null == format) throw new Format.Errors.ArgumentNullError("format");
         return provider = provider || simpleProvider, format.replace(formatItemRegExp, function(formatItem, indexComponent, alignmentComponent, formatStringComponent) {
             return replaceFormatItem(provider, args, {
@@ -221,7 +214,15 @@ var Format;
                 formatStringComponent: formatStringComponent
             });
         });
-    }, formatItemRegExp = /{+(\d+)(?:,(.+?))?(?::(.+?))?}+/g, replaceFormatItem = function(provider, args, options) {
+    }
+    String.format = function() {
+        for (var args = [], _i = 0; _i < arguments.length; _i++) args[_i - 0] = arguments[_i];
+        if ("string" == typeof args[0]) return innerFormat(void 0, args.shift(), args);
+        var provider = args.shift();
+        if (provider && "function" != typeof provider.getFormatter) throw new Format.Errors.ArgumentError(String.format("Argument 'provider' of type '{0}' does not implement the FormatProvider interface", Format.Utils.Function.getName(provider.constructor)));
+        return innerFormat(provider, args.shift(), args);
+    }, Format.innerFormat = innerFormat;
+    var formatItemRegExp = /{+(\d+)(?:,(.+?))?(?::(.+?))?}+/g, replaceFormatItem = function(provider, args, options) {
         var escapedBracesCount = Math.floor(getBracesCount(options.formatItem, "{") / 2);
         if (isFullyEscaped(options.formatItem)) return options.formatItem.substring(escapedBracesCount, options.formatItem.length - escapedBracesCount);
         var result = applyFormatting(provider, args, options);

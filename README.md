@@ -16,7 +16,7 @@ The following commands can be used to install the script in a context of your ch
 
 Latest Version Capabilities
 ---------------------------
-1. Full support for *index* \{**0**\} and *alignment* (\{0**,-10**\}) components.
+1. Full support for *index* \{**0**\} and *alignment* \{0**,-10**\} components.
 ```javascript
 expect(
        String.format(
