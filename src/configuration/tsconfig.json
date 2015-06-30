@@ -4,6 +4,6 @@
         "sourceMap": false,
         "noImplicitAny": true,
         "declaration": true,
-        "out": "clr-format-npm.js"
+        "out": "clr-format-config.js"
     }
 }

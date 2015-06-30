@@ -28,7 +28,13 @@ module Format {
         return innerFormat(provider, <string>args.shift(), args);
     };
 
-    var innerFormat = (provider: Globalization.FormatProvider, format: string, args: Object[]): string => {
+    /**
+     * Converts the value of objects to strings based on the formats specified and inserts them into another string.
+     * @param provider An object that supplies culture-specific formatting information.
+     * @param format A composite format string. See: https://msdn.microsoft.com/en-us/library/txafckwd.aspx
+     * @param args An array of arguments that contains zero or more objects to format.
+     */
+    export function innerFormat(provider: Globalization.FormatProvider, format: string, args: Object[]): string {
 
         if (format == null) {
             throw new Errors.ArgumentNullError("format");

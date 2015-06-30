@@ -39,6 +39,7 @@
     "gulp-empty": "^0.1.1",
     "gulp-jasmine": "^2.0.1",
     "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.3",
     "gulp-tslint": "^3.0.2-beta",
     "gulp-typescript": "^2.7.7",
     "gulp-uglify": "^1.2.0",
