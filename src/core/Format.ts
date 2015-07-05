@@ -18,14 +18,18 @@ module Format {
             return innerFormat(undefined, <string>args.shift(), args);
         }
 
-        let provider = <Globalization.FormatProvider>args.shift();
+        let provider = <Globalization.FormatProvider>args[0];
         if (provider && typeof provider.getFormatter !== "function") {
             throw new Errors.ArgumentError(String.format(
                 "Argument 'provider' of type '{0}' does not implement the FormatProvider interface",
                 Utils.Function.getName(provider.constructor)));
         }
 
-        return innerFormat(provider, <string>args.shift(), args);
+        let format = <string>args[1];
+
+        args.splice(0, 2);
+
+        return innerFormat(provider, format, args);
     };
 
     /**
