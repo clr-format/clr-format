@@ -66,7 +66,7 @@ module Format {
             }).toThrowError(Errors.FormatError);
         });
 
-        it("should throw an FormatError for a format provider which does not return a CustomFormatter instance", () => {
+        it("should throw a FormatError for a format provider which does not return a CustomFormatter instance", () => {
             expect(() => String.format({ getFormatter: Utils.Function.getEmpty<Globalization.CustomFormatter>() }, "{0}", undefined)).toThrowError(Errors.FormatError);
         });
 
