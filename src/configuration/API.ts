@@ -9,5 +9,5 @@ interface String {
      * @param provider An object that supplies culture-specific formatting information.
      * @param args A list of arguments that contains zero or more objects to format.
      */
-    format(provider: Format.Globalization.FormatProvider, format: string, ...args: Object[]): string;
+    format(provider: Format.Globalization.FormatProvider, ...args: Object[]): string;
 }

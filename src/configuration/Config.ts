@@ -1,22 +1,18 @@
 /// <reference path="API" />
 
+/// <reference path="Prototypes/Format" />
+
 module Format {
 
     export class Configuration {
 
-        addFormatToPrototype() {
+        addFormatToPrototype(): Configuration {
+            String.prototype.format = Prototypes.format;
+            return this;
+        }
 
-            String.prototype.format = function(...args: Object[]) {
-
-                let provider = <Globalization.FormatProvider>args[0];
-                if (provider && typeof provider.getFormatter === "function") {
-                    args.shift();
-                    return innerFormat(provider, this, args);
-                }
-
-                return innerFormat(undefined, this, args);
-            };
-
+        removeFormatFromPrototype(): Configuration {
+            delete String.prototype.format;
             return this;
         }
     }
