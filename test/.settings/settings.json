@@ -15,6 +15,18 @@
     // Controls whether the editor should render whitespace characters
     "editor.renderWhitespace": true,
 
+
+    //-------- Files configuration --------
+
+    // Configure glob patterns for excluding files and folders.
+    "files.exclude": {
+        "**/.git": true
+    },
+
+    // When enabled, will trim trailing whitespace when you save a file.
+    "files.trimTrailingWhitespace": true,
+
+
     //-------- JavaScript configuration --------
 
     // Function inside loop.
