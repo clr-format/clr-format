@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>clr-format.js</id>
+        <version>0.0.0</version>
+        <title>CLR Format (Javascript)</title>
+        <authors>Viktor Mitev</authors>
+        <licenseUrl>https://github.com/clr-format/clr-format/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/clr-format/clr-format</projectUrl>
+        <iconUrl>https://avatars3.githubusercontent.com/u/13048800</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>The implementation of this string formatting function is inspired by .NET's (and other Microsoft® products') Composite Formatting feature. Therefore the final behaviour should be similar to what's described in the Getting started with the String.Format method MSDN article. The main difference is that method names in JavaScript are intrinsically camelcase therefore String.format should be used instead.
+
+Usage:
+  var formatted = String.format("Value: {0}{1,5}", 1, "text"); // formatted = "Value: 1 text"</description>
+        <summary>A lightweight, modular JavaScript implementation of a string formatting function that supports composite format strings and globalization</summary>
+        <releaseNotes>1. Full support for index {0} and alignment {0,-10} components.
+2. Providing a format string {0,-10:0.00} component will result in a thrown namespaced FormatError.</releaseNotes>
+        <tags>string format javascript number date globalization intl</tags>
+    </metadata>
+    <files>
+        <file src="dist\*.d.ts" target="content\" />
+        <file src="dist\clr-format.js" target="content\" />
+        <file src="dist\clr-format.min.js" target="content\" />
+        <file src="dist\clr-format-config.js" target="content\" />
+        <file src="dist\clr-format-config.min.js" target="content\" />
+    </files>
+</package>
