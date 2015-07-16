@@ -15,7 +15,7 @@ function clean() {
 
 module.exports.download = function (done) {
 
-    if (fs.existsSync(paths.nugetExe)) {
+    if (fs.existsSync(paths.nugetExe) && fs.statSync(paths.nugetExe).size > 0) {
         return done();
     }
 
