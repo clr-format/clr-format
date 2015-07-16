@@ -1,12 +1,17 @@
-var config = require("../config/main.js");
+var dirs = require("../config/dirs.js");
+var files = require("../config/files.js");
 var paths = require("../config/paths.js");
-var allNupkg = "*.nupkg";
+var readJSON = require("../utils/readJSON.js");
 
+var gulp = require("gulp");
 var fs = require("fs");
 var del = require("del");
-var gulp = require("gulp");
 var nuget = require("gulp-nuget");
 var request = require("request");
+
+function clean() {
+    del.sync(paths.nugetPackage);
+}
 
 module.exports.download = function (done) {
 
@@ -20,14 +25,9 @@ module.exports.download = function (done) {
 
 module.exports.pack = function () {
     return gulp.src("")
-        .pipe(nuget.pack({ nuspec: ".nuspec", nuget: paths.nugetExe, version: "0.1.2" }))
+        .pipe(nuget.pack({ nuspec: ".nuspec", nuget: paths.nugetExe, version: readJSON(files.package).version }))
+        .pipe(gulp.dest(dirs.output))
+        .on("end", clean);
     //  .pipe(nuget.push({ feed: "http://your-nuget-feed.org/", nuget: nugetPath, apiKey: "secret-key-goes-here" }));
-};
 
-module.exports.dist = function () {
-
-    gulp.src(allNupkg)
-        .pipe(gulp.dest(config.outputDir));
-
-    return del(allNupkg);
 };

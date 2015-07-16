@@ -1,4 +1,5 @@
-var config = require("../config/main.js");
+var dirs = require("../config/dirs.js");
+var globs = require("../config/globs.js");
 var paths = require("../config/paths.js");
 var negate = require("../utils/negate.js");
 var tsProjects = require("../config/tsProjects.js");
@@ -13,21 +14,21 @@ module.exports.js = function (component) {
 
     return function () {
 
-        var build = gulp.src([paths[component] + config.allTS, paths[component] + paths.reference])
+        var build = gulp.src([paths[component] + globs.allTS, paths[component] + paths.reference])
             .pipe(tsc(tsProjects[component]));
 
         build.dts
-            .pipe(replace(config.outputDir + "/", ""))
-            .pipe(gulp.dest(config.outputDir));
+            .pipe(replace(dirs.output + "/", ""))
+            .pipe(gulp.dest(dirs.output));
 
-        return build.js.pipe(gulp.dest(config.outputDir));
+        return build.js.pipe(gulp.dest(dirs.output));
     };
 };
 
 module.exports.npm = function (component) {
-    return gulp.src([config.sourcesDir + config.allTS, negate(paths.references)])
+    return gulp.src([paths.sources, negate(paths.references)])
         .pipe(tsc(tsProjects.npm)).js
         .pipe(addsrc.append(paths.npmExports))
         .pipe(concat(tsProjects.npm.options.out))
-        .pipe(gulp.dest(config.outputDir));
+        .pipe(gulp.dest(dirs.output));
 };

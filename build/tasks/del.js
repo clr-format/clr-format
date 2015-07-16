@@ -1,11 +1,12 @@
-var config = require("../config/main.js");
+var dirs = require("../config/dirs.js");
+var globs = require("../config/globs.js");
 
 var del = require("del");
 
-module.exports.outputDir = function () {
-    del.sync(config.outputDir + config.all);
+module.exports.output = function () {
+    del.sync(dirs.output + globs.all);
 };
 
-module.exports.buildDir = function () {
-    del.sync(config.buildDir + config.allFiles);
+module.exports.build = function () {
+    del.sync(dirs.build + globs.allFiles);
 };

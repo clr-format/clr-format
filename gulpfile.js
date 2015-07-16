@@ -8,7 +8,6 @@ var requireConfig = function (moduleName) { return require(configsPath + moduleN
 var requireTask = function (moduleName) { return require(tasksPath + moduleName + ".js"); };
 
 // Configuration
-var config = requireConfig("main");
 var paths = requireConfig("paths");
 
 // Modules
@@ -21,8 +20,8 @@ var nuget = requireTask("nuget");
 var minify = requireTask("minify");
 
 // Build Tasks
-gulp.task("clean", del.outputDir);
-gulp.task("clean-all", ["clean"], del.buildDir);
+gulp.task("clean", del.output);
+gulp.task("clean-all", ["clean"], del.build);
 
 gulp.task("lint", lint);
 gulp.task("test", test);
@@ -43,4 +42,3 @@ gulp.task("default", ["clean", "watch", "build", "test"]);
 // Release tasks
 gulp.task("nuget-download", nuget.download);
 gulp.task("nuget-pack", ["nuget-download", "minify"], nuget.pack);
-gulp.task("nuget", ["nuget-pack"], nuget.dist);
