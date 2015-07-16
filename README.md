@@ -5,7 +5,7 @@ Installation
 ------------
 The following commands can be used to install the script in a context of your choice.
 
-#### NuGet (WIP)
+#### NuGet ([gallery link](https://www.nuget.org/packages/clr-format.js))
 ```Install-Package clr-format.js```
 
 #### Bower
