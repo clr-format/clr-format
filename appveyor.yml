@@ -12,6 +12,6 @@ test_script:
   - npm --version
   - bower --version
   - gulp --version
-  - gulp clean test
+  - gulp clean build test
 
 build: off
