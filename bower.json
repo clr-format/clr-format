@@ -1,9 +1,9 @@
 {
   "name": "clr-format",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "homepage": "https://github.com/clr-format/clr-format",
   "description": "A lightweight, modular JavaScript implementation of a string formatting function that supports composite format strings and globalization",
-  "main": "clr-format.js",
+  "main": "dist/clr-format.js",
   "keywords": [
     "string",
     "format",
@@ -23,10 +23,10 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "build",
     "gulpfile.js",
     "*.json",
     "*.yml",
+    "build",
     "test"
   ]
 }
