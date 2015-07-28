@@ -1,14 +1,8 @@
-var mversion = require("mversion"),
-    exec = require("../utils/exec.js");
+var mversion = require("mversion");
 
 module.exports = function (version) {
     return function (done) {
-
-        if (exec("git status --porcelain")) {
-            throw new Error("Local changes detected, aborting version bump");
-        }
-
-        mversion.update({ version: version, commitMessage: "Bumped to version %s" });
+        mversion.update({ version: version });
         done();
     };
 };
