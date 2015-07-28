@@ -10,7 +10,7 @@ module.exports = function (commandOrOptions, errorMessage) {
         options.silent = true;
     }
 
-    errorMessage = errorMessage || "Error executing command: " + command;
+    errorMessage = errorMessage || "Cannot execute command: " + command;
 
     var result = shell.exec(command, options);
     if (result.code !== 0) {
