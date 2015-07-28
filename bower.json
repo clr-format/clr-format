@@ -27,6 +27,7 @@
     "*.nupkg",
     "*.json",
     "*.yml",
+    "*.md",
     "build",
     "test"
   ]
