@@ -1,5 +1,5 @@
-var files = require("../config/files.js");
 var exec = require("../utils/exec.js");
+var isGitClean = require("../utils/isGitClean.js");
 
 var format = require("clr-format");
 var mversion = require("mversion");
@@ -7,14 +7,14 @@ var mversion = require("mversion");
 module.exports = function (version) {
     return function (done) {
 
-        if (exec("git status --porcelain")) {
+        if (!isGitClean()) {
             throw new Error("Local changes detected, aborting version bump");
         }
 
-        mversion.update({ version: version }, function (err, data) {
+        mversion.update({ version: version }, function (error, data) {
 
-            if (err) {
-                throw err;
+            if (error) {
+                throw error;
             }
 
             exec(format("git commit -a -m \"preparing version {0}\"", data.newVersion));

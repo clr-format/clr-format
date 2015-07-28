@@ -19,6 +19,7 @@ var build = requireTask("build");
 var nuget = requireTask("nuget");
 var minify = requireTask("minify");
 var version = requireTask("version");
+var release = requireTask("release");
 
 // Build Tasks
 gulp.task("clean", del.output);
@@ -47,3 +48,8 @@ gulp.task("nuget-pack", ["nuget-download", "minify"], nuget.pack);
 gulp.task("bump-major", version("major"));
 gulp.task("bump-minor", version("minor"));
 gulp.task("bump-patch", version("patch"));
+
+gulp.task("release-major", ["bump-major", "nuget-pack"], release);
+gulp.task("release-minor", ["bump-minor", "nuget-pack"], release);
+gulp.task("release-patch", ["bump-patch", "nuget-pack"], release);
+
