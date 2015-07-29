@@ -27,6 +27,8 @@ function release() {
     finally {
         exec("git checkout " + branch);
     }
+
+    exec("git push");
 }
 
 function addDist(next) {
