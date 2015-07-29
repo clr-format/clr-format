@@ -1,10 +1,9 @@
 var dirs = require("../config/dirs.js");
-var files = require("../config/files.js");
 var exec = require("../utils/exec.js");
 var isGitClean = require("../utils/isGitClean.js");
 
 var format = require("clr-format");
-var readJSON = require("../utils/readJSON.js");
+var getVersion = require("../utils/getVersion.js");
 
 module.exports = function (done) {
 
@@ -35,7 +34,7 @@ function addDist(next) {
     try {
         exec("git add -f " + dirs.output);
 
-        var version = readJSON(files.package).version;
+        var version = getVersion();
         exec(format("git commit -m \"v{0}\"", version));
 
         tag(version);
