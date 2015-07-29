@@ -8,10 +8,6 @@ var del = require("del");
 var nuget = require("gulp-nuget");
 var request = require("request");
 
-function clean() {
-    del.sync(paths.nugetPackage);
-}
-
 module.exports.download = function (done) {
 
     if (fs.existsSync(paths.nugetExe) && fs.statSync(paths.nugetExe).size > 0) {
@@ -30,3 +26,7 @@ module.exports.pack = function () {
     //  .pipe(nuget.push({ feed: "http://your-nuget-feed.org/", nuget: nugetPath, apiKey: "secret-key-goes-here" }));
 
 };
+
+function clean() {
+    del.sync(paths.nugetPackage);
+}
