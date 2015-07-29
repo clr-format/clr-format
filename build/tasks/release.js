@@ -29,6 +29,9 @@ function release(branch) {
         git.checkout("--detach", "Could not detach from release branch");
         commitDist();
     }
+    catch (error) {
+        rollbackState(branch, error);
+    }
     finally {
         rollbackState(branch);
     }
@@ -78,11 +81,14 @@ function rollbackRemote(tagName) {
     }
 }
 
-function rollbackState(branch) {
-
-    git.checkout(branch, "Could not restore the original working directory's state; carefully review its and the remote's status");
-
-    if (git.getLastCommitMessage() === version.getCommitMessage(getVersion())) {
-        git.reset("--hard HEAD~1");
+function rollbackState(branch, error) {
+    try {
+        git.checkout(branch, "Could not restore the original working directory's state; carefully review its and the remote's status");
+    }
+    finally {
+        if (error && git.getLastCommitMessage() === version.getCommitMessage(getVersion())) {
+            git.reset("--hard HEAD~1");
+            throw error;
+        }
     }
 }
