@@ -1,58 +1,88 @@
 var dirs = require("../config/dirs.js");
-var exec = require("../utils/exec.js");
-var isGitClean = require("../utils/isGitClean.js");
+var git = require("../utils/git.js");
 
 var format = require("clr-format");
+var version = require("./version.js");
 var getVersion = require("../utils/getVersion.js");
 
 module.exports = function (done) {
 
-    if (!isGitClean()) {
-        throw new Error("Local changes detected, aborting release process");
-    }
+    var branch = git.getBranchName();
 
-    release();
+    validateState(branch);
+    release(branch);
     done();
 };
 
-function release() {
-
-    var branch = exec("git rev-parse --abbrev-ref HEAD").trim();
-
-    try {
-        exec("git checkout --detach");
-        addDist();
-    }
-    finally {
-        exec("git checkout " + branch);
+function validateState(branch) {
+    if (branch !== "master") {
+        throw new Error("Releases can only be created from the master branch, aborting release process");
     }
 
-    exec("git push");
+    if (git.isDirty()) {
+        throw new Error("Local changes detected, aborting release process");
+    }
 }
 
-function addDist(next) {
+function release(branch) {
     try {
-        exec("git add -f " + dirs.output);
+        git.checkout("--detach", "Could not detach from release branch");
+        commitDist();
+    }
+    finally {
+        rollbackState(branch);
+    }
+}
 
-        var version = getVersion();
-        exec(format("git commit -m \"v{0}\"", version));
+function commitDist() {
+    try {
+        git.add(
+            "-f " + dirs.output,
+            "Could not stage (forced) output files for release tag");
 
-        tag(version);
+        var tagName = "v" + getVersion();
+        git.commit(
+            format("-m \"{0}\"", tagName),
+            "Could not commit output files for release tag");
+
+        createTag(tagName);
     }
     catch (error) {
-        exec("git reset --hard");
+        git.reset("--hard");
         throw error;
     };
 }
 
-function tag(version) {
+function createTag(tagName) {
     try {
-        exec(format("git tag v{0} -m \"v{0}\"", version));
-        exec(format("git push origin v{0}", version));
+        git.tag(
+            format("-m \"{0}\" {0}", tagName),
+            format("Could not create the release tag {0} (it might already exist)", tagName));
+
+        git.push(
+            "origin --follow-tags --atomic",
+            "Could not push changes to remote (network connection or stored credentials might be missing)");
     }
     catch (error) {
-        exec(format("git tag -d v{0}", version));
-        exec(format("git push origin :refs/tags/v{0}", version));
+        rollbackRemote(tagName);
         throw error;
+    }
+}
+
+function rollbackRemote(tagName) {
+    try {
+        git.tag("-d " + tagName);
+    }
+    finally {
+        git.push("origin :refs/tags/" + tagName);
+    }
+}
+
+function rollbackState(branch) {
+
+    git.checkout(branch, "Could not restore the original working directory's state; carefully review its and the remote's status");
+
+    if (git.getLastCommitMessage() === version.getCommitMessage(getVersion())) {
+        git.reset("--hard HEAD~1");
     }
 }
