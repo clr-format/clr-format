@@ -5,7 +5,6 @@ module.exports = function (commandOrOptions, errorMessage) {
     var command = commandOrOptions.command || commandOrOptions,
         options = {};
 
-
     if (commandOrOptions.silent) {
         options.silent = true;
     }

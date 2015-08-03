@@ -35,7 +35,12 @@ module.exports = {
     },
 
     getLastCommitMessage: function () {
-        return git("log -1 --pretty=%B");
+        return git("log -1 --pretty=%B", "Could not resolve the last commit's message");
+    },
+
+    getLatestReleaseTag: function () {
+        var tagRev = git("rev-list", "--max-count=1 --tags", "Could not resolve latest release tag's revision");
+        return git("describe", tagRev, "Could not get description for latest release tag's revision");
     }
 };
 

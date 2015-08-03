@@ -1,4 +1,5 @@
 var dirs = require("../config/dirs.js");
+var globs = require("../config/globs.js");
 var paths = require("../config/paths.js");
 var getVersion = require("../utils/getVersion.js");
 
@@ -20,13 +21,17 @@ module.exports.download = function (done) {
 
 module.exports.pack = function () {
     return gulp.src("")
-        .pipe(nuget.pack({ nuspec: ".nuspec", nuget: paths.nugetExe, version: getVersion() }))
+        .pipe(nuget.pack({ nuget: paths.nugetExe, nuspec: ".nuspec", version: getVersion() }))
         .pipe(gulp.dest(dirs.output))
         .on("end", clean);
-    //  .pipe(nuget.push({ feed: "http://your-nuget-feed.org/", nuget: nugetPath, apiKey: "secret-key-goes-here" }));
+};
 
+module.exports.push = function (callback) {
+    return gulp.src(dirs.output + globs.allNupkg)
+        .pipe(nuget.push({ nuget: paths.nugetExe, feed: "https://www.nuget.org" }))
+        .on("end", callback);;
 };
 
 function clean() {
-    del.sync(paths.nugetPackage);
+    del.sync(dirs.root + globs.allNupkg);
 }

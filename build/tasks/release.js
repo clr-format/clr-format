@@ -31,6 +31,7 @@ function release(branch) {
     }
     catch (error) {
         rollbackState(branch, error);
+        throw error;
     }
     finally {
         rollbackState(branch);

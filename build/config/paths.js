@@ -11,6 +11,5 @@ module.exports = {
     tsConfig: dirs.separator + files.tsconfig,
     references: dirs.sources + globs.allRefs,
     npmExports: [dirs.sources, files.exports].join(dirs.separator),
-    nugetExe: [dirs.build, files.nuget].join(dirs.separator),
-    nugetPackage: dirs.root + globs.allNupkg
+    nugetExe: [dirs.build, files.nuget].join(dirs.separator)
 };
