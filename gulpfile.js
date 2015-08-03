@@ -26,12 +26,16 @@ var publish = requireTask("publish");
 gulp.task("clean", del.output);
 gulp.task("clean-all", ["clean"], del.build);
 
-gulp.task("lint", lint);
-gulp.task("test", test);
+gulp.task("lint", lint());
+gulp.task("lint-core", lint("core"));
+gulp.task("lint-config", lint("config"));
+gulp.task("lint-test", lint("test"));
 
-gulp.task("build-core", ["lint"], build.js("core"));
-gulp.task("build-config", ["build-core"], build.js("config"));
-gulp.task("build-npm", ["lint"], build.npm);
+gulp.task("build-core", ["lint-core"], build.js("core"));
+gulp.task("build-config", ["build-core", "lint-config"], build.js("config"));
+gulp.task("build-npm", ["lint-core", "lint-config"], build.npm);
+
+gulp.task("test", ["lint-test"], test);
 gulp.task("build", ["build-core", "build-config", "build-npm"]);
 gulp.task("minify", ["clean", "build"], minify);
 

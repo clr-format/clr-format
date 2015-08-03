@@ -7,8 +7,16 @@ var tsc = require("gulp-typescript");
 var tslint = require("gulp-tslint");
 var negate = require("../utils/negate.js");
 
-module.exports = function () {
-    return gulp.src([paths.sources, paths.tests, negate(globs.allDTS)])
-        .pipe(tslint())
-        .pipe(tslint.report(tslintReporter.MSBuild));
+module.exports = function (component) {
+    return function () {
+
+        var sources = [paths[component] ? paths[component] + globs.allDTS : paths.sources, negate(globs.allDTS)];
+        if (!component) {
+            sources.push(paths.tests);
+        }
+
+        return gulp.src(sources)
+            .pipe(tslint())
+            .pipe(tslint.report(tslintReporter.MSBuild));
+    };
 };
