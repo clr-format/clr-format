@@ -9,14 +9,25 @@ var negate = require("../utils/negate.js");
 
 module.exports = function (component) {
     return function () {
-
-        var sources = [paths[component] ? paths[component] + globs.allDTS : paths.sources, negate(globs.allDTS)];
-        if (!component) {
-            sources.push(paths.tests);
-        }
-
-        return gulp.src(sources)
+        return gulp.src(getSources(component))
             .pipe(tslint())
             .pipe(tslint.report(tslintReporter.MSBuild));
     };
 };
+
+function getSources(component) {
+
+    var sources = [negate(globs.allDTS)];
+
+    if (paths[component]) {
+        sources.push(paths[component] + globs.allTS);
+    }
+    else if (component === "test") {
+        sources.push(paths.tests);
+    }
+    else {
+        sources.push(paths.sources, paths.tests);
+    }
+
+    return sources;
+}
