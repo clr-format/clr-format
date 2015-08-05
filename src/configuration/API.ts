@@ -1,13 +1,10 @@
-interface String {
-    /**
-     * Converts the value of objects to strings based on the formats specified and inserts them into this string.
-     * @param args A list of arguments that contains zero or more objects to format.
-     */
-    format(...args: Object[]): string;
-    /**
-     * Converts the value of objects to strings based on the formats specified and inserts them into this string.
-     * @param provider An object that supplies culture-specific formatting information.
-     * @param args A list of arguments that contains zero or more objects to format.
-     */
-    format(provider: Format.Globalization.FormatProvider, ...args: Object[]): string;
+/// <reference path="../use-strict" />
+
+/// <reference path="API/Array" />
+/// <reference path="API/Object" />
+/// <reference path="API/String" />
+/// <reference path="API/Function" />
+
+if (typeof Format.innerFormat === "undefined") {
+    throw new Error("Configuration module loaded before main module");
 }

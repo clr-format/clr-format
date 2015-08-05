@@ -1,16 +1,17 @@
 /// <reference path="../../typings/jasmine/jasmine" />
 
+/// <reference path="../../../src/core/Format" />
 /// <reference path="../../../src/configuration/Config" />
 
-module Format.Prototypes {
+module Format.Config {
 
-    describe("Prototypes format", () => {
+    describe("Config addFormatToPrototype", () => {
 
-        it("should not be callable from a string instance by default", () => {
+        it("should not define 'format' callable from a string instance by default", () => {
             expect("string".format).toBeUndefined();
         });
 
-        it("should be callable from a string instance after Format.Config.addFormatToPrototype() is used", () => {
+        it("should define 'format' callable from a string instance once used", () => {
 
             Format.Config.addFormatToPrototype();
 
@@ -19,7 +20,7 @@ module Format.Prototypes {
             expect("{0}".format({ getFormatter: "not-a-function" })).toBe("{\"getFormatter\":\"not-a-function\"}");
         });
 
-        it("should not be callable from a string instance after Format.Config.removeFormatFromPrototype() is used", () => {
+        it("should remove 'format' callable from a string instance after Format.Config.removeFormatFromPrototype() is used", () => {
 
             Format.Config
                 .addFormatToPrototype()
@@ -35,7 +36,7 @@ module Format.Prototypes {
             expect(() => "{0}".format({ getFormatter: Utils.Function.getEmpty<Globalization.CustomFormatter>() }, undefined)).toThrowError(Errors.FormatError);
         });
 
-        afterAll(() => {
+        afterEach(() => {
             Format.Config.removeFormatFromPrototype();
         });
     });

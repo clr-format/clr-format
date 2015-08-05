@@ -1,10 +1,10 @@
 /// <reference path="../../typings/jasmine/jasmine" />
 
-/// <reference path="../../../src/core/Utils/Array" />
+/// <reference path="../../../src/core/Utils/Enumerable" />
 
 module Format.Utils {
 
-    describe("Array takeWhile", () => {
+    describe("Enumerable takeWhile", () => {
 
         let array: any[];
 

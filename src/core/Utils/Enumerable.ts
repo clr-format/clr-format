@@ -8,7 +8,7 @@ module Format.Utils.Enumerable {
      * @param array An array instance.
      * @param predicate A function to test each source element for a condition; the second parameter of the function represents the index of the source element.
      */
-    export let takeWhile = <T>(array: T[], predicate: (item: T, index?: number) => boolean): T[] => {
+    export function takeWhile<T>(array: T[], predicate: (item: T, index?: number) => boolean): T[] {
 
         if (array == null) {
             throw new Errors.ArgumentNullError("array");

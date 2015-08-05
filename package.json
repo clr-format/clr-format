@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "npm install && gulp test"
+    "test": "gulp test-npm"
   },
   "repository": {
     "type": "git",

@@ -2,10 +2,13 @@
 
 /// <reference path="API" />
 
-/// <reference path="Utils/Array" />
 /// <reference path="Utils/General" />
 /// <reference path="Utils/Padding" />
+/// <reference path="Utils/Enumerable" />
 /// <reference path="Utils/FormatItemOptions" />
+
+/// <reference path="Globalization/FormatProvider" />
+/// <reference path="Globalization/CustomFormatter" />
 
 /// <reference path="Errors/FormatError" />
 /// <reference path="Errors/ArgumentNullError" />

@@ -1,5 +1,6 @@
 module.exports = {
     root: ".",
+    parent: "..",
     separator: "/",
     sources: "src",
     tests: "test",

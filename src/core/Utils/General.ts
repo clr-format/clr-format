@@ -16,7 +16,7 @@ module Format.Utils {
      * @param type A string indicating the expected type of the object, i.e. 'Array', 'RegExp', etc.
      * @param object The object to check for matching type.
      */
-    export function is(type: string, object: Object): boolean {
+    export function isType(type: string, object: Object): boolean {
         return getType(object) === String.format("[object {0}]", type);
     }
 

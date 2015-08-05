@@ -1,2 +1,2 @@
 module.exports = String.format;
-// module.exports.Config = Format.Config;
+module.exports.Config = Format.Config;
