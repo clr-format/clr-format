@@ -20,7 +20,8 @@
 
     // Configure glob patterns for excluding files and folders.
     "files.exclude": {
-        "**/.git": true
+        "**/.git": true,
+        "**/node_modules": true
     },
 
     // When enabled, will trim trailing whitespace when you save a file.
