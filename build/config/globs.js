@@ -6,6 +6,7 @@ module.exports = {
     allTS: "/**/*.ts",
     allJS: "/**/*.js",
     allDTS: "/**/*.d.ts",
+    allNPM: "/**/*npm*",
     allRefs: "/**/" + files.references,
     allNupkg: "/*.nupkg"
 };
