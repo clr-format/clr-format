@@ -12,11 +12,13 @@ var request = require("request");
 module.exports.download = function (done) {
 
     if (fs.existsSync(paths.nugetExe) && fs.statSync(paths.nugetExe).size > 0) {
-        return done();
+        done();
+        return;
     }
 
-    return request.get("http://nuget.org/nuget.exe")
-        .pipe(fs.createWriteStream(paths.nugetExe));
+    request.get("http://nuget.org/nuget.exe")
+        .pipe(fs.createWriteStream(paths.nugetExe))
+        .on('close', done);
 };
 
 module.exports.pack = function () {
