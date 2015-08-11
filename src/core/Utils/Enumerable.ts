@@ -27,5 +27,5 @@ module Format.Utils.Enumerable {
         }
 
         return result;
-    };
+    }
 }

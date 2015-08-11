@@ -56,7 +56,7 @@ module Format {
                 alignmentComponent,
                 formatStringComponent
             }));
-    };
+    }
     var formatItemRegExp = /{+(\d+)(?:,(.+?))?(?::(.+?))?}+/g;
 
     var replaceFormatItem = (provider: Globalization.FormatProvider, args: Object[], options: Utils.FormatItemOptions): string => {

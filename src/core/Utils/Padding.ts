@@ -46,7 +46,7 @@ module Format.Utils.Padding {
         }
 
         return value;
-    };
+    }
 
     var setDefaultOptions = (options: Options) => {
         options.direction = options.direction || Direction.Right;

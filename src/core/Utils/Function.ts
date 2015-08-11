@@ -15,7 +15,7 @@ module Format.Utils.Function {
         let typeNameGroups = typeNameRegExp.exec(func.toString());
 
         return typeNameGroups && typeNameGroups[1] ? typeNameGroups[1] : "anonymous";
-    };
+    }
     var typeNameRegExp = /function +(\w+)/;
 
     /** Returns an empty parameterless function. Useful as the default for optional callback arguments instead of creating new anonymous empty functions. */
