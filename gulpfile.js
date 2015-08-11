@@ -17,6 +17,7 @@ var lint = requireTask("lint");
 var test = requireTask("test");
 var build = requireTask("build");
 var nuget = requireTask("nuget");
+var tsdoc = requireTask("tsdoc");
 var minify = requireTask("minify");
 var version = requireTask("version");
 var release = requireTask("release");
@@ -38,7 +39,6 @@ gulp.task("build", ["build-core", "build-config", "build-npm", "test-npm"]);
 
 gulp.task("test", ["lint-test"], test.jasmine);
 gulp.task("test-npm", ["build-npm"], test.npm);
-gulp.task("minify", ["clean", "build"], minify);
 
 gulp.task("watch", function () {
     gulp.watch([paths.sources], ["build"]);
@@ -48,6 +48,9 @@ gulp.task("watch", function () {
 gulp.task("default", ["clean", "watch", "build", "test"]);
 
 // Release tasks
+gulp.task("tsdoc", tsdoc);
+gulp.task("minify", ["build"], minify);
+
 gulp.task("nuget-download", nuget.download);
 gulp.task("nuget-pack", ["nuget-download", "minify"], nuget.pack);
 
@@ -55,8 +58,9 @@ gulp.task("bump-major", version("major"));
 gulp.task("bump-minor", version("minor"));
 gulp.task("bump-patch", version("patch"));
 
-gulp.task("release-major", ["bump-major", "nuget-pack"], release);
-gulp.task("release-minor", ["bump-minor", "nuget-pack"], release);
-gulp.task("release-patch", ["bump-patch", "nuget-pack"], release);
+gulp.task("release-pack", ["clean", "tsdoc", "nuget-pack"]);
+gulp.task("release-major", ["bump-major", "release-pack"], release);
+gulp.task("release-minor", ["bump-minor", "release-pack"], release);
+gulp.task("release-patch", ["bump-patch", "release-pack"], release);
 
 gulp.task("publish", ["nuget-download"], publish);

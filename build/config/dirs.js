@@ -7,5 +7,6 @@ module.exports = {
     build: "build",
     output: "dist",
     core: "core",
+    docs: "docs",
     config: "configuration"
 };
