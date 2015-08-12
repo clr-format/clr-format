@@ -8,14 +8,40 @@ var gulp = require("gulp");
 var rename = require("gulp-rename");
 var uglify = require("gulp-uglify");
 
+var beautifyOptions = {
+    mangle: false,
+    output: { beautify: true },
+    compress: {
+        booleans: false,
+        evaluate: false,
+        sequences: false,
+        hoist_vars: true,
+        comparisons: false,
+        drop_console: true,
+        conditionals: false,
+        negate_iife: false
+    }
+};
+
+var minifyOptions = {
+    compress: {
+        hoist_vars: true,
+        drop_console: true
+    }
+}
+
 module.exports = function () {
 
-    gulp.src(paths.dists)
-        .pipe(uglify({ mangle: false, output: { beautify: true } }))
+    var sources = [paths.dists, negate(dirs.output + globs.allMinJS)];
+
+    gulp.src(sources)
+        .pipe(uglify(beautifyOptions))
         .pipe(gulp.dest(dirs.output));
 
-    gulp.src([paths.dists, negate(dirs.output + globs.allNPM)])
-        .pipe(uglify())
+    sources.push(negate(dirs.output + globs.allNPM));
+
+    gulp.src(sources)
+        .pipe(uglify(minifyOptions))
         .pipe(rename({ suffix: ".min" }))
         .pipe(gulp.dest(dirs.output));
 

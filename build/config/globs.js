@@ -8,5 +8,6 @@ module.exports = {
     allDTS: "/**/*.d.ts",
     allNPM: "/**/*npm*",
     allRefs: "/**/" + files.references,
+    allMinJS: "/**/*.min.js",
     allNupkg: "/*.nupkg"
 };

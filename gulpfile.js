@@ -49,10 +49,11 @@ gulp.task("default", ["clean", "watch", "build", "test"]);
 
 // Release tasks
 gulp.task("tsdoc", tsdoc);
-gulp.task("minify", ["build"], minify);
+gulp.task("minify", minify);
+gulp.task("minify-full", ["build"], minify);
 
 gulp.task("nuget-download", nuget.download);
-gulp.task("nuget-pack", ["nuget-download", "minify"], nuget.pack);
+gulp.task("nuget-pack", ["nuget-download", "minify-full"], nuget.pack);
 
 gulp.task("bump-major", version("major"));
 gulp.task("bump-minor", version("minor"));
