@@ -10,7 +10,11 @@ var uglify = require("gulp-uglify");
 
 var beautifyOptions = {
     mangle: false,
-    output: { beautify: true },
+    output: {
+        beautify: true,
+        bracketize: true,
+        comments: function (node, comment) { return !/\/ <reference path=/i.test(comment.value); }
+    },
     compress: {
         booleans: false,
         evaluate: false,
