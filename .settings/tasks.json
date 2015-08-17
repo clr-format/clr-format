@@ -5,11 +5,32 @@
 // ${fileDirname}: the current opened file's dirname
 // ${fileExtname}: the current opened file's extension
 // ${cwd}: the current working directory of the spawned process
-
-// A task runner that calls gulp-build
 {
     "version": "0.1.0",
-    "command": "gulp default",
-    "showOutput": "always",
-    "isShellCommand": true
+    "command": "gulp",
+    "showOutput": "silent",
+    "isShellCommand": true,
+    "args": [
+        "--no-color"
+    ],
+    "tasks": [
+        {
+            "taskName": "build",
+            "args": ["build"],
+            "isBuildCommand": true,
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "taskName": "test",
+            "args": ["test"],
+            "isTestCommand": true,
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "taskName": "continuous",
+            "args": ["default"],
+            "isWatching": true,
+            "problemMatcher": "$msCompile"
+        }
+    ]
 }

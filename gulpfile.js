@@ -32,10 +32,11 @@ gulp.task("lint-core", lint("core"));
 gulp.task("lint-config", lint("config"));
 gulp.task("lint-test", lint("test"));
 
+gulp.task("build", ["build-core", "build-config", "build-npm", "test-npm"]);
+gulp.task("build-npm", ["lint-core", "lint-config"], build.npm);
 gulp.task("build-core", ["lint-core"], build.js("core"));
 gulp.task("build-config", ["build-core", "lint-config"], build.js("config"));
-gulp.task("build-npm", ["lint-core", "lint-config"], build.npm);
-gulp.task("build", ["build-core", "build-config", "build-npm", "test-npm"]);
+gulp.task("build-minify", ["build"], minify);
 
 gulp.task("test", ["lint-test"], test.jasmine);
 gulp.task("test-npm", ["build-npm"], test.npm);
@@ -50,10 +51,9 @@ gulp.task("default", ["clean", "watch", "build", "test"]);
 // Release tasks
 gulp.task("tsdoc", tsdoc);
 gulp.task("minify", minify);
-gulp.task("minify-full", ["build"], minify);
 
 gulp.task("nuget-download", nuget.download);
-gulp.task("nuget-pack", ["nuget-download", "minify-full"], nuget.pack);
+gulp.task("nuget-pack", ["nuget-download", "build-minify"], nuget.pack);
 
 gulp.task("bump-major", version("major"));
 gulp.task("bump-minor", version("minor"));
