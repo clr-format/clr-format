@@ -1,5 +1,5 @@
 var dirs = require("../config/dirs.js");
-var branches = require("../utils/master.js");
+var branches = require("../config/branches.js");
 
 var git = require("../utils/git.js");
 var format = require("clr-format");
