@@ -64,80 +64,36 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-				<h1 id="-clr-format-https-github-com-clr-format-clr-format-"><a href="https://github.com/clr-format/clr-format">clr-format</a></h1>
-				<p>A lightweight, modular JavaScript implementation of a string formatting function that supports composite format strings and globalization</p>
-				<h2 id="installation">Installation</h2>
-				<p>The following commands can be used to install the script in a context of your choice.</p>
-				<h4 id="nuget-gallery-link-https-www-nuget-org-packages-clr-format-js-">NuGet (<a href="https://www.nuget.org/packages/clr-format.js">gallery link</a>)</h4>
-				<p><code>Install-Package clr-format.js</code></p>
-				<h4 id="bower">Bower</h4>
-				<p><code>bower install clr-format</code></p>
-				<h4 id="module">Module</h4>
-				<p><code>npm install clr-format</code></p>
-				<h2 id="latest-version-capabilities">Latest Version Capabilities</h2>
-				<ol>
-					<li><p>Full support for <em>index</em> {<strong>0</strong>} and <em>alignment</em> {0<strong>,-10</strong>} components.</p>
-						<pre><code class="lang-javascript">expect(
-    <span class="hljs-built_in">String</span>.format(
-        <span class="hljs-string">"Format primitives: {0}{5}, {4}, {3}, {1,-8},{2,4}"</span>,
-        <span class="hljs-number">0</span>, { <span class="hljs-string">"a"</span>: <span class="hljs-number">1</span> }, [<span class="hljs-number">2</span>], <span class="hljs-string">"3"</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">undefined</span>))
-    .toBe(<span class="hljs-string">"Format primitives: 0, true, 3, {\"a\":1} , [2]"</span>);
-</code></pre>
-					</li>
-					<li><p>Providing a <em>format string</em> {0,-10<strong>:0.00</strong>} component will result in a thrown namespaced FormatError.</p>
-						<pre><code class="lang-javascript">expect(
-    <span class="hljs-built_in">String</span>.format(
-        <span class="hljs-string">"{0:00.0}"</span>, <span class="hljs-number">1</span>))
-    .toThrowError(Format.Errors.FormatError);
-</code></pre>
-					</li>
-				</ol>
-				<h2 id="usage">Usage</h2>
-				<h4 id="as-a-browser-script">As a browser script</h4>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> formatted = <span class="hljs-built_in">String</span>.format(<span class="hljs-string">"Value: {0}{1,5}"</span>, <span class="hljs-number">1</span>, <span class="hljs-string">"text"</span>); <span class="hljs-comment">// formatted = "Value: 1 text"</span>
-</code></pre>
-				<h4 id="as-a-module">As a module</h4>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> format = <span class="hljs-built_in">require</span>(<span class="hljs-string">"clr-format"</span>);
-<span class="hljs-keyword">var</span> formatted = format(<span class="hljs-string">"Value: {0,-2}{1}"</span>, <span class="hljs-number">1</span>, <span class="hljs-string">"text"</span>); <span class="hljs-comment">// formatted = "Value: 1 text"</span>
-</code></pre>
-				<h2 id="development">Development</h2>
-				<p>The implementation of this string formatting function is inspired by .NET&#39;s (and other Microsoft® products&#39;) <a href="https://msdn.microsoft.com/en-us/library/txafckwd.aspx">Composite Formatting</a> feature. Therefore the final behaviour should be similar to what&#39;s described in the <a href="https://msdn.microsoft.com/en-us/library/system.string.format.aspx#Starting">Getting started with the String.Format method</a> article. The main difference is that method names in JavaScript are intrinsically camelcase therefore <strong>String.format</strong> should be used instead.</p>
-				<p>To develop and contribute simply install NodeJS, clone the repository, install npm dependencies and run <a href="http://gulpjs.com/">Gulp</a>.</p>
-				<h4 id="tools-download-and-install-">Tools (download and install)</h4>
-				<ol>
-					<li><a href="http://git-scm.com/download/">GIT</a></li>
-					<li><a href="https://nodejs.org/download/">NodeJS</a> - make sure to keep the option to add node and globally installed packages to PATH</li>
-					<li><a href="https://code.visualstudio.com/">VSCode</a> - or any other IDE that has TypeScript language support</li>
-				</ol>
-				<h4 id="building-the-project">Building the project</h4>
-				<pre><code class="lang-bash">git <span class="hljs-built_in">clone</span> https://github.com/clr-format/clr-format.git
-npm install --global gulp
-npm install
-gulp
-</code></pre>
-				<h4 id="notes">Notes</h4>
-				<ol>
-					<li>The default gulp build tasks&#39; list contains a <a href="https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpwatchglob-opts-cb">watch task</a> which means it will block the console and continuously rebuild the project when files in the source or tests folder are changed.</li>
-					<li>In VSCode pressing Ctrl + Shift + B will trigger the gulp default command.</li>
-				</ol>
-				<h2 id="planned-releases">Planned releases</h2>
-				<h5 id="0-1-2-released-">0.1.2 (Released)</h5>
-				<p>Support for index and alignment components only; <em>without</em> any formatting rules specified by a provider or format string component.</p>
-				<h5 id="0-2">0.2</h5>
-				<p>Addition of a <em>clr-format-configuration</em> sub-module/package which can be optionally installed to compliment the core implementation with various pre-defined configurations.</p>
-				<h5 id="0-3">0.3</h5>
-				<p>Implementation of an invariant number formatting provider and numeric format string components.</p>
-				<h5 id="0-4">0.4</h5>
-				<p>Addition of a <em>clr-format-intl</em> sub-module/package which can be optionally installed to provide globalization via a bridge to the <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Intl">ECMAScript&#39;s Intl namespace</a>.</p>
-				<h5 id="0-5">0.5</h5>
-				<p>Complete the implementation with a date formatting provider and temporal format string components.</p>
-			</div>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Modules</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-module"><a href="modules/format.html" class="tsd-kind-icon">Format</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported"><a href="interfaces/array.html" class="tsd-kind-icon">Array</a></li>
+								<li class="tsd-kind-interface tsd-is-not-exported"><a href="interfaces/arrayconstructor.html" class="tsd-kind-icon">Array<wbr>Constructor</a></li>
+								<li class="tsd-kind-interface tsd-is-not-exported"><a href="interfaces/function.html" class="tsd-kind-icon">Function</a></li>
+								<li class="tsd-kind-interface tsd-is-not-exported"><a href="interfaces/functionconstructor.html" class="tsd-kind-icon">Function<wbr>Constructor</a></li>
+								<li class="tsd-kind-interface tsd-is-not-exported"><a href="interfaces/objectconstructor.html" class="tsd-kind-icon">Object<wbr>Constructor</a></li>
+								<li class="tsd-kind-interface tsd-is-not-exported"><a href="interfaces/string.html" class="tsd-kind-icon">String</a></li>
+								<li class="tsd-kind-interface tsd-is-not-exported"><a href="interfaces/stringconstructor.html" class="tsd-kind-icon">String<wbr>Constructor</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals  ">
+					<li class="globals current ">
 						<a href="globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-module">
