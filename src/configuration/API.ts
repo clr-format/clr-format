@@ -5,6 +5,6 @@
 /// <reference path="API/String" />
 /// <reference path="API/Function" />
 
-if (typeof Format.innerFormat === "undefined") {
+if (typeof Format === "undefined" || typeof Format.innerFormat === "undefined") {
     throw new Error("Configuration module loaded before main module");
 }
