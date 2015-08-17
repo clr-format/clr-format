@@ -47,6 +47,6 @@
     "gulp-uglify": "^1.2.0",
     "mversion": "^1.10.0",
     "request": "^2.60.0",
-    "shelljs": "^0.5.1"
+    "shelljs": "^0.5.2"
   }
 }
