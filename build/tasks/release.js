@@ -1,6 +1,7 @@
 var dirs = require("../config/dirs.js");
-var git = require("../utils/git.js");
+var branches = require("../utils/master.js");
 
+var git = require("../utils/git.js");
 var format = require("clr-format");
 var version = require("./version.js");
 var getVersion = require("../utils/getVersion.js");
@@ -15,8 +16,8 @@ module.exports = function (done) {
 };
 
 function validateState(branch) {
-    if (branch !== "master") {
-        throw new Error("Releases can only be created from the master branch, aborting release process");
+    if (branch !== branches.master) {
+        throw new Error(format("Releases can only be created from the '{0}' branch, aborting release process", branches.master));
     }
 
     if (git.isDirty()) {
