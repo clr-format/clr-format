@@ -83,14 +83,8 @@ module Format.Config.Definitions {
     };
 
     var getProtoWrapper = function(utilFunction: Function) {
-        return function() {
-
-            let args = [this];
-            for (let i = 0; i < arguments.length; i += 1) {
-                args[i + 1] = arguments[i];
-            }
-
-            return utilFunction.apply(undefined, args);
+        return function(...args: Object[]) {
+            return utilFunction(this, ...args);
         };
     };
 
