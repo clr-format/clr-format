@@ -61,7 +61,9 @@ function commitDocs() {
         git.submodule.commit(dirs.docs, commitArgs, format("Could not commit output files to '{0}' submodule", dirs.docs));
         git.commit(commitArgs, format("Could not commit the latest ref of '{0}' submodule in superproject", dirs.docs));
 
-        git.push("origin --atomic --recurse-submodules=on-demand");
+        git.push(
+            "origin --recurse-submodules=on-demand",
+            "Could not push changes to remote (network connection or stored credentials might be missing)");
     }
     catch (error) {
         resetSubmoduleState();
