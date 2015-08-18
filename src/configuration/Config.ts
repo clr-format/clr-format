@@ -8,9 +8,9 @@
 module Format.Config {
     /**
      * Adds a bare function (one that has no 'this' context) to the host object's prototype.
-     * @param A function the first argument of which can be replaced by the 'this' context of the host object.
-     * @hostObject A host object (usually a constructor function) the prototype of which will be updated to contain the wrapped bare function.
-     * @name: Optional (unless the bare function is anonymous) name of the new prototype method which is added, defaults to the bare function's name.
+     * @param bareFunction A function the first argument of which can be replaced by the 'this' context of the host object.
+     * @param hostObject A host object (usually a constructor function) the prototype of which will be updated to contain the wrapped bare function.
+     * @param name Optional (unless the bare function is anonymous) name of the new prototype method which is added, defaults to the bare function's name.
      */
     export function addToPrototype(bareFunction: Function, hostObject: Object, name?: string) {
         Definitions.addToPrototype(bareFunction, hostObject, name);
