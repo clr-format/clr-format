@@ -1,6 +1,8 @@
 var exec = require("./exec.js");
+var regex = require("../config/regex.js");
+var shell = require('shelljs');
 
-module.exports = {
+var root = module.exports = {
 
     add: function (args, errorMessage) {
         git("add", args, errorMessage);
@@ -41,10 +43,64 @@ module.exports = {
     getLatestReleaseTag: function () {
         var tagRev = git("rev-list", "--max-count=1 --tags", "Could not resolve latest release tag's revision");
         return git("describe", tagRev, "Could not get description for latest release tag's revision");
+    },
+
+    submodule: {
+
+        add: function (submodule, args, errorMessage) {
+            gitSubmoduleDir(submodule, function () {
+                root.add(args, errorMessage);
+            });
+        },
+
+        checkout: function (submodule, args, errorMessage) {
+            gitSubmoduleDir(submodule, function () {
+                root.checkout(args, errorMessage)
+            });
+        },
+
+        commit: function (submodule, args, errorMessage) {
+            gitSubmoduleDir(submodule, function () {
+                root.commit(args, errorMessage);
+            });
+        },
+
+        reset: function (submodule, errorMessage) {
+            gitSubmodule("deinit", "--force " + submodule, errorMessage);
+            gitSubmodule("update", "--init --remote " + submodule, errorMessage);
+        },
+
+        isClean: function (submodule) {
+            return gitSubmoduleDir(submodule, function () {
+                return !root.isDirty();
+            });
+        }
     }
 };
 
 function git(command, args, errorMessage) {
-    command = ["git", command, args].join(" ").trim();
-    return exec(command, errorMessage).trim();
+    return exec(getCommand("git", command, args), errorMessage).trim();
+}
+
+function gitSubmodule(command, args, errorMessage) {
+    return exec(getCommand("git submodule", command, args), errorMessage).trim();
+}
+
+function gitSubmoduleDir(dir, innerCommand) {
+
+    if (!regex.validFilename.test(dir)) {
+        throw Error("Argument 'dir' must be a valid filename string");
+    }
+
+    try {
+        shell.cd(dir);
+        return innerCommand();
+    }
+    finally {
+        shell.cd("..");
+    }
+}
+
+function getCommand(main, command, args) {
+    return [main, command, args].join(" ").trim();
 }
