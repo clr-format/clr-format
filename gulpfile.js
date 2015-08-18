@@ -49,7 +49,7 @@ gulp.task("watch", function () {
 gulp.task("default", ["clean", "watch", "build", "test"]);
 
 // Release tasks
-gulp.task("tsdoc", tsdoc);
+gulp.task("tsdoc", tsdoc.build);
 gulp.task("minify", minify);
 
 gulp.task("nuget-download", nuget.download);
@@ -59,7 +59,8 @@ gulp.task("bump-major", version("major"));
 gulp.task("bump-minor", version("minor"));
 gulp.task("bump-patch", version("patch"));
 
-gulp.task("release-pack", ["clean", "tsdoc", "nuget-pack"]);
+gulp.task("release-pack", ["clean", "release-tsdoc", "nuget-pack"]);
+gulp.task("release-tsdoc", tsdoc.release);
 gulp.task("release-major", ["bump-major", "release-pack"], release);
 gulp.task("release-minor", ["bump-minor", "release-pack"], release);
 gulp.task("release-patch", ["bump-patch", "release-pack"], release);

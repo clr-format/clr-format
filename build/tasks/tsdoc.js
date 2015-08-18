@@ -10,15 +10,23 @@ var gulp = require("gulp");
 var format = require("clr-format");
 var typedoc = require("gulp-typedoc");
 
-module.exports = function (done) {
+module.exports.build = function () {
+    resetSubmoduleState();
+    return generateDocs();
+};
 
+module.exports.publish = function () {
     validateState();
     resetSubmoduleState();
 
+    return generateDocs(true);
+};
+
+function generateDocs(publish) {
     return gulp.src([paths.sources, negate(paths.references)])
         .pipe(typedoc({ out: dirs.docs, mode: "file", name: "CLR Format" }))
-        .on("end", getOnEndCallback());
-};
+        .on("end", getOnEndCallback(publish));
+}
 
 function validateState() {
     if (git.getBranchName() !== branches.master) {
@@ -38,20 +46,20 @@ function resetSubmoduleState() {
         format("Could not checkout '{0}' submodule to '{1}' branch", dirs.docs, branches.ghPages));
 }
 
-function getOnEndCallback() {
+function getOnEndCallback(publish) {
 
     var submodule = gulp.src(dirs.docs + "/.git");
 
     return function () {
-        submodule
+        return submodule
             .pipe(gulp.dest(dirs.docs))
-            .on("end", commitDocs);;
+            .on("end", publish ? commitDocs : stageDocs);
     };
 }
 
 function commitDocs() {
     try {
-        git.submodule.add(dirs.docs, "--all", format("Could not stage output files to '{0}' submodule", branches.ghPages));
+        stageDocs();
 
         if (git.submodule.isClean(dirs.docs)) {
             return console.log("Output documentation files resulted in no changes");
@@ -66,7 +74,11 @@ function commitDocs() {
             "Could not push changes to remote (network connection or stored credentials might be missing)");
     }
     catch (error) {
-        resetSubmoduleState();
+        //resetSubmoduleState();
         throw error;
     }
+}
+
+function stageDocs() {
+    git.submodule.add(dirs.docs, "--all", format("Could not stage output files to '{0}' submodule", branches.ghPages));
 }
