@@ -49,7 +49,7 @@ gulp.task("watch", function () {
 gulp.task("default", ["clean", "watch", "build", "test"]);
 
 // Release tasks
-gulp.task("tsdoc", tsdoc.build);
+gulp.task("tsdoc", ["lint-core", "lint-config"], tsdoc.build);
 gulp.task("minify", minify);
 
 gulp.task("nuget-download", nuget.download);
