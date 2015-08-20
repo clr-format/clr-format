@@ -1,3 +1,8 @@
+/**
+ * Extends the built-in javascript `String` object's prototype.
+ *
+ * The [[Format.Config.addUtilsToPrototype]] method must be called in order to access the definitions.
+ */
 interface String {
     /**
      * Converts the value of objects to strings based on the formats specified and inserts them into this string.

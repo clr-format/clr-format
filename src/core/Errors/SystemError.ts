@@ -11,15 +11,24 @@ module Format.Errors {
     /** Base system error class that allows for syntactic C#-like Error class extension. */
     export class SystemError extends ErrorClass {
 
+        /** The non-standard stack property of `Error` objects offer a trace of which functions were called, in what order, from which line and file, and with what arguments. */
         public stack: string;
+
+        /** The line from the [[stack]] property from which the error occurred. */
         public source: string;
+
+        /** An inner error which the current error wraps. */
         public innerError: Error;
+
+        /** A helper counter that allows for some degree of standardization of the [[stack]] property. */
         private childStackCount: number;
 
         /**
-         * Creates an abstract system error object derived from the built-in Error type that decorates it with error-specific properties.
-         * @param message Optional human-readable description of the error.
-         * @param innerError Optional error to rethrow while also preserving its stack trace.
+         * Creates an abstract system error object derived from the built-in javascript `Error` type and decorates it with additional properties.
+         *
+         * See: https://msdn.microsoft.com/en-us/library/system.systemexception.aspx
+         * @param message A human-readable description of the error.
+         * @param innerError An error to wrap while also preserving its stack trace.
          */
         constructor(message?: string, innerError?: Error) {
             super(message);
@@ -30,6 +39,7 @@ module Format.Errors {
             this.source = this.getActualSource(this.stack);
         }
 
+        /** Increments the [[childStackCount]]. Must be called **before** the base constructor in **all** derived error classes. */
         protected incrementStackCount() {
             this.childStackCount = (this.childStackCount || 0) + 1;
         }
@@ -43,7 +53,7 @@ module Format.Errors {
         private getActualSource(stack: string): string {
             if (stack) {
                 let stackArray = stack.split("\n");
-                return stackArray[this.getStackStart(stackArray)].trim();
+                return stackArray[this.getStackOmitStart(stackArray)].trim();
             }
         }
 
@@ -55,7 +65,7 @@ module Format.Errors {
 
                 // Removes the function nestings caused by the constructor and instance methods
                 // This means it also removes more lines for children that call incrementStackCount
-                stackArray.splice(this.getStackStart(stackArray), this.getStackCount());
+                stackArray.splice(this.getStackOmitStart(stackArray), this.getStackOmitCount());
 
                 return stackArray.join("\n");
             }
@@ -70,11 +80,11 @@ module Format.Errors {
             }
         }
 
-        private getStackStart(stackArray: string[]): number {
+        private getStackOmitStart(stackArray: string[]): number {
             return stackArray[0] === "Error" ? 1 : 0;
         }
 
-        private getStackCount(): number {
+        private getStackOmitCount(): number {
 
             let nativeStackOffset = 4;
 

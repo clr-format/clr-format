@@ -1,5 +1,10 @@
 /// <reference path="../../use-strict" />
 
+/**
+ * An internal [[Format.Config]] sub-module containing methods wrapped in a chainable API by its parent.
+ *
+ * Because the module and its members cannot be truly internal refrain from calling its methods directly.
+ */
 module Format.Config.Definitions {
 
     export function addFormatToPrototype() {

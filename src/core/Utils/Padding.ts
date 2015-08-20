@@ -6,14 +6,15 @@
 /// <reference path="../Errors/ArgumentError" />
 /// <reference path="../Errors/ArgumentNullError" />
 
+/** A [[Format.Utils]] sub-module exposing the [[pad]] method for string padding operations. */
 module Format.Utils.Padding {
     /** Defines possible options for a string padding operation. */
     export interface Options {
         /** The number of characters in the resulting string, equal to the number of original characters plus any additional padding characters. */
         totalWidth: number;
-        /** Optional padding character. Defaults to space (' '). */
+        /** The padding character. Defaults to `' '`. */
         paddingChar?: string;
-        /** Optional position of the padded characters relative to the original string. Defaults to Right. */
+        /** The position of the padded characters relative to the original string. Defaults to [[Direction.Right]]. */
         direction?: Direction;
     }
 
@@ -30,7 +31,7 @@ module Format.Utils.Padding {
     /**
      * Returns a new string of a specified length in which the beginning and/or ending of the current string is padded with spaces or with a specified character.
      * @param value The string to apply padding to.
-     * @param options A Padding.Options object defining the desired output.
+     * @param options An [[Options]] object that defines the desired output.
      */
     export function pad(value: string, options: Options): string {
 

@@ -13,6 +13,11 @@
 /// <reference path="Errors/FormatError" />
 /// <reference path="Errors/ArgumentNullError" />
 
+/**
+ * The CLR Format main module and namespace.
+ *
+ * The [[StringConstructor.format]] method exposes the core API of the project. Optional configuration methods are stored in the [[Format.Config]] sub-module.
+ */
 module Format {
 
     String.format = (...args: Object[]): string => {
@@ -37,6 +42,8 @@ module Format {
 
     /**
      * Converts the value of objects to strings based on the formats specified and inserts them into another string.
+     *
+     * This internal version does not support arbitrary argument overloads.
      * @param provider An object that supplies culture-specific formatting information.
      * @param format A composite format string. See: https://msdn.microsoft.com/en-us/library/txafckwd.aspx
      * @param args An array of arguments that contains zero or more objects to format.
@@ -157,29 +164,39 @@ module Format {
         return Utils.Padding.pad(formattedString, { totalWidth, direction, paddingChar });
     };
 
+    /** Basic internal core implementation of a [[FormatProvider]] which does not support format string components and globalization. */
     class SimpleProvider implements Globalization.FormatProvider {
 
         private objectFormatter: Globalization.CustomFormatter;
-        private otherFormatter: Globalization.CustomFormatter;
+        private toStringFormatter: Globalization.CustomFormatter;
 
         constructor() {
             this.objectFormatter = new ObjectFormatter();
-            this.otherFormatter = new OtherFormatter();
+            this.toStringFormatter = new ToStringFormatter();
         }
 
+        /**
+         * Returns [[ObjectFormatter]] for `Object` and `Array` instances and [[OtherFormatter]] for other types.
+         * @param type The type of the value object, i.e. `"[object Number]"`.
+         */
         getFormatter(type: string): Globalization.CustomFormatter {
 
             return type === "[object Object]" || type === "[object Array]" ?
                 this.objectFormatter :
-                this.otherFormatter;
+                this.toStringFormatter;
         }
     }
 
+    /** Basic internal core implementation of a [[CustomFormatter]] for `Object` and `Array` instances. Does not support format string components and globalization. */
     class ObjectFormatter implements Globalization.CustomFormatter {
+        /**
+         * Converts the value by passing it to `JSON.stringify`.
+         * @param format An unsupported format string argument. Will result in a thrown [[FormatError]] if not left empty.
+         * @param value An object to format.
+         */
+        format(format: string, value: Object) {
 
-        format(formatString: string, value: Object) {
-
-            if (formatString) {
+            if (format) {
                 throw new Errors.FormatError("Values of type Object or Array do not accept a format string component");
             }
 
@@ -187,11 +204,16 @@ module Format {
         }
     }
 
-    class OtherFormatter implements Globalization.CustomFormatter {
+    /** Basic internal core implementation of a [[CustomFormatter]] for any objects. Does not support format string components and globalization. */
+    class ToStringFormatter implements Globalization.CustomFormatter {
+        /**
+         * Converts the value by forcing it into a `String` value.
+         * @param format An unsupported format string argument. Will result in a thrown [[FormatError]] if not left empty.
+         * @param value An object to format.
+         */
+        format(format: string, value: Object) {
 
-        format(formatString: string, value: Object) {
-
-            if (formatString) {
+            if (format) {
                 throw new Errors.FormatError(String.format(
                     "Formatter type '{0}' does not accept a format string component",
                     Utils.Function.getName(this.constructor)));

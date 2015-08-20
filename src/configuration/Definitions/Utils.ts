@@ -38,15 +38,15 @@ module Format.Config.Definitions {
         hostObject.prototype[name || actualName] = getProtoWrapper(bareFunction);
     }
 
-    var addAll = function(addFunc: (utilFunction: Function, name: string, hostObject: Indexable<Function>) => void, source: any, hostObject: any) {
+    var addAll = function(addFunc: (utilFunction: Function, hostObject: Indexable<Function>, name: string) => void, source: any, hostObject: any) {
         for (let key in source) {
             if (source.hasOwnProperty(key) && typeof source[key] === "function") {
-                addFunc(source[key], key, hostObject);
+                addFunc(source[key], hostObject, key);
             }
         }
     };
 
-    var asStatic = function(utilFunction: Function, name: string, globalObject: Indexable<Function>) {
+    var asStatic = function(utilFunction: Function, globalObject: Indexable<Function>, name: string) {
 
         if (globalObject[name]) {
             unregister(globalRegistry);
@@ -62,7 +62,7 @@ module Format.Config.Definitions {
         globalRegistry[name] = globalObject;
     };
 
-    var asPrototype = function(utilFunction: Function, name: string, protoObject: Indexable<Function>) {
+    var asPrototype = function(utilFunction: Function, protoObject: Indexable<Function>, name: string) {
 
         if (prototypeExceptions.indexOf(utilFunction) !== -1) {
             return;
