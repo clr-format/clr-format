@@ -65,9 +65,15 @@ var root = module.exports = {
             });
         },
 
-        reset: function (submodule, errorMessage) {
+        reinit: function (submodule, errorMessage) {
             gitSubmodule("deinit", "--force " + submodule, errorMessage);
             gitSubmodule("update", "--init --remote " + submodule, errorMessage);
+        },
+
+        reset: function (submodule, args, errorMessage) {
+            gitSubmoduleDir(submodule, function () {
+                root.reset(args, errorMessage);
+            });
         },
 
         isClean: function (submodule) {

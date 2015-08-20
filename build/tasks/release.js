@@ -65,7 +65,7 @@ function createTag(tagName) {
             format("Could not create the release tag {0} (it might already exist)", tagName));
 
         git.push(
-            "origin --follow-tags --atomic",
+            "origin --follow-tags --atomic --recurse-submodules=on-demand",
             "Could not push changes to remote (network connection or stored credentials might be missing)");
     }
     catch (error) {

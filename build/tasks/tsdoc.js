@@ -11,13 +11,13 @@ var format = require("clr-format");
 var typedoc = require("gulp-typedoc");
 
 module.exports.build = function () {
-    resetSubmoduleState();
+    reinitSubmodule();
     return generateDocs();
 };
 
 module.exports.publish = function () {
     validateState();
-    resetSubmoduleState();
+    reinitSubmodule();
 
     return generateDocs(true);
 };
@@ -38,8 +38,8 @@ function validateState() {
     }
 }
 
-function resetSubmoduleState() {
-    git.submodule.reset(dirs.docs, format("Could not reset '{0}' submodule", dirs.docs));
+function reinitSubmodule() {
+    git.submodule.reinit(dirs.docs, format("Could not reinit '{0}' submodule", dirs.docs));
     git.submodule.checkout(
         dirs.docs,
         branches.ghPages,
@@ -58,6 +58,9 @@ function getOnEndCallback(publish) {
 }
 
 function commitDocs() {
+
+    var resetSubmodule;
+
     try {
         stageDocs();
 
@@ -66,15 +69,17 @@ function commitDocs() {
         }
 
         var commitArgs = format("--all -m \"updating documentation for v{0}\"", getVersion());
-        git.submodule.commit(dirs.docs, commitArgs, format("Could not commit output files to '{0}' submodule", dirs.docs));
-        git.commit(commitArgs, format("Could not commit the latest ref of '{0}' submodule in superproject", dirs.docs));
 
-        git.push(
-            "origin --recurse-submodules=on-demand",
-            "Could not push changes to remote (network connection or stored credentials might be missing)");
+        git.submodule.commit(dirs.docs, commitArgs, format("Could not commit output files to '{0}' submodule", dirs.docs));
+        resetSubmodule = true;
+
+        git.commit(commitArgs, format("Could not commit the latest ref of '{0}' submodule in superproject", dirs.docs));
     }
     catch (error) {
-        //resetSubmoduleState();
+        if (resetSubmodule) {
+            git.submodule.reset(dirs.docs, "--hard HEAD~1");
+        }
+
         throw error;
     }
 }
