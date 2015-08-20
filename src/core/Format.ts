@@ -87,8 +87,7 @@ module Format {
         return result;
     };
 
-    // Can memoize
-    var getBracesCount = (formatItem: string, braceChar: string): number => {
+    export var getBracesCount = (formatItem: string, braceChar: string): number => {
 
         let splits = formatItem.split(braceChar);
 

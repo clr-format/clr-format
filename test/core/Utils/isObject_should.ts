@@ -4,7 +4,7 @@
 
 module Format.Utils {
 
-    describe("Object isObject", () => {
+    describe("Utils isObject", () => {
 
         it("should return true if an object is a pure object instance", () => {
 

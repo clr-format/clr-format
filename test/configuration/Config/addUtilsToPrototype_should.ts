@@ -11,6 +11,7 @@ module Format.Config {
         let expectUndefinedMethods = function() {
             expect(array.takeWhile).toBeUndefined();
             expect(func.getName).toBeUndefined();
+            expect(func.memoize).toBeUndefined();
         };
 
         it("should not define utils callable from instance objects by default", () => {
@@ -23,6 +24,7 @@ module Format.Config {
 
             expect(array.takeWhile(() => true)).toEqual(array);
             expect(func.getName()).toBe("anonymous");
+            expect(func.memoize()).toBeDefined();
             expect(funcAccessor.getEmpty).toBeUndefined();
         });
 

@@ -1,5 +1,7 @@
 /// <reference path="../../use-strict" />
-/// <reference path="../../shared/Indexable" />
+
+/// <reference path="../Utils/Function" />
+/// <reference path="../Utils/Indexable" />
 
 module Format.Config.Definitions {
 

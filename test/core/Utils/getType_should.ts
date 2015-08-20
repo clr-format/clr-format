@@ -4,7 +4,7 @@
 
 module Format.Utils {
 
-    describe("Object getType", () => {
+    describe("Utils getType", () => {
 
         let supportsDOM = () => typeof window !== "undefined";
 

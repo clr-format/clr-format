@@ -13,6 +13,7 @@ module Format.Config {
             expect(Object.isObject).toBeUndefined();
             expect(Array.takeWhile).toBeUndefined();
             expect(Function.getName).toBeUndefined();
+            expect(Function.memoize).toBeUndefined();
             expect(Function.getEmpty).toBeUndefined();
         };
 
@@ -29,6 +30,7 @@ module Format.Config {
             expect(Object.isObject).toBe(Utils.isObject);
             expect(Array.takeWhile).toBe(Utils.Enumerable.takeWhile);
             expect(Function.getName).toBe(Utils.Function.getName);
+            expect(Function.memoize).toBe(Utils.Function.memoize);
             expect(Function.getEmpty).toBe(Utils.Function.getEmpty);
         });
 

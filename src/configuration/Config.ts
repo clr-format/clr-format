@@ -2,8 +2,9 @@
 
 /// <reference path="API" />
 
-/// <reference path="Definitions/Format" />
 /// <reference path="Definitions/Utils" />
+/// <reference path="Definitions/Format" />
+/// <reference path="Definitions/Performance" />
 
 /**
  * An optional sub-module which contains various configurational methods.
@@ -46,8 +47,8 @@ module Format.Config {
      * For example [[ObjectConstructor.getType]] will be equivallent to calling [[Format.Utils.getType]].
      * The following mapping applies:
      * - [[Format.Utils]] methods => [[ObjectConstructor]]
-     * - [[Format.Utils.Enumerable]] => [[ArrayConstructor]]
      * - [[Format.Utils.Function]] => [[FunctionConstructor]]
+     * - [[Format.Utils.Enumerable]] => [[ArrayConstructor]]
      */
     export function addUtilsToGlobals() {
         Definitions.addUtilsToGlobals();
@@ -77,6 +78,18 @@ module Format.Config {
     /** Removes the instance methods from global objects that are defined by calling [[addUtilsToPrototype]]. */
     export function removeUtilsFromPrototype() {
         Definitions.removeUtilsFromPrototype();
+        return Config;
+    }
+
+    /** Enables performance improvements through memoization of key inner functions at the cost of memory. */
+    export function enableMemoization() {
+        Definitions.enableMemoization();
+        return Config;
+    }
+
+    /** Disables performance improvements through memoization of key inner functions and releases the used memory. */
+    export function disableMemoization() {
+        Definitions.disableMemoization();
         return Config;
     }
 }
