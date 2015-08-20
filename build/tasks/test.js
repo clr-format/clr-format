@@ -10,10 +10,10 @@ var empty = require("gulp-empty");
 var uglify = require("gulp-uglify");
 var jasmine = require("gulp-jasmine");
 
-module.exports.jasmine = function (minify) {
+module.exports.jasmine = function (minifyOpts) {
     return gulp.src(paths.tests)
         .pipe(tsc(tsProjects.tests)).js
-        .pipe(minify ? uglify({ mangle: false, output: { beautify: true } }) : empty())
+        .pipe(typeof minifyOpts !== "function" ? uglify(minifyOpts) : empty())
         .pipe(gulp.dest(dirs.build))
         .pipe(jasmine({ reporter: new testReporter.NUnitXmlReporter({ savePath: dirs.build }) }));
 };

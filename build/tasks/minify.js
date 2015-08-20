@@ -13,7 +13,7 @@ var beautifyOptions = {
     output: {
         beautify: true,
         bracketize: true,
-        comments: function (node, comment) { return !/\/ <reference path=/i.test(comment.value); }
+        comments: function (node, comment) { return !(/\/ <reference path=/i.test(comment.value) || /tslint\:/.test(comment.value)); }
     },
     compress: {
         booleans: false,
@@ -49,5 +49,5 @@ module.exports = function () {
         .pipe(rename({ suffix: ".min" }))
         .pipe(gulp.dest(dirs.output));
 
-    return test.jasmine(true);
+    return test.jasmine(beautifyOptions);
 };
