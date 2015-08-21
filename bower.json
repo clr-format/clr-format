@@ -30,6 +30,7 @@
     "*.yml",
     "*.md",
     "build",
-    "test"
+    "test",
+    "docs"
   ]
 }
