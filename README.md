@@ -17,7 +17,9 @@ The following commands can be used to install the script in a context of your ch
 Latest Version Capabilities
 ---------------------------
 
-1. Full support for index \{__0__\} and alignment \{0,__-10__\} components.
+1. [GitHub pages documentation](http://clr-format.github.io/clr-format) generated from the source files' jsdoc comments for the entire public API so far.
+Thanks to [TypeDoc](http://typedoc.io) and its [Gulp Plugin](https://github.com/rogierschouten/gulp-typedoc)!
+2. Full support for index \{__0__\} and alignment \{0,__-10__\} components.
     ```javascript
     expect(
         String.format(
@@ -26,7 +28,7 @@ Latest Version Capabilities
         .toBe("Format primitives: 0, true, 3, {\"a\":1} , [2]");
     ```
 
-2. Providing a format string \{0,-10:__0.00__\} component will result in a thrown [FormatError](http://clr-format.github.io/clr-format/classes/format.errors.formaterror.html).
+3. Providing a format string \{0,-10:__0.00__\} component will result in a thrown [FormatError](http://clr-format.github.io/clr-format/classes/format.errors.formaterror.html).
     ```javascript
     expect(
         String.format(
@@ -34,7 +36,7 @@ Latest Version Capabilities
         .toThrowError(Format.Errors.FormatError);
     ```
 
-3. Optional configuration API contained in *clr-format-config.js* and defined under the [Format.Config](http://clr-format.github.io/clr-format/modules/format.config.html) namespace.
+4. Optional configuration API contained in *clr-format-config.js* and defined under the [Format.Config](http://clr-format.github.io/clr-format/modules/format.config.html) namespace.
 The example differs a bit when used as a NodeJS module, see in the Usage section below.
     ```javascript
     Format.Config.addFormatToPrototype();
