@@ -38,7 +38,7 @@ Latest Version Capabilities
 The example differs a bit when used as a NodeJS module, see in the Usage section below.
     ```javascript
     Format.Config.addFormatToPrototype();
-    expect("Formatting using the injected {0} method".format("prototype")
+    expect("Formatting using the injected {0} method".format("prototype"))
         .toBe("Formatting using the injected prototype method");
     ```
 
