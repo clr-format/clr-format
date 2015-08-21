@@ -66,9 +66,8 @@ function createTag(branch, tagName) {
             format("Could not create the release tag {0} (it might already exist)", tagName));
 
         git.checkout(branch, "Could not checkout the origin release branch to initiate push");
-        git.push(
-            "origin --follow-tags --progress --recurse-submodules=on-demand",
-            "Could not push changes to remote (network connection or stored credentials might be missing)");
+        git.push("--tags", "Could not push release tag to remote");
+        git.push("--recurse-submodules=on-demand", "Could not push submodules changes to remote");
     }
     catch (error) {
         rollbackRemote(tagName);
