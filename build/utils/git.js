@@ -37,7 +37,7 @@ var root = module.exports = {
     },
 
     getLastCommitMessage: function () {
-        return git("log -1 --pretty=%B", "Could not resolve the last commit's message");
+        return git("log", "-1 --pretty=%B", "Could not resolve the last commit's message");
     },
 
     getLatestReleaseTag: function () {

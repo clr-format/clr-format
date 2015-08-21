@@ -2,6 +2,7 @@ var dirs = require("../config/dirs.js");
 var branches = require("../config/branches.js");
 
 var git = require("../utils/git.js");
+var tsdoc = require("./tsdoc.js");
 var format = require("clr-format");
 var version = require("./version.js");
 var getVersion = require("../utils/getVersion.js");
@@ -28,7 +29,7 @@ function validateState(branch) {
 function release(branch) {
     try {
         git.checkout("--detach", "Could not detach from release branch");
-        commitDist();
+        commitDist(branch);
     }
     catch (error) {
         rollbackState(branch, error);
@@ -39,7 +40,7 @@ function release(branch) {
     }
 }
 
-function commitDist() {
+function commitDist(branch) {
     try {
         git.add(
             "-f " + dirs.output,
@@ -50,7 +51,7 @@ function commitDist() {
             format("-m \"{0}\"", tagName),
             "Could not commit output files for release tag");
 
-        createTag(tagName);
+        createTag(branch, tagName);
     }
     catch (error) {
         git.reset("--hard");
@@ -58,14 +59,15 @@ function commitDist() {
     };
 }
 
-function createTag(tagName) {
+function createTag(branch, tagName) {
     try {
         git.tag(
             format("-m \"{0}\" {0}", tagName),
             format("Could not create the release tag {0} (it might already exist)", tagName));
 
+        git.checkout(branch, "Could not checkout the origin release branch to initiate push");
         git.push(
-            "origin --follow-tags --atomic --recurse-submodules=on-demand",
+            "origin --follow-tags --progress --recurse-submodules=on-demand",
             "Could not push changes to remote (network connection or stored credentials might be missing)");
     }
     catch (error) {
@@ -88,9 +90,27 @@ function rollbackState(branch, error) {
         git.checkout(branch, "Could not restore the original working directory's state; carefully review its and the remote's status");
     }
     finally {
-        if (error && git.getLastCommitMessage() === version.getCommitMessage(getVersion())) {
+        if (error && matchLastCommitMessage()) {
+
             git.reset("--hard HEAD~1");
+
+            if (matchLastCommitMessage()) {
+                git.reset("--hard HEAD~1");
+            }
+
             throw error;
         }
     }
+}
+
+function matchLastCommitMessage() {
+
+    var lastCommitMessage = git.getLastCommitMessage();
+    if (lastCommitMessage === tsdoc.getCommitMessage()) {
+        git.submodule.reset(dirs.docs, "--hard HEAD~1");
+
+        return true;
+    }
+
+    return lastCommitMessage === version.getCommitMessage(getVersion());
 }

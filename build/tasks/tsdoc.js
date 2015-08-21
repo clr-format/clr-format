@@ -15,11 +15,15 @@ module.exports.build = function () {
     return generateDocs();
 };
 
-module.exports.publish = function () {
+module.exports.release = function () {
     validateState();
     reinitSubmodule();
 
     return generateDocs(true);
+};
+
+module.exports.getCommitMessage = function () {
+    return "updating documentation for " + getVersion();
 };
 
 function generateDocs(publish) {
@@ -68,7 +72,7 @@ function commitDocs() {
             return console.log("Output documentation files resulted in no changes");
         }
 
-        var commitArgs = format("--all -m \"updating documentation for v{0}\"", getVersion());
+        var commitArgs = format("--all -m \"{0}\"", module.exports.getCommitMessage());
 
         git.submodule.commit(dirs.docs, commitArgs, format("Could not commit output files to '{0}' submodule", dirs.docs));
         resetSubmodule = true;
