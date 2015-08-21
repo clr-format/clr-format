@@ -1,6 +1,8 @@
 # [clr-format](https://github.com/clr-format/clr-format)
 A lightweight, modular JavaScript implementation of a string formatting function that supports composite format strings and globalization
 
+[![Build Status](https://travis-ci.org/clr-format/clr-format.svg?branch=master)](https://travis-ci.org/clr-format/clr-format)
+
 Installation
 ------------
 The following commands can be used to install the script in a context of your choice.
