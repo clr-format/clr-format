@@ -17,7 +17,7 @@ The following commands can be used to install the script in a context of your ch
 Latest Version Capabilities
 ---------------------------
 
-1. Full support for *index* \{**0**\} and *alignment* \{0**,\-10**\} components.
+1. Full support for index \{__0__\} and alignment \{0,__-10__\} components.
     ```javascript
     expect(
         String.format(
@@ -26,7 +26,7 @@ Latest Version Capabilities
         .toBe("Format primitives: 0, true, 3, {\"a\":1} , [2]");
     ```
 
-2. Providing a *format string* \{0,-10**:0\.00**\} component will result in a thrown [FormatError](http://clr-format.github.io/clr-format/classes/format.errors.formaterror.html).
+2. Providing a format string \{0,-10:__0.00__\} component will result in a thrown [FormatError](http://clr-format.github.io/clr-format/classes/format.errors.formaterror.html).
     ```javascript
     expect(
         String.format(
