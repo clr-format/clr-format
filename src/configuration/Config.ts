@@ -67,8 +67,8 @@ module Format.Config {
      * The method's first argument must match the global object's type.
      * For example [[Function.getName]] will be wrapped to have its first argument replaced by the `this` object in the prototype version. Other arguments are shifted accordingly in the process.
      * The following mapping applies:
-     * - [[Format.Utils.Enumerable]] => [[Array]]
      * - [[Format.Utils.Function]] => [[Function]]
+     * - [[Format.Utils.Enumerable]] => [[Array]]
      */
     export function addUtilsToPrototype() {
         Definitions.addUtilsToPrototype();
