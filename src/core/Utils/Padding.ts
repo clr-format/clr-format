@@ -62,7 +62,7 @@ module Format.Utils.Padding {
                 options.totalWidth + ""));
         }
 
-        if (options.paddingChar.length > 1) {
+        if (typeof options.paddingChar !== "string" || options.paddingChar.length > 1) {
             throw new Errors.ArgumentError(String.format(
                 "Option 'paddingChar' with value '{0}' must be a single character string",
                 options.paddingChar + ""));

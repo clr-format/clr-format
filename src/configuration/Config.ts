@@ -3,7 +3,7 @@
 /// <reference path="API" />
 
 /// <reference path="Definitions/Utils" />
-/// <reference path="Definitions/Format" />
+/// <reference path="Definitions/String" />
 /// <reference path="Definitions/Performance" />
 
 /**
@@ -35,9 +35,21 @@ module Format.Config {
         return Config;
     }
 
+    /** Adds the [[String.padLeft]] and [[String.padRight]] functions, which allows for direct instance calls like `"123".padLeft(5, "0")`. */
+    export function addPaddingToPrototype() {
+        Definitions.addPaddingToPrototype();
+        return Config;
+    }
+
     /** Removes the [[String.format]] prototype wrapper that is defined by calling [[addFormatToPrototype]]. */
     export function removeFormatFromPrototype() {
         Definitions.removeFormatFromPrototype();
+        return Config;
+    }
+
+    /** Removes the [[String.padLeft]] and [[String.padRight]] functions that are defined by calling [[addPaddingToPrototype]]. */
+    export function removePaddingFromPrototype() {
+        Definitions.removePaddingFromPrototype();
         return Config;
     }
 
