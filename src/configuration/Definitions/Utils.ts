@@ -40,7 +40,7 @@ module Format.Config.Definitions {
         hostObject.prototype[name || actualName] = getProtoWrapper(bareFunction);
     }
 
-    var addAll = function(addFunc: (utilFunction: Function, hostObject: Indexable<Function>, name: string) => void, source: any, hostObject: any) {
+    var addAll = (addFunc: (utilFunction: Function, hostObject: Indexable<Function>, name: string) => void, source: any, hostObject: any) => {
         for (let key in source) {
             if (source.hasOwnProperty(key) && typeof source[key] === "function") {
                 addFunc(source[key], hostObject, key);
@@ -48,7 +48,7 @@ module Format.Config.Definitions {
         }
     };
 
-    var asStatic = function(utilFunction: Function, globalObject: Indexable<Function>, name: string) {
+    var asStatic = (utilFunction: Function, globalObject: Indexable<Function>, name: string) => {
 
         if (globalObject[name]) {
             unregister(globalRegistry);
@@ -64,7 +64,7 @@ module Format.Config.Definitions {
         globalRegistry[name] = globalObject;
     };
 
-    var asPrototype = function(utilFunction: Function, protoObject: Indexable<Function>, name: string) {
+    var asPrototype = (utilFunction: Function, protoObject: Indexable<Function>, name: string) => {
 
         if (prototypeExceptions.indexOf(utilFunction) !== -1) {
             return;
@@ -84,13 +84,13 @@ module Format.Config.Definitions {
         prototypeRegistry[name] = protoObject;
     };
 
-    var getProtoWrapper = function(utilFunction: Function) {
+    var getProtoWrapper = (utilFunction: Function): Function => {
         return function(...args: Object[]) {
             return utilFunction(this, ...args);
         };
     };
 
-    var unregister = function(registry: Indexable<Indexable<Function>>) {
+    var unregister = (registry: Indexable<Indexable<Function>>) => {
         for (let key in registry) {
             if (registry.hasOwnProperty(key)) {
                 let hostObject = registry[key];

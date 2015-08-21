@@ -8,7 +8,7 @@ module Format.Config {
     describe("Config addUtilsToPrototype", () => {
 
         let array = [1], func = () => true, funcAccessor: any = func;
-        let expectUndefinedMethods = function() {
+        let expectUndefinedMethods = () => {
             expect(array.takeWhile).toBeUndefined();
             expect(func.getName).toBeUndefined();
             expect(func.memoize).toBeUndefined();

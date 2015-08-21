@@ -7,7 +7,7 @@ module Format.Config {
 
     describe("Config addUtilsToGlobals", () => {
 
-        let expectUndefinedMethods = function() {
+        let expectUndefinedMethods = () => {
             expect(Object.isType).toBeUndefined();
             expect(Object.getType).toBeUndefined();
             expect(Object.isObject).toBeUndefined();
