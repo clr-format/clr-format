@@ -11,26 +11,21 @@ module Format.Config.Definitions {
             Utils.Function.getEmpty
         ];
 
-    export function addUtilsToGlobals() {
+    export var addUtilsToGlobals = () => {
         addAll(asStatic, Utils, Object);
         addAll(asStatic, Utils.Enumerable, Array);
         addAll(asStatic, Utils.Function, Function);
-    }
+    };
 
-    export function addUtilsToPrototype() {
+    export var addUtilsToPrototype = () => {
         addAll(asPrototype, Utils.Enumerable, Array.prototype);
         addAll(asPrototype, Utils.Function, Function.prototype);
-    }
+    };
 
-    export function removeUtilGlobals() {
-        unregister(globalRegistry);
-    }
+    export var removeUtilGlobals = () => unregister(globalRegistry);
+    export var removeUtilsFromPrototype = () => unregister(prototypeRegistry);
 
-    export function removeUtilsFromPrototype() {
-        unregister(prototypeRegistry);
-    }
-
-    export function addToPrototype(bareFunction: Function, hostObject: any, name: string) {
+    export var addToPrototype = (bareFunction: Function, hostObject: any, name: string) => {
 
         let actualName = Utils.Function.getName(bareFunction);
         if (actualName === "anonymous" && !name) {
@@ -38,7 +33,7 @@ module Format.Config.Definitions {
         }
 
         hostObject.prototype[name || actualName] = getProtoWrapper(bareFunction);
-    }
+    };
 
     var addAll = (addFunc: (utilFunction: Function, hostObject: Indexable<Function>, name: string) => void, source: any, hostObject: any) => {
         for (let key in source) {
