@@ -70,6 +70,14 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>An optional sub-module which contains various configurational methods.</p>
+					</div>
+					<p>All methods can be chained like <code>Format.Config.addFormatToPrototype().addUtilsToGlobals()...</code></p>
+				</div>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -84,10 +92,14 @@
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.config.html#addformattoprototype" class="tsd-kind-icon">add<wbr>Format<wbr>ToPrototype</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.config.html#addpaddingtoprototype" class="tsd-kind-icon">add<wbr>Padding<wbr>ToPrototype</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.config.html#addtoprototype" class="tsd-kind-icon">add<wbr>ToPrototype</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.config.html#addutilstoglobals" class="tsd-kind-icon">add<wbr>Utils<wbr>ToGlobals</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.config.html#addutilstoprototype" class="tsd-kind-icon">add<wbr>Utils<wbr>ToPrototype</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.config.html#disablememoization" class="tsd-kind-icon">disable<wbr>Memoization</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.config.html#enablememoization" class="tsd-kind-icon">enable<wbr>Memoization</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.config.html#removeformatfromprototype" class="tsd-kind-icon">remove<wbr>Format<wbr>From<wbr>Prototype</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.config.html#removepaddingfromprototype" class="tsd-kind-icon">remove<wbr>Padding<wbr>From<wbr>Prototype</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.config.html#removeutilglobals" class="tsd-kind-icon">remove<wbr>Util<wbr>Globals</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.config.html#removeutilsfromprototype" class="tsd-kind-icon">remove<wbr>Utils<wbr>From<wbr>Prototype</a></li>
 							</ul>
@@ -107,17 +119,39 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/Config.ts#L26">configuration/Config.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/Config.ts#L33">configuration/Config.ts:33</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Adds the String.format function as a String.prototype member, which allows for direct instance calls like &quot;{0}&quot;.format(1).
-									If the first parameter of such calls implements the FormatProvider interface (or more precisely has a callable method named &#39;getFormatter&#39;):</p>
-									<ul>
-										<li>It will be used to create the formatting context (same behaviour as with normal String.format overloads)</li>
-										<li>The trailing arguments will be used as replacement values starting from 0</li>
-									</ul>
+									<p>Adds the <a href="../interfaces/string.html#format">String.format</a> function, which allows for direct instance calls like <code>&quot;{0}&quot;.format(val1, val2, ...)</code>.</p>
+								</div>
+								<p>If the first argument of such calls is an object that implements the <a href="../interfaces/format.globalization.formatprovider.html">FormatProvider</a> interface (or more precisely has a method <a href="../interfaces/format.globalization.formatprovider.html#getformatter">getFormatter</a>):</p>
+								<ul>
+									<li>It will be used to create the formatting context (same behaviour as with normal <a href="../interfaces/stringconstructor.html#format">StringConstructor.format</a> overloads)</li>
+									<li>The trailing arguments will be used as replacement values starting from 0</li>
+								</ul>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Config</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="addpaddingtoprototype" class="tsd-anchor"></a>
+					<h3>add<wbr>Padding<wbr>ToPrototype</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Padding<wbr>ToPrototype<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Config</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/Config.ts#L39">configuration/Config.ts:39</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds the <a href="../interfaces/string.html#padleft">String.padLeft</a> and <a href="../interfaces/string.html#padright">String.padRight</a> functions, which allows for direct instance calls like <code>&quot;123&quot;.padLeft(5, &quot;0&quot;)</code>.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Config</span></h4>
@@ -134,12 +168,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/Config.ts#L15">configuration/Config.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/Config.ts#L21">configuration/Config.ts:21</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Adds a bare function (one that has no &#39;this&#39; context) to the host object&#39;s prototype.</p>
+									<p>Adds a bare function (one that does not rely on any local <code>this</code> context) to the host object&#39;s prototype.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -147,7 +181,7 @@
 								<li>
 									<h5>bareFunction: <span class="tsd-signature-type">Function</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>A function the first argument of which can be replaced by the &#39;this&#39; context of the host object.</p>
+										<p>A function the first argument of which can be replaced by the <code>this</code> context of the host object.</p>
 									</div>
 								</li>
 								<li>
@@ -159,7 +193,7 @@
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> name: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Optional (unless the bare function is anonymous) name of the new prototype method which is added, defaults to the bare function&#39;s name.</p>
+										<p>The name of the new prototype method which is added, defaults to the bare function&#39;s name. Required if the bare function is anonymous.</p>
 									</div>
 								</li>
 							</ul>
@@ -177,20 +211,20 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/Config.ts#L45">configuration/Config.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/Config.ts#L65">configuration/Config.ts:65</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Adds all Format.Utils methods (including ones in sub-modules like Format.Utils.Function) as static methods to respective global objects.
-										For example Object.getType will be equivallent to calling Format.Utils.getType.
-									The following mapping applies:</p>
-									<ul>
-										<li>Format.Utils methods =&gt; Object</li>
-										<li>Format.Utils.Enumerable =&gt; Array</li>
-										<li>Format.Utils.Function =&gt; Function</li>
-									</ul>
+									<p>Adds all <a href="format.utils.html">Format.Utils</a> methods (including ones in sub-modules like <a href="format.utils.function.html">Format.Utils.Function</a>) as static methods to respective global objects.</p>
 								</div>
+								<p>For example <a href="../interfaces/objectconstructor.html#gettype">ObjectConstructor.getType</a> will be equivallent to calling <a href="format.utils.html#gettype">Format.Utils.getType</a>.
+								The following mapping applies:</p>
+								<ul>
+									<li><a href="format.utils.html">Format.Utils</a> methods =&gt; <a href="../interfaces/objectconstructor.html">ObjectConstructor</a></li>
+									<li><a href="format.utils.function.html">Format.Utils.Function</a> =&gt; <a href="../interfaces/functionconstructor.html">FunctionConstructor</a></li>
+									<li><a href="format.utils.enumerable.html">Format.Utils.Enumerable</a> =&gt; <a href="../interfaces/arrayconstructor.html">ArrayConstructor</a></li>
+								</ul>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Config</span></h4>
 						</li>
@@ -206,18 +240,63 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/Config.ts#L63">configuration/Config.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/Config.ts#L85">configuration/Config.ts:85</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Adds all Format.Utils sub-modules&#39; methods as wrapped instance methods to respective global objects. The method&#39;s first argument must match the global object&#39;s type.
-										For example Function.getName will be wrapped to have its first argument replaced by the &#39;this&#39; object in the prototype version. Other arguments are shifted accordingly in the process.
-									The following mapping applies:</p>
-									<ul>
-										<li>Format.Utils.Enumerable =&gt; Array.prototype</li>
-										<li>Format.Utils.Function =&gt; Function.prototype</li>
-									</ul>
+									<p>Adds all <a href="format.utils.html">Format.Utils</a> sub-modules&#39; methods as wrapped instance methods to respective global objects.</p>
+								</div>
+								<p>The method&#39;s first argument must match the global object&#39;s type.
+									For example <a href="../interfaces/function.html#getname">Function.getName</a> will be wrapped to have its first argument replaced by the <code>this</code> object in the prototype version. Other arguments are shifted accordingly in the process.
+								The following mapping applies:</p>
+								<ul>
+									<li><a href="format.utils.function.html">Format.Utils.Function</a> =&gt; <a href="../interfaces/function.html">Function</a></li>
+									<li><a href="format.utils.enumerable.html">Format.Utils.Enumerable</a> =&gt; <a href="../interfaces/array.html">Array</a></li>
+								</ul>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Config</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="disablememoization" class="tsd-anchor"></a>
+					<h3>disable<wbr>Memoization</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">disable<wbr>Memoization<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Config</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/Config.ts#L103">configuration/Config.ts:103</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Disables performance improvements through memoization of key inner functions and releases the used memory.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Config</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="enablememoization" class="tsd-anchor"></a>
+					<h3>enable<wbr>Memoization</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">enable<wbr>Memoization<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Config</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/Config.ts#L97">configuration/Config.ts:97</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Enables performance improvements through memoization of key inner functions at the cost of memory.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Config</span></h4>
@@ -234,12 +313,34 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/Config.ts#L32">configuration/Config.ts:32</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/Config.ts#L45">configuration/Config.ts:45</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Removes the String.format prototype wrapper that is defined by calling &#39;addFormatToPrototype&#39;.</p>
+									<p>Removes the <a href="../interfaces/string.html#format">String.format</a> prototype wrapper that is defined by calling <a href="format.config.html#addformattoprototype">addFormatToPrototype</a>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Config</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="removepaddingfromprototype" class="tsd-anchor"></a>
+					<h3>remove<wbr>Padding<wbr>From<wbr>Prototype</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Padding<wbr>From<wbr>Prototype<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Config</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/Config.ts#L51">configuration/Config.ts:51</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes the <a href="../interfaces/string.html#padleft">String.padLeft</a> and <a href="../interfaces/string.html#padright">String.padRight</a> functions that are defined by calling <a href="format.config.html#addpaddingtoprototype">addPaddingToPrototype</a>.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Config</span></h4>
@@ -256,12 +357,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/Config.ts#L51">configuration/Config.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/Config.ts#L71">configuration/Config.ts:71</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Removes the static methods from global objects that are defined by calling &#39;addUtilsToGlobals&#39;.</p>
+									<p>Removes the static methods from global objects that are defined by calling <a href="format.config.html#addutilstoglobals">addUtilsToGlobals</a>.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Config</span></h4>
@@ -278,12 +379,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/Config.ts#L69">configuration/Config.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/Config.ts#L91">configuration/Config.ts:91</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Removes the instance methods from global objects that are defined by calling &#39;addUtilsToPrototype&#39;.</p>
+									<p>Removes the instance methods from global objects that are defined by calling <a href="format.config.html#addutilstoprototype">addUtilsToPrototype</a>.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Config</span></h4>
@@ -333,6 +434,9 @@
 						<a href="format.config.html#addformattoprototype" class="tsd-kind-icon">add<wbr>Format<wbr>ToPrototype</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="format.config.html#addpaddingtoprototype" class="tsd-kind-icon">add<wbr>Padding<wbr>ToPrototype</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="format.config.html#addtoprototype" class="tsd-kind-icon">add<wbr>ToPrototype</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
@@ -342,7 +446,16 @@
 						<a href="format.config.html#addutilstoprototype" class="tsd-kind-icon">add<wbr>Utils<wbr>ToPrototype</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="format.config.html#disablememoization" class="tsd-kind-icon">disable<wbr>Memoization</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="format.config.html#enablememoization" class="tsd-kind-icon">enable<wbr>Memoization</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="format.config.html#removeformatfromprototype" class="tsd-kind-icon">remove<wbr>Format<wbr>From<wbr>Prototype</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="format.config.html#removepaddingfromprototype" class="tsd-kind-icon">remove<wbr>Padding<wbr>From<wbr>Prototype</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="format.config.html#removeutilglobals" class="tsd-kind-icon">remove<wbr>Util<wbr>Globals</a>

@@ -73,6 +73,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A <a href="format.utils.html">Format.Utils</a> sub-module containing methods related to functional operations.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -89,6 +96,7 @@
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter tsd-is-not-exported"><a href="format.utils.function.html#empty" class="tsd-kind-icon">empty</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="format.utils.function.html#getempty" class="tsd-kind-icon">get<wbr>Empty</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.utils.function.html#getname" class="tsd-kind-icon">get<wbr>Name</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="format.utils.function.html#memoize" class="tsd-kind-icon">memoize</a></li>
 							</ul>
 						</section>
 					</div>
@@ -102,7 +110,7 @@
 					<div class="tsd-signature tsd-kind-icon">type<wbr>Name<wbr>Reg<wbr>Exp<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/core/Utils/Function.ts#L19">core/Utils/Function.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/core/Utils/Function.ts#L20">core/Utils/Function.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -119,7 +127,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/core/Utils/Function.ts#L25">core/Utils/Function.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/core/Utils/Function.ts#L29">core/Utils/Function.ts:29</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -142,18 +150,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/core/Utils/Function.ts#L22">core/Utils/Function.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/core/Utils/Function.ts#L26">core/Utils/Function.ts:26</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns an empty parameterless function. Useful as the default for optional callback arguments instead of creating new anonymous empty functions.</p>
+									<p>Returns an empty parameterless function which returns <code>undefined</code>. Useful for defaulting optional callback arguments instead of creating new anonymous empty functions.</p>
 								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
 									<h4>T</h4>
+									<div class="tsd-comment tsd-typography">
+										<p>The return type of the empty callback.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../undefined" class="tsd-signature-type">empty</a></h4>
@@ -170,12 +181,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/core/Utils/Function.ts#L9">core/Utils/Function.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/core/Utils/Function.ts#L10">core/Utils/Function.ts:10</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns the name of a function or &quot;anonymous&quot; for lambda functions.</p>
+									<p>Returns the name of a function.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -188,6 +199,75 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>The name of a function or <code>&quot;anonymous&quot;</code> for lambda functions.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="memoize" class="tsd-anchor"></a>
+					<h3>memoize</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">memoize&lt;T&gt;<span class="tsd-signature-symbol">(</span>func<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, resolver<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/Utils/Function.ts#L15">configuration/Utils/Function.ts:15</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns a memoized function wrapper of the function. All calls with the same arguments to the original function are cached after the first use.</p>
+								</div>
+								<p>Must load the <a href="format.config.html">Format.Config</a> sub-module to be defined.</p>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span></h4>
+									<div class="tsd-comment tsd-typography">
+										<p>The type/signature of the original function.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>func: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The function whose results will be cached.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> resolver: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A cache key resolver function used to store the call arguments&#39; list as a string key. Defaults to <code>JSON.stringify</code>.</p>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>argumentValues<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>argumentValues: <span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">[]</span></h5>
+															<div class="tsd-comment tsd-typography">
+																<p>An array containing the call arguments for the function.</p>
+															</div>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -241,6 +321,9 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="format.utils.function.html#getname" class="tsd-kind-icon">get<wbr>Name</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="format.utils.function.html#memoize" class="tsd-kind-icon">memoize</a>
 					</li>
 				</ul>
 			</nav>

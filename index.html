@@ -70,26 +70,33 @@
 				<h2 id="installation">Installation</h2>
 				<p>The following commands can be used to install the script in a context of your choice.</p>
 				<h4 id="nuget-gallery-link-https-www-nuget-org-packages-clr-format-js-">NuGet (<a href="https://www.nuget.org/packages/clr-format.js">gallery link</a>)</h4>
-				<p><code>Install-Package clr-format.js</code></p>
-				<h4 id="bower">Bower</h4>
-				<p><code>bower install clr-format</code></p>
-				<h4 id="module">Module</h4>
-				<p><code>npm install clr-format</code></p>
-				<h2 id="latest-version-capabilities">Latest Version Capabilities</h2>
+				<pre><code><span class="hljs-operator"><span class="hljs-keyword">Install</span>-<span class="hljs-keyword">Package</span> clr-<span class="hljs-keyword">format</span>.js</span>
+</code></pre><h4 id="bower">Bower</h4>
+				<pre><code>bower <span class="hljs-operator"><span class="hljs-keyword">install</span> clr-<span class="hljs-keyword">format</span></span>
+</code></pre><h4 id="module">Module</h4>
+				<pre><code>npm <span class="hljs-operator"><span class="hljs-keyword">install</span> clr-<span class="hljs-keyword">format</span></span>
+</code></pre><h2 id="latest-version-capabilities">Latest Version Capabilities</h2>
 				<ol>
 					<li><p>Full support for <em>index</em> {<strong>0</strong>} and <em>alignment</em> {0<strong>,-10</strong>} components.</p>
-						<pre><code class="lang-javascript">expect(
-    <span class="hljs-built_in">String</span>.format(
-        <span class="hljs-string">"Format primitives: {0}{5}, {4}, {3}, {1,-8},{2,4}"</span>,
-        <span class="hljs-number">0</span>, { <span class="hljs-string">"a"</span>: <span class="hljs-number">1</span> }, [<span class="hljs-number">2</span>], <span class="hljs-string">"3"</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">undefined</span>))
-    .toBe(<span class="hljs-string">"Format primitives: 0, true, 3, {\"a\":1} , [2]"</span>);
+						<pre><code class="lang-javascript"> expect(
+     <span class="hljs-built_in">String</span>.format(
+         <span class="hljs-string">"Format primitives: {0}{5}, {4}, {3}, {1,-8},{2,4}"</span>,
+         <span class="hljs-number">0</span>, { <span class="hljs-string">"a"</span>: <span class="hljs-number">1</span> }, [<span class="hljs-number">2</span>], <span class="hljs-string">"3"</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">undefined</span>))
+     .toBe(<span class="hljs-string">"Format primitives: 0, true, 3, {\"a\":1} , [2]"</span>);
 </code></pre>
 					</li>
-					<li><p>Providing a <em>format string</em> {0,-10<strong>:0.00</strong>} component will result in a thrown namespaced FormatError.</p>
-						<pre><code class="lang-javascript">expect(
-    <span class="hljs-built_in">String</span>.format(
-        <span class="hljs-string">"{0:00.0}"</span>, <span class="hljs-number">1</span>))
-    .toThrowError(Format.Errors.FormatError);
+					<li><p>Providing a <em>format string</em> {0,-10<strong>:0.00</strong>} component will result in a thrown <a href="http://clr-format.github.io/clr-format/classes/format.errors.formaterror.html">FormatError</a>.</p>
+						<pre><code class="lang-javascript"> expect(
+     <span class="hljs-built_in">String</span>.format(
+         <span class="hljs-string">"{0:00.0}"</span>, <span class="hljs-number">1</span>))
+     .toThrowError(Format.Errors.FormatError);
+</code></pre>
+					</li>
+					<li><p>Optional configuration API contained in <em>clr-format-config.js</em> and defined under the <a href="http://clr-format.github.io/clr-format/modules/format.config.html">Format.Config</a> namespace.
+						The example differs a bit when used as a NodeJS module, see in the Usage section below.</p>
+						<pre><code class="lang-javascript"> Format.Config.addFormatToPrototype();
+ expect(<span class="hljs-string">"Formatting using the injected {0} method"</span>.format(<span class="hljs-string">"prototype"</span>))
+     .toBe(<span class="hljs-string">"Formatting using the injected prototype method"</span>);
 </code></pre>
 					</li>
 				</ol>
@@ -100,9 +107,15 @@
 				<h4 id="as-a-module">As a module</h4>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> format = <span class="hljs-built_in">require</span>(<span class="hljs-string">"clr-format"</span>);
 <span class="hljs-keyword">var</span> formatted = format(<span class="hljs-string">"Value: {0,-2}{1}"</span>, <span class="hljs-number">1</span>, <span class="hljs-string">"text"</span>); <span class="hljs-comment">// formatted = "Value: 1 text"</span>
+
+<span class="hljs-comment">// Using the configuration API</span>
+format.Config.addFormatToPrototype();
+formatted = <span class="hljs-string">"Value: {0}"</span>.format(<span class="hljs-string">"prototype"</span>); <span class="hljs-comment">// formatted = "Value: prototype"</span>
 </code></pre>
 				<h2 id="development">Development</h2>
-				<p>The implementation of this string formatting function is inspired by .NET&#39;s (and other Microsoft® products&#39;) <a href="https://msdn.microsoft.com/en-us/library/txafckwd.aspx">Composite Formatting</a> feature. Therefore the final behaviour should be similar to what&#39;s described in the <a href="https://msdn.microsoft.com/en-us/library/system.string.format.aspx#Starting">Getting started with the String.Format method</a> article. The main difference is that method names in JavaScript are intrinsically camelcase therefore <strong>String.format</strong> should be used instead.</p>
+				<p>The implementation of this string formatting function is inspired by .NET&#39;s (and other Microsoft® products&#39;) <a href="https://msdn.microsoft.com/en-us/library/txafckwd.aspx">Composite Formatting</a> feature.
+					Therefore the final behaviour should be similar to what&#39;s described in the <a href="https://msdn.microsoft.com/en-us/library/system.string.format.aspx#Starting">Getting started with the String.Format method</a> article.
+				The main difference is that method names in JavaScript are intrinsically camelcase therefore <a href="http://clr-format.github.io/clr-format/interfaces/stringconstructor.html#format">String.format</a> should be used instead.</p>
 				<p>To develop and contribute simply install NodeJS, clone the repository, install npm dependencies and run <a href="http://gulpjs.com/">Gulp</a>.</p>
 				<h4 id="tools-download-and-install-">Tools (download and install)</h4>
 				<ol>
@@ -118,18 +131,21 @@ gulp
 </code></pre>
 				<h4 id="notes">Notes</h4>
 				<ol>
-					<li>The default gulp build tasks&#39; list contains a <a href="https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpwatchglob-opts-cb">watch task</a> which means it will block the console and continuously rebuild the project when files in the source or tests folder are changed.</li>
-					<li>In VSCode pressing Ctrl + Shift + B will trigger the gulp default command.</li>
+					<li>The default gulp build tasks&#39; list contains a <a href="https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpwatchglob-opts-cb">watch task</a>
+					which means it will block the console and continuously rebuild the project when files in the source or tests folder are changed.</li>
+					<li>In VSCode pressing <strong>Ctrl</strong> + <strong>Shift</strong> + <strong>B</strong> or <strong>T</strong> will trigger the default build or test command respectively.</li>
 				</ol>
 				<h2 id="planned-releases">Planned releases</h2>
 				<h5 id="0-1-2-released-">0.1.2 (Released)</h5>
 				<p>Support for index and alignment components only; <em>without</em> any formatting rules specified by a provider or format string component.</p>
-				<h5 id="0-2">0.2</h5>
-				<p>Addition of a <em>clr-format-configuration</em> sub-module/package which can be optionally installed to compliment the core implementation with various pre-defined configurations.</p>
+				<h5 id="0-2-released-">0.2 (Released)</h5>
+				<p>Addition of a <em>clr-format-config.js</em> sub-module/package which can be optionally installed to compliment the core implementation with various pre-defined configurations.
+				See <a href="http://clr-format.github.io/clr-format/modules/format.config.html">Format.Config</a> for full documentation.</p>
 				<h5 id="0-3">0.3</h5>
 				<p>Implementation of an invariant number formatting provider and numeric format string components.</p>
 				<h5 id="0-4">0.4</h5>
-				<p>Addition of a <em>clr-format-intl</em> sub-module/package which can be optionally installed to provide globalization via a bridge to the <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Intl">ECMAScript&#39;s Intl namespace</a>.</p>
+				<p>Addition of a <em>clr-format-intl.js</em> sub-module/package which can be optionally installed to provide globalization via a bridge to the
+				<a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Intl">ECMAScript&#39;s Intl namespace</a>.</p>
 				<h5 id="0-5">0.5</h5>
 				<p>Complete the implementation with a date formatting provider and temporal format string components.</p>
 			</div>

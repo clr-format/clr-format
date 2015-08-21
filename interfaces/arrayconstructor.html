@@ -67,6 +67,14 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Extends the built-in javascript <code>Array</code> object&#39;s static API.</p>
+					</div>
+					<p>The <a href="../modules/format.config.html#addutilstoglobals">Format.Config.addUtilsToGlobals</a> method must be called in order to access the definitions.</p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -100,19 +108,22 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/API/Array.ts#L8">configuration/API/Array.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/API/Array.ts#L18">configuration/API/Array.ts:18</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns elements from a sequence as long as the specified condition is true.
-									Must call Format.Config.addUtilsToGlobals() to be defined.</p>
+									<p>Returns elements from a sequence as long as the specified condition is <code>true</code>.</p>
 								</div>
+								<p>Must call <a href="../modules/format.config.html#addutilstoglobals">Format.Config.addUtilsToGlobals</a> to be defined.</p>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
 									<h4>T</h4>
+									<div class="tsd-comment tsd-typography">
+										<p>The type of elements in the array.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -139,9 +150,15 @@
 													<ul class="tsd-parameters">
 														<li>
 															<h5>item: <span class="tsd-signature-type">T</span></h5>
+															<div class="tsd-comment tsd-typography">
+																<p>A source element that is tested for a condition.</p>
+															</div>
 														</li>
 														<li>
 															<h5><span class="tsd-flag ts-flagOptional">Optional</span> index: <span class="tsd-signature-type">number</span></h5>
+															<div class="tsd-comment tsd-typography">
+																<p>The index of the source element.</p>
+															</div>
 														</li>
 													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -152,6 +169,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h4>
+							<p>A new array instance containing only items for which the predicate function returned <code>true</code>.</p>
 						</li>
 					</ul>
 				</section>

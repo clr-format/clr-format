@@ -67,6 +67,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Extends the built-in javascript <code>String</code> object&#39;s prototype.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -83,6 +90,8 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="string.html#format" class="tsd-kind-icon">format</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="string.html#padleft" class="tsd-kind-icon">pad<wbr>Left</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="string.html#padright" class="tsd-kind-icon">pad<wbr>Right</a></li>
 							</ul>
 						</section>
 					</div>
@@ -101,14 +110,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/API/String.ts#L7">configuration/API/String.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/API/String.ts#L9">configuration/API/String.ts:9</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Converts the value of objects to strings based on the formats specified and inserts them into this string.
-									Must call Format.Config.addFormatToPrototype() to be defined.</p>
+									<p>Converts the value of objects to strings based on the formats specified and inserts them into this string.</p>
 								</div>
+								<p>Must call <a href="../modules/format.config.html#addformattoprototype">Format.Config.addFormatToPrototype</a> to be defined.</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -124,14 +133,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/API/String.ts#L15">configuration/API/String.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/API/String.ts#L18">configuration/API/String.ts:18</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Converts the value of objects to strings based on the formats specified and inserts them into this string.
-									Must call Format.Config.addFormatToPrototype() to be defined.</p>
+									<p>Converts the value of objects to strings based on the formats specified and inserts them into this string.</p>
 								</div>
+								<p>Must call <a href="../modules/format.config.html#addformattoprototype">Format.Config.addFormatToPrototype</a> to be defined.</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -145,6 +154,82 @@
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">[]</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A list of arguments that contains zero or more objects to format.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="padleft" class="tsd-anchor"></a>
+					<h3>pad<wbr>Left</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">pad<wbr>Left<span class="tsd-signature-symbol">(</span>totalWidth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, paddingChar<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/API/String.ts#L27">configuration/API/String.ts:27</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns a new string of a specified length in which the beginning of the current string is padded with spaces or with a specified character.</p>
+								</div>
+								<p>Must call <a href="../modules/format.config.html#addpaddingtoprototype">Format.Config.addPaddingToPrototype</a> to be defined.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>totalWidth: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The number of characters in the resulting string, equal to the number of original characters plus any additional padding characters.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> paddingChar: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A padding character. Defaults to <a href="format.utils.padding.options.html#paddingchar">Padding.Options.paddingChar</a>.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="padright" class="tsd-anchor"></a>
+					<h3>pad<wbr>Right</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">pad<wbr>Right<span class="tsd-signature-symbol">(</span>totalWidth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, paddingChar<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/master/src/configuration/API/String.ts#L36">configuration/API/String.ts:36</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns a new string of a specified length in which the ending of the current string is padded with spaces or with a specified character.</p>
+								</div>
+								<p>Must call <a href="../modules/format.config.html#addpaddingtoprototype">Format.Config.addPaddingToPrototype</a> to be defined.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>totalWidth: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The number of characters in the resulting string, equal to the number of original characters plus any additional padding characters.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> paddingChar: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A padding character. Defaults to <a href="format.utils.padding.options.html#paddingchar">Padding.Options.paddingChar</a>.</p>
 									</div>
 								</li>
 							</ul>
@@ -186,6 +271,12 @@
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
 								<a href="string.html#format" class="tsd-kind-icon">format</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="string.html#padleft" class="tsd-kind-icon">pad<wbr>Left</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="string.html#padright" class="tsd-kind-icon">pad<wbr>Right</a>
 							</li>
 						</ul>
 					</li>
