@@ -13,7 +13,7 @@ var beautifyOptions = {
     output: {
         beautify: true,
         bracketize: true,
-        comments: function (node, comment) { return !(/\/ <reference path=/i.test(comment.value) || /tslint\:/.test(comment.value)); }
+        comments: function (node, comment) { return !(/\/ <reference path=/i.test(comment.value) || /tslint/i.test(comment.value)); }
     },
     compress: {
         booleans: false,
