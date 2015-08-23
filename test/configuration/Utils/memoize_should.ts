@@ -2,7 +2,7 @@
 
 /// <reference path="../../../src/configuration/Utils/Function" />
 
-module Format.Utils {
+namespace Format.Utils {
 
     describe("Function memoize", () => {
 
@@ -11,7 +11,8 @@ module Format.Utils {
 
         beforeEach(() => {
 
-            fibonacci = jasmine.createSpy("fibonacci",
+            fibonacci = jasmine.createSpy(
+                "fibonacci",
                 (n: number): number => {
                     return n >= 2 ? fibonacci(n - 1) + fibonacci(n - 2) : 1;
                 }).and.callThrough();

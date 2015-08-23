@@ -2,7 +2,7 @@
 
 /// <reference path="../../../src/core/Errors/ArgumentError" />
 
-module Format.Errors {
+namespace Format.Errors {
 
     describe("ArgumentError constructor", () => {
 

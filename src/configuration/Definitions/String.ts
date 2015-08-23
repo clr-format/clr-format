@@ -7,7 +7,7 @@
  *
  * Because the module and its members cannot be truly internal refrain from calling its methods directly.
  */
-module Format.Config.Definitions {
+namespace Format.Config.Definitions {
 
     export var addFormatToPrototype = () => {
         String.prototype.format = formatProto;
@@ -34,9 +34,9 @@ module Format.Config.Definitions {
         }
     };
 
-    var formatProto = function(...args: Object[]) {
+    var formatProto = function(...args: Object[]): string {
 
-        let provider = <Format.Globalization.FormatProvider>args[0];
+        let provider = <Format.Globalization.FormatProvider> args[0];
         if (provider && typeof provider.getFormatter === "function") {
             args.shift();
             return Format.innerFormat(provider, this, args);
@@ -45,7 +45,7 @@ module Format.Config.Definitions {
         return Format.innerFormat(undefined, this, args);
     };
 
-    let getPaddingProto = function(direction: Utils.Padding.Direction) {
+    let getPaddingProto = function(direction: Utils.Padding.Direction): (width: number, char?: string) => string {
         return function(totalWidth: number, paddingChar?: string): string {
             return Utils.Padding.pad(this, { direction, totalWidth, paddingChar });
         };

@@ -2,7 +2,7 @@
 
 /// <reference path="../../../src/core/Format" />
 
-module Format {
+namespace Format {
 
     describe("String format", () => {
 

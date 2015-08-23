@@ -2,7 +2,7 @@
 
 /// <reference path="SystemError" />
 
-module Format.Errors {
+namespace Format.Errors {
     /** An error that is thrown when one of the arguments provided to a function is not valid. */
     export class ArgumentError extends SystemError {
         /**

@@ -6,12 +6,14 @@
 /// <reference path="Definitions/String" />
 /// <reference path="Definitions/Performance" />
 
+/* tslint:disable:typedef */
+
 /**
  * An optional sub-module which contains various configurational methods.
  *
  * All methods can be chained like `Format.Config.addFormatToPrototype().addUtilsToGlobals()...`
  */
-module Format.Config {
+namespace Format.Config {
     /**
      * Adds a bare function (one that does not rely on any local `this` context) to the host object's prototype.
      * @param bareFunction A function the first argument of which can be replaced by the `this` context of the host object.

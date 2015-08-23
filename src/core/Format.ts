@@ -18,22 +18,22 @@
  *
  * The [[StringConstructor.format]] method exposes the core API of the project. Optional configuration methods are stored in the [[Format.Config]] sub-module.
  */
-module Format {
+namespace Format {
 
     String.format = (...args: Object[]): string => {
 
         if (typeof args[0] === "string") {
-            return innerFormat(undefined, <string>args.shift(), args);
+            return innerFormat(undefined, <string> args.shift(), args);
         }
 
-        let provider = <Globalization.FormatProvider>args[0];
+        let provider = <Globalization.FormatProvider> args[0];
         if (provider && typeof provider.getFormatter !== "function") {
             throw new Errors.ArgumentError(String.format(
                 "Argument 'provider' of type '{0}' does not implement the FormatProvider interface",
                 Utils.Function.getName(provider.constructor)));
         }
 
-        let format = <string>args[1];
+        let format = <string> args[1];
 
         args.splice(0, 2);
 
@@ -56,7 +56,7 @@ module Format {
 
         provider = provider || simpleProvider;
 
-        return format.replace(formatItemRegExp, (formatItem, indexComponent, alignmentComponent, formatStringComponent) =>
+        return format.replace(formatItemRegExp, (formatItem: string, indexComponent: string, alignmentComponent: string, formatStringComponent: string) =>
             replaceFormatItem(provider, args, {
                 formatItem,
                 indexComponent,
@@ -178,7 +178,7 @@ module Format {
          * Returns [[ObjectFormatter]] for `Object` and `Array` instances and [[OtherFormatter]] for other types.
          * @param type The type of the value object, i.e. `"[object Number]"`.
          */
-        getFormatter(type: string): Globalization.CustomFormatter {
+        public getFormatter(type: string): Globalization.CustomFormatter {
 
             return type === "[object Object]" || type === "[object Array]" ?
                 this.objectFormatter :
@@ -193,7 +193,7 @@ module Format {
          * @param format An unsupported format string argument. Will result in a thrown [[FormatError]] if not left empty.
          * @param value An object to format.
          */
-        format(format: string, value: Object) {
+        public format(format: string, value: Object): string {
 
             if (format) {
                 throw new Errors.FormatError("Values of type Object or Array do not accept a format string component");
@@ -210,7 +210,7 @@ module Format {
          * @param format An unsupported format string argument. Will result in a thrown [[FormatError]] if not left empty.
          * @param value An object to format.
          */
-        format(format: string, value: Object) {
+        public format(format: string, value: Object): string {
 
             if (format) {
                 throw new Errors.FormatError(String.format(

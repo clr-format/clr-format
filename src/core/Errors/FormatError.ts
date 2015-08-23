@@ -2,7 +2,7 @@
 
 /// <reference path="SystemError" />
 
-module Format.Errors {
+namespace Format.Errors {
     /** An error that is thrown when the format of an argument is invalid, or when a composite format string is not well formed. */
     export class FormatError extends SystemError {
         /**

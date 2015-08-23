@@ -4,7 +4,7 @@
 
 /// <reference path="ArgumentError" />
 
-module Format.Errors {
+namespace Format.Errors {
     /** An error that is thrown when an `undefined` or `null` argument is passed to a method that does not accept it as a valid argument. */
     export class ArgumentNullError extends ArgumentError {
         /**

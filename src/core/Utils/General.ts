@@ -5,7 +5,7 @@
 /// <reference path="../Errors/ArgumentError" />
 
 /** A core sub-module which contains utility methods for general purpose operations and more specialized utility sub-modules. */
-module Format.Utils {
+namespace Format.Utils {
 
     /** Returns the actual type of an object (unlike `typeof`), i.e. `"[object Date]"`. */
     export function getType(object: Object): string {

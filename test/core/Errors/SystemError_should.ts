@@ -2,7 +2,7 @@
 
 /// <reference path="../../../src/core/Errors/SystemError" />
 
-module Format.Errors {
+namespace Format.Errors {
 
     describe("SystemError constructor", () => {
 

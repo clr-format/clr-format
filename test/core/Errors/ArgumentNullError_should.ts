@@ -2,7 +2,7 @@
 
 /// <reference path="../../../src/core/Errors/ArgumentNullError" />
 
-module Format.Errors {
+namespace Format.Errors {
 
     describe("ArgumentNullError constructor", () => {
 

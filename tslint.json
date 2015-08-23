@@ -1,5 +1,12 @@
 {
     "rules": {
+        "align": [
+            true,
+            "parameters",
+            "arguments",
+            "statements"
+        ],
+        "ban": false,
         "class-name": true,
         "comment-format": [
             true,
@@ -14,6 +21,7 @@
             "spaces",
             4
         ],
+        "interface-name": false,
         "jsdoc-format": true,
         "label-position": true,
         "label-undefined": true,
@@ -21,33 +29,37 @@
             true,
             200
         ],
+        "member-access": true,
         "member-ordering": [
             true,
             "public-before-private",
             "static-before-instance",
             "variables-before-functions"
         ],
+        "no-any": false,
         "no-arg": true,
         "no-bitwise": false,
+        "no-conditional-assignment": true,
         "no-console": false,
-        "no-consecutive-blank": true,
         "no-construct": true,
+        "no-constructor-vars": true,
         "no-debugger": true,
         "no-duplicate-key": true,
+        "no-shadowed-variable": true,
         "no-duplicate-variable": true,
         "no-empty": true,
         "no-eval": true,
-        "no-imports": true,
+        "no-internal-module": false,
+        "no-require-imports": true,
         "no-string-literal": true,
+        "no-switch-case-fall-through": true,
         "no-trailing-comma": true,
         "no-trailing-whitespace": true,
-        "no-unused-expression": true,
-        "no-unused-variable": [
-            true,
-            "check-parameters"
-        ],
         "no-unreachable": true,
+        "no-unused-expression": true,
+        "no-unused-variable": true,
         "no-use-before-declare": false,
+        "no-var-keyword": false,
         "no-var-requires": true,
         "one-line": [
             true,
@@ -60,10 +72,32 @@
         ],
         "radix": true,
         "semicolon": true,
-        "switch-default": false,
+        "switch-default": true,
         "triple-equals": [
             true,
             "allow-null-check"
+        ],
+        "typedef": [
+            true,
+            "call-signature",
+            "parameter",
+            "property-declaration",
+            "member-variable-declaration"
+        ],
+        "typedef-whitespace": [
+            true,
+            {
+                "call-signature": "nospace",
+                "index-signature": "nospace",
+                "parameter": "nospace",
+                "property-declaration": "nospace",
+                "variable-declaration": "nospace"
+            }
+        ],
+        "use-strict": [
+            false,
+            "check-module",
+            "check-function"
         ],
         "variable-name": false,
         "whitespace": [
@@ -71,7 +105,9 @@
             "check-branch",
             "check-decl",
             "check-operator",
-            "check-separator"
+            "check-separator",
+            "check-type",
+            "check-typecast"
         ]
     }
 }

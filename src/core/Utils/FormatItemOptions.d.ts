@@ -1,4 +1,4 @@
-declare module Format.Utils {
+declare namespace Format.Utils {
     interface FormatItemOptions {
         formatItem: string;
         indexComponent: string;

@@ -2,7 +2,7 @@
 
 /// <reference path="../../../src/core/Errors/FormatError" />
 
-module Format.Errors {
+namespace Format.Errors {
 
     describe("FormatError constructor", () => {
 

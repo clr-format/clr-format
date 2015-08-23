@@ -2,7 +2,7 @@
 
 /// <reference path="../../../src/core/Utils/General" />
 
-module Format.Utils {
+namespace Format.Utils {
 
     describe("Utils isType", () => {
 

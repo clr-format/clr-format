@@ -2,7 +2,7 @@
 
 /// <reference path="../../../src/core/Utils/Function" />
 
-module Format.Utils {
+namespace Format.Utils {
 
     describe("Function getName", () => {
 

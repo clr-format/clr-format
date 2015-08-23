@@ -4,7 +4,7 @@
 
 /// <reference path="ErrorClass" />
 
-module Format.Errors {
+namespace Format.Errors {
 
     Format.Errors.ErrorClass = Error;
 
@@ -40,13 +40,13 @@ module Format.Errors {
         }
 
         /** Increments the [[childStackCount]]. Must be called **before** the base constructor in **all** derived error classes. */
-        protected incrementStackCount() {
+        protected incrementStackCount(): void {
             this.childStackCount = (this.childStackCount || 0) + 1;
         }
 
         private getStack(innerError: Error): string {
             return innerError ?
-                (<SystemError>innerError).stack :
+                (<SystemError> innerError).stack :
                 this.stack || this.getActualStack();
         }
 
@@ -76,7 +76,7 @@ module Format.Errors {
                 throw new Error();
             }
             catch (error) {
-                return (<SystemError>error).stack;
+                return (<SystemError> error).stack;
             }
         }
 

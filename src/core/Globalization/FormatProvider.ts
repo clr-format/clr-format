@@ -1,6 +1,6 @@
 /// <reference path="CustomFormatter" />
 
-module Format.Globalization {
+namespace Format.Globalization {
     /**
      * Provides a mechanism for retrieving an object to control formatting.
      *

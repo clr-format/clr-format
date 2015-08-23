@@ -1,4 +1,4 @@
-module Format.Globalization {
+namespace Format.Globalization {
     /**
      * Defines a method that supports custom formatting of the value of an object.
      *

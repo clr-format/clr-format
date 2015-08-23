@@ -2,15 +2,15 @@
 
 /// <reference path="../Utils/Indexable" />
 
-module Format.Config.Definitions {
+namespace Format.Config.Definitions {
 
     let memoizedRegistry: Indexable<Function> = {};
 
-    export function enableMemoization() {
+    export function enableMemoization(): void {
         memoize(Format, "getBracesCount");
     }
 
-    export function disableMemoization() {
+    export function disableMemoization(): void {
         unmemoize(Format, "getBracesCount");
     }
 

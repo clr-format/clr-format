@@ -2,7 +2,7 @@
 
 /// <reference path="../../../src/configuration/Config" />
 
-module Format.Config {
+namespace Format.Config {
 
     describe("Config addPaddingToPrototype", () => {
 

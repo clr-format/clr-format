@@ -2,7 +2,7 @@
 
 /// <reference path="../../../src/core/Utils/Enumerable" />
 
-module Format.Utils {
+namespace Format.Utils {
 
     describe("Enumerable takeWhile", () => {
 
@@ -21,7 +21,7 @@ module Format.Utils {
 
             array.push(1, "2", 3);
 
-            expect(Enumerable.takeWhile(array, (x, i) => x <= 3 && i < 2)).toEqual([1, "2"]);
+            expect(Enumerable.takeWhile(array, (x: number, i: number) => x <= 3 && i < 2)).toEqual([1, "2"]);
         });
 
         it("should throw a ArgumentNullError for an array with an undefined value", () => {

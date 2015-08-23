@@ -2,7 +2,7 @@
 
 /// <reference path="../../../src/core/Utils/Padding" />
 
-module Format.Utils {
+namespace Format.Utils {
 
     describe("Padding apply", () => {
 

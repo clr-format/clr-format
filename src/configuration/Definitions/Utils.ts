@@ -3,7 +3,7 @@
 /// <reference path="../Utils/Function" />
 /// <reference path="../Utils/Indexable" />
 
-module Format.Config.Definitions {
+namespace Format.Config.Definitions {
 
     let globalRegistry: Indexable<Indexable<Function>> = {},
         prototypeRegistry: Indexable<Indexable<Function>> = {},
@@ -35,6 +35,7 @@ module Format.Config.Definitions {
         hostObject.prototype[name || actualName] = getProtoWrapper(bareFunction);
     };
 
+    /* tslint:disable:no-shadowed-variable */// TSLint #500
     var addAll = (addFunc: (utilFunction: Function, hostObject: Indexable<Function>, name: string) => void, source: any, hostObject: any) => {
         for (let key in source) {
             if (source.hasOwnProperty(key) && typeof source[key] === "function") {
@@ -42,6 +43,7 @@ module Format.Config.Definitions {
             }
         }
     };
+    /* tslint:enable:no-shadowed-variable */
 
     var asStatic = (utilFunction: Function, globalObject: Indexable<Function>, name: string) => {
 
@@ -52,7 +54,7 @@ module Format.Config.Definitions {
                 String.format(
                     "Argument 'name' is invalid. A property named '{0}' already exists in '{1}'",
                     name,
-                    Utils.Function.getName(<any>globalObject)));
+                    Utils.Function.getName(<any> globalObject)));
         }
 
         globalObject[name] = utilFunction;
@@ -80,7 +82,7 @@ module Format.Config.Definitions {
     };
 
     var getProtoWrapper = (utilFunction: Function): Function => {
-        return function(...args: Object[]) {
+        return function(...args: Object[]): Function {
             return utilFunction(this, ...args);
         };
     };

@@ -2,7 +2,7 @@
 
 /// <reference path="../API/Function" />
 
-module Format.Utils.Function {
+namespace Format.Utils.Function {
     /**
      * Returns a memoized function wrapper of the function. All calls with the same arguments to the original function are cached after the first use.
      *
@@ -20,7 +20,7 @@ module Format.Utils.Function {
 
         resolver = resolver || JSON.stringify;
 
-        let memoized: T = <any>function(...args: Object[]) {
+        let memoized: T = <any> function(...args: Object[]): Object {
 
             let key = resolver(args);
             if (memoized.cache.hasOwnProperty(key)) {

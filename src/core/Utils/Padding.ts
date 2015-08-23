@@ -7,7 +7,7 @@
 /// <reference path="../Errors/ArgumentNullError" />
 
 /** A [[Format.Utils]] sub-module exposing the [[pad]] method for string padding operations. */
-module Format.Utils.Padding {
+namespace Format.Utils.Padding {
     /** Defines possible options for a string padding operation. */
     export interface Options {
         /** The number of characters in the resulting string, equal to the number of original characters plus any additional padding characters. */
@@ -83,6 +83,7 @@ module Format.Utils.Padding {
 
     var getPadding = (padWidth: number, options: Options): string => new Array(padWidth + 1).join(options.paddingChar);
 
+    /* tslint:disable:no-shadowed-variable */// TSLint #500
     var directionStrategies: Indexable<(value: string, options: Options) => string> = {};
 
     directionStrategies[Direction.Left] = (value: string, options: Options): string =>
@@ -101,4 +102,5 @@ module Format.Utils.Padding {
             getPadding(left, options), value, getPadding(right, options)
         ].join("");
     };
+    /* tslint:enable:no-shadowed-variable */
 }

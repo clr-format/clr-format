@@ -1,13 +1,13 @@
 /// <reference path="../../use-strict" />
 
 /** A [[Format.Utils]] sub-module containing methods related to functional operations. */
-module Format.Utils.Function {
+namespace Format.Utils.Function {
     /**
      * Returns the name of a function.
      * @param func A functional object.
      * @returns The name of a function or `"anonymous"` for lambda functions.
      */
-    export function getName(func: Function) {
+    export function getName(func: Function): string {
 
         if (typeof func !== "function") {
             throw new TypeError("Cannot call method 'getName' on non-functional objects");
@@ -23,7 +23,7 @@ module Format.Utils.Function {
      * Returns an empty parameterless function which returns `undefined`. Useful for defaulting optional callback arguments instead of creating new anonymous empty functions.
      * @param T The return type of the empty callback.
      */
-    export function getEmpty<T>() {
+    export function getEmpty<T>(): () => T {
         return empty;
     }
     var empty = <T>(): T => { return undefined; };

@@ -3,7 +3,7 @@
 /// <reference path="../Errors/ArgumentNullError" />
 
 /** A [[Format.Utils]] sub-module containing methods related to enumeration operations. */
-module Format.Utils.Enumerable {
+namespace Format.Utils.Enumerable {
     /**
      * Returns elements from a sequence as long as the specified condition is `true`.
      *
