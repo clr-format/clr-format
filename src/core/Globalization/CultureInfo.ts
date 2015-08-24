@@ -2,7 +2,10 @@
 
 /// <reference path="FormatProvider" />
 /// <reference path="CustomFormatter" />
+/// <reference path="DateTimeFormatInfo" />
+/// <reference path="NumberFormatInfo" />
 
+/// <reference path="../Utils/Types" />
 /// <reference path="../Errors/ArgumentNullError" />
 
 namespace Format.Globalization {
@@ -13,25 +16,42 @@ namespace Format.Globalization {
      */
     export class CultureInfo implements FormatProvider {
 
+        /** Gets or sets the [[CultureInfo]] object that represents the culture used by the current context. */
+        public static CurrentCulture: CultureInfo;
+
         /** Gets the [[CultureInfo]] object that is culture-independent (invariant). */
         public static InvariantCulture: CultureInfo;
 
         /** Core implementation of a [[CustomFormatter]] for `Object` and `Array` instances. */
         private static objectFormatter: CustomFormatter = {
+            /**
+             * Converts the value of the given object using `JSON.stringify`.
+             * @param value An object to format.
+             */
             format: (format: string, value: Object): string => value ? JSON.stringify(value) : ""
         };
 
         /** Fallback implementation of a [[CustomFormatter]] for any objects. */
         private static fallbackFormatter: CustomFormatter = {
+            /**
+             * Converts the value of the given object using the `+ ""` operator.
+             * @param value An object to format.
+             */
             format: (format: string, value: Object): string => value != null ? value + "" : ""
         };
+
+        /** Gets or sets a [[DateTimeFormatInfo]] that defines the culturally appropriate format of displaying dates and times. */
+        public DateTimeFormat: DateTimeFormatInfo;
+
+        /** Gets or sets a [[NumberFormatInfo]] that defines the culturally appropriate format of displaying numbers, currency, and percentage. */
+        public NumberFormat: NumberFormatInfo;
 
         protected locales: string|string[];
         protected formatters: Indexable<CustomFormatter>;
 
         /**
          * Initializes a new instance of the [[CultureInfo]] class based on the culture specified by *locales*.
-         * @param locales The locales argument must be either a string holding a BCP 47 language tag, or an array of such language tags.
+         * @param locales The locales argument must be either a string holding a [BCP 47 language tag](http://tools.ietf.org/html/rfc5646), or an array of such language tags.
          */
         constructor(locales: string|string[]) {
 
@@ -40,6 +60,10 @@ namespace Format.Globalization {
             }
 
             this.locales = locales;
+
+            this.DateTimeFormat = new DateTimeFormatInfo(locales);
+            this.NumberFormat = new NumberFormatInfo(locales);
+
             this.formatters = this.getFormatters(locales);
         }
 
@@ -49,11 +73,11 @@ namespace Format.Globalization {
 
         protected getFormatters(locales: string|string[]): Indexable<CustomFormatter> {
 
-            var formatters: Indexable<CustomFormatter> = {};
+            let formatters: Indexable<CustomFormatter> = {};
 
-            formatters["[object Date]"] = undefined;
-            formatters["[object Number]"] = undefined;
-            formatters["[object Object]"] = formatters["[object Array]"] = CultureInfo.objectFormatter;
+            formatters[Utils.Types.Date] = this.DateTimeFormat.getFormatter(Utils.Types.Date);
+            formatters[Utils.Types.Number] = this.NumberFormat.getFormatter(Utils.Types.Number);
+            formatters[Utils.Types.Object] = formatters[Utils.Types.Array] = CultureInfo.objectFormatter;
 
             return formatters;
         }
@@ -63,5 +87,5 @@ namespace Format.Globalization {
         }
     }
 
-    CultureInfo.InvariantCulture = new CultureInfo("");
+    CultureInfo.CurrentCulture = CultureInfo.InvariantCulture = new CultureInfo("");
 }
