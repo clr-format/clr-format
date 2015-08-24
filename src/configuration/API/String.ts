@@ -6,6 +6,8 @@
 interface StringConstructor {
     /**
      * Indicates whether the specified string is `undefined`, `null`, `""`, or consists only of white-space characters.
+     *
+     * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
      * @param value The string to test.
      * @returns `true` if the value parameter is `undefined`, `null`, `""`, or if value consists exclusively of white-space characters.
      */

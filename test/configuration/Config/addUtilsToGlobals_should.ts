@@ -12,6 +12,7 @@ namespace Format.Config {
             expect(Object.isType).toBeUndefined();
             expect(Object.getType).toBeUndefined();
             expect(Object.isObject).toBeUndefined();
+            expect(Object.getTypeString).toBeUndefined();
 
             expect(Function.getName).toBeUndefined();
             expect(Function.memoize).toBeUndefined();
@@ -37,6 +38,7 @@ namespace Format.Config {
             expect(Object.isType).toBe(Utils.isType);
             expect(Object.getType).toBe(Utils.getType);
             expect(Object.isObject).toBe(Utils.isObject);
+            expect(Object.getTypeString).toBe(Utils.getTypeString);
 
             expect(Function.getName).toBe(Utils.Function.getName);
             expect(Function.memoize).toBe(Utils.Function.memoize);

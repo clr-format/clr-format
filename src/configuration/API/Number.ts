@@ -6,6 +6,8 @@
 interface NumberConstructor {
     /**
      * Determines whether the passed value is an integer.
+     *
+     * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
      * @param value The number to test.
      * @returns `true` if the value parameter is an integer.
      */
@@ -13,6 +15,8 @@ interface NumberConstructor {
 
     /**
      * Determines whether the passed value is a counting number (positive integer excluding `0`).
+     *
+     * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
      * @param value The number to test.
      * @returns `true` if the value parameter is a positive integer excluding `0`.
      */
@@ -20,6 +24,8 @@ interface NumberConstructor {
 
     /**
      * Determines whether the passed value is a whole number (positive integer including `0`).
+     *
+     * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
      * @param value The number to test.
      * @returns `true` if the value parameter is a positive integer including `0`.
      */
@@ -29,6 +35,8 @@ interface NumberConstructor {
      * Determines whether the passed value is an even number.
      *
      * Throws an error if the value is not an integer (when [[isInteger]] returns `false`).
+     *
+     * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
      * @param value The number to test.
      * @returns `true` if the value parameter is an even number.
      */
@@ -43,18 +51,24 @@ interface NumberConstructor {
 interface Number {
     /**
      * Determines whether the value is an integer.
+     *
+     * Must call [[Format.Config.addUtilsToPrototype]] to be defined.
      * @returns `true` if the value is an integer.
      */
     isInteger(): boolean;
 
     /**
      * Determines whether the passed value is a counting number (positive integer excluding `0`).
+     *
+     * Must call [[Format.Config.addUtilsToPrototype]] to be defined.
      * @returns `true` if the value is a positive integer excluding `0`.
      */
     isCounting(): boolean;
 
     /**
      * Determines whether the passed value is a whole number (positive integer including `0`).
+     *
+     * Must call [[Format.Config.addUtilsToPrototype]] to be defined.
      * @returns `true` if the value is a positive integer including `0`.
      */
     isWhole(): boolean;
@@ -63,6 +77,8 @@ interface Number {
      * Determines whether the value is an even number.
      *
      * Throws an error if the value is not an integer (when [[isInteger]] returns `false`).
+     *
+     * Must call [[Format.Config.addUtilsToPrototype]] to be defined.
      * @returns `true` if the value is an even number.
      */
     isEven(): boolean;

@@ -6,23 +6,36 @@
 
 /** A core sub-module which contains utility methods for general purpose operations and more specialized utility sub-modules. */
 namespace Format.Utils {
-
-    /** Returns the actual type of an object (unlike `typeof`), i.e. `"[object Date]"`. */
-    export function getType(object: Object): string {
-        return Object.prototype.toString.call(object);
-    }
-
     /**
      * Returns `true` if an object's type matches the given type argument.
      * @param type A string indicating the expected type of the object, i.e. `"Array"`, `"RegExp"`, etc.
      * @param object The object to check for matching type.
      */
     export function isType(type: string, object: Object): boolean {
-        return getType(object) === String.format("[object {0}]", type);
+        return getType(object) === getTypeString(type);
     }
 
-    /** Returns `true` if an object is a pure object instance. */
+    /**
+     * Returns `true` if an object is a pure object instance.
+     * @param object The object to test.
+     */
     export function isObject(object: Object): boolean {
-        return getType(object) === "[object Object]";
+        return getType(object) === Types.Object;
+    }
+
+    /**
+     * Returns the actual type of an object (unlike `typeof`), i.e. `"[object Date]"`.
+     * @param object The object to test.
+     */
+    export function getType(object: Object): string {
+        return Object.prototype.toString.call(object);
+    }
+
+    /**
+     * Returns a string representing the actual type of an object, i.e. `"[object Array]"`.
+     * @param type The type to wrap into a type string.
+     */
+    export function getTypeString(type: string): string {
+        return String.format("[object {0}]", type);
     }
 }

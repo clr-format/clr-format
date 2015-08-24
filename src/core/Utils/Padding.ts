@@ -8,6 +8,7 @@
 
 /** A [[Format.Utils]] sub-module exposing the [[pad]] method for string padding operations. */
 namespace Format.Utils.Padding {
+
     /** Defines possible options for a string padding operation. */
     export interface Options {
         /** The number of characters in the resulting string, equal to the number of original characters plus any additional padding characters. */

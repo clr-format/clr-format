@@ -5,13 +5,6 @@
  */
 interface ObjectConstructor {
     /**
-     * Returns the actual type of an object (unlike `typeof`), i.e. `"[object Date]"`.
-     *
-     * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
-     */
-    getType(object: Object): string;
-
-    /**
      * Returns `true` if an object's type matches the given type argument.
      *
      * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
@@ -24,6 +17,23 @@ interface ObjectConstructor {
      * Returns `true` if an object is a pure object instance.
      *
      * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
+     * @param object The object to test.
      */
     isObject(object: Object): boolean;
+
+    /**
+     * Returns the actual type of an object (unlike `typeof`), i.e. `"[object Date]"`.
+     *
+     * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
+     * @param object The object to resolve for its type.
+     */
+    getType(object: Object): string;
+
+    /**
+     * Returns a string representing the actual type of an object, i.e. `"[object Array]"`.
+     *
+     * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
+     * @param type The type to wrap into a type string.
+     */
+    getTypeString(type: string): string;
 }
