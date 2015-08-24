@@ -7,6 +7,8 @@ namespace Format.Globalization {
      * Provides culture-specific information about the format of date and time values.
      *
      * Information about the culture itself and the application of overrides will be made available through this class at a later point.
+     *
+     * See: https://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.aspx
      */
     export class DateTimeFormatInfo implements FormatProvider {
 
