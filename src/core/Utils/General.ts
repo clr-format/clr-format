@@ -4,7 +4,7 @@
 
 /// <reference path="../Errors/ArgumentError" />
 
-/** A core sub-module which contains utility methods for general purpose operations and more specialized utility sub-modules. */
+/** A core namespace which contains utility methods for general purpose operations and more specialized utility sub-modules. */
 namespace Format.Utils {
     /**
      * Returns `true` if an object's type matches the given type argument.

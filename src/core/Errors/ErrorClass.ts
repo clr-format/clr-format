@@ -1,6 +1,6 @@
 /* tslint:disable:no-unused-variable */
 
-/** A core sub-module which contains C#-like error objects. */
+/** A core namespace which contains C#-like error objects. */
 declare namespace Format.Errors {
     /** TypeScript compiler-friendly class definition which allows for syntactic Error class extension. */
     class ErrorClass implements Error {
