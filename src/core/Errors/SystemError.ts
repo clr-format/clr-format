@@ -8,7 +8,11 @@ namespace Format.Errors {
 
     Format.Errors.ErrorClass = Error;
 
-    /** Base system error class that allows for syntactic C#-like Error class extension. */
+    /**
+     * Base system error class that allows for syntactic C#-like `Error` class extension.
+     *
+     * See: https://msdn.microsoft.com/en-us/library/system.systemexception.aspx
+     */
     export class SystemError extends ErrorClass {
 
         /** The non-standard stack property of `Error` objects offer a trace of which functions were called, in what order, from which line and file, and with what arguments. */
@@ -25,8 +29,6 @@ namespace Format.Errors {
 
         /**
          * Creates an abstract system error object derived from the built-in javascript `Error` type and decorates it with additional properties.
-         *
-         * See: https://msdn.microsoft.com/en-us/library/system.systemexception.aspx
          * @param message A human-readable description of the error.
          * @param innerError An error to wrap while also preserving its stack trace.
          */
