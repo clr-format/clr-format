@@ -50,11 +50,13 @@ namespace Format.Utils.Padding {
         return value;
     }
 
+    /** @private */
     var setDefaultOptions = (options: Options) => {
         options.direction = options.direction || Direction.Right;
         options.paddingChar = options.paddingChar || " ";
     };
 
+    /** @private */
     var validateOptions = (options: Options) => {
 
         if (!Utils.Numeric.isCounting(options.totalWidth)) {
@@ -76,13 +78,18 @@ namespace Format.Utils.Padding {
         }
     };
 
+    /** @private */
     var isPaddingRequired = (value: string, options: Options): boolean => options.totalWidth > value.length;
 
+    /** @private */
     var getPadWidth = (value: string, options: Options): number => options.totalWidth - value.length;
 
+    /** @private */
     var getPadding = (padWidth: number, options: Options): string => new Array(padWidth + 1).join(options.paddingChar);
 
     /* tslint:disable:no-shadowed-variable */// TSLint #500
+
+    /** @private */
     var directionStrategies: Indexable<(value: string, options: Options) => string> = {};
 
     directionStrategies[Direction.Left] = (value: string, options: Options): string =>

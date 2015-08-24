@@ -8,6 +8,7 @@
 /** A [[Format.Utils]] sub-module containing methods related to numeric operations. */
 namespace Format.Utils.Numeric {
 
+    /** @private */
     let isIntegerPolyfill = Number.isInteger || function(value: number): boolean {
         return value === value >> 0;
     };

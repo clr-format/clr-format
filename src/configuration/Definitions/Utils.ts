@@ -5,6 +5,7 @@
 
 namespace Format.Config.Definitions {
 
+    /** @private */
     let globalRegistry: Indexable<Indexable<Function>> = {},
         globalPolyfills: Function[] = [
             Utils.Numeric.isInteger
@@ -42,6 +43,8 @@ namespace Format.Config.Definitions {
     };
 
     /* tslint:disable:no-shadowed-variable */// TSLint #500
+
+    /** @private */
     var addAll = (addFunc: (utilFunction: Function, hostObject: Indexable<Function>, name: string) => void, source: any, hostObject: any) => {
         for (let key in source) {
             if (source.hasOwnProperty(key) && typeof source[key] === "function") {
@@ -51,6 +54,7 @@ namespace Format.Config.Definitions {
     };
     /* tslint:enable:no-shadowed-variable */
 
+    /** @private */
     var asStatic = (utilFunction: Function, globalObject: Indexable<Function>, name: string) => {
 
         if (globalObject[name]) {
@@ -72,6 +76,7 @@ namespace Format.Config.Definitions {
         globalRegistry[name] = globalObject;
     };
 
+    /** @private */
     var asPrototype = (utilFunction: Function, protoObject: Indexable<Function>, name: string) => {
 
         if (prototypeExceptions.indexOf(utilFunction) !== -1) {
@@ -92,12 +97,14 @@ namespace Format.Config.Definitions {
         prototypeRegistry[name] = protoObject;
     };
 
+    /** @private */
     var getProtoWrapper = (utilFunction: Function): Function => {
         return function(...args: Object[]): Function {
             return utilFunction(this, ...args);
         };
     };
 
+    /** @private */
     var unregister = (registry: Indexable<Indexable<Function>>) => {
         for (let key in registry) {
             if (registry.hasOwnProperty(key)) {

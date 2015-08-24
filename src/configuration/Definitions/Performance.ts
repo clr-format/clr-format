@@ -4,6 +4,7 @@
 
 namespace Format.Config.Definitions {
 
+    /** @private */
     let memoizedRegistry: Indexable<Function> = {};
 
     export function enableMemoization(): void {
@@ -14,6 +15,7 @@ namespace Format.Config.Definitions {
         unmemoize(Format, "getBracesCount");
     }
 
+    /** @private */
     var memoize = (hostObject: any, name: string) => {
         if (!memoizedRegistry[name]) {
             let func: Function = hostObject[name];
@@ -22,6 +24,7 @@ namespace Format.Config.Definitions {
         }
     };
 
+    /** @private */
     var unmemoize = (hostObject: any, name: string) => {
         if (memoizedRegistry[name]) {
             let memoized: Function = hostObject[name];

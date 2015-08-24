@@ -46,7 +46,7 @@ namespace Format {
     /**
      * Converts the value of objects to strings based on the formats specified and inserts them into another string.
      *
-     * This internal version does not support arbitrary argument overloads.
+     * This project-internal (but externally visible) version does not support arbitrary argument overloads.
      * @param provider An object that supplies culture-specific formatting information.
      * @param format A composite format string. See: https://msdn.microsoft.com/en-us/library/txafckwd.aspx
      * @param args An array of arguments that contains zero or more objects to format.
@@ -67,8 +67,10 @@ namespace Format {
                 formatStringComponent
             }));
     }
+    /** @private */
     var formatItemRegExp = /{+(\d+)(?:,(.+?))?(?::(.+?))?}+/g;
 
+    /** @private */
     var replaceFormatItem = (provider: Globalization.FormatProvider, args: Object[], options: Utils.FormatItemOptions): string => {
 
         let escapedBracesCount = Math.floor(getBracesCount(options.formatItem, "{") / 2);
@@ -90,6 +92,7 @@ namespace Format {
         return result;
     };
 
+    /** @private */
     export var getBracesCount = (formatItem: string, braceChar: string): number => {
 
         let splits = formatItem.split(braceChar);
@@ -101,6 +104,7 @@ namespace Format {
         return Utils.Enumerable.takeWhile(splits, Utils.Text.isNullOrWhitespace).length;
     };
 
+    /** @private */
     var isFullyEscaped = (formatItem: string): boolean => {
 
         let openingBracesCount = getBracesCount(formatItem, "{"),
@@ -115,6 +119,7 @@ namespace Format {
         return Utils.Numeric.isEven(openingBracesCount);
     };
 
+    /** @private */
     var applyFormatting = (provider: Globalization.FormatProvider, args: Object[], options: Utils.FormatItemOptions): string => {
 
         let index = +options.indexComponent;
@@ -138,7 +143,9 @@ namespace Format {
         }
     };
 
+    /** @private */
     let directions = Utils.Padding.Direction;
+    /** @private */
     var applyAlignment = (formattedString: string, options: Utils.FormatItemOptions): string => {
 
         let totalWidth = +options.alignmentComponent;
@@ -154,6 +161,7 @@ namespace Format {
         return Utils.Padding.pad(formattedString, { totalWidth, direction });
     };
 
+    /** @private */
     var padBraces = (formattedString: string, escapedBracesCount: number, paddingChar: string): string => {
 
         let direction = paddingChar === "}" ? directions.Right : directions.Left,

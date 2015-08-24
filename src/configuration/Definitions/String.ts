@@ -5,7 +5,7 @@
 /**
  * An internal [[Format.Config]] sub-module containing methods wrapped in a chainable API by its parent.
  *
- * Because the module and its members cannot be truly internal refrain from calling its methods directly.
+ * Because the module and its members cannot be truly internal, refrain from calling its methods directly.
  */
 namespace Format.Config.Definitions {
 
@@ -34,6 +34,7 @@ namespace Format.Config.Definitions {
         }
     };
 
+    /** @private */
     var formatProto = function(...args: Object[]): string {
 
         let provider = <Format.Globalization.FormatProvider> args[0];
@@ -45,12 +46,14 @@ namespace Format.Config.Definitions {
         return Format.innerFormat(undefined, this, args);
     };
 
+    /** @private */
     let getPaddingProto = function(direction: Utils.Padding.Direction): (width: number, char?: string) => string {
         return function(totalWidth: number, paddingChar?: string): string {
             return Utils.Padding.pad(this, { direction, totalWidth, paddingChar });
         };
     };
 
+    /** @private */
     var padLeftProto = getPaddingProto(Utils.Padding.Direction.Left),
         padRightProto = getPaddingProto(Utils.Padding.Direction.Right);
 }
