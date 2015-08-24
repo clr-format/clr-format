@@ -22,7 +22,7 @@ interface ObjectConstructor {
     isObject(object: Object): boolean;
 
     /**
-     * Returns the actual type of an object (unlike `typeof`), i.e. `"[object Date]"`.
+     * Returns the actual type of an object (unlike `typeof`), see [[Utils.Types]].
      *
      * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
      * @param object The object to resolve for its type.
@@ -30,7 +30,7 @@ interface ObjectConstructor {
     getType(object: Object): string;
 
     /**
-     * Returns a string representing the actual type of an object, i.e. `"[object Array]"`.
+     * Returns a string representing the actual type of an object, see [[Utils.Types]].
      *
      * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
      * @param type The type to wrap into a type string.

@@ -24,7 +24,7 @@ namespace Format.Utils {
     }
 
     /**
-     * Returns the actual type of an object (unlike `typeof`), i.e. `"[object Date]"`.
+     * Returns the actual type of an object (unlike `typeof`), see [[Types]].
      * @param object The object to test.
      */
     export function getType(object: Object): string {
@@ -32,7 +32,7 @@ namespace Format.Utils {
     }
 
     /**
-     * Returns a string representing the actual type of an object, i.e. `"[object Array]"`.
+     * Returns a string representing the actual type of an object, see [[Types]].
      * @param type The type to wrap into a type string.
      */
     export function getTypeString(type: string): string {
