@@ -1,7 +1,5 @@
 /// <reference path="../../use-strict" />
 
-/// <reference path="../Utils/Indexable" />
-
 namespace Format.Config.Definitions {
 
     /** @private */

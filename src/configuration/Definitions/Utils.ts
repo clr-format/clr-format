@@ -1,7 +1,6 @@
 /// <reference path="../../use-strict" />
 
 /// <reference path="../Utils/Function" />
-/// <reference path="../Utils/Indexable" />
 
 namespace Format.Config.Definitions {
 

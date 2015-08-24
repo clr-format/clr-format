@@ -1,5 +1,6 @@
 /// <reference path="../../use-strict" />
-/// <reference path="../../shared/Polyfills" />
+
+/// <reference path="Polyfills" />
 
 /// <reference path="../Errors/ArgumentError" />
 
