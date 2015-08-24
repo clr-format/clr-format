@@ -4,6 +4,7 @@
 
 /// <reference path="Utils/Text" />
 /// <reference path="Utils/General" />
+/// <reference path="Utils/Numeric" />
 /// <reference path="Utils/Padding" />
 /// <reference path="Utils/Enumerable" />
 /// <reference path="Utils/FormatItemOptions" />
@@ -111,10 +112,8 @@ namespace Format {
                 formatItem));
         }
 
-        return isEven(openingBracesCount);
+        return Utils.Numeric.isEven(openingBracesCount);
     };
-
-    var isEven = (value: number) => !(value & 1);
 
     var applyFormatting = (provider: Globalization.FormatProvider, args: Object[], options: Utils.FormatItemOptions): string => {
 
@@ -143,9 +142,9 @@ namespace Format {
     var applyAlignment = (formattedString: string, options: Utils.FormatItemOptions): string => {
 
         let totalWidth = +options.alignmentComponent;
-        if (totalWidth !== totalWidth >> 0) {
+        if (!Utils.Numeric.isInteger(totalWidth)) {
             throw new Errors.FormatError(String.format(
-                "Alignment component '{0}' in format item '{1}' must be a finite integer value",
+                "Alignment component '{0}' in format item '{1}' must be an integer",
                 options.alignmentComponent, options.formatItem));
         }
 

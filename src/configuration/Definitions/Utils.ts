@@ -6,6 +6,9 @@
 namespace Format.Config.Definitions {
 
     let globalRegistry: Indexable<Indexable<Function>> = {},
+        globalPolyfills: Function[] = [
+            Utils.Numeric.isInteger
+        ],
         prototypeRegistry: Indexable<Indexable<Function>> = {},
         prototypeExceptions: Function[] = [
             Utils.Function.getEmpty
@@ -14,11 +17,13 @@ namespace Format.Config.Definitions {
     export var addUtilsToGlobals = () => {
         addAll(asStatic, Utils, Object);
         addAll(asStatic, Utils.Text, String);
+        addAll(asStatic, Utils.Numeric, Number);
         addAll(asStatic, Utils.Enumerable, Array);
         addAll(asStatic, Utils.Function, Function);
     };
 
     export var addUtilsToPrototype = () => {
+        addAll(asPrototype, Utils.Numeric, Number.prototype);
         addAll(asPrototype, Utils.Enumerable, Array.prototype);
         addAll(asPrototype, Utils.Function, Function.prototype);
     };
@@ -49,6 +54,11 @@ namespace Format.Config.Definitions {
     var asStatic = (utilFunction: Function, globalObject: Indexable<Function>, name: string) => {
 
         if (globalObject[name]) {
+
+            if (globalPolyfills.indexOf(utilFunction) !== -1) {
+                return;
+            }
+
             unregister(globalRegistry);
 
             throw new Errors.ArgumentError(

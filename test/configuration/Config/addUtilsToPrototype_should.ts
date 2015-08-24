@@ -7,11 +7,21 @@ namespace Format.Config {
 
     describe("Config addUtilsToPrototype", () => {
 
-        let array = [1], func = () => true, funcAccessor: any = func;
+        let array = [1], num = 12,
+            func = () => true,
+            funcAccessor: any = func;
+
         let expectUndefinedMethods = () => {
+
             expect(array.takeWhile).toBeUndefined();
+
             expect(func.getName).toBeUndefined();
             expect(func.memoize).toBeUndefined();
+
+            expect(num.isInteger).toBeUndefined();
+            expect(num.isCounting).toBeUndefined();
+            expect(num.isWhole).toBeUndefined();
+            expect(num.isEven).toBeUndefined();
         };
 
         it("should not define utils callable from instance objects by default", () => {
@@ -23,9 +33,15 @@ namespace Format.Config {
             Format.Config.addUtilsToPrototype();
 
             expect(array.takeWhile(() => true)).toEqual(array);
+
             expect(func.getName()).toBe("anonymous");
             expect(func.memoize()).toBeDefined();
             expect(funcAccessor.getEmpty).toBeUndefined();
+
+            expect(num.isInteger()).toBe(true);
+            expect(num.isCounting()).toBe(true);
+            expect(num.isWhole()).toBe(true);
+            expect(num.isEven()).toBe(true);
         });
 
         it("should remove utils callable from instance objects after Format.Config.removeUtilsFromPrototype() is used", () => {

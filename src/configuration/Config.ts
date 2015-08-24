@@ -56,12 +56,13 @@ namespace Format.Config {
     }
 
     /**
-     * Adds all [[Format.Utils]] methods (including ones in sub-modules like [[Format.Utils.Function]]) as static methods to respective global objects.
+     * Adds all [[Format.Utils]] methods (including ones in sub-modules like [[Format.Utils.Function]]) as static methods to respective built-in types.
      *
      * For example [[ObjectConstructor.getType]] will be equivallent to calling [[Format.Utils.getType]].
      * The following mapping applies:
      * - [[Format.Utils]] methods => [[ObjectConstructor]]
      * - [[Format.Utils.Text]] => [[StringConstructor]]
+     * - [[Format.Utils.Numeric]] => [[NumberConstructor]]
      * - [[Format.Utils.Function]] => [[FunctionConstructor]]
      * - [[Format.Utils.Enumerable]] => [[ArrayConstructor]]
      */
@@ -77,11 +78,12 @@ namespace Format.Config {
     }
 
     /**
-     * Adds all [[Format.Utils]] sub-modules' methods as wrapped instance methods to respective global objects.
+     * Adds some [[Format.Utils]] sub-modules' methods as wrapped instance methods to respective built-in types.
      *
      * The method's first argument must match the global object's type.
      * For example [[Function.getName]] will be wrapped to have its first argument replaced by the `this` object in the prototype version. Other arguments are shifted accordingly in the process.
      * The following mapping applies:
+     * - [[Format.Utils.Numeric]] => [[Number]]
      * - [[Format.Utils.Function]] => [[Function]]
      * - [[Format.Utils.Enumerable]] => [[Array]]
      */

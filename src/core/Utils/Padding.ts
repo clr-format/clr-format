@@ -56,9 +56,9 @@ namespace Format.Utils.Padding {
 
     var validateOptions = (options: Options) => {
 
-        if (!isValidTotalWidth(options.totalWidth)) {
+        if (!Utils.Numeric.isCounting(options.totalWidth)) {
             throw new Errors.ArgumentError(String.format(
-                "Option 'totalWidth' with value '{0}' must be a positive non-zero integer value",
+                "Option 'totalWidth' with value '{0}' must be a positive non-zero integer (counting) number",
                 options.totalWidth + ""));
         }
 
@@ -74,8 +74,6 @@ namespace Format.Utils.Padding {
                 options.direction + ""));
         }
     };
-
-    var isValidTotalWidth = (totalWidth: number) => totalWidth > 0 && totalWidth === totalWidth >> 0;
 
     var isPaddingRequired = (value: string, options: Options): boolean => options.totalWidth > value.length;
 
