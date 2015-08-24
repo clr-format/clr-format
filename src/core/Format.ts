@@ -7,6 +7,7 @@
 /// <reference path="Utils/Enumerable" />
 /// <reference path="Utils/FormatItemOptions" />
 
+/// <reference path="Globalization/CultureInfo" />
 /// <reference path="Globalization/FormatProvider" />
 /// <reference path="Globalization/CustomFormatter" />
 
@@ -54,7 +55,7 @@ namespace Format {
             throw new Errors.ArgumentNullError("format");
         }
 
-        provider = provider || simpleProvider;
+        provider = provider || defaultProvider;
 
         return format.replace(formatItemRegExp, (formatItem: string, indexComponent: string, alignmentComponent: string, formatStringComponent: string) =>
             replaceFormatItem(provider, args, {
@@ -163,64 +164,5 @@ namespace Format {
         return Utils.Padding.pad(formattedString, { totalWidth, direction, paddingChar });
     };
 
-    /** Basic internal core implementation of a [[FormatProvider]] which does not support format string components and globalization. */
-    class SimpleProvider implements Globalization.FormatProvider {
-
-        private objectFormatter: Globalization.CustomFormatter;
-        private toStringFormatter: Globalization.CustomFormatter;
-
-        constructor() {
-            this.objectFormatter = new ObjectFormatter();
-            this.toStringFormatter = new ToStringFormatter();
-        }
-
-        /**
-         * Returns [[ObjectFormatter]] for `Object` and `Array` instances and [[OtherFormatter]] for other types.
-         * @param type The type of the value object, i.e. `"[object Number]"`.
-         */
-        public getFormatter(type: string): Globalization.CustomFormatter {
-
-            return type === "[object Object]" || type === "[object Array]" ?
-                this.objectFormatter :
-                this.toStringFormatter;
-        }
-    }
-
-    /** Basic internal core implementation of a [[CustomFormatter]] for `Object` and `Array` instances. Does not support format string components and globalization. */
-    class ObjectFormatter implements Globalization.CustomFormatter {
-        /**
-         * Converts the value by passing it to `JSON.stringify`.
-         * @param format An unsupported format string argument. Will result in a thrown [[FormatError]] if not left empty.
-         * @param value An object to format.
-         */
-        public format(format: string, value: Object): string {
-
-            if (format) {
-                throw new Errors.FormatError("Values of type Object or Array do not accept a format string component");
-            }
-
-            return value ? JSON.stringify(value) : "";
-        }
-    }
-
-    /** Basic internal core implementation of a [[CustomFormatter]] for any objects. Does not support format string components and globalization. */
-    class ToStringFormatter implements Globalization.CustomFormatter {
-        /**
-         * Converts the value by forcing it into a `String` value.
-         * @param format An unsupported format string argument. Will result in a thrown [[FormatError]] if not left empty.
-         * @param value An object to format.
-         */
-        public format(format: string, value: Object): string {
-
-            if (format) {
-                throw new Errors.FormatError(String.format(
-                    "Formatter type '{0}' does not accept a format string component",
-                    Utils.Function.getName(this.constructor)));
-            }
-
-            return value != null ? value + "" : "";
-        }
-    }
-
-    var simpleProvider = new SimpleProvider();
+    var defaultProvider = Globalization.CultureInfo.InvariantCulture;
 }
