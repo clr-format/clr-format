@@ -9,6 +9,7 @@ var getVersion = require("../utils/getVersion.js");
 var gulp = require("gulp");
 var format = require("clr-format");
 var typedoc = require("gulp-typedoc");
+var replace = require("gulp-replace");
 
 module.exports.build = function () {
     reinitSubmodule();
@@ -29,7 +30,26 @@ module.exports.getCommitMessage = function () {
 function generateDocs(publish) {
     return gulp.src([paths.sources, negate(paths.references)])
         .pipe(typedoc({ out: dirs.docs, mode: "file", name: "CLR Format" }))
-        .on("end", getOnEndCallback(publish));
+        .on("end", restoreSubmoduleFile(publish));
+}
+
+function restoreSubmoduleFile(publish) {
+
+    var submodule = gulp.src(dirs.docs + "/.git");
+
+    return function () {
+        return submodule.pipe(gulp.dest(dirs.docs))
+            .on("end", replaceSourceLinks(publish));
+    }
+}
+
+function replaceSourceLinks(publish) {
+    return function () {
+        return gulp.src(paths.docs)
+            .pipe(replace(/blob\/[^\/]+/g, "blob/" + git.getLatestReleaseTag()))
+            .pipe(gulp.dest(dirs.docs))
+            .on("end", publish ? commitDocs : stageDocs);
+    }
 }
 
 function validateState() {
@@ -48,17 +68,6 @@ function reinitSubmodule() {
         dirs.docs,
         branches.ghPages,
         format("Could not checkout '{0}' submodule to '{1}' branch", dirs.docs, branches.ghPages));
-}
-
-function getOnEndCallback(publish) {
-
-    var submodule = gulp.src(dirs.docs + "/.git");
-
-    return function () {
-        return submodule
-            .pipe(gulp.dest(dirs.docs))
-            .on("end", publish ? commitDocs : stageDocs);
-    };
 }
 
 function commitDocs() {
