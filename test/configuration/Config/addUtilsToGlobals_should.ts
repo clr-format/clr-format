@@ -1,6 +1,8 @@
 /// <reference path="../../typings/jasmine/jasmine" />
 
 /// <reference path="../../../src/core/Format" />
+/// <reference path="../../../src/core/Utils/Object" />
+
 /// <reference path="../../../src/configuration/Config" />
 
 namespace Format.Config {
@@ -13,6 +15,7 @@ namespace Format.Config {
             expect(Object.getType).toBeUndefined();
             expect(Object.isObject).toBeUndefined();
             expect(Object.getTypeString).toBeUndefined();
+            expect(Object.mapValuesAsKeys).toBeUndefined();
 
             expect(Function.getName).toBeUndefined();
             expect(Function.memoize).toBeUndefined();
@@ -39,6 +42,7 @@ namespace Format.Config {
             expect(Object.getType).toBe(Utils.getType);
             expect(Object.isObject).toBe(Utils.isObject);
             expect(Object.getTypeString).toBe(Utils.getTypeString);
+            expect(Object.mapValuesAsKeys).toBe(Utils.mapValuesAsKeys);
 
             expect(Function.getName).toBe(Utils.Function.getName);
             expect(Function.memoize).toBe(Utils.Function.memoize);

@@ -1,6 +1,6 @@
 /// <reference path="../../use-strict" />
 
-/// <reference path="Polyfills" />
+/// <reference path="Harmony" />
 
 /// <reference path="../Errors/ArgumentError" />
 
