@@ -1,10 +1,6 @@
 /// <reference path="Globalization/FormatProvider" />
 
-/**
- * Extends the built-in javascript String object's static API.
- *
- * The [[StringConstructor.format]] method exposes the core logic.
- */
+/** The [[StringConstructor.format]] method exposes the core logic of the project. */
 interface StringConstructor {
     /**
      * Converts the value of objects to strings based on the formats specified and inserts them into another string.

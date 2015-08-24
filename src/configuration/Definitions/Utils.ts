@@ -13,6 +13,7 @@ namespace Format.Config.Definitions {
 
     export var addUtilsToGlobals = () => {
         addAll(asStatic, Utils, Object);
+        addAll(asStatic, Utils.Text, String);
         addAll(asStatic, Utils.Enumerable, Array);
         addAll(asStatic, Utils.Function, Function);
     };

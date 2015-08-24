@@ -1,4 +1,22 @@
-/** Extends the built-in javascript `String` object's prototype. */
+/**
+ * Extends the built-in javascript `String` object's static API.
+ *
+ * The [[Format.Config.addUtilsToGlobals]] method must be called in order to access any additional definitions.
+ */
+interface StringConstructor {
+    /**
+     * Indicates whether the specified string is `undefined`, `null`, `""`, or consists only of white-space characters.
+     * @param value The string to test.
+     * @returns `true` if the value parameter is `undefined`, `null`, `""`, or if value consists exclusively of white-space characters.
+     */
+    isNullOrWhitespace(value: string): boolean;
+}
+
+/**
+ * Extends the built-in javascript `String` object's prototype.
+ *
+ * The [[Format.Config.addUtilsToPrototype]] method must be called in order to access the definitions.
+ */
 interface String {
     /**
      * Converts the value of objects to strings based on the formats specified and inserts them into this string.

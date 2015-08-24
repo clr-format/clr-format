@@ -61,6 +61,7 @@ namespace Format.Config {
      * For example [[ObjectConstructor.getType]] will be equivallent to calling [[Format.Utils.getType]].
      * The following mapping applies:
      * - [[Format.Utils]] methods => [[ObjectConstructor]]
+     * - [[Format.Utils.Text]] => [[StringConstructor]]
      * - [[Format.Utils.Function]] => [[FunctionConstructor]]
      * - [[Format.Utils.Enumerable]] => [[ArrayConstructor]]
      */

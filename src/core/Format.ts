@@ -2,6 +2,7 @@
 
 /// <reference path="API" />
 
+/// <reference path="Utils/Text" />
 /// <reference path="Utils/General" />
 /// <reference path="Utils/Padding" />
 /// <reference path="Utils/Enumerable" />
@@ -55,7 +56,7 @@ namespace Format {
             throw new Errors.ArgumentNullError("format");
         }
 
-        provider = provider || defaultProvider;
+        provider = provider || Globalization.CultureInfo.InvariantCulture;
 
         return format.replace(formatItemRegExp, (formatItem: string, indexComponent: string, alignmentComponent: string, formatStringComponent: string) =>
             replaceFormatItem(provider, args, {
@@ -96,10 +97,8 @@ namespace Format {
             splits = splits.reverse();
         }
 
-        return Utils.Enumerable.takeWhile(splits, isNullOrWhitespace).length;
+        return Utils.Enumerable.takeWhile(splits, Utils.Text.isNullOrWhitespace).length;
     };
-
-    var isNullOrWhitespace = (value: string): boolean => !(value && value.trim().length > 0);
 
     var isFullyEscaped = (formatItem: string): boolean => {
 
@@ -163,6 +162,4 @@ namespace Format {
 
         return Utils.Padding.pad(formattedString, { totalWidth, direction, paddingChar });
     };
-
-    var defaultProvider = Globalization.CultureInfo.InvariantCulture;
 }

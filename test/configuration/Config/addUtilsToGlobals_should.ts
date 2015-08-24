@@ -15,6 +15,7 @@ namespace Format.Config {
             expect(Function.getName).toBeUndefined();
             expect(Function.memoize).toBeUndefined();
             expect(Function.getEmpty).toBeUndefined();
+            expect(String.isNullOrWhitespace).toBeUndefined();
         };
 
         it("should not define utils callable from global objects by default", () => {
@@ -32,6 +33,7 @@ namespace Format.Config {
             expect(Function.getName).toBe(Utils.Function.getName);
             expect(Function.memoize).toBe(Utils.Function.memoize);
             expect(Function.getEmpty).toBe(Utils.Function.getEmpty);
+            expect(String.isNullOrWhitespace).toBe(Utils.Text.isNullOrWhitespace);
         });
 
         it("should remove utils callable from global objects after Format.Config.removeFormatFromPrototype() is used", () => {
