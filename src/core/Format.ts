@@ -57,7 +57,7 @@ namespace Format {
             throw new Errors.ArgumentNullError("format");
         }
 
-        provider = provider || Globalization.CultureInfo.InvariantCulture;
+        provider = provider || Globalization.CultureInfo.CurrentCulture;
 
         return format.replace(formatItemRegExp, (formatItem: string, indexComponent: string, alignmentComponent: string, formatStringComponent: string) =>
             replaceFormatItem(provider, args, {
