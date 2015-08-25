@@ -12,12 +12,23 @@ interface StringConstructor {
      * @returns `true` if the value parameter is `undefined`, `null`, `""`, or if value consists exclusively of white-space characters.
      */
     isNullOrWhitespace(value: string): boolean;
+
+    /**
+     * Returns a new string in which a specified string is inserted at a specified index position in the value instance.
+     *
+     * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
+     * @param value The string into which to insert.
+     * @param startIndex The zero-based index position of the insertion.
+     * @param insertValue The string to insert.
+     * @returns A new string that is equivalent to the value instance, but with insertValue inserted at position startIndex.
+     */
+    insert(value: string, startIndex: number, insertValue: string): string;
 }
 
 /**
  * Extends the built-in javascript `String` object's prototype.
  *
- * The [[Format.Config.addUtilsToPrototype]] method must be called in order to access the definitions.
+ * Various [[Format.Config]] methods can be called in order to access the additional definitions, see each method for more details.
  */
 interface String {
     /**
@@ -54,4 +65,14 @@ interface String {
      * @param paddingChar A padding character. Defaults to [[Padding.Options.paddingChar]].
      */
     padRight(totalWidth: number, paddingChar?: string): string;
+
+    /**
+     * Returns a new string in which a specified string is inserted at a specified index position in the instance.
+     *
+     * Must call [[Format.Config.addUtilsToPrototype]] to be defined.
+     * @param startIndex The zero-based index position of the insertion.
+     * @param insertValue The string to insert.
+     * @returns A new string that is equivalent to the instance, but with insertValue inserted at position startIndex.
+     */
+    insert(startIndex: number, insertValue: string): string;
 }

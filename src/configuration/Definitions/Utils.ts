@@ -11,6 +11,7 @@ namespace Format.Config.Definitions {
         ],
         prototypeRegistry: Indexable<Indexable<Function>> = {},
         prototypeExceptions: Function[] = [
+            Utils.Text.isNullOrWhitespace,
             Utils.Function.getEmpty
         ];
 
@@ -23,6 +24,7 @@ namespace Format.Config.Definitions {
     };
 
     export var addUtilsToPrototype = () => {
+        addAll(asPrototype, Utils.Text, String.prototype);
         addAll(asPrototype, Utils.Numeric, Number.prototype);
         addAll(asPrototype, Utils.Enumerable, Array.prototype);
         addAll(asPrototype, Utils.Function, Function.prototype);

@@ -28,6 +28,8 @@ namespace Format.Config {
             expect(Number.isEven).toBeUndefined();
 
             expect(Array.takeWhile).toBeUndefined();
+
+            expect(String.insert).toBeUndefined();
             expect(String.isNullOrWhitespace).toBeUndefined();
         };
 
@@ -56,6 +58,8 @@ namespace Format.Config {
             expect(Number.isEven).toBe(Utils.Numeric.isEven);
 
             expect(Array.takeWhile).toBe(Utils.Enumerable.takeWhile);
+
+            expect(String.insert).toBe(Utils.Text.insert);
             expect(String.isNullOrWhitespace).toBe(Utils.Text.isNullOrWhitespace);
         });
 

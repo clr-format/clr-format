@@ -8,6 +8,8 @@ namespace Format.Config {
     describe("Config addUtilsToPrototype", () => {
 
         let array = [1], num = 12,
+            text = "text",
+            textAccessor: any = text,
             func = () => true,
             funcAccessor: any = func;
 
@@ -23,6 +25,8 @@ namespace Format.Config {
             expect(num.isCounting).toBeUndefined();
             expect(num.isWhole).toBeUndefined();
             expect(num.isEven).toBeUndefined();
+
+            expect(text.insert).toBeUndefined();
         };
 
         it("should not define utils callable from instance objects by default", () => {
@@ -44,6 +48,10 @@ namespace Format.Config {
             expect(num.isCounting()).toBe(true);
             expect(num.isWhole()).toBe(true);
             expect(num.isEven()).toBe(true);
+
+            expect(textAccessor.isNullOrWhitespace).toBeUndefined();
+            expect(text.insert(2, "test")).toBe("tetestxt");
+            expect(text).toBe("text");
         });
 
         it("should remove utils callable from instance objects after Format.Config.removeUtilsFromPrototype() is used", () => {
