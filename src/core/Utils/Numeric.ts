@@ -8,12 +8,6 @@
 
 /** A [[Format.Utils]] sub-module containing methods related to numeric operations. */
 namespace Format.Utils.Numeric {
-
-    /** @private */
-    let isIntegerPolyfill = Number.isInteger || function(value: number): boolean {
-        return value === value >> 0;
-    };
-
     /**
      * Determines whether the passed value is an integer.
      * @param value The number to test.
@@ -56,4 +50,9 @@ namespace Format.Utils.Numeric {
 
         return (value & 1) === 0;
     }
+
+    /** @private */
+    var isIntegerPolyfill = Number.isInteger || function(value: number): boolean {
+        return value === value >> 0;
+    };
 }

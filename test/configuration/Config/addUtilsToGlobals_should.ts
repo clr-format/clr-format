@@ -20,6 +20,7 @@ namespace Format.Config {
             expect(Function.getName).toBeUndefined();
             expect(Function.memoize).toBeUndefined();
             expect(Function.getEmpty).toBeUndefined();
+            expect(Function.getReturnName).toBeUndefined();
 
             expect(Number.isInteger).not.toBe(Utils.Numeric.isInteger);
             expect(Number.isCounting).toBeUndefined();
@@ -47,6 +48,7 @@ namespace Format.Config {
             expect(Function.getName).toBe(Utils.Function.getName);
             expect(Function.memoize).toBe(Utils.Function.memoize);
             expect(Function.getEmpty).toBe(Utils.Function.getEmpty);
+            expect(Function.getReturnName).toBe(Utils.Function.getReturnName);
 
             expect(Number.isInteger).toBeDefined();
             expect(Number.isCounting).toBe(Utils.Numeric.isCounting);

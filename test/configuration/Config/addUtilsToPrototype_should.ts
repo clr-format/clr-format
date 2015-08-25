@@ -17,6 +17,7 @@ namespace Format.Config {
 
             expect(func.getName).toBeUndefined();
             expect(func.memoize).toBeUndefined();
+            expect(func.getReturnName).toBeUndefined();
 
             expect(num.isInteger).toBeUndefined();
             expect(num.isCounting).toBeUndefined();
@@ -36,6 +37,7 @@ namespace Format.Config {
 
             expect(func.getName()).toBe("anonymous");
             expect(func.memoize()).toBeDefined();
+            expect(func.getReturnName()).toBe("true");
             expect(funcAccessor.getEmpty).toBeUndefined();
 
             expect(num.isInteger()).toBe(true);

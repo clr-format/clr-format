@@ -5,15 +5,6 @@
  */
 interface FunctionConstructor {
     /**
-     * Returns the name of a function.
-     *
-     * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
-     * @param func A functional object.
-     * @returns The name of a function or `"anonymous"` for lambda functions.
-     */
-    getName(func: Function): string;
-
-    /**
      * Returns a memoized function wrapper of the function. All calls with the same arguments to the original function are cached after the first use.
      *
      * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
@@ -23,6 +14,26 @@ interface FunctionConstructor {
      * @param resolver.argumentValues An array containing the call arguments for the function.
      */
     memoize<T extends Function>(func: T, resolver?: (argumentValues: Object[]) => string): T;
+
+    /**
+     * Returns the name of a function.
+     *
+     * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
+     * @param func A functional object.
+     * @returns The name of a function or `"anonymous"` for lambda functions.
+     */
+    getName(func: Function): string;
+
+    /**
+     * Returns the rightmost accessor's name of the function's first returned variable.
+     *
+     * For example a return expression like `return this.field;` will yield `"field"` as a value.
+     *
+     * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
+     * @param func A functional object.
+     * @return The text of the last literal contained in the first return expression of the function.
+     */
+    getReturnName(func: Function): string;
 
     /**
      * Returns an empty parameterless function which returns `undefined`. Useful for defaulting optional callback arguments instead of creating new anonymous empty functions.
@@ -59,4 +70,14 @@ interface Function {
      * @returns The name of a function or `"anonymous"` for lambda functions.
      */
     getName(): string;
+
+    /**
+     * Returns the rightmost accessor's name of the function's first returned variable.
+     *
+     * For example a return expression like `return this.field;` will yield `"field"` as a value.
+     *
+     * Must call [[Format.Config.addUtilsToPrototype]] to be defined.
+     * @return The text of the last literal contained in the first return expression of the function.
+     */
+    getReturnName(): string;
 }
