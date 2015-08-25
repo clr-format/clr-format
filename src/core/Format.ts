@@ -31,9 +31,8 @@ namespace Format {
 
         let provider = <Globalization.FormatProvider> args[0];
         if (provider && typeof provider.getFormatter !== "function") {
-            throw new Errors.ArgumentError(String.format(
-                "Argument 'provider' of type '{0}' does not implement the FormatProvider interface",
-                Utils.Function.getName(provider.constructor)));
+            throw new Errors.ArgumentError(
+                `Argument 'provider' of type '${ Utils.Function.getName(provider.constructor) }' does not implement the FormatProvider interface`);
         }
 
         let format = <string> args[1];
@@ -111,9 +110,7 @@ namespace Format {
             closingBracesCount = getBracesCount(formatItem, "}");
 
         if (openingBracesCount !== closingBracesCount) {
-            throw new Errors.FormatError(String.format(
-                "Opening and closing brackets for item '{0}' do not match",
-                formatItem));
+            throw new Errors.FormatError(`Opening and closing brackets for item '${formatItem}' do not match`);
         }
 
         return Utils.Numeric.isEven(openingBracesCount);
@@ -136,9 +133,7 @@ namespace Format {
         }
         catch (error) {
             throw new Errors.FormatError(
-                String.format(
-                    "Format string component '{0}' in format item '{1}' cannot be applied: {2}",
-                    options.formatStringComponent, options.formatItem, error.message),
+                `Format string component '${options.formatStringComponent}' in format item '${options.formatItem}' cannot be applied: ${error.message}`,
                 error);
         }
     };
@@ -150,9 +145,8 @@ namespace Format {
 
         let totalWidth = +options.alignmentComponent;
         if (!Utils.Numeric.isInteger(totalWidth)) {
-            throw new Errors.FormatError(String.format(
-                "Alignment component '{0}' in format item '{1}' must be an integer",
-                options.alignmentComponent, options.formatItem));
+            throw new Errors.FormatError(
+                `Alignment component '${options.alignmentComponent}' in format item '${options.formatItem}' must be an integer`);
         }
 
         let direction = totalWidth < 0 ? directions.Right : directions.Left;
