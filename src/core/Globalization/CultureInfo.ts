@@ -8,12 +8,6 @@
 /// <reference path="../Utils/Types" />
 /// <reference path="../Errors/ArgumentNullError" />
 
-/**
- * A core namespace which contains classes that define culture-related information, including language, country/region, calendars in use, format patterns for dates, currency, and numbers,
- * and sort order for strings. These classes are useful for writing globalized (internationalized) applications.
- *
- * See: https://msdn.microsoft.com/en-us/library/system.globalization.aspx
- */
 namespace Format.Globalization {
     /**
      * Provides a mechanism for setting a specific culture (also called a *locale*) that will be used during formatting.
