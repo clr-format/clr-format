@@ -26,6 +26,9 @@ namespace Format.Config {
             expect(Number.isCounting).toBeUndefined();
             expect(Number.isWhole).toBeUndefined();
             expect(Number.isEven).toBeUndefined();
+            expect(Number.toFixedMinMax).toBeUndefined();
+            expect(Number.toPrecisionMinMax).toBeUndefined();
+            expect(Number.toExponentialMinMax).toBeUndefined();
 
             expect(Array.takeWhile).toBeUndefined();
 
@@ -56,6 +59,9 @@ namespace Format.Config {
             expect(Number.isCounting).toBe(Utils.Numeric.isCounting);
             expect(Number.isWhole).toBe(Utils.Numeric.isWhole);
             expect(Number.isEven).toBe(Utils.Numeric.isEven);
+            expect(Number.toFixedMinMax).toBe(Utils.Numeric.toFixedMinMax);
+            expect(Number.toPrecisionMinMax).toBe(Utils.Numeric.toPrecisionMinMax);
+            expect(Number.toExponentialMinMax).toBe(Utils.Numeric.toExponentialMinMax);
 
             expect(Array.takeWhile).toBe(Utils.Enumerable.takeWhile);
 

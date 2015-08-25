@@ -25,6 +25,9 @@ namespace Format.Config {
             expect(num.isCounting).toBeUndefined();
             expect(num.isWhole).toBeUndefined();
             expect(num.isEven).toBeUndefined();
+            expect(num.toFixedMinMax).toBeUndefined();
+            expect(num.toPrecisionMinMax).toBeUndefined();
+            expect(num.toExponentialMinMax).toBeUndefined();
 
             expect(text.insert).toBeUndefined();
         };
@@ -48,6 +51,9 @@ namespace Format.Config {
             expect(num.isCounting()).toBe(true);
             expect(num.isWhole()).toBe(true);
             expect(num.isEven()).toBe(true);
+            expect(num.toFixedMinMax(0, 0)).toBe("12");
+            expect(num.toPrecisionMinMax(1, 1)).toBe("1e+1");
+            expect(num.toExponentialMinMax(0, 0)).toBe("1e+1");
 
             expect(textAccessor.isNullOrWhitespace).toBeUndefined();
             expect(text.insert(2, "test")).toBe("tetestxt");

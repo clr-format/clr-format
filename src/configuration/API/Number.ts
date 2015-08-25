@@ -41,6 +41,36 @@ interface NumberConstructor {
      * @returns `true` if the value parameter is an even number.
      */
     isEven(value: number): boolean;
+
+    /**
+     * Returns the best fitting formatted value, returned by the `Number.toFixed` method, given a minimum and/or maximum digits precision.
+     *
+     * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
+     * @param value The number to format.
+     * @param minDigits The minimum number of digits to include in the format.
+     * @param maxDigits The maximum number of digits to include in the format.
+     */
+    toFixedMinMax(value: number, minDigits: number, maxDigits: number): string;
+
+    /**
+     * Returns the best fitting formatted value, returned by the `Number.toExponential` method, given a minimum and/or maximum digits precision.
+     *
+     * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
+     * @param value The number to format.
+     * @param minDigits The minimum number of digits to include in the format.
+     * @param maxDigits The maximum number of digits to include in the format.
+     */
+    toExponentialMinMax(value: number, minDigits: number, maxDigits: number): string;
+
+    /**
+     * Returns the best fitting formatted value, returned by the `Number.toPrecision` method, given a minimum and/or maximum digits precision.
+     *
+     * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
+     * @param value The number to format.
+     * @param minDigits The minimum number of digits to include in the format.
+     * @param maxDigits The maximum number of digits to include in the format.
+     */
+    toPrecisionMinMax(value: number, minDigits: number, maxDigits: number): string;
 }
 
 /**
@@ -82,4 +112,31 @@ interface Number {
      * @returns `true` if the value is an even number.
      */
     isEven(): boolean;
+
+    /**
+     * Returns the best fitting formatted value, returned by the `Number.toFixed` method, given a minimum and/or maximum digits precision.
+     *
+     * Must call [[Format.Config.addUtilsToPrototype]] to be defined.
+     * @param minDigits The minimum number of digits to include in the format.
+     * @param maxDigits The maximum number of digits to include in the format.
+     */
+    toFixedMinMax(minDigits: number, maxDigits: number): string;
+
+    /**
+     * Returns the best fitting formatted value, returned by the `Number.toExponential` method, given a minimum and/or maximum digits precision.
+     *
+     * Must call [[Format.Config.addUtilsToPrototype]] to be defined.
+     * @param minDigits The minimum number of digits to include in the format.
+     * @param maxDigits The maximum number of digits to include in the format.
+     */
+    toExponentialMinMax(minDigits: number, maxDigits: number): string;
+
+    /**
+     * Returns the best fitting formatted value, returned by the `Number.toPrecision` method, given a minimum and/or maximum digits precision.
+     *
+     * Must call [[Format.Config.addUtilsToPrototype]] to be defined.
+     * @param minDigits The minimum number of digits to include in the format.
+     * @param maxDigits The maximum number of digits to include in the format.
+     */
+    toPrecisionMinMax(minDigits: number, maxDigits: number): string;
 }
