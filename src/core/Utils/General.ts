@@ -1,7 +1,5 @@
 /// <reference path="../../use-strict" />
 
-/// <reference path="../Format" />
-
 /// <reference path="../Errors/ArgumentError" />
 
 /** A core namespace which contains utility methods for general purpose operations and more specialized utility sub-modules. */
@@ -36,6 +34,6 @@ namespace Format.Utils {
      * @param type The type to wrap into a type string.
      */
     export function getTypeString(type: string): string {
-        return String.format("[object {0}]", type);
+        return `[object ${type}]`;
     }
 }

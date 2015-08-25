@@ -45,11 +45,7 @@ namespace Format.Utils {
         }
 
         if (object.hasOwnProperty(<string> value)) {
-            throw new Errors.ArgumentError(
-                String.format(
-                    "Cannot enumerate value '{0}' because such a key already exists in {1}",
-                    value,
-                    object));
+            throw new Errors.ArgumentError(`Cannot enumerate value '${value}' because such a key already exists in ${object}`);
         }
 
         (<Indexable<number|string|symbol|RegExp>> object)[resolveValueAsKey(value)] = isArray ? +key : key;

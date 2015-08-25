@@ -65,10 +65,7 @@ namespace Format.Config.Definitions {
             unregister(globalRegistry);
 
             throw new Errors.ArgumentError(
-                String.format(
-                    "Argument 'name' is invalid. A property named '{0}' already exists in '{1}'",
-                    name,
-                    Utils.Function.getName(<any> globalObject)));
+                `Argument 'name' is invalid. A property named '${name}' already exists in '${ Utils.Function.getName(<any> globalObject) }'`);
         }
 
         globalObject[name] = utilFunction;
@@ -86,10 +83,7 @@ namespace Format.Config.Definitions {
             unregister(prototypeRegistry);
 
             throw new Errors.ArgumentError(
-                String.format(
-                    "Argument 'name' is invalid. A property named '{0}' already exists in '{1}.prototype'",
-                    name,
-                    Utils.Function.getName(protoObject.constructor)));
+                `Argument 'name' is invalid. A property named '${name}' already exists in '${ Utils.Function.getName(protoObject.constructor) }.prototype'`);
         }
 
         protoObject[name] = getProtoWrapper(utilFunction);

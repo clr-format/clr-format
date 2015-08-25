@@ -1,6 +1,5 @@
 /// <reference path="../../use-strict" />
 
-/// <reference path="../Format" />
 /// <reference path="Indexable" />
 
 /// <reference path="../Errors/ArgumentError" />
@@ -60,21 +59,18 @@ namespace Format.Utils.Padding {
     var validateOptions = (options: Options) => {
 
         if (!Utils.Numeric.isCounting(options.totalWidth)) {
-            throw new Errors.ArgumentError(String.format(
-                "Option 'totalWidth' with value '{0}' must be a positive non-zero integer (counting) number",
-                options.totalWidth + ""));
+            throw new Errors.ArgumentError(
+                `Option 'totalWidth' with value '${options.totalWidth}' must be a positive non-zero integer (counting) number`);
         }
 
         if (typeof options.paddingChar !== "string" || options.paddingChar.length > 1) {
-            throw new Errors.ArgumentError(String.format(
-                "Option 'paddingChar' with value '{0}' must be a single character string",
-                options.paddingChar + ""));
+            throw new Errors.ArgumentError(
+                `Option 'paddingChar' with value '${options.paddingChar}' must be a single character string`);
         }
 
         if (Direction[options.direction] == null) {
-            throw new Errors.ArgumentError(String.format(
-                "Option 'direction' with value '{0}' must be one of Padding.Direction enum values",
-                options.direction + ""));
+            throw new Errors.ArgumentError(
+                `Option 'direction' with value '${options.direction}' must be one of Padding.Direction enum values`);
         }
     };
 
@@ -104,9 +100,7 @@ namespace Format.Utils.Padding {
             right = Math.ceil(padWidth / 2),
             left = padWidth - right;
 
-        return [
-            getPadding(left, options), value, getPadding(right, options)
-        ].join("");
+        return getPadding(left, options) + value + getPadding(right, options);
     };
     /* tslint:enable:no-shadowed-variable */
 }

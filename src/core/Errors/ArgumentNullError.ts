@@ -1,7 +1,5 @@
 /// <reference path="../../use-strict" />
 
-/// <reference path="../Format" />
-
 /// <reference path="ArgumentError" />
 
 namespace Format.Errors {
@@ -17,7 +15,7 @@ namespace Format.Errors {
          */
         constructor(argumentName: string) {
             super.incrementStackCount();
-            super(String.format("Argument '{0}' cannot be undefined or null", argumentName));
+            super(`Argument '${argumentName}' cannot be undefined or null`);
         }
     }
 }
