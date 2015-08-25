@@ -10,7 +10,7 @@ module Format.Globalization {
         /**
          * Returns an object that provides formatting options of the specified type.
          * @param formatString A format string containing formatting specifications.
-         * @param value An object from which to infer additional options.
+         * @param value The value object from which to infer additional options.
          */
         resolveOptions(formatString: string, value: TValue): TOptions;
     }

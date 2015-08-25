@@ -12,6 +12,17 @@ namespace Format.Globalization {
      */
     export class NumberFormatInfo implements FormatProvider {
 
+        /** Gets or sets the string to use as the decimal separator in currency values. */
+        public CurrencyDecimalSeparator: string;
+        /** Gets or sets the string to use as the decimal separator in numeric values. */
+        public NumberDecimalSeparator: string;
+        /** Gets or sets the string that separates groups of digits to the left of the decimal in currency values. */
+        public CurrencyGroupSeparator: string;
+        /** Gets or sets the string that separates groups of digits to the left of the decimal in numeric values. */
+        public NumberGroupSeparator: string;
+        /** Gets or sets the string that denotes that the associated number is negative. */
+        public NegativeSign: string;
+
         protected locales: string|string[];
 
         private isWritable: boolean;
@@ -26,6 +37,8 @@ namespace Format.Globalization {
         constructor(...args: Object[]) {
             this.isWritable = args[0] !== undefined;
             this.locales = <string|string[]> args[0] || "";
+
+            this.resolveFormatInfo(this.locales);
         }
 
         /**
@@ -34,6 +47,25 @@ namespace Format.Globalization {
          */
         public getFormatter(type: string): CustomFormatter {
             return undefined;
+        }
+
+        private resolveFormatInfo(locales: string|string[]): void {
+            if (!locales) {
+                this.setInvariantFormatInfo();
+            }
+            else {
+                this.resolveCultureFormatInfo(locales);
+            }
+        }
+
+        private setInvariantFormatInfo(): void {
+            this.CurrencyDecimalSeparator = this.NumberDecimalSeparator = ".";
+            this.CurrencyGroupSeparator = this.NumberGroupSeparator = ",";
+            this.NegativeSign = "-";
+        }
+
+        private resolveCultureFormatInfo(locales: string|string[]): void {
+            throw new Errors.NotImplementedError("resolveCultureFormatInfo");
         }
     }
 }
