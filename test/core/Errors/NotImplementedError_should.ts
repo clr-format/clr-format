@@ -15,7 +15,7 @@ namespace Format.Errors {
         it("should be interceptable from all superclasses in its chain", () => {
 
             let expectation = expect(() => {
-                throw new NotImplementedError();
+                throw new NotImplementedError("");
             });
 
             expectation.toThrowError(NotImplementedError);

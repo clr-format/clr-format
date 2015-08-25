@@ -13,7 +13,7 @@ namespace Format.Errors {
          * Creates an error that is thrown when a requested method or operation is not implemented.
          * @param methodName The name of the method that caused the error.
          */
-        constructor(methodName?: string) {
+        constructor(methodName: string) {
             super.incrementStackCount();
             super(`Method '${methodName}' is not implemented or abstract`);
         }
