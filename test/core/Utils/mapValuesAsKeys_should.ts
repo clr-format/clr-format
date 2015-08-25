@@ -8,6 +8,8 @@ namespace Format.Utils {
 
         let supportsSymbol = () => typeof Symbol !== "undefined";
 
+        /* tslint:disable:no-string-literal */
+
         it("should enumerate an object's values as new keys", () => {
 
             let object: Indexable<string|number|symbol|RegExp> = { "a": 1, "b": "2", "c": /3/ },
@@ -25,6 +27,8 @@ namespace Format.Utils {
             expect(mapValuesAsKeys(object)).toEqual(result);
         });
 
+        /* tslint:disable:no-string-literal */
+
         it("should enumerate an array's string values as new keys with their respective index as a value", () => {
 
             let result: any = ["a", "b", "c"];
@@ -41,7 +45,7 @@ namespace Format.Utils {
         });
 
         it("should throw an ArgumentError when the object is a string value", () => {
-            expect(() => mapValuesAsKeys(<any>"abc")).toThrowError(Errors.ArgumentError);
+            expect(() => mapValuesAsKeys(<any> "abc")).toThrowError(Errors.ArgumentError);
         });
 
         it("should throw an ArgumentError when the enumerated object has unsupported value types", () => {

@@ -36,7 +36,7 @@ gulp.task("build", ["build-core", "build-config", "build-npm", "test-npm"]);
 gulp.task("build-npm", ["lint-core", "lint-config"], build.npm);
 gulp.task("build-core", ["lint-core"], build.js("core"));
 gulp.task("build-config", ["build-core", "lint-config"], build.js("config"));
-gulp.task("build-minify", ["build"], minify);
+gulp.task("build-minify", ["build", "lint-test"], minify);
 
 gulp.task("test", ["lint-test"], test.jasmine);
 gulp.task("test-npm", ["build-npm"], test.npm);

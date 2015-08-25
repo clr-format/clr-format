@@ -8,7 +8,7 @@ namespace Format.Errors {
 
         it("should initialize the 'message' property according to the supplied 'methodName'", () => {
 
-            expect(new NotImplementedError('func').message)
+            expect(new NotImplementedError("func").message)
                 .toBe("Method 'func' is not implemented or abstract");
         });
 
