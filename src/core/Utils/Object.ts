@@ -36,7 +36,7 @@ namespace Format.Utils {
     }
 
     /** @private */
-    var isEnumerable = (object: Object): boolean =>  (typeof object === "object" || typeof object === "function") && object !== null;
+    var isEnumerable = (object: Object): boolean => (typeof object === "object" || typeof object === "function") && object !== null;
 
     /**
      * Maps the given object's values as keys with their keys as values and returns the extended object.
@@ -194,4 +194,55 @@ namespace Format.Utils {
             return isObject(source) ? source : {};
         }
     };
+
+    /* tslint:disable:no-shadowed-variable */// TSLint #500
+
+    /** @private */
+    let createCloneFunction = (cloneFunc: (object: Object, deep?: boolean, isArray?: boolean) => Object) =>
+        (object: Object, deep?: boolean): Object => {
+
+            let isArray = Array.isArray(object);
+            if (isExtensible(object, isArray)) {
+                return cloneFunc(object, deep, isArray);
+            }
+            else if (isType("Date", object)) {
+                return new Date((<Date> object).getTime());
+            }
+
+            return object;
+        };
+
+    /* tslint:enable:no-shadowed-variable */
+
+    /**
+     * Creates a new object that is a shallow or deep copy of the current instance.
+     * @param T The type of the cloned object.
+     * @param object The object to clone.
+     * @param deep A flag specifying whether the result should be a deep copy or not.
+     */
+    export function clone<T>(object: T, deep?: boolean): T {
+        return <any> innerClone(object, deep);
+    }
+
+    /** @private */
+    var innerClone = createCloneFunction((object: Object, deep?: boolean, isArray?: boolean): Object =>
+        deep ? deepExtend(createExtendObject(object, isArray), object) :
+            extend(createExtendObject(object, isArray), object));
+
+    /** @private */
+    var createExtendObject = (object: Object, isArray: boolean): Object => isArray ? [] : {};
+
+    /**
+     * Creates a new data object that is a deep data copy of the current instance.
+     *
+     * Non-data property values (functions or undefined) are **NOT** copied. In arrays any non-copy value is left as `null` so as to preserve the original indexing.
+     * @param T The type of the cloned object.
+     * @param object The data object to clone.
+     */
+    export function fastClone<T>(object: T): T {
+        return <any> innerFastClone(object);
+    }
+
+    /** @private */
+    var innerFastClone = createCloneFunction((object: Object): Object => JSON.parse(JSON.stringify(object)));
 }

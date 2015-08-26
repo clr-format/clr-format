@@ -18,6 +18,8 @@ namespace Format.Config {
             expect(Object.mapValuesAsKeys).toBeUndefined();
             expect(Object.deepExtend).toBeUndefined();
             expect(Object.extend).toBeUndefined();
+            expect(Object.clone).toBeUndefined();
+            expect(Object.fastClone).toBeUndefined();
 
             expect(Function.getName).toBeUndefined();
             expect(Function.memoize).toBeUndefined();
@@ -53,6 +55,8 @@ namespace Format.Config {
             expect(Object.mapValuesAsKeys).toBe(Utils.mapValuesAsKeys);
             expect(Object.deepExtend).toBe(Utils.deepExtend);
             expect(Object.extend).toBe(Utils.extend);
+            expect(Object.clone).toBe(Utils.clone);
+            expect(Object.fastClone).toBe(Utils.fastClone);
 
             expect(Function.getName).toBe(Utils.Function.getName);
             expect(Function.memoize).toBe(Utils.Function.memoize);

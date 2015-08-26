@@ -71,4 +71,25 @@ interface ObjectConstructor {
      * @param objects A list of arguments that consists of more objects that contain additional properties to merge in.
      */
     deepExtend<T>(target: T, object: Object, ...objects: Object[]): T;
+
+    /**
+     * Creates a new object that is a shallow or deep copy of the current instance.
+     *
+     * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
+     * @param T The type of the cloned object.
+     * @param object The object to clone.
+     * @param deep A flag specifying whether the result should be a deep copy or not.
+     */
+    clone<T>(object: T, deep?: boolean): T;
+
+    /**
+     * Creates a new data object that is a deep data copy of the current instance.
+     *
+     * Non-data property values (functions or undefined) are **NOT** copied. In arrays any non-copy value is left as `null` so as to preserve the original indexing.
+     *
+     * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
+     * @param T The type of the cloned object.
+     * @param object The data object to clone.
+     */
+    fastClone<T>(object: T): T;
 }
