@@ -39,7 +39,7 @@ namespace Format.Utils {
             expect(mapValuesAsKeys(["a", "b", "c"])).toEqual(result);
         });
 
-        it("should throw an ArgumentUndefinedError for an object with an undefined value", () => {
+        it("should throw an ArgumentNullError for an object with an undefined value", () => {
             expect(() => mapValuesAsKeys(undefined)).toThrowError(Errors.ArgumentNullError);
             expect(() => mapValuesAsKeys(null)).toThrowError(Errors.ArgumentNullError);
         });

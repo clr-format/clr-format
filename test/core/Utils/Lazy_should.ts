@@ -22,7 +22,7 @@ namespace Format.Utils {
             expect(lazyFactory.calls.count()).toBe(0);
         });
 
-        it("constructor should throw an ArgumentUndefinedError for a factory with an undefined value", () => {
+        it("constructor should throw an ArgumentNullError for a factory with an undefined value", () => {
             expect(() => new Lazy(undefined)).toThrowError(Errors.ArgumentNullError);
             expect(() => new Lazy(null)).toThrowError(Errors.ArgumentNullError);
         });
@@ -35,7 +35,7 @@ namespace Format.Utils {
             expect(lazyAccessor.valueFactory).toBe(Function.getEmpty());
         });
 
-        it("fromConstructor should throw an ArgumentUndefinedError for a constructor with an undefined value", () => {
+        it("fromConstructor should throw an ArgumentNullError for a constructor with an undefined value", () => {
             expect(() => Lazy.fromConstructor(undefined)).toThrowError(Errors.ArgumentNullError);
             expect(() => Lazy.fromConstructor(null)).toThrowError(Errors.ArgumentNullError);
         });

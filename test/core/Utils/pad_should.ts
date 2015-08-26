@@ -38,7 +38,7 @@ namespace Format.Utils {
             })).toBe(" 123  ");
         });
 
-        it("should throw an ArgumentUndefinedError when argument 'value' is undefined or empty", () => {
+        it("should throw an ArgumentNullError when argument 'value' is undefined or empty", () => {
             expect(() => Padding.pad(undefined, { totalWidth: 0 })).toThrowError(Errors.ArgumentError);
             expect(() => Padding.pad(null, { totalWidth: 0 })).toThrowError(Errors.ArgumentError);
         });
