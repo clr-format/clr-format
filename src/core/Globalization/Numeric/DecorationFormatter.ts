@@ -145,12 +145,12 @@ module Format.Globalization.Numeric {
 
             let styles = Specifiers.StandardSpecifiers;
 
-            return this.noLeadingZeroIntegerDigit &&
-                this.style !== styles[styles.exponential] &&
-                this.style !== styles[styles.roundTrip] &&
-                this.style !== styles[styles.general] &&
-                this.style !== styles[styles.hex] &&
-                Math.abs(value) < 1;
+            return this.noLeadingZeroIntegerDigit
+                && this.style !== styles[styles.exponential]
+                && this.style !== styles[styles.roundTrip]
+                && this.style !== styles[styles.general]
+                && this.style !== styles[styles.hex]
+                && Math.abs(value) < 1;
         }
 
         private applyInternalDecorators(formattedValue: string): string {
