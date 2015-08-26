@@ -58,6 +58,10 @@ namespace Format.Config.Definitions {
     /** @private */
     var asStatic = (utilFunction: Function, globalObject: Indexable<Function>, name: string) => {
 
+        if (globalRegistry[name]) {
+            return;
+        }
+
         if (globalObject[name]) {
 
             if (globalPolyfills.indexOf(utilFunction) !== -1) {
@@ -66,7 +70,7 @@ namespace Format.Config.Definitions {
 
             unregister(globalRegistry);
 
-            throw new Errors.ArgumentError(
+            throw new Errors.InvalidOperationError(
                 `Argument 'name' is invalid. A property named '${name}' already exists in '${ Utils.Function.getName(<any> globalObject) }'`);
         }
 
@@ -77,14 +81,14 @@ namespace Format.Config.Definitions {
     /** @private */
     var asPrototype = (utilFunction: Function, protoObject: Indexable<Function>, name: string) => {
 
-        if (prototypeExceptions.indexOf(utilFunction) !== -1) {
+        if (prototypeRegistry[name] || prototypeExceptions.indexOf(utilFunction) !== -1) {
             return;
         }
 
         if (protoObject[name]) {
             unregister(prototypeRegistry);
 
-            throw new Errors.ArgumentError(
+            throw new Errors.InvalidOperationError(
                 `Argument 'name' is invalid. A property named '${name}' already exists in '${ Utils.Function.getName(protoObject.constructor) }.prototype'`);
         }
 

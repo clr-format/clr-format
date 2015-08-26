@@ -36,7 +36,7 @@ namespace Format.Config {
             expectUndefinedMethods();
         });
 
-        it("should define utils callable from instance objects once used", () => {
+        it("should define utils callable from instance objects once used (may be called multiple times but at least once)", () => {
 
             Format.Config.addUtilsToPrototype();
 
@@ -46,6 +46,8 @@ namespace Format.Config {
             expect(func.memoize()).toBeDefined();
             expect(func.getReturnName()).toBe("true");
             expect(funcAccessor.getEmpty).toBeUndefined();
+
+            expect(Format.Config.addUtilsToPrototype).not.toThrowError(Errors.InvalidOperationError);
 
             expect(num.isInteger()).toBe(true);
             expect(num.isCounting()).toBe(true);
@@ -69,11 +71,11 @@ namespace Format.Config {
             expectUndefinedMethods();
         });
 
-        it("should clean up changes and throw an ArgumentError when any of the functions that are added already exist on a target object", () => {
+        it("should clean up changes and throw an InvalidOperationError when any of the functions that are added already exist on a target object", () => {
 
             Function.prototype.getName = () => "";
 
-            expect(() => Format.Config.addUtilsToPrototype()).toThrowError(Errors.ArgumentError);
+            expect(() => Format.Config.addUtilsToPrototype()).toThrowError(Errors.InvalidOperationError);
             delete Function.prototype.getName;
             expectUndefinedMethods();
         });

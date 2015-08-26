@@ -44,7 +44,7 @@ namespace Format.Config {
             expectUndefinedMethods();
         });
 
-        it("should define utils callable from global objects once used", () => {
+        it("should define utils callable from global objects once used (may be called multiple times but at least once)", () => {
 
             Format.Config.addUtilsToGlobals();
 
@@ -57,6 +57,8 @@ namespace Format.Config {
             expect(Object.extend).toBe(Utils.extend);
             expect(Object.clone).toBe(Utils.clone);
             expect(Object.fastClone).toBe(Utils.fastClone);
+
+            expect(Format.Config.addUtilsToGlobals).not.toThrowError(Errors.InvalidOperationError);
 
             expect(Function.getName).toBe(Utils.Function.getName);
             expect(Function.memoize).toBe(Utils.Function.memoize);
@@ -86,11 +88,11 @@ namespace Format.Config {
             expectUndefinedMethods();
         });
 
-        it("should clean up changes and throw an ArgumentError when any of the functions that are added already exist on a target object", () => {
+        it("should clean up changes and throw an InvalidOperationError when any of the functions that are added already exist on a target object", () => {
 
             Function.getName = () => "";
 
-            expect(() => Format.Config.addUtilsToGlobals()).toThrowError(Errors.ArgumentError);
+            expect(() => Format.Config.addUtilsToGlobals()).toThrowError(Errors.InvalidOperationError);
             delete Function.getName;
             expectUndefinedMethods();
         });
