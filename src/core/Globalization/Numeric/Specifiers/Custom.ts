@@ -16,31 +16,33 @@ module Format.Globalization.Numeric.Specifiers {
      * @param T The type of the specifier's value/handler.
      */
     export interface CustomSpecifiersMap<T> extends Indexable<T> {
-        /** Replaces the zero with the corresponding digit if one is present; otherwise, zero appears in the result string. */
+        /** Format specifier `0` replaces the zero with the corresponding digit if one is present; otherwise, zero appears in the result string. */
         zeroPlaceholder: T;
-        /** Replaces the '#' symbol with the corresponding digit if one is present; otherwise, no digit appears in the result string. */
+        /** Format specifier `#` replaces symbol with the corresponding digit if one is present; otherwise, no digit appears in the result string. */
         digitPlaceholder: T;
-        /** Determines the location of the decimal separator in the result string. */
+        /** Format specifier `.` determines the location of the decimal separator in the result string. */
         decimalPoint: T;
-        /** Serves as both a group separator and a number scaling specifier. */
+        /** Format specifier `,` serves as both a group separator and a number scaling specifier. */
         groupSeparatorOrNumberScaling: T;
-        /** Multiplies a number by 100 and inserts a localized percentage symbol in the result string. */
+        /** Format specifier `%` multiplies a number by 100 and inserts a localized percentage symbol in the result string. */
         percentagePlaceholder: T;
-        /** Multiplies a number by 1000 and inserts a localized per mille symbol in the result string. */
+        /** Format specifier `‰` multiplies a number by 1000 and inserts a localized per mille symbol in the result string. */
         perMillePlaceholder: T;
         /**
-         * Determines the beginning of an exponential notation specifier.
+         * Format specifier `e` or `E` followed by `+` or `-`, and at least one `0` determines the presence of an exponential notation specifier.
          *
          * The "E+" and "e+" formats indicate that a plus sign or minus sign should always precede the exponent.
          * The "E", "E-", "e", or "e-" formats indicate that a sign character should precede only negative exponents.
          */
         exponent: T;
-        /** Causes the next character to be interpreted as a literal rather than as a custom format specifier. */
+        /** Format specifier `\` causes the next character to be interpreted as a literal rather than as a custom format specifier. */
         escapeChar: T;
-        /** Indicates that the enclosed characters should be copied to the result string unchanged. */
-        literalStringDelimeter: T;
+        /** Format specifier `'` indicates that the enclosed characters should be copied to the result string unchanged. */
+        literalStringDelimeterSingle: T;
+        /** Format specifier `"` indicates that the enclosed characters should be copied to the result string unchanged. */
+        literalStringDelimeterDouble: T;
         /**
-         * Defines sections with separate format strings for positive, negative, and zero numbers - in that order.
+         * Format specifier `;` defines sections with separate format strings for positive, negative, and zero numbers - in that order.
          *
          * To produce this behavior, a custom format string can contain up to three sections separated by semicolons:
          * - One section: The format string applies to all values;
@@ -69,7 +71,8 @@ module Format.Globalization.Numeric.Specifiers {
         perMillePlaceholder: "‰",
         exponent: "E",
         escapeChar: "\\",
-        literalStringDelimeter: "\'",
+        literalStringDelimeterSingle: "\'",
+        literalStringDelimeterDouble: "\"",
         sectionSeparator: ";"
     });
 }
