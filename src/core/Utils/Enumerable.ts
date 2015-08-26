@@ -35,4 +35,30 @@ namespace Format.Utils.Enumerable {
 
         return result;
     }
+
+    /**
+     * Removes "holes" (`undefined` elements) from the array making it compact/dense.
+     * @param T The type of elements in the array.
+     * @param array An array instance.
+     * @returns The same array instance without `undefined` elements.
+     */
+    export function compact<T>(array: T[]): T[] {
+
+        if (array == null) {
+            throw new Errors.ArgumentNullError("array");
+        }
+
+        let j = 0;
+
+        for (let i = 0, len = array.length; i < len; i += 1) {
+            if (array[i] !== undefined) {
+                array[j] = array[i];
+                j += 1;
+            }
+        }
+
+        array.length = j;
+
+        return array;
+    }
 }

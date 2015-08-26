@@ -35,6 +35,7 @@ namespace Format.Config {
             expect(Number.toExponentialMinMax).toBeUndefined();
 
             expect(Array.takeWhile).toBeUndefined();
+            expect(Array.compact).toBeUndefined();
 
             expect(String.insert).toBeUndefined();
             expect(String.isNullOrWhitespace).toBeUndefined();
@@ -74,6 +75,7 @@ namespace Format.Config {
             expect(Number.toExponentialMinMax).toBe(Utils.Numeric.toExponentialMinMax);
 
             expect(Array.takeWhile).toBe(Utils.Enumerable.takeWhile);
+            expect(Array.compact).toBe(Utils.Enumerable.compact);
 
             expect(String.insert).toBe(Utils.Text.insert);
             expect(String.isNullOrWhitespace).toBe(Utils.Text.isNullOrWhitespace);

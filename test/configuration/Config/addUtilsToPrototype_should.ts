@@ -16,6 +16,7 @@ namespace Format.Config {
         let expectUndefinedMethods = () => {
 
             expect(array.takeWhile).toBeUndefined();
+            expect(array.compact).toBeUndefined();
 
             expect(func.getName).toBeUndefined();
             expect(func.memoize).toBeUndefined();
@@ -41,6 +42,7 @@ namespace Format.Config {
             Format.Config.addUtilsToPrototype();
 
             expect(array.takeWhile(() => true)).toEqual(array);
+            expect(array.compact()).toBe(array);
 
             expect(func.getName()).toBe("anonymous");
             expect(func.memoize()).toBeDefined();

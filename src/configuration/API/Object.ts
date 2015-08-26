@@ -92,4 +92,37 @@ interface ObjectConstructor {
      * @param object The data object to clone.
      */
     fastClone<T>(object: T): T;
+
+    /**
+     * Removes all properties with `null` or `undefined` values.
+     *
+     * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
+     * @param T The type of the object to remove from.
+     * @param object The object to remove from.
+     * @param deep Optional flag specifying whether the removal should be recursive.
+     * @returns The same object instance without `null` or `undefined` elements.
+     */
+    removeUndefined<T>(object: T, deep?: boolean): T;
+
+    /**
+     * Removes all properties with `null`, `undefined` or `""` values.
+     *
+     * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
+     * @param T The type of the object to remove from.
+     * @param object The object to remove from.
+     * @param deep Optional flag specifying whether the removal should be recursive.
+     * @returns The same object instance without `null`, `undefined` or `""` elements.
+     */
+    removeEmpty<T>(object: T, deep?: boolean): T;
+
+    /**
+     * Removes all properties with falsy values (`null`, `undefined`, `""` or `0`).
+     *
+     * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
+     * @param T The type of the object to remove from.
+     * @param object The object to remove from.
+     * @param deep Optional flag specifying whether the removal should be recursive.
+     * @returns The same object instance without falsy elements.
+     */
+    removeFalsy<T>(object: T, deep?: boolean): T;
 }

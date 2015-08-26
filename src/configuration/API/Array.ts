@@ -16,6 +16,16 @@ interface ArrayConstructor {
      * @returns A new array instance containing only items for which the predicate function returned `true`.
      */
     takeWhile<T>(array: T[], predicate: (item: T, index?: number) => boolean): T[];
+
+    /**
+     * Removes "holes" (`undefined` elements) from the array making it compact/dense.
+     *
+     * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
+     * @param T The type of elements in the array.
+     * @param array An array instance.
+     * @returns The same array instance without `undefined` elements.
+     */
+    compact<T>(array: T[]): T[];
 }
 
 /**
@@ -35,4 +45,12 @@ interface Array<T> {
      * @returns A new array instance containing only items for which the predicate function returned `true`.
      */
     takeWhile(predicate: (item: T, index?: number) => boolean): T[];
+
+    /**
+     * Removes "holes" (`undefined` elements) from the array making it compact/dense.
+     *
+     * Must call [[Format.Config.addUtilsToPrototype]] to be defined.
+     * @returns The same array instance without `undefined` elements.
+     */
+    compact(): T[];
 }
