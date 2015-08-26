@@ -13,9 +13,11 @@ namespace Format.Config {
 
             expect(Object.isType).toBeUndefined();
             expect(Object.getType).toBeUndefined();
+            expect(Object.isEmpty).toBeUndefined();
             expect(Object.isObject).toBeUndefined();
-            expect(Object.getTypeString).toBeUndefined();
             expect(Object.mapValuesAsKeys).toBeUndefined();
+            expect(Object.deepExtend).toBeUndefined();
+            expect(Object.extend).toBeUndefined();
 
             expect(Function.getName).toBeUndefined();
             expect(Function.memoize).toBeUndefined();
@@ -46,9 +48,11 @@ namespace Format.Config {
 
             expect(Object.isType).toBe(Utils.isType);
             expect(Object.getType).toBe(Utils.getType);
+            expect(Object.isEmpty).toBe(Utils.isEmpty);
             expect(Object.isObject).toBe(Utils.isObject);
-            expect(Object.getTypeString).toBe(Utils.getTypeString);
             expect(Object.mapValuesAsKeys).toBe(Utils.mapValuesAsKeys);
+            expect(Object.deepExtend).toBe(Utils.deepExtend);
+            expect(Object.extend).toBe(Utils.extend);
 
             expect(Function.getName).toBe(Utils.Function.getName);
             expect(Function.memoize).toBe(Utils.Function.memoize);

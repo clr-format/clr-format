@@ -30,12 +30,12 @@ interface ObjectConstructor {
     getType(object: Object): string;
 
     /**
-     * Returns a string representing the actual type of an object, see [[Utils.Types]].
+     * Returns `true` if an object is empty (contains no enumerable properties).
      *
      * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
-     * @param type The type to wrap into a type string.
+     * @param object The object to test.
      */
-    getTypeString(type: string): string;
+    isEmpty(object: Object): boolean;
 
     /**
      * Maps the given object's values as keys with their keys as values and returns the extended object.
@@ -48,4 +48,27 @@ interface ObjectConstructor {
      * @returns The same instance that was passed as the object parameter updated with the new unique keys.
      */
     mapValuesAsKeys<T extends Indexable<number|string|symbol|RegExp>|string[]>(object: T): T;
+
+
+    /**
+     * Merge the contents of two or more objects together into the first object.
+     *
+     * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
+     * @param T The type of the object to merge into.
+     * @param target An object that will receive the new properties.
+     * @param object An object containing additional properties to merge in.
+     * @param objects A list of arguments that consists of more objects that contain additional properties to merge in.
+     */
+    extend<T>(target: T, object: Object, ...objects: Object[]): T;
+
+    /**
+     * Recursivelly merge the contents of two or more objects together into the first object.
+     *
+     * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
+     * @param T The type of the object to merge into.
+     * @param target An object that will receive the new properties.
+     * @param object An object containing additional properties to merge in.
+     * @param objects A list of arguments that consists of more objects that contain additional properties to merge in.
+     */
+    deepExtend<T>(target: T, object: Object, ...objects: Object[]): T;
 }

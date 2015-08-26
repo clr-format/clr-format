@@ -3,7 +3,7 @@
 /// <reference path="API" />
 
 /// <reference path="Utils/Text" />
-/// <reference path="Utils/General" />
+/// <reference path="Utils/Types" />
 /// <reference path="Utils/Numeric" />
 /// <reference path="Utils/Padding" />
 /// <reference path="Utils/Enumerable" />

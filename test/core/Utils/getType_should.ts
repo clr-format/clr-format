@@ -1,10 +1,10 @@
 /// <reference path="../../typings/jasmine/jasmine" />
 
-/// <reference path="../../../src/core/Utils/General" />
+/// <reference path="../../../src/core/Utils/Types" />
 
 namespace Format.Utils {
 
-    describe("Utils getType / getTypeString / Types", () => {
+    describe("Utils getType", () => {
 
         let supportsDOM = () => typeof window !== "undefined";
 
@@ -20,8 +20,8 @@ namespace Format.Utils {
             expect(getType("")).toBe(Types.String);
             expect(getType(true)).toBe(Types.Boolean);
 
-            expect(getType(Math)).toBe(getTypeString("Math"));
-            expect(getType(JSON)).toBe(getTypeString("JSON"));
+            expect(getType(Math)).toBe("[object Math]");
+            expect(getType(JSON)).toBe("[object JSON]");
             expect(getType(new Date())).toBe(Types.Date);
             expect(getType(new RegExp(""))).toBe(Types.RegExp);
 
@@ -29,8 +29,8 @@ namespace Format.Utils {
 
             if (supportsDOM()) {
                 expect(getType(window)).toMatch(/[object (global)|(Window)]/);
-                expect(getType(document)).toBe(getTypeString("HTMLDocument"));
-                expect(getType(document.firstChild)).toBe(getTypeString("DocumentType"));
+                expect(getType(document)).toBe("[object HTMLDocument]");
+                expect(getType(document.firstChild)).toBe("[object DocumentType]");
             }
         });
     });

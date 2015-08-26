@@ -1,9 +1,25 @@
 /// <reference path="../../use-strict" />
 
-/// <reference path="General" />
+/// <reference path="Types" />
 /// <reference path="Indexable" />
 
 namespace Format.Utils {
+    /**
+     * Returns `true` if an object's type matches the given type argument.
+     * @param type A string indicating the expected type of the object, i.e. `"Array"`, `"RegExp"`, etc.
+     * @param object The object to check for matching type.
+     */
+    export function isType(type: string, object: Object): boolean {
+        return getType(object) === getTypeString(type);
+    }
+
+    /**
+     * Returns the actual type of an object (unlike `typeof`), see [[Types]].
+     * @param object The object to test.
+     */
+    export function getType(object: Object): string {
+        return Object.prototype.toString.call(object);
+    }
 
     /** @private */
     let fillTypes = <T>(types: T): T => {
@@ -15,6 +31,11 @@ namespace Format.Utils {
         }
 
         return types;
+    };
+
+    /** @private */
+    var getTypeString = (type: string): string => {
+        return `[object ${type}]`;
     };
 
     /** An enumeration containing strings that represent the actual type of an object. */
