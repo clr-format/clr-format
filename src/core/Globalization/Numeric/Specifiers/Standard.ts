@@ -2,7 +2,6 @@
 
 /// <reference path="../../../Utils/Object" />
 
-/** A [[Globalization.Numeric]] sub-module containing classes related to numeric format specifier operations. */
 namespace Format.Globalization.Numeric.Specifiers {
     /**
      * A standard numeric format string takes the form `Axx`, where:
@@ -20,7 +19,7 @@ namespace Format.Globalization.Numeric.Specifiers {
     export let DefaultStandardExponentialPrecision = 6;
 
     /**
-     * Provides a compilation enforced mapping of the standard numeric format specifiers.
+     * Provides a compilation enforced mapping of the [Standard Numeric Format Specifiers](https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx).
      * @param T The type of the specifier's value/handler.
      */
     export interface StandardSpecifiersMap<T> extends Indexable<T> {
@@ -44,7 +43,11 @@ namespace Format.Globalization.Numeric.Specifiers {
         hex: T;
     }
 
-    /** Exposes a map of the standard numeric format specifiers to their alphabetic character representation as well as the inverse relation. */
+    /**
+     * Exposes a map of the standard numeric format specifiers to their alphabetic character representation as well as the inverse relation.
+     *
+     * See: https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx
+     */
     export let StandardSpecifiers = Utils.mapValuesAsKeys(<StandardSpecifiersMap<string>> {
         currency: "C",
         decimal: "D",

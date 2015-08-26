@@ -1,6 +1,5 @@
 /// <reference path="../../../use-strict" />
 
-
 /// <reference path="OptionsProvider" />
 /// <reference path="Specifiers/Standard" />
 
