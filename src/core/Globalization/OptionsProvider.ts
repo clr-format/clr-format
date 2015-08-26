@@ -9,9 +9,9 @@ module Format.Globalization {
     export interface OptionsProvider<TOptions, TValue> {
         /**
          * Returns an object that provides formatting options of the specified type.
-         * @param formatString A format string containing formatting specifications.
+         * @param format A format string containing formatting specifications.
          * @param value The value object from which to infer additional options.
          */
-        resolveOptions(formatString: string, value: TValue): TOptions;
+        resolveOptions(format: string, value: TValue): TOptions;
     }
 }

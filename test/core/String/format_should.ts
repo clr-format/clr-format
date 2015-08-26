@@ -21,12 +21,12 @@ namespace Format {
 
         it("should apply the optional format items' alignment component by padding the formatted values", () => {
 
-            let formatString = "{0,-10} {1,11}";
+            let format = "{0,-10} {1,11}";
 
-            expect(String.format(undefined, formatString, "LeftAlign", "RightAlign"))
+            expect(String.format(undefined, format, "LeftAlign", "RightAlign"))
                 .toBe("LeftAlign   RightAlign");
 
-            expect(String.format(undefined, formatString, "LeftOverflow", "RightOverflow"))
+            expect(String.format(undefined, format, "LeftOverflow", "RightOverflow"))
                 .toBe("LeftOverflow RightOverflow");
 
             expect(() => {
