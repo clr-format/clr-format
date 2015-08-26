@@ -6,6 +6,26 @@
 /// <reference path="../Errors/ArgumentError" />
 /// <reference path="../Errors/ArgumentNullError" />
 
+declare namespace Format.Utils {
+    /**
+     * Merge the contents of two or more objects together into the first object.
+     * @param T The type of the object to merge into.
+     * @param target An object that will receive the new properties.
+     * @param object An object containing additional properties to merge in.
+     * @param objects A list of arguments that consists of more objects that contain additional properties to merge in.
+     */
+    function extend<T>(target: T, object: Object, ...objects: Object[]): T;
+
+    /**
+     * Recursivelly merge the contents of two or more objects together into the first object.
+     * @param T The type of the object to merge into.
+     * @param target An object that will receive the new properties.
+     * @param object An object containing additional properties to merge in.
+     * @param objects A list of arguments that consists of more objects that contain additional properties to merge in.
+     */
+    function deepExtend<T>(target: T, object: Object, ...objects: Object[]): T;
+}
+
 /** A core namespace which contains utility methods for general purpose operations and more specialized utility sub-modules. */
 namespace Format.Utils {
     /**
@@ -88,25 +108,9 @@ namespace Format.Utils {
             value + "" :
             value;
 
-    /**
-     * Merge the contents of two or more objects together into the first object.
-     * @param T The type of the object to merge into.
-     * @param target An object that will receive the new properties.
-     * @param objects A list of arguments that consists of one or more objects that contain additional properties to merge in.
-     */
-    export function extend<T>(target: T, ...objects: Object[]): T {
-        return <any> innerExtend(false, <any> target, <any> objects);
-    }
+    Utils.extend = (target: Indexable<Object>, ...objects: Indexable<Object>[]): Object => innerExtend(false, target, objects);
 
-    /**
-     * Recursivelly merge the contents of two or more objects together into the first object.
-     * @param T The type of the object to merge into.
-     * @param target An object that will receive the new properties.
-     * @param objects A list of arguments that consists of one or more objects that contain additional properties to merge in.
-     */
-    export function deepExtend<T>(target: T, ...objects: Object[]): T {
-        return <any> innerExtend(true, <any> target, <any> objects);
-    }
+    Utils.deepExtend = (target: Indexable<Object>, ...objects: Indexable<Object>[]): Object => innerExtend(true, target, objects);
 
     /** @private */
     var innerExtend = (deep: boolean, target: Indexable<Object>, objects: Indexable<Object>[]): Object => {
@@ -156,7 +160,7 @@ namespace Format.Utils {
                 continue;
             }
 
-            if (deep && isExtensible(copy)) {
+            if (deep && (isObject(copy) || Array.isArray(copy))) {
                 deepMerge(target, key, copy);
             }
             else if (copy !== undefined) {
@@ -164,16 +168,6 @@ namespace Format.Utils {
             }
         }
         /* tslint:enable:forin */
-    };
-
-    /** @private */
-    var isExtensible = (object: Object, isArray?: boolean) => {
-
-        if (isArray === undefined) {
-            isArray = Array.isArray(object);
-        }
-
-        return isArray || isObject(object);
     };
 
     /** @private */
@@ -194,55 +188,4 @@ namespace Format.Utils {
             return isObject(source) ? source : {};
         }
     };
-
-    /* tslint:disable:no-shadowed-variable */// TSLint #500
-
-    /** @private */
-    let createCloneFunction = (cloneFunc: (object: Object, deep?: boolean, isArray?: boolean) => Object) =>
-        (object: Object, deep?: boolean): Object => {
-
-            let isArray = Array.isArray(object);
-            if (isExtensible(object, isArray)) {
-                return cloneFunc(object, deep, isArray);
-            }
-            else if (isType("Date", object)) {
-                return new Date((<Date> object).getTime());
-            }
-
-            return object;
-        };
-
-    /* tslint:enable:no-shadowed-variable */
-
-    /**
-     * Creates a new object that is a shallow or deep copy of the current instance.
-     * @param T The type of the cloned object.
-     * @param object The object to clone.
-     * @param deep A flag specifying whether the result should be a deep copy or not.
-     */
-    export function clone<T>(object: T, deep?: boolean): T {
-        return <any> innerClone(object, deep);
-    }
-
-    /** @private */
-    var innerClone = createCloneFunction((object: Object, deep?: boolean, isArray?: boolean): Object =>
-        deep ? deepExtend(createExtendObject(object, isArray), object) :
-            extend(createExtendObject(object, isArray), object));
-
-    /** @private */
-    var createExtendObject = (object: Object, isArray: boolean): Object => isArray ? [] : {};
-
-    /**
-     * Creates a new data object that is a deep data copy of the current instance.
-     *
-     * Non-data property values (functions or undefined) are **NOT** copied. In arrays any non-copy value is left as `null` so as to preserve the original indexing.
-     * @param T The type of the cloned object.
-     * @param object The data object to clone.
-     */
-    export function fastClone<T>(object: T): T {
-        return <any> innerFastClone(object);
-    }
-
-    /** @private */
-    var innerFastClone = createCloneFunction((object: Object): Object => JSON.parse(JSON.stringify(object)));
 }

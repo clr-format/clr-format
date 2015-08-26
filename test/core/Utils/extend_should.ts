@@ -85,7 +85,7 @@ namespace Format.Utils {
             expect(() => extend(0, {})).toThrowError(Errors.ArgumentError);
             expect(() => extend("", {})).toThrowError(Errors.ArgumentError);
 
-            expect(() => extend({})).toThrowError(Errors.ArgumentError);
+            expect(() => extend.call(undefined, {})).toThrowError(Errors.ArgumentError);
         });
     });
 }

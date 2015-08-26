@@ -1,6 +1,6 @@
 /// <reference path="../../typings/jasmine/jasmine" />
 
-/// <reference path="../../../src/core/Utils/Object" />
+/// <reference path="../../../src/core/Utils/Clone" />
 
 namespace Format.Utils {
 

@@ -7,16 +7,17 @@
 
 /* tslint:disable:no-bitwise */
 
-/** A [[Format.Utils]] sub-module containing methods related to numeric operations. */
-namespace Format.Utils.Numeric {
+declare namespace Format.Utils.Numeric {
     /**
      * Determines whether the passed value is an integer.
      * @param value The number to test.
      * @returns `true` if the value parameter is an integer.
      */
-    export function isInteger(value: number): boolean {
-        return isIntegerPolyfill(value);
-    }
+    function isInteger(value: number): boolean;
+}
+
+/** A [[Format.Utils]] sub-module containing methods related to numeric operations. */
+namespace Format.Utils.Numeric {
 
     /**
      * Determines whether the passed value is a counting number (positive integer excluding `0`).
@@ -24,7 +25,7 @@ namespace Format.Utils.Numeric {
      * @returns `true` if the value parameter is a positive integer excluding `0`.
      */
     export function isCounting(value: number): boolean {
-        return value > 0 && isIntegerPolyfill(value);
+        return value > 0 && isInteger(value);
     }
 
     /**
@@ -33,7 +34,7 @@ namespace Format.Utils.Numeric {
      * @returns `true` if the value parameter is a positive integer including `0`.
      */
     export function isWhole(value: number): boolean {
-        return value >= 0 && isIntegerPolyfill(value);
+        return value >= 0 && isInteger(value);
     }
 
     /**
@@ -45,15 +46,14 @@ namespace Format.Utils.Numeric {
      */
     export function isEven(value: number): boolean {
 
-        if (!isIntegerPolyfill(value)) {
+        if (!isInteger(value)) {
             throw new Errors.ArgumentError("Argument 'value' must be an integer");
         }
 
         return (value & 1) === 0;
     }
 
-    /** @private */
-    var isIntegerPolyfill = Number.isInteger || function(value: number): boolean {
+    Numeric.isInteger = Number.isInteger || function(value: number): boolean {
         return value === value >> 0;
     };
 

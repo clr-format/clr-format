@@ -1,6 +1,7 @@
 /// <reference path="../../typings/jasmine/jasmine" />
 
 /// <reference path="../../../src/core/Format" />
+/// <reference path="../../../src/core/Utils/Clone" />
 /// <reference path="../../../src/core/Utils/Object" />
 
 /// <reference path="../../../src/configuration/Config" />
@@ -26,7 +27,6 @@ namespace Format.Config {
             expect(Function.getEmpty).toBeUndefined();
             expect(Function.getReturnName).toBeUndefined();
 
-            expect(Number.isInteger).not.toBe(Utils.Numeric.isInteger);
             expect(Number.isCounting).toBeUndefined();
             expect(Number.isWhole).toBeUndefined();
             expect(Number.isEven).toBeUndefined();

@@ -3,6 +3,7 @@
 /// <reference path="Custom" />
 
 /// <reference path="../../../Utils/Lazy" />
+/// <reference path="../../../Utils/Clone" />
 /// <reference path="../../../Utils/Function" />
 
 module Format.Globalization.Numeric.Specifiers {
