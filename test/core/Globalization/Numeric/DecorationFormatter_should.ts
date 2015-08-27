@@ -98,5 +98,27 @@ module Format.Globalization.Numeric {
             resolveOptions({ useGrouping: true }, alternativeFormatInfo);
             expect(decorationFormatter.applyGrouping("!123456,789")).toBe("!123 456,789");
         });
+
+        it("applyIntegerPadding should apply the provided integral part padding and optionally omit the negative sign", () => {
+
+            resolveOptions({});
+            expect(decorationFormatter.applyIntegerPadding(123, "123", 2)).toBe("123");
+
+            resolveOptions({});
+            expect(decorationFormatter.applyIntegerPadding(123, "123", 5)).toBe("00123");
+
+            resolveOptions({});
+            expect(decorationFormatter.applyIntegerPadding(1.23, "1.23", 2)).toBe("01.23");
+
+            let value: string;
+
+            resolveOptions({});
+            expect(value = decorationFormatter.applyIntegerPadding(-1.23, "-1.23", 3)).toBe("001.23");
+            expect(decorationFormatter.applyOptions(-1.23, value)).toBe("-001.23");
+
+            resolveOptions({}, alternativeFormatInfo);
+            expect(value = decorationFormatter.applyIntegerPadding(-1.23, "!1,23", 4)).toBe("0001,23");
+            expect(decorationFormatter.applyOptions(-1.23, value)).toBe("!0001,23");
+        });
     });
 }

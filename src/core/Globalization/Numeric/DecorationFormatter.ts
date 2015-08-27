@@ -87,19 +87,44 @@ module Format.Globalization.Numeric {
                 useGrouping = this.useGrouping;
             }
 
-            let decimalSeparator: string = this.getDecimalSeparator();
-
             if (useGrouping) {
-                let numericParts = formattedValue.split(decimalSeparator);
+                let decimalSeparator: string = this.getDecimalSeparator(),
+                    numericParts = formattedValue.split(decimalSeparator);
 
                 numericParts[0] = numericParts[0].replace(
                     DecorationFormatter.groupSeparatorRegExp,
                     this.getGroupSeparator());
 
-                return numericParts.join(decimalSeparator);
+                formattedValue = numericParts.join(decimalSeparator);
             }
 
             return formattedValue;
+        }
+
+        /**
+         * Applies the minimum integer digits option by padding the numeric part before the decimal separator.
+         * Also temporarily removes the current [[NumberFormatInfo.NegativeSign]]. It is restored when [[applyOptions]] finishes all decoration formatting.
+         * @param value The number which is currently being formatted.
+         * @param formattedValue The partial resulting format value.
+         * @param paddingWidth The number of characters in the resulting numeric string's integral part.
+         * @returns A resulting format value with the applied minimum integer digits option and without a negative sign.
+         */
+        public applyIntegerPadding(value: number, formattedValue: string, paddingWidth: number): string {
+
+            let decimalSeparator: string = this.getDecimalSeparator(),
+                numericParts = formattedValue.split(decimalSeparator);
+
+            numericParts[0] = this.removeNegativeSign(value, numericParts[0]);
+
+            if (numericParts[0].length < paddingWidth) {
+                numericParts[0] = Utils.Padding.pad(numericParts[0], {
+                    totalWidth: paddingWidth,
+                    paddingChar: "0",
+                    direction: Utils.Padding.Direction.Left
+                });
+            }
+
+            return numericParts.join(decimalSeparator);
         }
 
         private isCurrency(): boolean {
@@ -122,6 +147,10 @@ module Format.Globalization.Numeric {
         }
 
         private removeNegativeSign(value: number, formattedValue: string): string {
+
+            if (this.restoreNegativeSign) {
+                return formattedValue;
+            }
 
             this.restoreNegativeSign = value < 0 && formattedValue[0] === this.formatInfo.NegativeSign;
 
@@ -179,7 +208,7 @@ module Format.Globalization.Numeric {
 
             if (index < 0) {
                 index += integralPart.length + 1;
-                numericParts[0] = Utils.Text.insert(integralPart, index, decorator);
+                numericParts[0] = Utils.Text.insert(integralPart, Math.max(0, index), decorator);
             }
             else {
                 index += this.decimalOffset;
@@ -190,7 +219,7 @@ module Format.Globalization.Numeric {
                     numericParts[1] = Utils.Text.insert(decimalPart, index, decorator);
                 }
                 else {
-                    numericParts[0] = Utils.Text.insert(integralPart, index, decorator);
+                    numericParts[0] = Utils.Text.insert(integralPart, Math.min(index, integralPart.length), decorator);
                 }
             }
         }
