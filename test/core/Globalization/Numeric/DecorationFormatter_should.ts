@@ -92,6 +92,9 @@ module Format.Globalization.Numeric {
 
         it("applyGrouping should apply the provided group separator option", () => {
 
+            resolveOptions({ useGrouping: false });
+            expect(decorationFormatter.applyGrouping("-12345.6789")).toBe("-12345.6789");
+
             resolveOptions({ useGrouping: true });
             expect(decorationFormatter.applyGrouping("-12345.6789")).toBe("-12,345.6789");
 

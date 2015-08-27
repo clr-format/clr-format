@@ -76,29 +76,23 @@ module Format.Globalization.Numeric {
         }
 
         /**
-         * Applies the grouping option, with an override switch that forces grouping even though the resolved options didn't require it.
+         * Applies the grouping option using the appropriate group separator.
          * @param formattedValue The partial resulting format value.
-         * @param useGrouping An override for the resolved grouping option.
          * @returns A resulting format value with the applied grouping option.
          */
-        public applyGrouping(formattedValue: string, useGrouping?: boolean): string {
+        public applyGrouping(formattedValue: string): string {
 
-            if (useGrouping === undefined) {
-                useGrouping = this.useGrouping;
+            if (!this.useGrouping) {
+                return formattedValue;
             }
+            let decimalSeparator: string = this.getDecimalSeparator(),
+                numericParts = formattedValue.split(decimalSeparator);
 
-            if (useGrouping) {
-                let decimalSeparator: string = this.getDecimalSeparator(),
-                    numericParts = formattedValue.split(decimalSeparator);
+            numericParts[0] = numericParts[0].replace(
+                DecorationFormatter.groupSeparatorRegExp,
+                this.getGroupSeparator());
 
-                numericParts[0] = numericParts[0].replace(
-                    DecorationFormatter.groupSeparatorRegExp,
-                    this.getGroupSeparator());
-
-                formattedValue = numericParts.join(decimalSeparator);
-            }
-
-            return formattedValue;
+            return numericParts.join(decimalSeparator);
         }
 
         /**
