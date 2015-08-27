@@ -182,8 +182,8 @@ namespace Format.Globalization.Numeric.Specifiers {
             expect(resolveOptions("00\\;00")).toEqual({ minimumFractionDigits: 0, maximumFractionDigits: 0, internalDecorators: { "-3": ";" }, minimumIntegerDigits: 4 });
 
             // Literal string delimiter - Indicates that the enclosed characters should be copied to the result string unchanged.
-            expect(resolveOptions("#' degrees'", 1)).toEqual({ minimumFractionDigits: 0, maximumFractionDigits: 0, suffixDecorator: " degrees" });
-            expect(resolveOptions("0' 0degrees0'")).toEqual({ minimumFractionDigits: 0, maximumFractionDigits: 0, suffixDecorator: " 0degrees0", minimumIntegerDigits: 1 });
+            expect(resolveOptions("#' \"degrees\"'", 1)).toEqual({ minimumFractionDigits: 0, maximumFractionDigits: 0, suffixDecorator: " \"degrees\"" });
+            expect(resolveOptions("0\" '0degrees0'\"")).toEqual({ minimumFractionDigits: 0, maximumFractionDigits: 0, suffixDecorator: " '0degrees0'", minimumIntegerDigits: 1 });
             expect(resolveOptions("#.#'e0'", 1)).toEqual({ minimumFractionDigits: 0, maximumFractionDigits: 1, suffixDecorator: "e0" });
             expect(resolveOptions("0.#'e0'")).toEqual({ minimumFractionDigits: 0, maximumFractionDigits: 1, suffixDecorator: "e0", minimumIntegerDigits: 1 });
             expect(resolveOptions("00';'00")).toEqual({ minimumFractionDigits: 0, maximumFractionDigits: 0, internalDecorators: { "-3": ";" }, minimumIntegerDigits: 4 });

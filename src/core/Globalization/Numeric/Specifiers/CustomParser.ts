@@ -19,7 +19,7 @@ module Format.Globalization.Numeric.Specifiers {
         private decimalPointIndex: number;
         private format: string;
         private escapeOne: boolean;
-        private escapeMany: boolean;
+        private escapeManyChar: string;
         private exponentGroups: RegExpExecArray;
         private exponentMatchIndex: number;
         private secondaryExponent: string;
@@ -218,7 +218,7 @@ module Format.Globalization.Numeric.Specifiers {
 
         private addToSection(): void {
             if (this.sections && this.sectionIndex < 3 &&
-                (this.escapeOne || this.escapeMany ||
+                (this.escapeOne || this.escapeManyChar ||
                     this.getCurrentChar() !== CustomSpecifiers.sectionSeparator)) {
 
                 this.sections[this.sectionIndex] += this.getCurrentChar();
@@ -250,9 +250,7 @@ module Format.Globalization.Numeric.Specifiers {
         private canHandleSpecifier(handler: () => void): boolean {
             return !this.escapeOne
                 && (handler &&
-                    !(this.escapeMany &&
-                        this.getCurrentChar() !== CustomSpecifiers.literalStringDelimeterSingle &&
-                        this.getCurrentChar() !== CustomSpecifiers.literalStringDelimeterDouble));
+                    !(this.escapeManyChar && this.getCurrentChar() !== this.escapeManyChar));
         }
 
         private addExponentOffset(): void {
@@ -279,7 +277,8 @@ module Format.Globalization.Numeric.Specifiers {
         }
 
         private handleLiteralStringDelimeter(): void {
-            this.escapeMany = !this.escapeMany;
+            let currentChar = this.getCurrentChar();
+            this.escapeManyChar = this.escapeManyChar !== currentChar ? currentChar : undefined;
         }
 
         private getExponentGroups(): RegExpExecArray {
