@@ -31,7 +31,7 @@ namespace Format.Utils {
             if (supportsToFixedWithNegativeDigitsParameter()) {
                 expect(Numeric.toFixedMinMax(value, -1, undefined)).toBe("123.456");
                 expect(Numeric.toFixedMinMax(value, -1, -1)).toBe("120");
-                expect(Numeric.toFixedMinMax(value, -3, null)).toBe("123");
+                expect(Numeric.toFixedMinMax(value, -3, null)).toBe("123.456");
                 expect(Numeric.toFixedMinMax(value, -3, -3)).toBe("0");
             }
             else {
@@ -42,6 +42,11 @@ namespace Format.Utils {
 
         it("should throw appropriate errors during parameters' validation", () => {
 
+            expect(() => Numeric.toFixedMinMax(null, 0, 0)).toThrowError(Errors.ArgumentNullError);
+            expect(() => Numeric.toFixedMinMax(undefined, 0, 0)).toThrowError(Errors.ArgumentNullError);
+
+            expect(() => Numeric.toFixedMinMax(NaN, 0, 0)).toThrowError(Errors.ArgumentError);
+            expect(() => Numeric.toFixedMinMax(Infinity, 0, 0)).toThrowError(Errors.ArgumentError);
             expect(() => Numeric.toFixedMinMax(value, NaN, 0)).toThrowError(Errors.ArgumentError);
             expect(() => Numeric.toFixedMinMax(value, 1, NaN)).toThrowError(Errors.ArgumentError);
             expect(() => Numeric.toFixedMinMax(value, Infinity, undefined)).toThrowError(Errors.ArgumentError);

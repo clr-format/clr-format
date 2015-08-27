@@ -29,6 +29,11 @@ namespace Format.Utils {
 
         it("should throw appropriate errors during parameters' validation", () => {
 
+            expect(() => Numeric.toExponentialMinMax(null, 0, 0)).toThrowError(Errors.ArgumentNullError);
+            expect(() => Numeric.toExponentialMinMax(undefined, 0, 0)).toThrowError(Errors.ArgumentNullError);
+
+            expect(() => Numeric.toExponentialMinMax(NaN, 0, 0)).toThrowError(Errors.ArgumentError);
+            expect(() => Numeric.toExponentialMinMax(Infinity, 0, 0)).toThrowError(Errors.ArgumentError);
             expect(() => Numeric.toExponentialMinMax(value, NaN, 0)).toThrowError(Errors.ArgumentError);
             expect(() => Numeric.toExponentialMinMax(value, 1, NaN)).toThrowError(Errors.ArgumentError);
             expect(() => Numeric.toExponentialMinMax(value, Infinity, undefined)).toThrowError(Errors.ArgumentError);

@@ -29,6 +29,11 @@ namespace Format.Utils {
 
         it("should throw appropriate errors during parameters' validation", () => {
 
+            expect(() => Numeric.toPrecisionMinMax(null, 0, 0)).toThrowError(Errors.ArgumentNullError);
+            expect(() => Numeric.toPrecisionMinMax(undefined, 0, 0)).toThrowError(Errors.ArgumentNullError);
+
+            expect(() => Numeric.toPrecisionMinMax(NaN, 0, 0)).toThrowError(Errors.ArgumentError);
+            expect(() => Numeric.toPrecisionMinMax(Infinity, 0, 0)).toThrowError(Errors.ArgumentError);
             expect(() => Numeric.toPrecisionMinMax(value, NaN, 0)).toThrowError(Errors.ArgumentError);
             expect(() => Numeric.toPrecisionMinMax(value, 1, NaN)).toThrowError(Errors.ArgumentError);
             expect(() => Numeric.toPrecisionMinMax(value, Infinity, undefined)).toThrowError(Errors.ArgumentError);

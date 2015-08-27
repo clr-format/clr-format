@@ -151,26 +151,52 @@ namespace Format.Utils.Numeric {
     };
 
     /** @private */
-    var getToFixedHandler = (value: number): NumberHandler => ({
-        defaultMinDigits: 0,
-        delegate: (digits: number): string => digits != null ?
-            value.toFixed(digits) :
-            value.toString()
-    });
+    var getToFixedHandler = (value: number): NumberHandler => {
+
+        validateValueArgument(value);
+
+        return {
+            defaultMinDigits: 0,
+            delegate: (digits: number): string => digits != null ?
+                value.toFixed(digits) :
+                value.toString()
+        };
+    };
 
     /** @private */
-    var getToExponentialHandler = (value: number): NumberHandler => ({
-        defaultMinDigits: 0,
-        delegate: (digits: number): string => digits !== undefined ?
-            value.toExponential(digits) :
-            value.toExponential()
-    });
+    var getToExponentialHandler = (value: number): NumberHandler => {
+
+        validateValueArgument(value);
+
+        return {
+            defaultMinDigits: 0,
+            delegate: (digits: number): string => digits !== undefined ?
+                value.toExponential(digits) :
+                value.toExponential()
+        };
+    };
 
     /** @private */
-    var getToPrecisionHandler = (value: number): NumberHandler => ({
-        defaultMinDigits: 1,
-        delegate: (digits: number): string => digits !== null ?
-            value.toPrecision(digits) :
-            value.toPrecision()
-    });
+    var getToPrecisionHandler = (value: number): NumberHandler => {
+
+        validateValueArgument(value);
+
+        return {
+            defaultMinDigits: 1,
+            delegate: (digits: number): string => digits !== null ?
+                value.toPrecision(digits) :
+                value.toPrecision()
+        };
+    };
+
+    /** @private */
+    var validateValueArgument = (value: number): void => {
+        if (value == null) {
+            throw new Errors.ArgumentNullError("value");
+        }
+
+        if (!isFinite(value)) {
+            throw new Errors.ArgumentError("Argument 'value' cannot be NaN or infinite");
+        }
+    };
 }
