@@ -125,10 +125,19 @@ module Format.Globalization.Numeric.Specifiers {
          */
         public getIndexFromDecimal(): number {
 
-            let decimalIndex = this.getDecimalIndex(),
-                groupSeparatorOffset = this.getGroupSeparatorOffset(decimalIndex);
+            let offset = this.decimalPointIndex;
 
-            return this.innerNumericSpecifiersIndex - decimalIndex - groupSeparatorOffset;
+            if (!this.isAfterDecimal()) {
+                let lookahead = this.lookahead.getValue();
+
+                offset = lookahead.decimalPointIndex || (lookahead.innerNumericSpecifiersIndex + 1);
+
+                if (lookahead.lastGroupSeparatorIndex > this.firstNumericSpecifierIndex) {
+                    offset += Math.floor((offset - this.innerNumericSpecifiersIndex - 2) / 3);
+                }
+            }
+
+            return this.innerNumericSpecifiersIndex - offset;
         }
 
         /** Returns `true` if the parser has already encountered a [[CustomSpecifiersMap.decimalPoint]] specifier; otherwise, `false`. */
@@ -304,30 +313,6 @@ module Format.Globalization.Numeric.Specifiers {
             if (numberPlaceholderCountBeforeDecimal > this.firstZeroSpecifierIndex) {
                 return numberPlaceholderCountBeforeDecimal - this.firstZeroSpecifierIndex;
             }
-        }
-
-        private getDecimalIndex(): number {
-
-            if (this.isAfterDecimal()) {
-                return this.decimalPointIndex;
-            }
-
-            let lookahead = this.lookahead.getValue();
-
-            return lookahead.decimalPointIndex || (lookahead.innerNumericSpecifiersIndex + 1);
-        }
-
-        private getGroupSeparatorOffset(decimalIndex: number): number {
-
-            if (this.isAfterDecimal() || !this.hasGroupSeparator()) {
-                return 0;
-            }
-
-            return Math.floor((decimalIndex - this.innerNumericSpecifiersIndex - 2) / 3);
-        }
-
-        private hasGroupSeparator(): boolean {
-            return this.lookahead.getValue().lastGroupSeparatorIndex > this.firstNumericSpecifierIndex;
         }
 
         private getHandlers(): Specifiers.CustomSpecifiersMap<() => void> {
