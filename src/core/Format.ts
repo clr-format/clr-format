@@ -79,7 +79,7 @@ namespace Format {
 
         let result = applyFormatting(provider, args, options);
 
-        if (options.alignmentComponent !== undefined) {
+        if (options.alignmentComponent) {
             result = applyAlignment(result, options);
         }
 

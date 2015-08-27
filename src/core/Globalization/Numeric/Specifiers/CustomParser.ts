@@ -249,9 +249,10 @@ module Format.Globalization.Numeric.Specifiers {
 
         private canHandleSpecifier(handler: () => void): boolean {
             return !this.escapeOne
-                && (handler !== undefined && !this.escapeMany ||
-                    this.getCurrentChar() === CustomSpecifiers.literalStringDelimeterSingle ||
-                    this.getCurrentChar() === CustomSpecifiers.literalStringDelimeterDouble);
+                && (handler &&
+                    !(this.escapeMany &&
+                        this.getCurrentChar() !== CustomSpecifiers.literalStringDelimeterSingle &&
+                        this.getCurrentChar() !== CustomSpecifiers.literalStringDelimeterDouble));
         }
 
         private addExponentOffset(): void {
@@ -343,7 +344,7 @@ module Format.Globalization.Numeric.Specifiers {
                 },
 
                 exponent: (): void => {
-                    if (this.exponentGroups === undefined) {
+                    if (!this.exponentGroups) {
                         let exponentGroups = this.getExponentGroups();
                         if (exponentGroups) {
                             this.exponentGroups = exponentGroups;

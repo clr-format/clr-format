@@ -186,7 +186,7 @@ module Format.Globalization.Numeric {
                 this.decimalOffset += decorator.length;
 
                 let decimalPart = numericParts[1];
-                if (decimalPart !== undefined) {
+                if (decimalPart) {
                     numericParts[1] = Utils.Text.insert(decimalPart, index, decorator);
                 }
                 else {

@@ -59,7 +59,7 @@ module Format.Globalization.Numeric.Specifiers {
             this.specifier = standardSpecifierGroups[1];
             this.style = StandardSpecifiers[this.specifier.toUpperCase()];
 
-            if (this.style === undefined) {
+            if (!this.style) {
                 throw new Errors.FormatError(`Format specifier '${format}' is invalid`);
             }
 
