@@ -1,6 +1,10 @@
 /// <reference path="../../use-strict" />
 
+/// <reference path="Numeric/InvariantFormatter" />
+/// <reference path="Numeric/IntlOptionsProvider" />
+
 /// <reference path="FormatProvider" />
+/// <reference path="CustomFormatter" />
 
 namespace Format.Globalization {
     /**
@@ -12,20 +16,30 @@ namespace Format.Globalization {
      */
     export class NumberFormatInfo implements FormatProvider {
 
+        public static InvariantInfo: NumberFormatInfo;
+
         /** Gets or sets the string to use as the decimal separator in currency values. */
         public CurrencyDecimalSeparator: string;
-        /** Gets or sets the string to use as the decimal separator in numeric values. */
-        public NumberDecimalSeparator: string;
+
         /** Gets or sets the string that separates groups of digits to the left of the decimal in currency values. */
         public CurrencyGroupSeparator: string;
+
+        /** Gets or sets the string to use as the decimal separator in numeric values. */
+        public NumberDecimalSeparator: string;
+
         /** Gets or sets the string that separates groups of digits to the left of the decimal in numeric values. */
         public NumberGroupSeparator: string;
+
+        /** Gets or sets the number of decimal places to use in numeric values. */
+        public NumberDecimalDigits: number;
+
         /** Gets or sets the string that denotes that the associated number is negative. */
         public NegativeSign: string;
 
         protected locales: string|string[];
 
         private isWritable: boolean;
+        private formatter: CustomFormatter;
 
         /** Initializes a new writable instance of the class that is culture-independent (invariant). */
         constructor();
@@ -46,7 +60,7 @@ namespace Format.Globalization {
          * @param type A string indicating the type of the custom formatter to return, see [[Utils.Types]].
          */
         public getFormatter(type: string): CustomFormatter {
-            return undefined;
+            return this.formatter;
         }
 
         private resolveFormatInfo(locales: string|string[]): void {
@@ -59,9 +73,16 @@ namespace Format.Globalization {
         }
 
         private setInvariantFormatInfo(): void {
+
             this.CurrencyDecimalSeparator = this.NumberDecimalSeparator = ".";
             this.CurrencyGroupSeparator = this.NumberGroupSeparator = ",";
             this.NegativeSign = "-";
+
+            this.NumberDecimalDigits = 2;
+
+            this.formatter = new Numeric.InvariantFormatter(Numeric.IntlOptionsProvider);
+
+            NumberFormatInfo.InvariantInfo = NumberFormatInfo.InvariantInfo || this;
         }
 
         private resolveCultureFormatInfo(locales: string|string[]): void {

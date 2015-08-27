@@ -85,6 +85,7 @@ module Format.Globalization.Numeric {
             if (!this.useGrouping) {
                 return formattedValue;
             }
+
             let decimalSeparator: string = this.getDecimalSeparator(),
                 numericParts = formattedValue.split(decimalSeparator);
 
