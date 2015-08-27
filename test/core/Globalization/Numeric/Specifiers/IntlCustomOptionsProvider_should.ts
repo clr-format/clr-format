@@ -22,12 +22,10 @@ namespace Format.Globalization.Numeric.Specifiers {
 
         it("constructor should initialize the options' field with extended default properties", () => {
 
-            var baseOptions = { minimumFractionDigits: 1 };
+            createInstance({ minimumFractionDigits: 1 });
 
-            createInstance(baseOptions);
-
-            expect(intlCustomOptionsProviderAccessor.options).toBe(baseOptions);
-            expect(intlCustomOptionsProviderAccessor.options.minimumFractionDigits).toBe(baseOptions.minimumFractionDigits);
+            expect(intlCustomOptionsProviderAccessor.options).toBe(intlOptions);
+            expect(intlCustomOptionsProviderAccessor.options.minimumFractionDigits).toBe(intlOptions.minimumFractionDigits);
 
             expect(intlCustomOptionsProviderAccessor.options.noDigits).toBe(true);
             expect(intlCustomOptionsProviderAccessor.options.noLeadingZeroIntegerDigit).toBe(true);

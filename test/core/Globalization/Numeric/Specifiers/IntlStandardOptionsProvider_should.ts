@@ -20,7 +20,7 @@ namespace Format.Globalization.Numeric.Specifiers {
             return intlStandardOptionsProvider.resolveOptions(formatString, undefined);
         };
 
-        it("constructor should initialize the resolved options' object with a cloned copy", () => {
+        it("constructor should initialize the options' field", () => {
 
             createInstance({ minimumFractionDigits: 1 });
 
