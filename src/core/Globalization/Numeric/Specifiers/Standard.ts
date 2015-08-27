@@ -23,23 +23,23 @@ namespace Format.Globalization.Numeric.Specifiers {
      * @param T The type of the specifier's value/handler.
      */
     export interface StandardSpecifiersMap<T> extends Indexable<T> {
-        /** Represents a currency value. */
+        /** Format specifier `C` represents a currency value. */
         currency: T;
-        /** Represents a value's integer digits with optional negative sign. */
+        /** Format specifier `D` represents a value's integer digits with optional negative sign. */
         decimal: T;
-        /** Represents a value's exponential notation. */
+        /** Format specifier `E` represents a value's exponential notation. */
         exponential: T;
-        /** Represents a value's integral and decimal digits with optional negative sign. */
+        /** Format specifier `F` represents a value's integral and decimal digits with optional negative sign. */
         fixedPoint: T;
-        /** Represents the most compact of either fixed-point or scientific notation. */
+        /** Format specifier `G` represents the most compact of either fixed-point or scientific notation. */
         general: T;
-        /** Represents a value's integral and decimal digits, group separators, and a decimal separator with optional negative sign. */
+        /** Format specifier `N` represents a value's integral and decimal digits, group separators, and a decimal separator with optional negative sign. */
         number: T;
-        /** Represents a value multiplied by 100 and displayed with a percent symbol. */
+        /** Format specifier `P` represents a value multiplied by 100 and displayed with a percent symbol. */
         percent: T;
-        /** Formats a string that can round-trip to an identical number value. */
+        /** Format specifier `R` formats a string that can round-trip to an identical number value. */
         roundTrip: T;
-        /** Represents a hexadecimal string. */
+        /** Format specifier `X` represents a hexadecimal string. */
         hex: T;
     }
 
