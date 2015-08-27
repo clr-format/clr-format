@@ -1,6 +1,6 @@
-/// <reference path="../../../typings/jasmine/jasmine" />
+/// <reference path="../../../../typings/jasmine/jasmine" />
 
-/// <reference path="../../../../src/core/Globalization/Numeric/Specifiers/IntlStandardOptionsProvider" />
+/// <reference path="../../../../../src/core/Globalization/Numeric/Specifiers/IntlStandardOptionsProvider" />
 
 namespace Format.Globalization.Numeric.Specifiers {
 
