@@ -44,7 +44,7 @@ gulp.task("test-browser", ["lint-test"], test.browser);
 
 gulp.task("watch", function () {
     gulp.watch([paths.sources], ["build"]);
-    gulp.watch([paths.sources, paths.tests], ["test"]);
+    gulp.watch([paths.sources, paths.tests], ["test", "test-browser"]);
 });
 
 gulp.task("default", ["clean", "watch", "build", "test"]);
