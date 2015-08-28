@@ -1,0 +1,2 @@
+!function(Format) {
+<%=contents%>}(typeof Format !== "undefined" ? Format : {});

@@ -6,6 +6,7 @@ var tsProjects = require("../config/tsProjects.js");
 
 var gulp = require("gulp");
 var tsc = require("gulp-typescript");
+var wrap = require("gulp-wrap");
 var empty = require("gulp-empty");
 var addsrc = require("gulp-add-src");
 var concat = require("gulp-concat");
@@ -23,7 +24,7 @@ module.exports.js = function (component) {
             .pipe(gulp.dest(dirs.output));
 
         return build.js
-            .pipe(replaceModuleDefinition(component))
+            .pipe(wrap({ src: component === "core" ? paths.coreTemplate : paths.iifeTemplate }))
             .pipe(gulp.dest(dirs.output));
     };
 };
@@ -35,8 +36,3 @@ module.exports.npm = function (component) {
         .pipe(concat(tsProjects.npm.options.out))
         .pipe(gulp.dest(dirs.output));
 };
-
-function replaceModuleDefinition(component) {
-    return component === "core" ? empty() :
-        replace("var Format;", "");
-}

@@ -13,7 +13,7 @@ var beautifyOptions = {
     output: {
         beautify: true,
         bracketize: true,
-        comments: function (node, comment) { return !(/\/ <reference path=/i.test(comment.value) || /tslint/i.test(comment.value)); }
+        comments: commentsHandler
     },
     compress: {
         booleans: false,
@@ -51,3 +51,21 @@ module.exports = function () {
 
     return test.jasmine(beautifyOptions);
 };
+
+function commentsHandler(node, comment) {
+
+    if (/\/ <reference path=/i.test(comment.value) || /tslint/i.test(comment.value)) {
+        return false;
+    };
+
+    compensateMultilineNesting(comment);
+
+    return true;
+}
+
+function compensateMultilineNesting(comment) {
+    comment.value = comment.value.replace(/(\n)( +?\*)/g, "$1    $2");
+    if (comment.line !== comment.endline) {
+        comment.value += "    ";
+    }
+}

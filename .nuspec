@@ -23,6 +23,7 @@ Usage:
         <releaseNotes>1. Support for all of .NET's standard and custom numeric format strings (except for currency). The only available culture format provider for now is the invariant culture.
 2. Full support for index {0} and alignment {0,-10} components.
 3. Optional configuration API contained in clr-format-config.js and defined under the Format.Config namespace. See http://clr-format.github.io/clr-format/modules/format.config.html
+4. Wrapped browser code in an IIFE (Immediately-invoked function expression) which creates the Format namespace and defines the main String.format function.
 </releaseNotes>
         <tags>string format javascript typescript number date globalization intl</tags>
     </metadata>

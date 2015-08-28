@@ -12,5 +12,7 @@ module.exports = {
     tsConfig: dirs.separator + files.tsconfig,
     references: dirs.sources + globs.allRefs,
     npmExports: [dirs.sources, files.exports].join(dirs.separator),
-    nugetExe: [dirs.build, files.nuget].join(dirs.separator)
+    nugetExe: [dirs.build, files.nuget].join(dirs.separator),
+    coreTemplate: [dirs.build, dirs.templates, files.coreTemplate].join(dirs.separator),
+    iifeTemplate: [dirs.build, dirs.templates, files.iifeTemplate].join(dirs.separator)
 };

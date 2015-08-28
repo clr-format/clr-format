@@ -8,5 +8,6 @@ module.exports = {
     output: "dist",
     core: "core",
     docs: "docs",
-    config: "configuration"
+    config: "configuration",
+    templates: "templates",
 };

@@ -45,6 +45,8 @@ Also note that the default and only [FormatProvider] implementation is [CultureI
         .toBe("Formatting using the injected prototype method");
     ```
 
+4. Wrapped browser code in an [IIFE] which creates the [Format] namespace and defines the main [String.format] function.
+
 Usage
 -----
 
@@ -106,7 +108,7 @@ Support for index and alignment components only; *without* any formatting rules 
 Addition of a *clr-format-config.js* sub-module/package which can be optionally installed to compliment the core implementation with various pre-defined configurations.
 See [Format.Config] for full documentation.
 
-##### 0.3 (Released)
+##### 0.3.1 (Released)
 Implementation of an invariant number formatting provider and numeric format string components.
 
 ##### 0.4
@@ -126,8 +128,10 @@ Complete the implementation with a date formatting provider and date/time format
 [Getting started with the String.Format method]: https://msdn.microsoft.com/en-us/library/system.string.format.aspx#Starting
 [ECMAScript Intl namespace]: https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Intl
 [Gulp watch task]: https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpwatchglob-opts-cb
+[IIFE]: https://en.wikipedia.org/wiki/Immediately-invoked_function_expression
 
 [GitHub pages documentation]: http://clr-format.github.io/clr-format
+[Format]: http://clr-format.github.io/clr-format/modules/format.html
 [Format.Config]: http://clr-format.github.io/clr-format/modules/format.config.html
 [String.format]: http://clr-format.github.io/clr-format/interfaces/stringconstructor.html#format
 [FormatProvider]: http://clr-format.github.io/clr-format/interfaces/format.globalization.formatprovider.html

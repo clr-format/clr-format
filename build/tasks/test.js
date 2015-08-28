@@ -6,6 +6,7 @@ var testExports = require("../../test/exports_should.js")
 
 var gulp = require("gulp");
 var tsc = require("gulp-typescript");
+var wrap = require("gulp-wrap");
 var empty = require("gulp-empty");
 var uglify = require("gulp-uglify");
 var jasmine = require("gulp-jasmine");
@@ -13,6 +14,7 @@ var jasmine = require("gulp-jasmine");
 module.exports.jasmine = function (minifyOpts) {
     return gulp.src(paths.tests)
         .pipe(tsc(tsProjects.tests)).js
+        .pipe(wrap({ src: paths.coreTemplate }))
         .pipe(typeof minifyOpts !== "function" ? uglify(minifyOpts) : empty())
         .pipe(gulp.dest(dirs.build))
         .pipe(jasmine({ reporter: new testReporter.NUnitXmlReporter({ savePath: dirs.build }) }));

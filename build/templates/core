@@ -1,0 +1,4 @@
+var Format = Format || function(Format) {
+<%=contents%>
+return Format;
+}(Format || {});
