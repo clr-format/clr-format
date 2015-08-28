@@ -92,6 +92,8 @@ module.exports = function (config) {
         sauceLabs: {
             testName: 'clr-format Unit Tests',
             startConnect: false,
+            /* global process */
+            tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
             recordScreenshots: false
         },
 
