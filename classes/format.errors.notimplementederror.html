@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ArgumentError | CLR Format</title>
+	<title>NotImplementedError | CLR Format</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -63,10 +63,10 @@
 					<a href="../modules/format.errors.html">Errors</a>
 				</li>
 				<li>
-					<a href="format.errors.argumenterror.html">ArgumentError</a>
+					<a href="format.errors.notimplementederror.html">NotImplementedError</a>
 				</li>
 			</ul>
-			<h1>Class ArgumentError</h1>
+			<h1>Class NotImplementedError</h1>
 		</div>
 	</div>
 </header>
@@ -76,9 +76,9 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>An error that is thrown when one of the arguments provided to a function is not valid.</p>
+						<p>An error that is thrown when a requested method or operation is not implemented.</p>
 					</div>
-					<p>See: <a href="https://msdn.microsoft.com/en-us/library/system.argumentexception.aspx">https://msdn.microsoft.com/en-us/library/system.argumentexception.aspx</a></p>
+					<p>See: <a href="https://msdn.microsoft.com/en-us/library/system.notimplementedexception.aspx">https://msdn.microsoft.com/en-us/library/system.notimplementedexception.aspx</a></p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
@@ -88,12 +88,7 @@
 						<a href="format.errors.systemerror.html" class="tsd-signature-type">SystemError</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">ArgumentError</span>
-								<ul class="tsd-hierarchy">
-									<li>
-										<a href="format.errors.argumentnullerror.html" class="tsd-signature-type">ArgumentNullError</a>
-									</li>
-								</ul>
+								<span class="target">NotImplementedError</span>
 							</li>
 						</ul>
 					</li>
@@ -112,23 +107,23 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="format.errors.argumenterror.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="format.errors.notimplementederror.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-inherited">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="format.errors.argumenterror.html#innererror" class="tsd-kind-icon">inner<wbr>Error</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="format.errors.argumenterror.html#message" class="tsd-kind-icon">message</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="format.errors.argumenterror.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="format.errors.argumenterror.html#source" class="tsd-kind-icon">source</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="format.errors.argumenterror.html#stack" class="tsd-kind-icon">stack</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="format.errors.notimplementederror.html#innererror" class="tsd-kind-icon">inner<wbr>Error</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="format.errors.notimplementederror.html#message" class="tsd-kind-icon">message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="format.errors.notimplementederror.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="format.errors.notimplementederror.html#source" class="tsd-kind-icon">source</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="format.errors.notimplementederror.html#stack" class="tsd-kind-icon">stack</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-inherited tsd-is-private-protected">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="format.errors.argumenterror.html#incrementstackcount" class="tsd-kind-icon">increment<wbr>Stack<wbr>Count</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="format.errors.notimplementederror.html#incrementstackcount" class="tsd-kind-icon">increment<wbr>Stack<wbr>Count</a></li>
 							</ul>
 						</section>
 					</div>
@@ -140,41 +135,33 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Argument<wbr>Error<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, innerError<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="format.errors.argumenterror.html" class="tsd-signature-type">ArgumentError</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Not<wbr>Implemented<wbr>Error<span class="tsd-signature-symbol">(</span>methodName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="format.errors.notimplementederror.html" class="tsd-signature-type">NotImplementedError</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overwrites <a href="format.errors.systemerror.html">SystemError</a>.<a href="format.errors.systemerror.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Errors/ArgumentError.ts#L11">core/Errors/ArgumentError.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Errors/NotImplementedError.ts#L11">core/Errors/NotImplementedError.ts:11</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Creates an error that is thrown when one of the arguments provided to a function is not valid.</p>
+									<p>Creates an error that is thrown when a requested method or operation is not implemented.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> message: <span class="tsd-signature-type">string</span></h5>
+									<h5>methodName: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
-											<p>A human-readable description of the error.</p>
-										</div>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> innerError: <span class="tsd-signature-type">Error</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>An error to rethrow while also preserving its stack trace.</p>
+											<p>The name of the method that caused the error.</p>
 										</div>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="format.errors.argumenterror.html" class="tsd-signature-type">ArgumentError</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="format.errors.notimplementederror.html" class="tsd-signature-type">NotImplementedError</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -241,7 +228,7 @@
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The line from the <a href="format.errors.argumenterror.html#stack">stack</a> property from which the error occurred.</p>
+							<p>The line from the <a href="format.errors.notimplementederror.html#stack">stack</a> property from which the error occurred.</p>
 						</div>
 					</div>
 				</section>
@@ -316,36 +303,9 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class tsd-parent-kind-module">
+					<li class=" tsd-kind-class tsd-parent-kind-module">
 						<a href="format.errors.argumenterror.html" class="tsd-kind-icon">Argument<wbr>Error</a>
-						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-								<a href="format.errors.argumenterror.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="format.errors.argumenterror.html#innererror" class="tsd-kind-icon">inner<wbr>Error</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="format.errors.argumenterror.html#message" class="tsd-kind-icon">message</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="format.errors.argumenterror.html#name" class="tsd-kind-icon">name</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="format.errors.argumenterror.html#source" class="tsd-kind-icon">source</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="format.errors.argumenterror.html#stack" class="tsd-kind-icon">stack</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="format.errors.argumenterror.html#incrementstackcount" class="tsd-kind-icon">increment<wbr>Stack<wbr>Count</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-parent-kind-module">
 						<a href="format.errors.argumentnullerror.html" class="tsd-kind-icon">Argument<wbr>Null<wbr>Error</a>
 					</li>
@@ -358,9 +318,36 @@
 					<li class=" tsd-kind-class tsd-parent-kind-module">
 						<a href="format.errors.invalidoperationerror.html" class="tsd-kind-icon">Invalid<wbr>Operation<wbr>Error</a>
 					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-module">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class tsd-parent-kind-module">
 						<a href="format.errors.notimplementederror.html" class="tsd-kind-icon">Not<wbr>Implemented<wbr>Error</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+								<a href="format.errors.notimplementederror.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="format.errors.notimplementederror.html#innererror" class="tsd-kind-icon">inner<wbr>Error</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="format.errors.notimplementederror.html#message" class="tsd-kind-icon">message</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="format.errors.notimplementederror.html#name" class="tsd-kind-icon">name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="format.errors.notimplementederror.html#source" class="tsd-kind-icon">source</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="format.errors.notimplementederror.html#stack" class="tsd-kind-icon">stack</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="format.errors.notimplementederror.html#incrementstackcount" class="tsd-kind-icon">increment<wbr>Stack<wbr>Count</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-parent-kind-module">
 						<a href="format.errors.systemerror.html" class="tsd-kind-icon">System<wbr>Error</a>
 					</li>

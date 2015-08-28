@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>FormatProvider | CLR Format</title>
+	<title>Numeric | CLR Format</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,16 +57,16 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/format.html">Format</a>
+					<a href="format.html">Format</a>
 				</li>
 				<li>
-					<a href="../modules/format.globalization.html">Globalization</a>
+					<a href="format.globalization.html">Globalization</a>
 				</li>
 				<li>
-					<a href="format.globalization.formatprovider.html">FormatProvider</a>
+					<a href="format.globalization.numeric.html">Numeric</a>
 				</li>
 			</ul>
-			<h1>Interface FormatProvider</h1>
+			<h1>Module Numeric</h1>
 		</div>
 	</div>
 </header>
@@ -76,72 +76,37 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Provides a mechanism for retrieving an object to control formatting.</p>
+						<p>A <a href="format.globalization.html">Format.Globalization</a> sub-module containing classes related to numeric format operations.</p>
 					</div>
-					<p>See: <a href="https://msdn.microsoft.com/en-us/library/system.iformatprovider.aspx">https://msdn.microsoft.com/en-us/library/system.iformatprovider.aspx</a></p>
 				</div>
-			</section>
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="target">FormatProvider</span>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3>Implemented by</h3>
-				<ul class="tsd-hierarchy">
-					<li><a href="../classes/format.globalization.cultureinfo.html" class="tsd-signature-type">CultureInfo</a></li>
-					<li><a href="../classes/format.globalization.datetimeformatinfo.html" class="tsd-signature-type">DateTimeFormatInfo</a></li>
-					<li><a href="../classes/format.globalization.numberformatinfo.html" class="tsd-signature-type">NumberFormatInfo</a></li>
-				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Methods</h3>
+							<h3>Modules</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="format.globalization.formatprovider.html#getformatter" class="tsd-kind-icon">get<wbr>Formatter</a></li>
+								<li class="tsd-kind-module tsd-parent-kind-module"><a href="format.globalization.numeric.specifiers.html" class="tsd-kind-icon">Specifiers</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Classes</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter"><a href="../classes/format.globalization.numeric.decorationformatter.html" class="tsd-kind-icon">Decoration<wbr>Formatter</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter"><a href="../classes/format.globalization.numeric.exponentialformatter.html" class="tsd-kind-icon">Exponential<wbr>Formatter</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/format.globalization.numeric.intloptionsprovider.html" class="tsd-kind-icon">Intl<wbr>Options<wbr>Provider</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter"><a href="../classes/format.globalization.numeric.invariantformatter.html" class="tsd-kind-icon">Invariant<wbr>Formatter</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported"><a href="../interfaces/format.globalization.numeric.customexponentialstate.html" class="tsd-kind-icon">Custom<wbr>Exponential<wbr>State</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter"><a href="../interfaces/format.globalization.numeric.optionsprovider.html" class="tsd-kind-icon">Options<wbr>Provider</a></li>
 							</ul>
 						</section>
 					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="getformatter" class="tsd-anchor"></a>
-					<h3>get<wbr>Formatter</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Formatter<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="format.globalization.customformatter.html" class="tsd-signature-type">CustomFormatter</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Globalization/FormatProvider.ts#L20">core/Globalization/FormatProvider.ts:20</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns an object that provides formatting services for the specified type.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>type: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>A string indicating the type of the custom formatter to return, see <a href="../modules/format.utils.html#types">Utils.Types</a>.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="format.globalization.customformatter.html" class="tsd-signature-type">CustomFormatter</a></h4>
-						</li>
-					</ul>
 				</section>
 			</section>
 		</div>
@@ -152,24 +117,29 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="../modules/format.html">Format</a>
+						<a href="format.html">Format</a>
 						<ul>
 							<li class=" tsd-kind-module tsd-parent-kind-module">
-								<a href="../modules/format.config.html">Config</a>
+								<a href="format.config.html">Config</a>
 							</li>
 							<li class=" tsd-kind-module tsd-parent-kind-module">
-								<a href="../modules/format.errors.html">Errors</a>
+								<a href="format.errors.html">Errors</a>
 							</li>
 							<li class="current tsd-kind-module tsd-parent-kind-module">
-								<a href="../modules/format.globalization.html">Globalization</a>
+								<a href="format.globalization.html">Globalization</a>
 								<ul>
-									<li class=" tsd-kind-module tsd-parent-kind-module">
-										<a href="../modules/format.globalization.numeric.html">Numeric</a>
+									<li class="current tsd-kind-module tsd-parent-kind-module">
+										<a href="format.globalization.numeric.html">Numeric</a>
+										<ul>
+											<li class=" tsd-kind-module tsd-parent-kind-module">
+												<a href="format.globalization.numeric.specifiers.html">Specifiers</a>
+											</li>
+										</ul>
 									</li>
 								</ul>
 							</li>
 							<li class=" tsd-kind-module tsd-parent-kind-module">
-								<a href="../modules/format.utils.html">Utils</a>
+								<a href="format.utils.html">Utils</a>
 							</li>
 						</ul>
 					</li>
@@ -177,32 +147,23 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-module">
-						<a href="../classes/format.globalization.cultureinfo.html" class="tsd-kind-icon">Culture<wbr>Info</a>
+					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../classes/format.globalization.numeric.decorationformatter.html" class="tsd-kind-icon">Decoration<wbr>Formatter</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../classes/format.globalization.numeric.exponentialformatter.html" class="tsd-kind-icon">Exponential<wbr>Formatter</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-module">
-						<a href="../classes/format.globalization.datetimeformatinfo.html" class="tsd-kind-icon">Date<wbr>Time<wbr>Format<wbr>Info</a>
+						<a href="../classes/format.globalization.numeric.intloptionsprovider.html" class="tsd-kind-icon">Intl<wbr>Options<wbr>Provider</a>
 					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-module">
-						<a href="../classes/format.globalization.numberformatinfo.html" class="tsd-kind-icon">Number<wbr>Format<wbr>Info</a>
+					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../classes/format.globalization.numeric.invariantformatter.html" class="tsd-kind-icon">Invariant<wbr>Formatter</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="format.globalization.customformatter.html" class="tsd-kind-icon">Custom<wbr>Formatter</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
+						<a href="../interfaces/format.globalization.numeric.customexponentialstate.html" class="tsd-kind-icon">Custom<wbr>Exponential<wbr>State</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="format.globalization.formatprovider.html" class="tsd-kind-icon">Format<wbr>Provider</a>
-						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="format.globalization.formatprovider.html#getformatter" class="tsd-kind-icon">get<wbr>Formatter</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="format.globalization.optionsprovider.html" class="tsd-kind-icon">Options<wbr>Provider</a>
+						<a href="../interfaces/format.globalization.numeric.optionsprovider.html" class="tsd-kind-icon">Options<wbr>Provider</a>
 					</li>
 				</ul>
 			</nav>

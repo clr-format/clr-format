@@ -103,6 +103,7 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="array.html#compact" class="tsd-kind-icon">compact</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="array.html#takewhile" class="tsd-kind-icon">take<wbr>While</a></li>
 							</ul>
 						</section>
@@ -111,6 +112,30 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="compact" class="tsd-anchor"></a>
+					<h3>compact</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">compact<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/API/Array.ts#L55">configuration/API/Array.ts:55</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes &quot;holes&quot; (<code>undefined</code> elements) from the array making it compact/dense.</p>
+								</div>
+								<p>Must call <a href="../modules/format.config.html#addutilstoprototype">Format.Config.addUtilsToPrototype</a> to be defined.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h4>
+							<p>The same array instance without <code>undefined</code> elements.</p>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
 					<a name="takewhile" class="tsd-anchor"></a>
 					<h3>take<wbr>While</h3>
@@ -121,7 +146,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/API/Array.ts#L37">configuration/API/Array.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/API/Array.ts#L47">configuration/API/Array.ts:47</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -189,6 +214,9 @@
 						<a href="array.html" class="tsd-kind-icon">Array</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="array.html#compact" class="tsd-kind-icon">compact</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
 								<a href="array.html#takewhile" class="tsd-kind-icon">take<wbr>While</a>
 							</li>
 						</ul>
@@ -198,11 +226,23 @@
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="arrayconstructor.html" class="tsd-kind-icon">Array<wbr>Constructor</a>
 					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
+						<a href="constructable.html" class="tsd-kind-icon">Constructable</a>
+					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="function.html" class="tsd-kind-icon">Function</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="functionconstructor.html" class="tsd-kind-icon">Function<wbr>Constructor</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
+						<a href="indexable.html" class="tsd-kind-icon">Indexable</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="number.html" class="tsd-kind-icon">Number</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="numberconstructor.html" class="tsd-kind-icon">Number<wbr>Constructor</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="objectconstructor.html" class="tsd-kind-icon">Object<wbr>Constructor</a>

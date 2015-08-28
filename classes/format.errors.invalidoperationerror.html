@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SystemError | CLR Format</title>
+	<title>InvalidOperationError | CLR Format</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -63,10 +63,10 @@
 					<a href="../modules/format.errors.html">Errors</a>
 				</li>
 				<li>
-					<a href="format.errors.systemerror.html">SystemError</a>
+					<a href="format.errors.invalidoperationerror.html">InvalidOperationError</a>
 				</li>
 			</ul>
-			<h1>Class SystemError</h1>
+			<h1>Class InvalidOperationError</h1>
 		</div>
 	</div>
 </header>
@@ -76,33 +76,19 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Base system error class that allows for syntactic C#-like <code>Error</code> class extension.</p>
+						<p>An error that is thrown when a method call is invalid for the object&#39;s current state.</p>
 					</div>
-					<p>See: <a href="https://msdn.microsoft.com/en-us/library/system.systemexception.aspx">https://msdn.microsoft.com/en-us/library/system.systemexception.aspx</a></p>
+					<p>See: <a href="https://msdn.microsoft.com/en-us/library/system.invalidoperationexception.aspx">https://msdn.microsoft.com/en-us/library/system.invalidoperationexception.aspx</a></p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="format.errors.errorclass.html" class="tsd-signature-type">ErrorClass</a>
+						<a href="format.errors.systemerror.html" class="tsd-signature-type">SystemError</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">SystemError</span>
-								<ul class="tsd-hierarchy">
-									<li>
-										<a href="format.errors.argumenterror.html" class="tsd-signature-type">ArgumentError</a>
-									</li>
-									<li>
-										<a href="format.errors.notimplementederror.html" class="tsd-signature-type">NotImplementedError</a>
-									</li>
-									<li>
-										<a href="format.errors.invalidoperationerror.html" class="tsd-signature-type">InvalidOperationError</a>
-									</li>
-									<li>
-										<a href="format.errors.formaterror.html" class="tsd-signature-type">FormatError</a>
-									</li>
-								</ul>
+								<span class="target">InvalidOperationError</span>
 							</li>
 						</ul>
 					</li>
@@ -121,30 +107,23 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="format.errors.systemerror.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="format.errors.invalidoperationerror.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section ">
+						<section class="tsd-index-section tsd-is-inherited">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="format.errors.systemerror.html#childstackcount" class="tsd-kind-icon">child<wbr>Stack<wbr>Count</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="format.errors.systemerror.html#innererror" class="tsd-kind-icon">inner<wbr>Error</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="format.errors.systemerror.html#message" class="tsd-kind-icon">message</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="format.errors.systemerror.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="format.errors.systemerror.html#source" class="tsd-kind-icon">source</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="format.errors.systemerror.html#stack" class="tsd-kind-icon">stack</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="format.errors.invalidoperationerror.html#innererror" class="tsd-kind-icon">inner<wbr>Error</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="format.errors.invalidoperationerror.html#message" class="tsd-kind-icon">message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="format.errors.invalidoperationerror.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="format.errors.invalidoperationerror.html#source" class="tsd-kind-icon">source</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="format.errors.invalidoperationerror.html#stack" class="tsd-kind-icon">stack</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section tsd-is-private-protected">
+						<section class="tsd-index-section tsd-is-inherited tsd-is-private-protected">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="format.errors.systemerror.html#getactualsource" class="tsd-kind-icon">get<wbr>Actual<wbr>Source</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="format.errors.systemerror.html#getactualstack" class="tsd-kind-icon">get<wbr>Actual<wbr>Stack</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="format.errors.systemerror.html#getnativestack" class="tsd-kind-icon">get<wbr>Native<wbr>Stack</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="format.errors.systemerror.html#getstack" class="tsd-kind-icon">get<wbr>Stack</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="format.errors.systemerror.html#getstackomitcount" class="tsd-kind-icon">get<wbr>Stack<wbr>Omit<wbr>Count</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="format.errors.systemerror.html#getstackomitstart" class="tsd-kind-icon">get<wbr>Stack<wbr>Omit<wbr>Start</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="format.errors.systemerror.html#incrementstackcount" class="tsd-kind-icon">increment<wbr>Stack<wbr>Count</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="format.errors.invalidoperationerror.html#incrementstackcount" class="tsd-kind-icon">increment<wbr>Stack<wbr>Count</a></li>
 							</ul>
 						</section>
 					</div>
@@ -156,19 +135,19 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>System<wbr>Error<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, innerError<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="format.errors.systemerror.html" class="tsd-signature-type">SystemError</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Invalid<wbr>Operation<wbr>Error<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, innerError<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="format.errors.invalidoperationerror.html" class="tsd-signature-type">InvalidOperationError</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overwrites <a href="format.errors.errorclass.html">ErrorClass</a>.<a href="format.errors.errorclass.html#constructor">constructor</a></p>
+								<p>Overwrites <a href="format.errors.systemerror.html">SystemError</a>.<a href="format.errors.systemerror.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Errors/SystemError.ts#L28">core/Errors/SystemError.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Errors/InvalidOperationError.ts#L11">core/Errors/InvalidOperationError.ts:11</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Creates an abstract system error object derived from the built-in javascript <code>Error</code> type and decorates it with additional properties.</p>
+									<p>Creates an error  that is thrown when a method call is invalid for the object&#39;s current state.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -185,38 +164,24 @@
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> innerError: <span class="tsd-signature-type">Error</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
-											<p>An error to wrap while also preserving its stack trace.</p>
+											<p>An error to rethrow while also preserving its stack trace.</p>
 										</div>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="format.errors.systemerror.html" class="tsd-signature-type">SystemError</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="format.errors.invalidoperationerror.html" class="tsd-signature-type">InvalidOperationError</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="childstackcount" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> child<wbr>Stack<wbr>Count</h3>
-					<div class="tsd-signature tsd-kind-icon">child<wbr>Stack<wbr>Count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Errors/SystemError.ts#L28">core/Errors/SystemError.ts:28</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>A helper counter that allows for some degree of standardization of the <a href="format.errors.systemerror.html#stack">stack</a> property.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="innererror" class="tsd-anchor"></a>
 					<h3>inner<wbr>Error</h3>
 					<div class="tsd-signature tsd-kind-icon">inner<wbr>Error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Error</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="format.errors.systemerror.html">SystemError</a>.<a href="format.errors.systemerror.html#innererror">innerError</a></p>
 						<ul>
 							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Errors/SystemError.ts#L25">core/Errors/SystemError.ts:25</a></li>
 						</ul>
@@ -259,26 +224,28 @@
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="source" class="tsd-anchor"></a>
 					<h3>source</h3>
 					<div class="tsd-signature tsd-kind-icon">source<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="format.errors.systemerror.html">SystemError</a>.<a href="format.errors.systemerror.html#source">source</a></p>
 						<ul>
 							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Errors/SystemError.ts#L22">core/Errors/SystemError.ts:22</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The line from the <a href="format.errors.systemerror.html#stack">stack</a> property from which the error occurred.</p>
+							<p>The line from the <a href="format.errors.invalidoperationerror.html#stack">stack</a> property from which the error occurred.</p>
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="stack" class="tsd-anchor"></a>
 					<h3>stack</h3>
 					<div class="tsd-signature tsd-kind-icon">stack<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="format.errors.systemerror.html">SystemError</a>.<a href="format.errors.systemerror.html#stack">stack</a></p>
 						<ul>
 							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Errors/SystemError.ts#L19">core/Errors/SystemError.ts:19</a></li>
 						</ul>
@@ -290,137 +257,18 @@
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-private-protected">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="getactualsource" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Actual<wbr>Source</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Actual<wbr>Source<span class="tsd-signature-symbol">(</span>stack<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Errors/SystemError.ts#L55">core/Errors/SystemError.ts:55</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>stack: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="getactualstack" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Actual<wbr>Stack</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Actual<wbr>Stack<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Errors/SystemError.ts#L62">core/Errors/SystemError.ts:62</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="getnativestack" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Native<wbr>Stack</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Native<wbr>Stack<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Errors/SystemError.ts#L76">core/Errors/SystemError.ts:76</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="getstack" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Stack</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Stack<span class="tsd-signature-symbol">(</span>innerError<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Errors/SystemError.ts#L49">core/Errors/SystemError.ts:49</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>innerError: <span class="tsd-signature-type">Error</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="getstackomitcount" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Stack<wbr>Omit<wbr>Count</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Stack<wbr>Omit<wbr>Count<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Errors/SystemError.ts#L89">core/Errors/SystemError.ts:89</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="getstackomitstart" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Stack<wbr>Omit<wbr>Start</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Stack<wbr>Omit<wbr>Start<span class="tsd-signature-symbol">(</span>stackArray<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Errors/SystemError.ts#L85">core/Errors/SystemError.ts:85</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>stackArray: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 					<a name="incrementstackcount" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> increment<wbr>Stack<wbr>Count</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 						<li class="tsd-signature tsd-kind-icon">increment<wbr>Stack<wbr>Count<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="format.errors.systemerror.html">SystemError</a>.<a href="format.errors.systemerror.html#incrementstackcount">incrementStackCount</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Errors/SystemError.ts#L45">core/Errors/SystemError.ts:45</a></li>
 								</ul>
@@ -475,63 +323,42 @@
 					<li class=" tsd-kind-class tsd-parent-kind-module">
 						<a href="format.errors.formaterror.html" class="tsd-kind-icon">Format<wbr>Error</a>
 					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-module">
-						<a href="format.errors.invalidoperationerror.html" class="tsd-kind-icon">Invalid<wbr>Operation<wbr>Error</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-module">
-						<a href="format.errors.notimplementederror.html" class="tsd-kind-icon">Not<wbr>Implemented<wbr>Error</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-module">
-						<a href="format.errors.systemerror.html" class="tsd-kind-icon">System<wbr>Error</a>
+						<a href="format.errors.invalidoperationerror.html" class="tsd-kind-icon">Invalid<wbr>Operation<wbr>Error</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-								<a href="format.errors.systemerror.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="format.errors.systemerror.html#childstackcount" class="tsd-kind-icon">child<wbr>Stack<wbr>Count</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="format.errors.systemerror.html#innererror" class="tsd-kind-icon">inner<wbr>Error</a>
+								<a href="format.errors.invalidoperationerror.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="format.errors.systemerror.html#message" class="tsd-kind-icon">message</a>
+								<a href="format.errors.invalidoperationerror.html#innererror" class="tsd-kind-icon">inner<wbr>Error</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="format.errors.systemerror.html#name" class="tsd-kind-icon">name</a>
+								<a href="format.errors.invalidoperationerror.html#message" class="tsd-kind-icon">message</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="format.errors.systemerror.html#source" class="tsd-kind-icon">source</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="format.errors.invalidoperationerror.html#name" class="tsd-kind-icon">name</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="format.errors.systemerror.html#stack" class="tsd-kind-icon">stack</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="format.errors.invalidoperationerror.html#source" class="tsd-kind-icon">source</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="format.errors.systemerror.html#getactualsource" class="tsd-kind-icon">get<wbr>Actual<wbr>Source</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="format.errors.invalidoperationerror.html#stack" class="tsd-kind-icon">stack</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="format.errors.systemerror.html#getactualstack" class="tsd-kind-icon">get<wbr>Actual<wbr>Stack</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="format.errors.systemerror.html#getnativestack" class="tsd-kind-icon">get<wbr>Native<wbr>Stack</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="format.errors.systemerror.html#getstack" class="tsd-kind-icon">get<wbr>Stack</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="format.errors.systemerror.html#getstackomitcount" class="tsd-kind-icon">get<wbr>Stack<wbr>Omit<wbr>Count</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="format.errors.systemerror.html#getstackomitstart" class="tsd-kind-icon">get<wbr>Stack<wbr>Omit<wbr>Start</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-								<a href="format.errors.systemerror.html#incrementstackcount" class="tsd-kind-icon">increment<wbr>Stack<wbr>Count</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="format.errors.invalidoperationerror.html#incrementstackcount" class="tsd-kind-icon">increment<wbr>Stack<wbr>Count</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="format.errors.notimplementederror.html" class="tsd-kind-icon">Not<wbr>Implemented<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="format.errors.systemerror.html" class="tsd-kind-icon">System<wbr>Error</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

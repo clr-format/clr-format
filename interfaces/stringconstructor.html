@@ -70,9 +70,10 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Extends the built-in javascript String object&#39;s static API.</p>
+						<p>Extends the built-in javascript <code>String</code> object&#39;s static API.
+						The <a href="stringconstructor.html#format">StringConstructor.format</a> method exposes the core logic of the project.</p>
 					</div>
-					<p>The <a href="stringconstructor.html#format">StringConstructor.format</a> method exposes the core logic.</p>
+					<p>The <a href="../modules/format.config.html#addutilstoglobals">Format.Config.addUtilsToGlobals</a> method must be called in order to access any additional definitions.</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
@@ -91,6 +92,8 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="stringconstructor.html#format" class="tsd-kind-icon">format</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="stringconstructor.html#insert" class="tsd-kind-icon">insert</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="stringconstructor.html#isnullorwhitespace" class="tsd-kind-icon">is<wbr>Null<wbr>OrWhitespace</a></li>
 							</ul>
 						</section>
 					</div>
@@ -109,7 +112,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/API.ts#L14">core/API.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/API.ts#L10">core/API.ts:10</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -137,7 +140,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/API.ts#L21">core/API.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/API.ts#L17">core/API.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -170,6 +173,84 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="insert" class="tsd-anchor"></a>
+					<h3>insert</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">insert<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, startIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, insertValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/API/String.ts#L25">configuration/API/String.ts:25</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns a new string in which a specified string is inserted at a specified index position in the value instance.</p>
+								</div>
+								<p>Must call <a href="../modules/format.config.html#addutilstoglobals">Format.Config.addUtilsToGlobals</a> to be defined.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The string into which to insert.</p>
+									</div>
+								</li>
+								<li>
+									<h5>startIndex: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The zero-based index position of the insertion.</p>
+									</div>
+								</li>
+								<li>
+									<h5>insertValue: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The string to insert.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>A new string that is equivalent to the value instance, but with insertValue inserted at position startIndex.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="isnullorwhitespace" class="tsd-anchor"></a>
+					<h3>is<wbr>Null<wbr>OrWhitespace</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Null<wbr>OrWhitespace<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/API/String.ts#L14">configuration/API/String.ts:14</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Indicates whether the specified string is <code>undefined</code>, <code>null</code>, <code>&quot;&quot;</code>, or consists only of white-space characters.</p>
+								</div>
+								<p>Must call <a href="../modules/format.config.html#addutilstoglobals">Format.Config.addUtilsToGlobals</a> to be defined.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The string to test.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p><code>true</code> if the value parameter is <code>undefined</code>, <code>null</code>, <code>&quot;&quot;</code>, or if value consists exclusively of white-space characters.</p>
+						</li>
+					</ul>
+				</section>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -188,11 +269,23 @@
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="arrayconstructor.html" class="tsd-kind-icon">Array<wbr>Constructor</a>
 					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
+						<a href="constructable.html" class="tsd-kind-icon">Constructable</a>
+					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="function.html" class="tsd-kind-icon">Function</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="functionconstructor.html" class="tsd-kind-icon">Function<wbr>Constructor</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
+						<a href="indexable.html" class="tsd-kind-icon">Indexable</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="number.html" class="tsd-kind-icon">Number</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="numberconstructor.html" class="tsd-kind-icon">Number<wbr>Constructor</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="objectconstructor.html" class="tsd-kind-icon">Object<wbr>Constructor</a>
@@ -207,6 +300,12 @@
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
 								<a href="stringconstructor.html#format" class="tsd-kind-icon">format</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="stringconstructor.html#insert" class="tsd-kind-icon">insert</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="stringconstructor.html#isnullorwhitespace" class="tsd-kind-icon">is<wbr>Null<wbr>OrWhitespace</a>
 							</li>
 						</ul>
 					</li>

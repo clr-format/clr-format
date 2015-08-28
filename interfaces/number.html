@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>String | CLR Format</title>
+	<title>Number | CLR Format</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,10 +57,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="string.html">String</a>
+					<a href="number.html">Number</a>
 				</li>
 			</ul>
-			<h1>Interface String</h1>
+			<h1>Interface Number</h1>
 		</div>
 	</div>
 </header>
@@ -70,16 +70,16 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Extends the built-in javascript <code>String</code> object&#39;s prototype.</p>
+						<p>Extends the built-in javascript <code>Number</code> object&#39;s prototype.</p>
 					</div>
-					<p>Various <a href="../modules/format.config.html">Format.Config</a> methods can be called in order to access the additional definitions, see each method for more details.</p>
+					<p>The <a href="../modules/format.config.html#addutilstoprototype">Format.Config.addUtilsToPrototype</a> method must be called in order to access the definitions.</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">String</span>
+						<span class="target">Number</span>
 					</li>
 				</ul>
 			</section>
@@ -90,10 +90,13 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="string.html#format" class="tsd-kind-icon">format</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="string.html#insert" class="tsd-kind-icon">insert</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="string.html#padleft" class="tsd-kind-icon">pad<wbr>Left</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="string.html#padright" class="tsd-kind-icon">pad<wbr>Right</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="number.html#iscounting" class="tsd-kind-icon">is<wbr>Counting</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="number.html#iseven" class="tsd-kind-icon">is<wbr>Even</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="number.html#isinteger" class="tsd-kind-icon">is<wbr>Integer</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="number.html#iswhole" class="tsd-kind-icon">is<wbr>Whole</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="number.html#toexponentialminmax" class="tsd-kind-icon">to<wbr>Exponential<wbr>Min<wbr>Max</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="number.html#tofixedminmax" class="tsd-kind-icon">to<wbr>Fixed<wbr>Min<wbr>Max</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="number.html#toprecisionminmax" class="tsd-kind-icon">to<wbr>Precision<wbr>Min<wbr>Max</a></li>
 							</ul>
 						</section>
 					</div>
@@ -102,137 +105,133 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="format" class="tsd-anchor"></a>
-					<h3>format</h3>
+					<a name="iscounting" class="tsd-anchor"></a>
+					<h3>is<wbr>Counting</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">format<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-						<li class="tsd-signature tsd-kind-icon">format<span class="tsd-signature-symbol">(</span>provider<span class="tsd-signature-symbol">: </span><a href="format.globalization.formatprovider.html" class="tsd-signature-type">FormatProvider</a>, <span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Counting<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/API/String.ts#L40">configuration/API/String.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/API/Number.ts#L96">configuration/API/Number.ts:96</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Converts the value of objects to strings based on the formats specified and inserts them into this string.</p>
+									<p>Determines whether the passed value is a counting number (positive integer excluding <code>0</code>).</p>
 								</div>
-								<p>Must call <a href="../modules/format.config.html#addformattoprototype">Format.Config.addFormatToPrototype</a> to be defined.</p>
+								<p>Must call <a href="../modules/format.config.html#addutilstoprototype">Format.Config.addUtilsToPrototype</a> to be defined.</p>
 							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">[]</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>A list of arguments that contains zero or more objects to format.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/API/String.ts#L49">configuration/API/String.ts:49</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Converts the value of objects to strings based on the formats specified and inserts them into this string.</p>
-								</div>
-								<p>Must call <a href="../modules/format.config.html#addformattoprototype">Format.Config.addFormatToPrototype</a> to be defined.</p>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>provider: <a href="format.globalization.formatprovider.html" class="tsd-signature-type">FormatProvider</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>An object that supplies culture-specific formatting information.</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">[]</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>A list of arguments that contains zero or more objects to format.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p><code>true</code> if the value is a positive integer excluding <code>0</code>.</p>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="insert" class="tsd-anchor"></a>
-					<h3>insert</h3>
+					<a name="iseven" class="tsd-anchor"></a>
+					<h3>is<wbr>Even</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">insert<span class="tsd-signature-symbol">(</span>startIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, insertValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Even<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/API/String.ts#L77">configuration/API/String.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/API/Number.ts#L114">configuration/API/Number.ts:114</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns a new string in which a specified string is inserted at a specified index position in the instance.</p>
+									<p>Determines whether the value is an even number.</p>
+								</div>
+								<p>Throws an error if the value is not an integer (when <a href="number.html#isinteger">isInteger</a> returns <code>false</code>).</p>
+								<p>Must call <a href="../modules/format.config.html#addutilstoprototype">Format.Config.addUtilsToPrototype</a> to be defined.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p><code>true</code> if the value is an even number.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="isinteger" class="tsd-anchor"></a>
+					<h3>is<wbr>Integer</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Integer<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/API/Number.ts#L88">configuration/API/Number.ts:88</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Determines whether the value is an integer.</p>
+								</div>
+								<p>Must call <a href="../modules/format.config.html#addutilstoprototype">Format.Config.addUtilsToPrototype</a> to be defined.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p><code>true</code> if the value is an integer.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="iswhole" class="tsd-anchor"></a>
+					<h3>is<wbr>Whole</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Whole<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/API/Number.ts#L104">configuration/API/Number.ts:104</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Determines whether the passed value is a whole number (positive integer including <code>0</code>).</p>
+								</div>
+								<p>Must call <a href="../modules/format.config.html#addutilstoprototype">Format.Config.addUtilsToPrototype</a> to be defined.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p><code>true</code> if the value is a positive integer including <code>0</code>.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="toexponentialminmax" class="tsd-anchor"></a>
+					<h3>to<wbr>Exponential<wbr>Min<wbr>Max</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Exponential<wbr>Min<wbr>Max<span class="tsd-signature-symbol">(</span>minDigits<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, maxDigits<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/API/Number.ts#L132">configuration/API/Number.ts:132</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the best fitting formatted value, returned by the <code>Number.toExponential</code> method, given a minimum and/or maximum digits precision.</p>
 								</div>
 								<p>Must call <a href="../modules/format.config.html#addutilstoprototype">Format.Config.addUtilsToPrototype</a> to be defined.</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>startIndex: <span class="tsd-signature-type">number</span></h5>
+									<h5>minDigits: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The zero-based index position of the insertion.</p>
+										<p>The minimum number of digits to include in the format.</p>
 									</div>
 								</li>
 								<li>
-									<h5>insertValue: <span class="tsd-signature-type">string</span></h5>
+									<h5>maxDigits: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The string to insert.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-							<p>A new string that is equivalent to the instance, but with insertValue inserted at position startIndex.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="padleft" class="tsd-anchor"></a>
-					<h3>pad<wbr>Left</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">pad<wbr>Left<span class="tsd-signature-symbol">(</span>totalWidth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, paddingChar<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/API/String.ts#L58">configuration/API/String.ts:58</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns a new string of a specified length in which the beginning of the current string is padded with spaces or with a specified character.</p>
-								</div>
-								<p>Must call <a href="../modules/format.config.html#addpaddingtoprototype">Format.Config.addPaddingToPrototype</a> to be defined.</p>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>totalWidth: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The number of characters in the resulting string, equal to the number of original characters plus any additional padding characters.</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> paddingChar: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>A padding character. Defaults to <a href="format.utils.padding.options.html#paddingchar">Padding.Options.paddingChar</a>.</p>
+										<p>The maximum number of digits to include in the format.</p>
 									</div>
 								</li>
 							</ul>
@@ -241,36 +240,74 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="padright" class="tsd-anchor"></a>
-					<h3>pad<wbr>Right</h3>
+					<a name="tofixedminmax" class="tsd-anchor"></a>
+					<h3>to<wbr>Fixed<wbr>Min<wbr>Max</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">pad<wbr>Right<span class="tsd-signature-symbol">(</span>totalWidth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, paddingChar<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Fixed<wbr>Min<wbr>Max<span class="tsd-signature-symbol">(</span>minDigits<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, maxDigits<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/API/String.ts#L67">configuration/API/String.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/API/Number.ts#L123">configuration/API/Number.ts:123</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns a new string of a specified length in which the ending of the current string is padded with spaces or with a specified character.</p>
+									<p>Returns the best fitting formatted value, returned by the <code>Number.toFixed</code> method, given a minimum and/or maximum digits precision.</p>
 								</div>
-								<p>Must call <a href="../modules/format.config.html#addpaddingtoprototype">Format.Config.addPaddingToPrototype</a> to be defined.</p>
+								<p>Must call <a href="../modules/format.config.html#addutilstoprototype">Format.Config.addUtilsToPrototype</a> to be defined.</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>totalWidth: <span class="tsd-signature-type">number</span></h5>
+									<h5>minDigits: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The number of characters in the resulting string, equal to the number of original characters plus any additional padding characters.</p>
+										<p>The minimum number of digits to include in the format.</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> paddingChar: <span class="tsd-signature-type">string</span></h5>
+									<h5>maxDigits: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>A padding character. Defaults to <a href="format.utils.padding.options.html#paddingchar">Padding.Options.paddingChar</a>.</p>
+										<p>The maximum number of digits to include in the format.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="toprecisionminmax" class="tsd-anchor"></a>
+					<h3>to<wbr>Precision<wbr>Min<wbr>Max</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Precision<wbr>Min<wbr>Max<span class="tsd-signature-symbol">(</span>minDigits<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, maxDigits<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/API/Number.ts#L141">configuration/API/Number.ts:141</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the best fitting formatted value, returned by the <code>Number.toPrecision</code> method, given a minimum and/or maximum digits precision.</p>
+								</div>
+								<p>Must call <a href="../modules/format.config.html#addutilstoprototype">Format.Config.addUtilsToPrototype</a> to be defined.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>minDigits: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The minimum number of digits to include in the format.</p>
+									</div>
+								</li>
+								<li>
+									<h5>maxDigits: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The maximum number of digits to include in the format.</p>
 									</div>
 								</li>
 							</ul>
@@ -308,36 +345,45 @@
 					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
 						<a href="indexable.html" class="tsd-kind-icon">Indexable</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-is-not-exported">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-is-not-exported">
 						<a href="number.html" class="tsd-kind-icon">Number</a>
+						<ul>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="number.html#iscounting" class="tsd-kind-icon">is<wbr>Counting</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="number.html#iseven" class="tsd-kind-icon">is<wbr>Even</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="number.html#isinteger" class="tsd-kind-icon">is<wbr>Integer</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="number.html#iswhole" class="tsd-kind-icon">is<wbr>Whole</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="number.html#toexponentialminmax" class="tsd-kind-icon">to<wbr>Exponential<wbr>Min<wbr>Max</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="number.html#tofixedminmax" class="tsd-kind-icon">to<wbr>Fixed<wbr>Min<wbr>Max</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="number.html#toprecisionminmax" class="tsd-kind-icon">to<wbr>Precision<wbr>Min<wbr>Max</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="numberconstructor.html" class="tsd-kind-icon">Number<wbr>Constructor</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="objectconstructor.html" class="tsd-kind-icon">Object<wbr>Constructor</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-is-not-exported">
+					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="string.html" class="tsd-kind-icon">String</a>
-						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="string.html#format" class="tsd-kind-icon">format</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="string.html#insert" class="tsd-kind-icon">insert</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="string.html#padleft" class="tsd-kind-icon">pad<wbr>Left</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="string.html#padright" class="tsd-kind-icon">pad<wbr>Right</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="stringconstructor.html" class="tsd-kind-icon">String<wbr>Constructor</a>
 					</li>

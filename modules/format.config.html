@@ -119,7 +119,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/Config.ts#L33">configuration/Config.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/Config.ts#L35">configuration/Config.ts:35</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -146,7 +146,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/Config.ts#L39">configuration/Config.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/Config.ts#L41">configuration/Config.ts:41</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -168,7 +168,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/Config.ts#L21">configuration/Config.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/Config.ts#L23">configuration/Config.ts:23</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -211,17 +211,19 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/Config.ts#L65">configuration/Config.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/Config.ts#L69">configuration/Config.ts:69</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Adds all <a href="format.utils.html">Format.Utils</a> methods (including ones in sub-modules like <a href="format.utils.function.html">Format.Utils.Function</a>) as static methods to respective global objects.</p>
+									<p>Adds all <a href="format.utils.html">Format.Utils</a> methods (including ones in sub-modules like <a href="format.utils.function.html">Format.Utils.Function</a>) as static methods to respective built-in types.</p>
 								</div>
 								<p>For example <a href="../interfaces/objectconstructor.html#gettype">ObjectConstructor.getType</a> will be equivallent to calling <a href="format.utils.html#gettype">Format.Utils.getType</a>.
 								The following mapping applies:</p>
 								<ul>
 									<li><a href="format.utils.html">Format.Utils</a> methods =&gt; <a href="../interfaces/objectconstructor.html">ObjectConstructor</a></li>
+									<li><a href="format.utils.text.html">Format.Utils.Text</a> =&gt; <a href="../interfaces/stringconstructor.html">StringConstructor</a></li>
+									<li><a href="format.utils.numeric.html">Format.Utils.Numeric</a> =&gt; <a href="../interfaces/numberconstructor.html">NumberConstructor</a></li>
 									<li><a href="format.utils.function.html">Format.Utils.Function</a> =&gt; <a href="../interfaces/functionconstructor.html">FunctionConstructor</a></li>
 									<li><a href="format.utils.enumerable.html">Format.Utils.Enumerable</a> =&gt; <a href="../interfaces/arrayconstructor.html">ArrayConstructor</a></li>
 								</ul>
@@ -240,18 +242,20 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/Config.ts#L85">configuration/Config.ts:85</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/Config.ts#L91">configuration/Config.ts:91</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Adds all <a href="format.utils.html">Format.Utils</a> sub-modules&#39; methods as wrapped instance methods to respective global objects.</p>
+									<p>Adds some <a href="format.utils.html">Format.Utils</a> sub-modules&#39; methods as wrapped instance methods to respective built-in types.</p>
 								</div>
 								<p>The method&#39;s first argument must match the global object&#39;s type.
-									For example <a href="format.utils.function.html#getname">Function.getName</a> will be wrapped to have its first argument replaced by the <code>this</code> object in the prototype version. Other arguments are shifted accordingly in the process.
+									For example <a href="../interfaces/function.html#getname">Function.getName</a> will be wrapped to have its first argument replaced by the <code>this</code> object in the prototype version. Other arguments are shifted accordingly in the process.
 								The following mapping applies:</p>
 								<ul>
-									<li><a href="format.utils.function.html">Format.Utils.Function</a> =&gt; <a href="format.utils.function.html">Function</a></li>
+									<li><a href="format.utils.text.html">Format.Utils.Text</a> =&gt; <a href="../interfaces/string.html">String</a></li>
+									<li><a href="format.utils.numeric.html">Format.Utils.Numeric</a> =&gt; <a href="../interfaces/number.html">Number</a></li>
+									<li><a href="format.utils.function.html">Format.Utils.Function</a> =&gt; <a href="../interfaces/function.html">Function</a></li>
 									<li><a href="format.utils.enumerable.html">Format.Utils.Enumerable</a> =&gt; <a href="../interfaces/array.html">Array</a></li>
 								</ul>
 							</div>
@@ -269,7 +273,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/Config.ts#L103">configuration/Config.ts:103</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/Config.ts#L109">configuration/Config.ts:109</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -291,7 +295,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/Config.ts#L97">configuration/Config.ts:97</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/Config.ts#L103">configuration/Config.ts:103</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -313,7 +317,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/Config.ts#L45">configuration/Config.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/Config.ts#L47">configuration/Config.ts:47</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -335,7 +339,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/Config.ts#L51">configuration/Config.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/Config.ts#L53">configuration/Config.ts:53</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -357,7 +361,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/Config.ts#L71">configuration/Config.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/Config.ts#L75">configuration/Config.ts:75</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -379,7 +383,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/Config.ts#L91">configuration/Config.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/configuration/Config.ts#L97">configuration/Config.ts:97</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -399,32 +403,27 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-module">
+					<li class="current tsd-kind-module">
 						<a href="format.html">Format</a>
-					</li>
-					<li class="current tsd-kind-module tsd-parent-kind-module">
-						<a href="format.config.html">Format.<wbr>Config</a>
-					</li>
-					<li class=" tsd-kind-module tsd-parent-kind-module">
-						<a href="format.config.definitions.html">Format.<wbr>Config.<wbr>Definitions</a>
-					</li>
-					<li class=" tsd-kind-module tsd-parent-kind-module">
-						<a href="format.errors.html">Format.<wbr>Errors</a>
-					</li>
-					<li class=" tsd-kind-module tsd-parent-kind-module">
-						<a href="format.globalization.html">Format.<wbr>Globalization</a>
-					</li>
-					<li class=" tsd-kind-module tsd-parent-kind-module">
-						<a href="format.utils.html">Format.<wbr>Utils</a>
-					</li>
-					<li class=" tsd-kind-module tsd-parent-kind-module">
-						<a href="format.utils.enumerable.html">Format.<wbr>Utils.<wbr>Enumerable</a>
-					</li>
-					<li class=" tsd-kind-module tsd-parent-kind-module">
-						<a href="format.utils.function.html">Format.<wbr>Utils.<wbr>Function</a>
-					</li>
-					<li class=" tsd-kind-module tsd-parent-kind-module">
-						<a href="format.utils.padding.html">Format.<wbr>Utils.<wbr>Padding</a>
+						<ul>
+							<li class="current tsd-kind-module tsd-parent-kind-module">
+								<a href="format.config.html">Config</a>
+								<ul>
+									<li class=" tsd-kind-module tsd-parent-kind-module">
+										<a href="format.config.definitions.html">Definitions</a>
+									</li>
+								</ul>
+							</li>
+							<li class=" tsd-kind-module tsd-parent-kind-module">
+								<a href="format.errors.html">Errors</a>
+							</li>
+							<li class=" tsd-kind-module tsd-parent-kind-module">
+								<a href="format.globalization.html">Globalization</a>
+							</li>
+							<li class=" tsd-kind-module tsd-parent-kind-module">
+								<a href="format.utils.html">Utils</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</nav>
