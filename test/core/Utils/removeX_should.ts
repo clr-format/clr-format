@@ -217,7 +217,7 @@ namespace Format.Utils {
             ]);
         });
 
-        it("removeFalsy should remove all properties with null, undefined or empty string values", () => {
+        it("removeFalsy should recursivelly remove all properties with null, undefined or empty string values", () => {
 
             let object = getObject(true), array = getArray(true),
                 expectedObject = {
