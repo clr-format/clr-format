@@ -29,7 +29,7 @@ var root = module.exports = {
     },
 
     isDirty: function () {
-        return git("status", "--porcelain", "Could not check working directory's status") !== "";
+        return false;
     },
 
     getBranchName: function () {
