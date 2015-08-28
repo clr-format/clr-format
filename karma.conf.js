@@ -90,7 +90,9 @@ module.exports = function (config) {
 
 
         sauceLabs: {
-            testName: 'clr-format Unit Tests'
+            testName: 'clr-format Unit Tests',
+            startConnect: false,
+            recordScreenshots: false
         },
 
 
