@@ -13,4 +13,4 @@ before_script:
   - npm install --global gulp
 
 script:
-  - gulp build-minify
+  - gulp build-release

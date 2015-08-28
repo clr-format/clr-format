@@ -3,6 +3,6 @@
         "target": "ES3",
         "sourceMap": false,
         "noImplicitAny": true,
-        "out": "tests.js"
+        "out": "tests-headless.js"
     }
 }

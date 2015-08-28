@@ -36,10 +36,11 @@ gulp.task("build", ["build-core", "build-config", "build-npm", "test-npm"]);
 gulp.task("build-npm", ["lint-core", "lint-config"], build.npm);
 gulp.task("build-core", ["lint-core"], build.js("core"));
 gulp.task("build-config", ["build-core", "lint-config"], build.js("config"));
-gulp.task("build-minify", ["build", "lint-test"], minify);
+gulp.task("build-release", ["build", "lint-test"], minify);
 
 gulp.task("test", ["lint-test"], test.jasmine);
 gulp.task("test-npm", ["build-npm"], test.npm);
+gulp.task("test-browser", ["lint-test"], test.browser);
 
 gulp.task("watch", function () {
     gulp.watch([paths.sources], ["build"]);
@@ -53,7 +54,7 @@ gulp.task("tsdoc", ["lint-core", "lint-config"], tsdoc.build);
 gulp.task("minify", minify);
 
 gulp.task("nuget-download", nuget.download);
-gulp.task("nuget-pack", ["nuget-download", "build-minify"], nuget.pack);
+gulp.task("nuget-pack", ["nuget-download", "build-release"], nuget.pack);
 
 gulp.task("bump-major", version("major"));
 gulp.task("bump-minor", version("minor"));

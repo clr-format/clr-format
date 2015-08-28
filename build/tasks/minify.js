@@ -49,7 +49,7 @@ module.exports = function () {
         .pipe(rename({ suffix: ".min" }))
         .pipe(gulp.dest(dirs.output));
 
-    return test.jasmine(beautifyOptions);
+    return test.jasmine(beautifyOptions) && test.browser(beautifyOptions);
 };
 
 function commentsHandler(node, comment) {
