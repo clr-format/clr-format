@@ -9,22 +9,22 @@
         <projectUrl>https://github.com/clr-format/clr-format</projectUrl>
         <iconUrl>https://avatars3.githubusercontent.com/u/13048800</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>The implementation of this string formatting function is inspired by .NET's (and other Microsoft® products') Composite Formatting feature. Therefore the final behaviour should be similar to what's described in the Getting started with the String.Format method MSDN article. The main difference is that method names in JavaScript are intrinsically camelcase therefore String.format should be used instead.
+        <description>The implementation of this string formatting function is inspired by .NET's (and other Microsoft® products') Composite Formatting feature. Therefore the final behaviour should be similar to what's described in the Getting started with the String.Format method MSDN article. The main difference is that method names in JavaScript are intrinsically camelcase therefore String.format should be used instead. The API documentation can be refered for more details at http://clr-format.github.io/clr-format/
 
 Usage:
-  var formatted = String.format("Value: {0}{1,5}", 1, "text"); // formatted = "Value: 1 text"
+  var formatted = String.format("Value: {0:00-00}", 345.6); // formatted = "Value: 03-46"
 
   formatted = String.format("Value: {0,-2}{1}", 1, "text"); // formatted = "Value: 1 text"
 
   // Using the configuration API
   Format.Config.addFormatToPrototype();
-  formatted = "Value: {0}".format("prototype"); // formatted = "Value: prototype"</description>
+  formatted = "Value:{0,10}".format("prototype"); // formatted = "Value: prototype"</description>
         <summary>A lightweight, modular JavaScript implementation of a string formatting function that supports composite format strings and globalization</summary>
-        <releaseNotes>1. Full support for index {0} and alignment {0,-10} components.
-2. Providing a format string {0,-10:0.00} component will result in a thrown namespaced FormatError.
+        <releaseNotes>1. Support for all of .NET's standard and custom numeric format strings (except for currency). The only available culture format provider for now is the invariant culture.
+2. Full support for index {0} and alignment {0,-10} components.
 3. Optional configuration API contained in clr-format-config.js and defined under the Format.Config namespace. See http://clr-format.github.io/clr-format/modules/format.config.html
 </releaseNotes>
-        <tags>string format javascript number date globalization intl</tags>
+        <tags>string format javascript typescript number date globalization intl</tags>
     </metadata>
     <files>
         <file src="dist\*.d.ts" target="content\" />

@@ -8,19 +8,27 @@ Installation
 The following commands can be used to install the script in a context of your choice.
 
 #### NuGet ([gallery link](https://www.nuget.org/packages/clr-format.js))
-    Install-Package clr-format.js
+`Install-Package clr-format.js`
 
 #### Bower
-    bower install clr-format
+`bower install clr-format`
 
 #### Module
-    npm install clr-format
+`npm install clr-format`
 
 Latest Version Capabilities
 ---------------------------
 
-1. [GitHub pages documentation](http://clr-format.github.io/clr-format) generated from the source files' jsdoc comments for the entire public API so far.
-Thanks to [TypeDoc](http://typedoc.io) and its [Gulp Plugin](https://github.com/rogierschouten/gulp-typedoc)!
+1. Support for all of .NET's [standard][Standard Numeric Format Specifiers] and [custom][Custom Numeric Format String] numeric format strings (except for currency).
+    ```javascript
+    expect(String.format("{0:P1}", -0.39678)).toBe("-39.7 %");
+    expect(String.format("{0:#0.0E00}", 987654)).toBe("98.8E04");
+
+    expect(String.format("{0:C}", 35.23)).toThrowError(Format.Errors.FormatError);
+    ```
+For lack of a better medium (other than MSDN) please refer to the [test cases][formatInvariant_should.ts] for a more in-depth showcase of what can be expected as input/output.
+Also note that the default and only [FormatProvider] implementation is [CultureInfo.InvariantCulture]. Culture-specific and currency formatting are coming up in the next version.
+
 2. Full support for index \{__0__\} and alignment \{0,__-10__\} components.
     ```javascript
     expect(
@@ -30,16 +38,7 @@ Thanks to [TypeDoc](http://typedoc.io) and its [Gulp Plugin](https://github.com/
         .toBe("Format primitives: 0, true, 3, {\"a\":1} , [2]");
     ```
 
-3. Providing a format string \{0,-10:__0.00__\} component will result in a thrown [FormatError](http://clr-format.github.io/clr-format/classes/format.errors.formaterror.html).
-    ```javascript
-    expect(
-        String.format(
-            "{0:00.0}", 1))
-        .toThrowError(Format.Errors.FormatError);
-    ```
-
-4. Optional configuration API contained in *clr-format-config.js* and defined under the [Format.Config](http://clr-format.github.io/clr-format/modules/format.config.html) namespace.
-The example differs a bit when used as a NodeJS module, see in the Usage section below.
+3. Optional configuration API contained in *clr-format-config.js* and defined under the [Format.Config] namespace.
     ```javascript
     Format.Config.addFormatToPrototype();
     expect("Formatting using the injected {0} method".format("prototype"))
@@ -51,31 +50,39 @@ Usage
 
 #### As a browser script
 ```javascript
-var formatted = String.format("Value: {0}{1,5}", 1, "text"); // formatted = "Value: 1 text"
+var formatted = String.format("Value: {0:00-00}", 345.6); // formatted = "Value: 03-46"
 ```
 
 #### As a module
 ```javascript
-var format = require("clr-format");
-var formatted = format("Value: {0,-2}{1}", 1, "text"); // formatted = "Value: 1 text"
+var format = String.format = require("clr-format");
+
+var formatted = String.format("Value: {0,-2}{1}", 1, "text"); // formatted = "Value: 1 text"
 
 // Using the configuration API
 format.Config.addFormatToPrototype();
-formatted = "Value: {0}".format("prototype"); // formatted = "Value: prototype"
+formatted = "Value:{0,10}".format("prototype"); // formatted = "Value: prototype"
 ```
+
+API Documentation
+-----------------
+The [GitHub pages documentation] is generated from the latest release's source files. It includes the jsdoc comments and signatures of public/exported members,
+as well as the declarations of private ones.
+
+Do not rely on any privates; even though for classes they are technically exported they are most likely subject to change in the future.
 
 Development
 -----------
-The implementation of this string formatting function is inspired by .NET's (and other Microsoft® products') [Composite Formatting](https://msdn.microsoft.com/en-us/library/txafckwd.aspx) feature.
-Therefore the final behaviour should be similar to what's described in the [Getting started with the String.Format method](https://msdn.microsoft.com/en-us/library/system.string.format.aspx#Starting) article.
-The main difference is that method names in JavaScript are intrinsically camelcase therefore [String.format](http://clr-format.github.io/clr-format/interfaces/stringconstructor.html#format) should be used instead.
+The implementation of this string formatting function is inspired by .NET's (and other Microsoft® products') [Composite Formatting] feature.
+Therefore the final behaviour should be similar to what's described in the [Getting started with the String.Format method] article.
+The main difference is that method names in JavaScript are intrinsically camelcase therefore [String.format] should be used instead.
 
-To develop and contribute simply install NodeJS, clone the repository, install npm dependencies and run [Gulp](http://gulpjs.com/).
+To develop and contribute simply install NodeJS, clone the repository, install npm dependencies and run [Gulp].
 
 #### Tools (download and install)
-1. [GIT](http://git-scm.com/download/)
-2. [NodeJS](https://nodejs.org/download/) - make sure to keep the option to add node and globally installed packages to PATH
-3. [VSCode](https://code.visualstudio.com/) - or any other IDE that has TypeScript language support
+1. [GIT] - with the option to add `git` to PATH
+2. [NodeJS] - with the option to add `node`, `npm`, and globally (`-g`) installed packages to PATH
+3. [VSCode] - or any other IDE that has TypeScript language support
 
 #### Building the project
 ```bash
@@ -86,7 +93,7 @@ gulp
 ```
 
 #### Notes
-1. The default gulp build tasks' list contains a [watch task](https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpwatchglob-opts-cb)
+1. The default gulp build tasks' list contains a [watch task][Gulp watch task]
 which means it will block the console and continuously rebuild the project when files in the source or tests folder are changed.
 2. In VSCode pressing **Ctrl** + **Shift** + **B** or **T** will trigger the default build or test command respectively.
 
@@ -97,14 +104,33 @@ Support for index and alignment components only; *without* any formatting rules 
 
 ##### 0.2 (Released)
 Addition of a *clr-format-config.js* sub-module/package which can be optionally installed to compliment the core implementation with various pre-defined configurations.
-See [Format.Config](http://clr-format.github.io/clr-format/modules/format.config.html) for full documentation.
+See [Format.Config] for full documentation.
 
-##### 0.3
+##### 0.3 (Released)
 Implementation of an invariant number formatting provider and numeric format string components.
 
 ##### 0.4
-Addition of a *clr-format-intl.js* sub-module/package which can be optionally installed to provide globalization via a bridge to the
-[ECMAScript's Intl namespace](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Intl).
+Addition of a *clr-format-intl.js* sub-module/package which can be optionally installed to provide globalization via a bridge to the [ECMAScript Intl namespace].
 
 ##### 0.5
-Complete the implementation with a date formatting provider and temporal format string components.
+Complete the implementation with a date formatting provider and date/time format string components.
+
+[GIT]: http://git-scm.com/download/
+[Gulp]: http://gulpjs.com/
+[NodeJS]: https://nodejs.org/download/
+[VSCode]: https://code.visualstudio.com/
+
+[Composite Formatting]: https://msdn.microsoft.com/en-us/library/txafckwd.aspx
+[Custom Numeric Format String]: https://msdn.microsoft.com/en-us/library/0c899ak8.aspx
+[Standard Numeric Format Specifiers]: https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx
+[Getting started with the String.Format method]: https://msdn.microsoft.com/en-us/library/system.string.format.aspx#Starting
+[ECMAScript Intl namespace]: https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Intl
+[Gulp watch task]: https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpwatchglob-opts-cb
+
+[GitHub pages documentation]: http://clr-format.github.io/clr-format
+[Format.Config]: http://clr-format.github.io/clr-format/modules/format.config.html
+[String.format]: http://clr-format.github.io/clr-format/interfaces/stringconstructor.html#format
+[FormatProvider]: http://clr-format.github.io/clr-format/interfaces/format.globalization.formatprovider.html
+[CultureInfo.InvariantCulture]: http://clr-format.github.io/clr-format/classes/format.globalization.cultureinfo.html#invariantculture
+
+[formatInvariant_should.ts]: https://github.com/clr-format/clr-format/blob/master/test/core/String/formatInvariant_should.ts
