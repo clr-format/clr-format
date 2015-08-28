@@ -7,19 +7,22 @@ Installation
 ------------
 The following commands can be used to install the script in a context of your choice.
 
-#### NuGet ([gallery link](https://www.nuget.org/packages/clr-format.js))
+#### [![NuGet](https://badge.fury.io/nu/clr-format.js.svg)](http://badge.fury.io/nu/clr-format.js)
 `Install-Package clr-format.js`
 
-#### Bower
+#### [![Bower](https://badge.fury.io/bo/clr-format.svg)](http://badge.fury.io/bo/clr-format)
 `bower install clr-format`
 
-#### Module
+#### [![NPM](https://badge.fury.io/js/clr-format.svg)](http://badge.fury.io/js/clr-format)
 `npm install clr-format`
 
 Latest Version Capabilities
 ---------------------------
 
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/clr-format.svg)](https://saucelabs.com/u/clr-format)
+
 1. Support for all of .NET's [standard][Standard Numeric Format Specifiers] and [custom][Custom Numeric Format String] numeric format strings (except for currency).
+
     ```javascript
     expect(String.format("{0:P1}", -0.39678)).toBe("-39.7 %");
     expect(String.format("{0:#0.0E00}", 987654)).toBe("98.8E04");
@@ -30,6 +33,7 @@ For lack of a better medium (other than MSDN) please refer to the [test cases][f
 Also note that the default and only [FormatProvider] implementation is [CultureInfo.InvariantCulture]. Culture-specific and currency formatting are coming up in the next version.
 
 2. Full support for index \{__0__\} and alignment \{0,__-10__\} components.
+
     ```javascript
     expect(
         String.format(
@@ -39,6 +43,7 @@ Also note that the default and only [FormatProvider] implementation is [CultureI
     ```
 
 3. Optional configuration API contained in *clr-format-config.js* and defined under the [Format.Config] namespace.
+
     ```javascript
     Format.Config.addFormatToPrototype();
     expect("Formatting using the injected {0} method".format("prototype"))
@@ -89,15 +94,17 @@ To develop and contribute simply install NodeJS, clone the repository, install n
 #### Building the project
 ```bash
 git clone https://github.com/clr-format/clr-format.git
+npm install --ignore-scripts
 npm install --global gulp
-npm install
 gulp
 ```
 
 #### Notes
-1. The default gulp build tasks' list contains a [watch task][Gulp watch task]
+- The default gulp build tasks' list contains a [watch task][Gulp watch task]
 which means it will block the console and continuously rebuild the project when files in the source or tests folder are changed.
-2. In VSCode pressing **Ctrl** + **Shift** + **B** or **T** will trigger the default build or test command respectively.
+- In VSCode pressing **Ctrl** + **Shift** + **B** or **T** will trigger the default build or test command respectively.
+- The `--ignore-scripts` option is used to stop errors caused by `node-gyp` rebuild scripts introduced by `karma`.
+Overall, it doesn't seem to affect this project's build.
 
 Planned releases
 ----------------

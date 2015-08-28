@@ -4,54 +4,43 @@
 module.exports = function (config) {
 
     var customLaunchers = {
-        sl_chrome: {
-            base: 'SauceLabs',
-            browserName: 'chrome',
-            platform: 'Windows 7',
-            version: '35'
-        },
-        sl_firefox: {
-            base: 'SauceLabs',
-            browserName: 'firefox',
-            version: '30'
-        },
-        sl_ios_safari: {
-            base: 'SauceLabs',
-            browserName: 'iphone',
-            platform: 'OS X 10.9',
-            version: '7.1'
-        },
-        sl_ie_11: {
-            base: 'SauceLabs',
-            browserName: 'internet explorer',
-            platform: 'Windows 8.1',
-            version: '11'
-        }
+        sl_chrome: { base: "SauceLabs", browserName: "chrome" },
+        sl_firefox: { base: "SauceLabs", browserName: "firefox" },
+        sl_opera: { base: "SauceLabs", browserName: "opera" },
+        sl_safari_mac: { base: "SauceLabs", browserName: "safari", version: "6.0" },
+        sl_safari_win: { base: "SauceLabs", browserName: "safari" },
+        sl_ie_edge: { base: "SauceLabs", browserName: "microsoftedge", version: "20.10240" },
+        sl_ie_11: { base: "SauceLabs", browserName: "internet explorer", platform: "Windows 8.1", version: "11" },
+        sl_ie_10: { base: "SauceLabs", browserName: "internet explorer", platform: "Windows 8", version: "10" },
+        sl_ie_9: { base: "SauceLabs", browserName: "internet explorer", version: "9" },
+        sl_ie_8: { base: "SauceLabs", browserName: "internet explorer", version: "8" },
+        sl_android: { base: "SauceLabs", browserName: "android", version: "4.0" },
+        sl_iphone: { base: "SauceLabs", browserName: "iphone", version: "7.1" }
     };
 
     config.set({
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
-        basePath: '',
+        basePath: "",
 
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ['jasmine'],
+        frameworks: ["jasmine"],
 
 
         // list of files / patterns to load in the browser
         files: [
-            'dist/clr-format.js',
-            'dist/clr-format-*.js',
-            'build/tests-browser.js'
+            "dist/clr-format.js",
+            "dist/clr-format-*.js",
+            "build/tests-browser.js"
         ],
 
 
         // list of files to exclude
         exclude: [
-            'dist/*-npm.js',
-            'dist/*.min.js'
+            "dist/*-npm.js",
+            "dist/*.min.js"
         ],
 
 
@@ -62,9 +51,9 @@ module.exports = function (config) {
 
 
         // test results reporter to use
-        // possible values: 'dots', 'progress'
+        // possible values: "dots", "progress"
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['dots'],
+        reporters: ["dots", "saucelabs"],
 
 
         // web server port
@@ -90,7 +79,7 @@ module.exports = function (config) {
 
 
         sauceLabs: {
-            testName: 'clr-format Unit Tests',
+            testName: "clr-format Unit Tests",
             startConnect: false,
             /* global process */
             tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
