@@ -54,7 +54,7 @@ namespace Format.Utils.Numeric {
     }
 
     Numeric.isInteger = Number.isInteger || function(value: number): boolean {
-        return value === value >> 0;
+        return value !== null && +value === value >> 0;
     };
 
     /**
