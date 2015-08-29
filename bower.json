@@ -1,6 +1,6 @@
 {
   "name": "clr-format",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "homepage": "https://github.com/clr-format/clr-format",
   "description": "A lightweight, modular JavaScript implementation of a string formatting function that supports composite format strings and globalization",
   "main": "dist/clr-format.js",
