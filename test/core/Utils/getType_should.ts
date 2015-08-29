@@ -28,8 +28,6 @@ namespace Format.Utils {
             expect(getType(Function.getEmpty())).toBe(Types.Function);
 
             if (supportsDOM()) {
-                expect(getType(window)).toMatch(/\[object (global)|(Window)\]/);
-                expect(getType(document)).toMatch(/\[object (?:HTML)?Document\]/);
                 expect(getType(document.firstChild)).toBe("[object DocumentType]");
             }
         });

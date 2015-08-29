@@ -47,11 +47,6 @@ namespace Format.Utils {
             expect(isType("Function", undefined)).toBe(false);
 
             if (supportsDOM()) {
-                expect(isType("global", window) || isType("Window", window)).toBe(true);
-
-                expect(isType("HTMLDocument", document) || isType("Document", document)).toBe(true);
-                expect(isType("HTMLDocument", document.firstChild) || isType("HTMLDocument", document.firstChild)).toBe(false);
-
                 expect(isType("DocumentType", document.firstChild)).toBe(true);
                 expect(isType("DocumentType", document)).toBe(false);
             }
