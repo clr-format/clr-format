@@ -10,9 +10,6 @@ namespace Format.Utils {
 
         it("should return the appropriate type strings returned by Object.prototype.toString calls", () => {
 
-            expect(getType(null)).toBe(Types.Null);
-            expect(getType(undefined)).toBe(Types.Undefined);
-
             expect(getType({})).toBe(Types.Object);
             expect(getType([])).toBe(Types.Array);
 

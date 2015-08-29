@@ -10,12 +10,6 @@ namespace Format.Utils {
 
         it("should return the appropriate boolean value respective to the object's Object.prototype.toString call and the type argument", () => {
 
-            expect(isType("Null", null)).toBe(true);
-            expect(isType("Null", undefined)).toBe(false);
-
-            expect(isType("Undefined", undefined)).toBe(true);
-            expect(isType("Undefined", null)).toBe(false);
-
             expect(isType("Object", {})).toBe(true);
             expect(isType("Object", [])).toBe(false);
 

@@ -48,8 +48,6 @@ namespace Format.Utils {
         Date: "",
         /** Returns `"[object Function]"`. */
         Function: "",
-        /** Returns `"[object Null]"`. */
-        Null: "",
         /** Returns `"[object Number]"`. */
         Number: "",
         /** Returns `"[object Object]"`. */
@@ -57,8 +55,6 @@ namespace Format.Utils {
         /** Returns `"[object RegExp]"`. */
         RegExp: "",
         /** Returns `"[object String]"`. */
-        String: "",
-        /** Returns `"[object Undefined]"`. */
-        Undefined: ""
+        String: ""
     });
 }
