@@ -7,6 +7,8 @@ namespace Format.Config {
 
     describe("Config addToPrototype", () => {
 
+        function getName(func: Function): string { return Utils.Function.getName(func); }
+
         let bareFunction = (source: number, value: number) => source + value,
             removeFromPrototype = (hostObject: any, name: string) => delete hostObject.prototype[name];
 
@@ -15,10 +17,10 @@ namespace Format.Config {
             let numberInstance: any = 1;
 
             Format.Config.addToPrototype(bareFunction, Number, "add");
-            Format.Config.addToPrototype(Utils.Function.getName, Function);
+            Format.Config.addToPrototype(getName, Function);
 
             expect(numberInstance.add(1)).toBe(2);
-            expect(Utils.Function.getEmpty.getName()).toBe("getEmpty");
+            expect(bareFunction.getName()).toBe("");
         });
 
         it("should throw an ArgumentError when adding an anonymous bare function without specifying a 'name' argument for the wrapped prototype method", () => {
