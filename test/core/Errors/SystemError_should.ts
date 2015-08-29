@@ -24,26 +24,14 @@ namespace Format.Errors {
             expect(error.message).toBe(message);
         });
 
-        it("should initialize the 'stack' and 'source' properties according to the context it's thrown from", () => {
+        it("should preserve the 'stack' property according to the context it's rethrowning", () => {
 
             try {
                 contextFunction();
             }
-            catch (error) {
-                expect(error.stack).toBeDefined();
-                expect(error.source).toContain("contextFunction");
-            }
-        });
-
-        it("should preserve the 'stack' and 'source' properties according to the context it's rethrowning", () => {
-
-            try {
-                contextFunction();
-            }
-            catch (error) {
-                let wrappedError = new SystemError(error.message, error);
-                expect(wrappedError.stack).toBeDefined();
-                expect(wrappedError.source).toContain("contextFunction");
+            catch (innerError) {
+                let error = new SystemError(innerError.message, innerError);
+                expect(error.stack).toBe(innerError.stack);
             }
         });
 

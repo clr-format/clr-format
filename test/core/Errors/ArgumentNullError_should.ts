@@ -6,6 +6,12 @@ namespace Format.Errors {
 
     describe("ArgumentNullError constructor", () => {
 
+        it("should initialize the 'name' property to be the same as its type name", () => {
+
+            expect(new ArgumentNullError("").name)
+                .toBe("ArgumentNullError");
+        });
+
         it("should initialize the 'message' property according to the supplied 'argumentName'", () => {
 
             expect(new ArgumentNullError("arg").message)

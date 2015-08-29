@@ -6,6 +6,12 @@ namespace Format.Errors {
 
     describe("NotImplementedError constructor", () => {
 
+        it("should initialize the 'name' property to be the same as its type name", () => {
+
+            expect(new NotImplementedError("").name)
+                .toBe("NotImplementedError");
+        });
+
         it("should initialize the 'message' property according to the supplied 'methodName'", () => {
 
             expect(new NotImplementedError("func").message)

@@ -14,8 +14,8 @@ namespace Format.Errors {
          * @param argumentName The name of the argument that caused the error.
          */
         constructor(argumentName: string) {
-            super.incrementStackCount();
             super(`Argument '${argumentName}' cannot be undefined or null`);
+            this.name = "ArgumentNullError";
         }
     }
 }

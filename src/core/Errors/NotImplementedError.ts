@@ -14,8 +14,8 @@ namespace Format.Errors {
          * @param methodName The name of the method that caused the error.
          */
         constructor(methodName: string) {
-            super.incrementStackCount();
             super(`Method '${methodName}' is not implemented or abstract`);
+            this.name = "NotImplementedError";
         }
     }
 }

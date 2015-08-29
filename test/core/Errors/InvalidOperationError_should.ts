@@ -6,6 +6,12 @@ namespace Format.Errors {
 
     describe("InvalidOperationError constructor", () => {
 
+        it("should initialize the 'name' property to be the same as its type name", () => {
+
+            expect(new InvalidOperationError().name)
+                .toBe("InvalidOperationError");
+        });
+
         it("should be interceptable from all superclasses in its chain", () => {
 
             let expectation = expect(() => {

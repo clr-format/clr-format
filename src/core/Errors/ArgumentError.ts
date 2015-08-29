@@ -14,9 +14,9 @@ namespace Format.Errors {
          * @param message A human-readable description of the error.
          * @param innerError An error to rethrow while also preserving its stack trace.
          */
-        constructor(message?: string, innerError?: Error) {
-            super.incrementStackCount();
+        constructor(message?: string, innerError?: SystemError) {
             super(message, innerError);
+            this.name = "ArgumentError";
         }
     }
 }
