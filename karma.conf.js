@@ -15,7 +15,7 @@ module.exports = function (config) {
         // sl_ie_9: { base: "SauceLabs", browserName: "internet explorer", version: "9" },
         // sl_ie_8: { base: "SauceLabs", browserName: "internet explorer", version: "8" },
         sl_android: { base: "SauceLabs", browserName: "android", version: "4.0" },
-        sl_iphone: { base: "SauceLabs", browserName: "iphone", version: "7.1" }
+        sl_iphone: { base: "SauceLabs", browserName: "iphone", version: "8.0" }
     };
 
     config.set({
