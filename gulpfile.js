@@ -61,10 +61,10 @@ gulp.task("bump-major", version("major"));
 gulp.task("bump-minor", version("minor"));
 gulp.task("bump-patch", version("patch"));
 
-gulp.task("release-pack", ["clean", "nuget-pack"]);
-gulp.task("release-tsdoc", tsdoc.release);
+gulp.task("release-pack", ["clean", "nuget-pack", "release-tsdoc"]);
 gulp.task("release-major", ["bump-major", "release-pack"], release);
 gulp.task("release-minor", ["bump-minor", "release-pack"], release);
 gulp.task("release-patch", ["bump-patch", "release-pack"], release);
+gulp.task("release-tsdoc", tsdoc.release);
 
 gulp.task("publish", ["nuget-download"], publish);
