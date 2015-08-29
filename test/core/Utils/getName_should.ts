@@ -6,14 +6,17 @@ namespace Format.Utils {
 
     describe("Function getName", () => {
 
-        it("should return the name of a constructor function", () => {
+        function func(): string { return ""; }
 
+        it("should return the name of a named function", () => {
+
+            expect(Function.getName(func)).toBe("func");
             expect(Function.getName(String)).toBe("String");
         });
 
-        it("should return 'anonymous' for lambda functions", () => {
+        it("should return \"\" for lambda/anonymous functions", () => {
 
-            expect(Function.getName(Function.getEmpty())).toBe("anonymous");
+            expect(Function.getName(Function.getEmpty())).toBe("");
         });
 
         it("should throw a TypeError when a non-functional argument is passed", () => {

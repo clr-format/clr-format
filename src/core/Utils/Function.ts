@@ -1,19 +1,25 @@
 /// <reference path="../../use-strict" />
 
+/// <reference path="Harmony" />
+
 /** A [[Format.Utils]] sub-module containing methods related to functional operations. */
 namespace Format.Utils.Function {
     /**
      * Returns the name of a function.
      * @param func A functional object.
-     * @returns The name of a function or `"anonymous"` for lambda functions.
+     * @returns The name of a function or `""` for lambda functions.
      */
     export function getName(func: Function): string {
 
         validateFunctionArgument(func, "getName");
 
+        if (func.name !== undefined) {
+            return func.name;
+        }
+
         let typeNameGroups = typeNameRegExp.exec(func.toString());
 
-        return typeNameGroups && typeNameGroups[1] ? typeNameGroups[1] : "anonymous";
+        return typeNameGroups && typeNameGroups[1] ? typeNameGroups[1] : "";
     }
     /** @private */
     var typeNameRegExp = /function +(\w+)/;

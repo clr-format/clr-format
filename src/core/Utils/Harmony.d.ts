@@ -12,6 +12,11 @@ interface Symbol {
     [Symbol.toStringTag]: string;
 }
 
+interface Function {
+    /** Returns the name of the function. */
+    name: string;
+}
+
 interface SymbolConstructor {
     /**
       * A reference to the prototype.

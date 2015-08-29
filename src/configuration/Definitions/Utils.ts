@@ -36,7 +36,7 @@ namespace Format.Config.Definitions {
     export var addToPrototype = (bareFunction: Function, hostObject: any, name: string) => {
 
         let actualName = Utils.Function.getName(bareFunction);
-        if (actualName === "anonymous" && !name) {
+        if (actualName === "" && !name) {
             throw new Errors.ArgumentError("Argument 'name' must be supplied for anonymous function declarations");
         }
 

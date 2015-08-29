@@ -20,7 +20,7 @@ interface FunctionConstructor {
      *
      * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
      * @param func A functional object.
-     * @returns The name of a function or `"anonymous"` for lambda functions.
+     * @returns The name of a function or `""` for lambda functions.
      */
     getName(func: Function): string;
 
@@ -67,7 +67,7 @@ interface Function {
      * Returns the name of a function.
      *
      * Must call [[Format.Config.addUtilsToPrototype]] to be defined.
-     * @returns The name of a function or `"anonymous"` for lambda functions.
+     * @returns The name of a function or `""` for lambda functions.
      */
     getName(): string;
 

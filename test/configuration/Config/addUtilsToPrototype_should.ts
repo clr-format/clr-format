@@ -44,7 +44,7 @@ namespace Format.Config {
             expect(array.takeWhile(() => true)).toEqual(array);
             expect(array.compact()).toBe(array);
 
-            expect(func.getName()).toBe("anonymous");
+            expect(func.getName()).toBe("");
             expect(func.memoize()).toBeDefined();
             expect(func.getReturnName()).toBe("true");
             expect(funcAccessor.getEmpty).toBeUndefined();
