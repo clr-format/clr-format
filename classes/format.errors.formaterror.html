@@ -116,14 +116,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="format.errors.formaterror.html#innererror" class="tsd-kind-icon">inner<wbr>Error</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="format.errors.formaterror.html#message" class="tsd-kind-icon">message</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="format.errors.formaterror.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="format.errors.formaterror.html#source" class="tsd-kind-icon">source</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="format.errors.formaterror.html#stack" class="tsd-kind-icon">stack</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section tsd-is-inherited tsd-is-private-protected">
-							<h3>Methods</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="format.errors.formaterror.html#incrementstackcount" class="tsd-kind-icon">increment<wbr>Stack<wbr>Count</a></li>
 							</ul>
 						</section>
 					</div>
@@ -135,14 +128,14 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Format<wbr>Error<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, innerError<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="format.errors.formaterror.html" class="tsd-signature-type">FormatError</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Format<wbr>Error<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, innerError<span class="tsd-signature-symbol">?: </span><a href="format.errors.systemerror.html" class="tsd-signature-type">SystemError</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="format.errors.formaterror.html" class="tsd-signature-type">FormatError</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overwrites <a href="format.errors.systemerror.html">SystemError</a>.<a href="format.errors.systemerror.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Errors/FormatError.ts#L11">core/Errors/FormatError.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Errors/FormatError.ts#L11">core/Errors/FormatError.ts:11</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -161,7 +154,7 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> innerError: <span class="tsd-signature-type">Error</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> innerError: <a href="format.errors.systemerror.html" class="tsd-signature-type">SystemError</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>An error to rethrow while also preserving its stack trace.</p>
@@ -183,7 +176,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="format.errors.systemerror.html">SystemError</a>.<a href="format.errors.systemerror.html#innererror">innerError</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Errors/SystemError.ts#L25">core/Errors/SystemError.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Errors/SystemError.ts#L22">core/Errors/SystemError.ts:22</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -199,7 +192,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="format.errors.errorclass.html">ErrorClass</a>.<a href="format.errors.errorclass.html#message">message</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Errors/ErrorClass.ts#L10">core/Errors/ErrorClass.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Errors/ErrorClass.ts#L13">core/Errors/ErrorClass.ts:13</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -215,28 +208,12 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="format.errors.errorclass.html">ErrorClass</a>.<a href="format.errors.errorclass.html#name">name</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Errors/ErrorClass.ts#L8">core/Errors/ErrorClass.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Errors/ErrorClass.ts#L10">core/Errors/ErrorClass.ts:10</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>A name for the type of error.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-					<a name="source" class="tsd-anchor"></a>
-					<h3>source</h3>
-					<div class="tsd-signature tsd-kind-icon">source<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from <a href="format.errors.systemerror.html">SystemError</a>.<a href="format.errors.systemerror.html#source">source</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Errors/SystemError.ts#L22">core/Errors/SystemError.ts:22</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The line from the <a href="format.errors.formaterror.html#stack">stack</a> property from which the error occurred.</p>
 						</div>
 					</div>
 				</section>
@@ -247,7 +224,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="format.errors.systemerror.html">SystemError</a>.<a href="format.errors.systemerror.html#stack">stack</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Errors/SystemError.ts#L19">core/Errors/SystemError.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Errors/SystemError.ts#L19">core/Errors/SystemError.ts:19</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -255,32 +232,6 @@
 							<p>The non-standard stack property of <code>Error</code> objects offer a trace of which functions were called, in what order, from which line and file, and with what arguments.</p>
 						</div>
 					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-private-protected">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-					<a name="incrementstackcount" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> increment<wbr>Stack<wbr>Count</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">increment<wbr>Stack<wbr>Count<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Inherited from <a href="format.errors.systemerror.html">SystemError</a>.<a href="format.errors.systemerror.html#incrementstackcount">incrementStackCount</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Errors/SystemError.ts#L45">core/Errors/SystemError.ts:45</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Increments the <a href="format.errors.systemerror.html#childstackcount">childStackCount</a>. Must be called <strong>before</strong> the base constructor in <strong>all</strong> derived error classes.</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
 				</section>
 			</section>
 		</div>
@@ -338,13 +289,7 @@
 								<a href="format.errors.formaterror.html#name" class="tsd-kind-icon">name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="format.errors.formaterror.html#source" class="tsd-kind-icon">source</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="format.errors.formaterror.html#stack" class="tsd-kind-icon">stack</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="format.errors.formaterror.html#incrementstackcount" class="tsd-kind-icon">increment<wbr>Stack<wbr>Count</a>
 							</li>
 						</ul>
 					</li>

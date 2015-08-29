@@ -129,6 +129,7 @@
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported"><a href="format.utils.html#gettypestring" class="tsd-kind-icon">get<wbr>Type<wbr>String</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported"><a href="format.utils.html#innerextend" class="tsd-kind-icon">inner<wbr>Extend</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="format.utils.html#innerremoveproperty" class="tsd-kind-icon">inner<wbr>Remove<wbr>Property</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="format.utils.html#isarray" class="tsd-kind-icon">is<wbr>Array</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.utils.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported"><a href="format.utils.html#isenumerable" class="tsd-kind-icon">is<wbr>Enumerable</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.utils.html#isobject" class="tsd-kind-icon">is<wbr>Object</a></li>
@@ -159,7 +160,7 @@
 					<div class="tsd-signature tsd-kind-icon">Types<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Types.ts#L42">core/Utils/Types.ts:42</a></li>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Types.ts#L42">core/Utils/Types.ts:42</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -203,14 +204,6 @@
 								</div>
 							</li>
 							<li class="tsd-parameter">
-								<h5>Null<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<div class="lead">
-										<p>Returns <code>&quot;[object Null]&quot;</code>.</p>
-									</div>
-								</div>
-							</li>
-							<li class="tsd-parameter">
 								<h5>Number<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<div class="lead">
@@ -242,14 +235,6 @@
 									</div>
 								</div>
 							</li>
-							<li class="tsd-parameter">
-								<h5>Undefined<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<div class="lead">
-										<p>Returns <code>&quot;[object Undefined]&quot;</code>.</p>
-									</div>
-								</div>
-							</li>
 						</ul>
 					</div>
 				</section>
@@ -260,13 +245,13 @@
 					<a name="addvalueaskey" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> add<wbr>Value<wbr>AsKey</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Value<wbr>AsKey<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><a href="../interfaces/indexable.html" class="tsd-signature-type">Indexable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, isArray<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Value<wbr>AsKey<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><a href="../interfaces/indexable.html" class="tsd-signature-type">Indexable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, objectIsArray<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Object.ts#L91">core/Utils/Object.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Object.ts#L97">core/Utils/Object.ts:97</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -278,7 +263,7 @@
 									<h5>key: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>isArray: <span class="tsd-signature-type">boolean</span></h5>
+									<h5>objectIsArray: <span class="tsd-signature-type">boolean</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -295,7 +280,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Clone.ts#L13">core/Utils/Clone.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Clone.ts#L13">core/Utils/Clone.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -341,7 +326,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Clone.ts#L30">core/Utils/Clone.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Clone.ts#L30">core/Utils/Clone.ts:30</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -351,7 +336,7 @@
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Object</span>, deep<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, isArray<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Object</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Object</span>, deep<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, objectIsArray<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Object</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
@@ -364,7 +349,7 @@
 															<h5><span class="tsd-flag ts-flagOptional">Optional</span> deep: <span class="tsd-signature-type">boolean</span></h5>
 														</li>
 														<li>
-															<h5><span class="tsd-flag ts-flagOptional">Optional</span> isArray: <span class="tsd-signature-type">boolean</span></h5>
+															<h5><span class="tsd-flag ts-flagOptional">Optional</span> objectIsArray: <span class="tsd-signature-type">boolean</span></h5>
 														</li>
 													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Object</span></h4>
@@ -382,13 +367,13 @@
 					<a name="createextendobject" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> create<wbr>Extend<wbr>Object</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Extend<wbr>Object<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Object</span>, isArray<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Object</span></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Extend<wbr>Object<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Object</span>, objectIsArray<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Object</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Clone.ts#L51">core/Utils/Clone.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Clone.ts#L51">core/Utils/Clone.ts:51</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -397,7 +382,7 @@
 									<h5>object: <span class="tsd-signature-type">Object</span></h5>
 								</li>
 								<li>
-									<h5>isArray: <span class="tsd-signature-type">boolean</span></h5>
+									<h5>objectIsArray: <span class="tsd-signature-type">boolean</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Object</span></h4>
@@ -414,7 +399,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Remove.ts#L59">core/Utils/Remove.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Remove.ts#L59">core/Utils/Remove.ts:59</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -437,7 +422,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Object.ts#L26">core/Utils/Object.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Object.ts#L32">core/Utils/Object.ts:32</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -489,7 +474,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Object.ts#L174">core/Utils/Object.ts:174</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Object.ts#L184">core/Utils/Object.ts:184</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -518,7 +503,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Object.ts#L17">core/Utils/Object.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Object.ts#L23">core/Utils/Object.ts:23</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -570,7 +555,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Clone.ts#L22">core/Utils/Clone.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Clone.ts#L22">core/Utils/Clone.ts:22</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -611,7 +596,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Types.ts#L25">core/Utils/Types.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Types.ts#L25">core/Utils/Types.ts:25</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -640,7 +625,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Object.ts#L182">core/Utils/Object.ts:182</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Object.ts#L192">core/Utils/Object.ts:192</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -666,7 +651,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Object.ts#L137">core/Utils/Object.ts:137</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Object.ts#L147">core/Utils/Object.ts:147</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -692,7 +677,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Types.ts#L20">core/Utils/Types.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Types.ts#L20">core/Utils/Types.ts:20</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -723,7 +708,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Types.ts#L37">core/Utils/Types.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Types.ts#L37">core/Utils/Types.ts:37</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -746,7 +731,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Object.ts#L116">core/Utils/Object.ts:116</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Object.ts#L126">core/Utils/Object.ts:126</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -775,7 +760,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Remove.ts#L96">core/Utils/Remove.ts:96</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Remove.ts#L96">core/Utils/Remove.ts:96</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -791,6 +776,37 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="isarray" class="tsd-anchor"></a>
+					<h3>is<wbr>Array</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Array<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Object.ts#L14">core/Utils/Object.ts:14</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns <code>true</code> if an object is an array; otherwise <code>false</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>object: <span class="tsd-signature-type">Object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The object to test.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
 					<a name="isempty" class="tsd-anchor"></a>
 					<h3>is<wbr>Empty</h3>
@@ -801,7 +817,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Object.ts#L43">core/Utils/Object.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Object.ts#L49">core/Utils/Object.ts:49</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -832,7 +848,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Object.ts#L59">core/Utils/Object.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Object.ts#L65">core/Utils/Object.ts:65</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -855,12 +871,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Object.ts#L35">core/Utils/Object.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Object.ts#L41">core/Utils/Object.ts:41</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns <code>true</code> if an object is a pure object instance.</p>
+									<p>Returns <code>true</code> if an object is an object instance with language type of [[Types.Object]].</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -886,7 +902,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Types.ts#L12">core/Utils/Types.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Types.ts#L12">core/Utils/Types.ts:12</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -923,7 +939,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Object.ts#L69">core/Utils/Object.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Object.ts#L75">core/Utils/Object.ts:75</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -965,7 +981,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Object.ts#L151">core/Utils/Object.ts:151</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Object.ts#L161">core/Utils/Object.ts:161</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -994,7 +1010,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Remove.ts#L24">core/Utils/Remove.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Remove.ts#L24">core/Utils/Remove.ts:24</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1041,7 +1057,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Remove.ts#L33">core/Utils/Remove.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Remove.ts#L33">core/Utils/Remove.ts:33</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1088,7 +1104,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Remove.ts#L79">core/Utils/Remove.ts:79</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Remove.ts#L79">core/Utils/Remove.ts:79</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1117,7 +1133,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Remove.ts#L15">core/Utils/Remove.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Remove.ts#L15">core/Utils/Remove.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1164,7 +1180,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Object.ts#L106">core/Utils/Object.ts:106</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Object.ts#L112">core/Utils/Object.ts:112</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1189,13 +1205,13 @@
 					<div class="tsd-signature tsd-kind-icon">remove<wbr>Predicates<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Remove.ts#L52">core/Utils/Remove.ts:52</a></li>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Remove.ts#L52">core/Utils/Remove.ts:52</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 					</div>
 					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-not-exported">
-						<a name="removepredicates.reflection-973" class="tsd-anchor"></a>
+						<a name="removepredicates.reflection-948" class="tsd-anchor"></a>
 						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-not-exported">
 							<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 						</ul>
@@ -1203,7 +1219,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Remove.ts#L54">core/Utils/Remove.ts:54</a></li>
+										<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Remove.ts#L54">core/Utils/Remove.ts:54</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1226,7 +1242,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Remove.ts#L55">core/Utils/Remove.ts:55</a></li>
+										<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Remove.ts#L55">core/Utils/Remove.ts:55</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1240,7 +1256,7 @@
 						</ul>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-not-exported">
-						<a name="removepredicates.undefined-1" class="tsd-anchor"></a>
+						<a name="removepredicates.undefined" class="tsd-anchor"></a>
 						<h3>undefined</h3>
 						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-not-exported">
 							<li class="tsd-signature tsd-kind-icon">undefined<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
@@ -1249,7 +1265,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.2.0/src/core/Utils/Remove.ts#L53">core/Utils/Remove.ts:53</a></li>
+										<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Remove.ts#L53">core/Utils/Remove.ts:53</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1368,6 +1384,9 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
 						<a href="format.utils.html#innerremoveproperty" class="tsd-kind-icon">inner<wbr>Remove<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="format.utils.html#isarray" class="tsd-kind-icon">is<wbr>Array</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="format.utils.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a>
