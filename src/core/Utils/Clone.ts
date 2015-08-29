@@ -27,12 +27,12 @@ namespace Format.Utils {
     /* tslint:disable:no-shadowed-variable */// TSLint #500
 
     /** @private */
-    let createCloneFunction = (cloneFunc: (object: Object, deep?: boolean, isArray?: boolean) => Object) =>
+    let createCloneFunction = (cloneFunc: (object: Object, deep?: boolean, objectIsArray?: boolean) => Object) =>
         (object: Object, deep?: boolean): Object => {
 
-            let isArray = Array.isArray(object);
-            if (isArray || isObject(object)) {
-                return cloneFunc(object, deep, isArray);
+            let objectIsArray = isArray(object);
+            if (objectIsArray || isObject(object)) {
+                return cloneFunc(object, deep, objectIsArray);
             }
             else if (isType("Date", object)) {
                 return new Date((<Date> object).getTime());
@@ -43,12 +43,12 @@ namespace Format.Utils {
 
     /* tslint:enable:no-shadowed-variable */
 
-    Utils.clone = createCloneFunction((object: Object, deep?: boolean, isArray?: boolean): Object =>
-        deep ? deepExtend(createExtendObject(object, isArray), object) :
-            extend(createExtendObject(object, isArray), object));
+    Utils.clone = createCloneFunction((object: Object, deep?: boolean, objectIsArray?: boolean): Object =>
+        deep ? deepExtend(createExtendObject(object, objectIsArray), object) :
+            extend(createExtendObject(object, objectIsArray), object));
 
     /** @private */
-    var createExtendObject = (object: Object, isArray: boolean): Object => isArray ? [] : {};
+    var createExtendObject = (object: Object, objectIsArray: boolean): Object => objectIsArray ? [] : {};
 
     Utils.fastClone = createCloneFunction((object: Object): Object => JSON.parse(JSON.stringify(object)));
 }

@@ -8,6 +8,12 @@
 
 declare namespace Format.Utils {
     /**
+     * Returns `true` if an object is an array; otherwise `false`.
+     * @param object The object to test.
+     */
+    function isArray(object: Object): boolean;
+
+    /**
      * Merge the contents of two or more objects together into the first object.
      * @param T The type of the object to merge into.
      * @param target An object that will receive the new properties.
@@ -29,7 +35,7 @@ declare namespace Format.Utils {
 /** A core namespace which contains utility methods for general purpose operations and more specialized utility sub-modules. */
 namespace Format.Utils {
     /**
-     * Returns `true` if an object is a pure object instance.
+     * Returns `true` if an object is an object instance with language type of [[Types.Object]].
      * @param object The object to test.
      */
     export function isObject(object: Object): boolean {
@@ -76,11 +82,11 @@ namespace Format.Utils {
             throw new Errors.ArgumentError("Cannot call method 'enumerateValues' on immutable string objects");
         }
 
-        let isArray = Array.isArray(object);
+        let objectIsArray = isArray(object);
 
         for (let key in object) {
             if (object.hasOwnProperty(key)) {
-                addValueAsKey(object, key, isArray);
+                addValueAsKey(object, key, objectIsArray);
             }
         }
 
@@ -88,7 +94,7 @@ namespace Format.Utils {
     }
 
     /** @private */
-    var addValueAsKey = (object: Indexable<number|string|symbol|RegExp>|string[], key: string, isArray: boolean) => {
+    var addValueAsKey = (object: Indexable<number|string|symbol|RegExp>|string[], key: string, objectIsArray: boolean) => {
 
         let value = (<Indexable<number|string|symbol|RegExp>> object)[key];
         if (value == null) {
@@ -99,7 +105,7 @@ namespace Format.Utils {
             throw new Errors.ArgumentError(`Cannot enumerate value '${value}' because such a key already exists in ${object}`);
         }
 
-        (<Indexable<number|string|symbol|RegExp>> object)[resolveValueAsKey(value)] = isArray ? +key : key;
+        (<Indexable<number|string|symbol|RegExp>> object)[resolveValueAsKey(value)] = objectIsArray ? +key : key;
     };
 
     /** @private */
@@ -107,6 +113,10 @@ namespace Format.Utils {
         typeof value !== "symbol" ?
             value + "" :
             value;
+
+    Utils.isArray = Array.isArray || function(object: Object): boolean {
+        return isType(Types.Array, object);
+    };
 
     Utils.extend = (target: Indexable<Object>, ...objects: Indexable<Object>[]): Object => innerExtend(false, target, objects);
 
@@ -150,7 +160,7 @@ namespace Format.Utils {
     /** @private */
     var merge = (deep: boolean, target: Indexable<Object>, object: Indexable<Object>) => {
 
-        let objectIsArray = Array.isArray(object);
+        let objectIsArray = isArray(object);
 
         /* tslint:disable:forin */// Intentional use of for-in without checking hasOwnProperty
         for (let key in object) {
@@ -160,7 +170,7 @@ namespace Format.Utils {
                 continue;
             }
 
-            if (deep && (isObject(copy) || Array.isArray(copy))) {
+            if (deep && (isObject(copy) || isArray(copy))) {
                 deepMerge(target, key, copy);
             }
             else if (copy !== undefined) {
@@ -181,8 +191,8 @@ namespace Format.Utils {
     /** @private */
     var getDeepMergeSource = (source: Indexable<Object>, copy: Indexable<Object>): Indexable<Object> => {
 
-        if (Array.isArray(copy)) {
-            return Array.isArray(source) ? source : <any> [];
+        if (isArray(copy)) {
+            return isArray(source) ? source : <any> [];
         }
         else {
             return isObject(source) ? source : {};

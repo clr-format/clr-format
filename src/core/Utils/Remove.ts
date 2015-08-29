@@ -78,8 +78,8 @@ namespace Format.Utils {
     /** @private */
     var removeProperty = (object: Indexable<Object>, context: RemovePropertyContext) => {
 
-        let isArray = Array.isArray(object);
-        if (isArray || isObject(object)) {
+        let objectIsArray = isArray(object);
+        if (objectIsArray || isObject(object)) {
 
             context.seen.push(object);
 
@@ -90,7 +90,7 @@ namespace Format.Utils {
             }
         }
 
-        return isArray ? Enumerable.compact(<any> object) : object;
+        return objectIsArray ? Enumerable.compact(<any> object) : object;
     };
 
     var innerRemoveProperty = (object: Indexable<Object>, context: RemovePropertyContext) => {

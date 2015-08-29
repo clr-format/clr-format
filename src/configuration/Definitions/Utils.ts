@@ -6,8 +6,8 @@ namespace Format.Config.Definitions {
 
     /** @private */
     let globalRegistry: Indexable<Indexable<Function>> = {},
-        globalPolyfills: Function[] = [
-            Utils.Numeric.isInteger
+        globalExceptions: Function[] = [
+            Utils.isArray
         ],
         prototypeRegistry: Indexable<Indexable<Function>> = {},
         prototypeExceptions: Function[] = [
@@ -58,13 +58,14 @@ namespace Format.Config.Definitions {
     /** @private */
     var asStatic = (utilFunction: Function, globalObject: Indexable<Function>, name: string) => {
 
-        if (globalRegistry[name]) {
+        if (ignoreUtil(utilFunction, globalRegistry[name], globalExceptions)) {
             return;
         }
 
-        if (globalObject[name]) {
+        let existingFunction = globalObject[name];
+        if (existingFunction) {
 
-            if (globalPolyfills.indexOf(utilFunction) !== -1) {
+            if (existingFunction === utilFunction) {
                 return;
             }
 
@@ -81,7 +82,7 @@ namespace Format.Config.Definitions {
     /** @private */
     var asPrototype = (utilFunction: Function, protoObject: Indexable<Function>, name: string) => {
 
-        if (prototypeRegistry[name] || prototypeExceptions.indexOf(utilFunction) !== -1) {
+        if (ignoreUtil(utilFunction, prototypeRegistry[name], prototypeExceptions)) {
             return;
         }
 
@@ -94,6 +95,11 @@ namespace Format.Config.Definitions {
 
         protoObject[name] = getProtoWrapper(utilFunction);
         prototypeRegistry[name] = protoObject;
+    };
+
+    /** @private */
+    var ignoreUtil = (utilFunction: Function, registryEntry: Indexable<Function>, exceptions: Function[]): boolean => {
+        return registryEntry !== undefined || exceptions.indexOf(utilFunction) !== -1;
     };
 
     /** @private */

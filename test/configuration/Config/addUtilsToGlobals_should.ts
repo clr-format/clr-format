@@ -10,6 +10,8 @@ namespace Format.Config {
 
     describe("Config addUtilsToGlobals", () => {
 
+        let objectAccessor: any = Object;
+
         let expectUndefinedMethods = () => {
 
             expect(Object.isType).toBeUndefined();
@@ -58,6 +60,7 @@ namespace Format.Config {
             expect(Object.extend).toBe(Utils.extend);
             expect(Object.clone).toBe(Utils.clone);
             expect(Object.fastClone).toBe(Utils.fastClone);
+            expect(objectAccessor.isArray).toBeUndefined();
 
             expect(Format.Config.addUtilsToGlobals).not.toThrowError(Errors.InvalidOperationError);
 
