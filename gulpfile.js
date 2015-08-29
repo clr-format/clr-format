@@ -36,15 +36,16 @@ gulp.task("build", ["build-core", "build-config", "build-npm", "test-npm"]);
 gulp.task("build-npm", ["lint-core", "lint-config"], build.npm);
 gulp.task("build-core", ["lint-core"], build.js("core"));
 gulp.task("build-config", ["build-core", "lint-config"], build.js("config"));
+gulp.task("build-browser", ["lint-test"], test.browser);
 gulp.task("build-release", ["build", "lint-test"], minify);
 
 gulp.task("test", ["lint-test"], test.jasmine);
 gulp.task("test-npm", ["build-npm"], test.npm);
-gulp.task("test-browser", ["lint-test"], test.browser);
+gulp.task("test-browser", ["build-core", "build-config", "build-browser"]);
 
 gulp.task("watch", function () {
     gulp.watch([paths.sources], ["build"]);
-    gulp.watch([paths.sources, paths.tests], ["test", "test-browser"]);
+    gulp.watch([paths.sources, paths.tests], ["test", "build-browser"]);
 });
 
 gulp.task("default", ["clean", "watch", "build", "test"]);
