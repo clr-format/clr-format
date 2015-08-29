@@ -50,7 +50,8 @@ Also note that the default and only [FormatProvider] implementation is [CultureI
         .toBe("Formatting using the injected prototype method");
     ```
 
-4. Wrapped browser code in an [IIFE] which creates the [Format] namespace and defines the main [String.format] function.
+4. Changed [Format.Utils.Function.getName] behavior to be consistent with ECMAScript's [Function.name] (to return `""` for anonymous functions).
+Also [Format.Errors.SystemError.stack] no longer attempts to standardize the returned values, instead, it returns what the runtime context does.
 
 Usage
 -----
@@ -135,13 +136,14 @@ Complete the implementation with a date formatting provider and date/time format
 [Getting started with the String.Format method]: https://msdn.microsoft.com/en-us/library/system.string.format.aspx#Starting
 [ECMAScript Intl namespace]: https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Intl
 [Gulp watch task]: https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpwatchglob-opts-cb
-[IIFE]: https://en.wikipedia.org/wiki/Immediately-invoked_function_expression
+[Function.name]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name
 
 [GitHub pages documentation]: http://clr-format.github.io/clr-format
-[Format]: http://clr-format.github.io/clr-format/modules/format.html
 [Format.Config]: http://clr-format.github.io/clr-format/modules/format.config.html
 [String.format]: http://clr-format.github.io/clr-format/interfaces/stringconstructor.html#format
 [FormatProvider]: http://clr-format.github.io/clr-format/interfaces/format.globalization.formatprovider.html
 [CultureInfo.InvariantCulture]: http://clr-format.github.io/clr-format/classes/format.globalization.cultureinfo.html#invariantculture
+[Format.Utils.Function.getName]: http://clr-format.github.io/clr-format/modules/format.utils.function.html#getname
+[Format.Errors.SystemError.stack]: http://clr-format.github.io/clr-format/classes/format.errors.systemerror.html#stack
 
 [formatInvariant_should.ts]: https://github.com/clr-format/clr-format/blob/master/test/core/String/formatInvariant_should.ts
