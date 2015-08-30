@@ -10,8 +10,13 @@ namespace Format.Utils.Text {
      * @returns `true` if the value parameter is `undefined`, `null`, `""`, or if value consists exclusively of white-space characters.
      */
     export function isNullOrWhitespace(value: string): boolean {
-        return !(value && value.trim().length > 0);
+        return !(value && trimPolyfill(value).length > 0);
     }
+
+    /** @private */
+    var trimPolyfill = "".trim ?
+        (value: string): string => value.trim() :
+        (value: string): string => value.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, "");
 
     /**
      * Returns a new string in which a specified string is inserted at a specified index position in the value instance.
