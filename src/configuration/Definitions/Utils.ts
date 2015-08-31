@@ -6,15 +6,11 @@ namespace Format.Config.Definitions {
 
     /** @private */
     let globalRegistry: Indexable<Indexable<Function>> = {},
-        globalExceptions: Function[] = [
-            Utils.isArray,
-            Utils.Enumerable.indexOf
-        ],
+        globalExceptions: Function[] = [],
         prototypeRegistry: Indexable<Indexable<Function>> = {},
         prototypeExceptions: Function[] = [
             Utils.Text.isNullOrWhitespace,
-            Utils.Function.getEmpty,
-            Utils.Enumerable.indexOf
+            Utils.Function.getEmpty
         ];
 
     export var addUtilsToGlobals = () => {
@@ -101,7 +97,7 @@ namespace Format.Config.Definitions {
 
     /** @private */
     var ignoreUtil = (utilFunction: Function, registryEntry: Indexable<Function>, exceptions: Function[]): boolean => {
-        return registryEntry !== undefined || Utils.Enumerable.indexOf(exceptions, utilFunction) !== -1;
+        return registryEntry !== undefined || Utils.Polyfill.indexOf(exceptions, utilFunction) !== -1;
     };
 
     /** @private */

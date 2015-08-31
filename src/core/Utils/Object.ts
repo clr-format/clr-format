@@ -1,6 +1,7 @@
 /// <reference path="../../use-strict" />
 
 /// <reference path="Harmony" />
+/// <reference path="Polyfill" />
 /// <reference path="Indexable" />
 /// <reference path="RecursiveContext" />
 
@@ -8,12 +9,6 @@
 /// <reference path="../Errors/ArgumentNullError" />
 
 declare namespace Format.Utils {
-    /**
-     * Returns `true` if an object is an array; otherwise `false`.
-     * @param object The object to test.
-     */
-    function isArray(object: Object): boolean;
-
     /**
      * Maps the given object's values as keys with their keys as values and returns the extended object.
      *
@@ -85,7 +80,7 @@ namespace Format.Utils {
             throw new Errors.ArgumentError("Cannot call method 'enumerateValues' on immutable string objects");
         }
 
-        let objectIsArray = isArray(object),
+        let objectIsArray = Polyfill.isArray(object),
             result = <T> (objectIsArray ? [] : {});
 
         for (let key in object) {
@@ -112,10 +107,6 @@ namespace Format.Utils {
         if (object.hasOwnProperty(value) || result.hasOwnProperty(value)) {
             throw new Errors.ArgumentError(`Cannot enumerate value '${value}' because such a key already exists in ${object}`);
         }
-    };
-
-    Utils.isArray = Array.isArray || function(object: Object): boolean {
-        return getType(object) === Types.Array;
     };
 
     Utils.extend = (target: Indexable<Object>, ...objects: Indexable<Object>[]): Object => innerExtend(target, objects, { deep: false, seen: [] });
@@ -158,6 +149,9 @@ namespace Format.Utils {
     };
 
     /** @private */
+    let isArray = Polyfill.isArray;
+
+    /** @private */
     var merge = (target: Indexable<Object>, object: Indexable<Object>, context: RecursiveContext) => {
 
         let objectIsArray = isArray(object);
@@ -187,7 +181,7 @@ namespace Format.Utils {
     /** @private */
     var canDeepMerge = (copy: Indexable<Object>, context: RecursiveContext): boolean => {
         return context.deep
-            && Enumerable.indexOf(context.seen, copy) === -1
+            && Polyfill.indexOf(context.seen, copy) === -1
             && (isObject(copy) && copy.constructor === Object || isArray(copy));
     };
 

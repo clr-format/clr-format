@@ -1,6 +1,7 @@
 /// <reference path="../../use-strict" />
 
 /// <reference path="Object" />
+/// <reference path="Polyfill" />
 /// <reference path="Indexable" />
 /// <reference path="Enumerable" />
 /// <reference path="RecursiveContext" />
@@ -72,7 +73,7 @@ namespace Format.Utils {
     /** @private */
     var removeProperty = (object: Indexable<Object>, context: RemovePropertyContext) => {
 
-        let objectIsArray = isArray(object);
+        let objectIsArray = Polyfill.isArray(object);
         if (objectIsArray || isObject(object)) {
 
             context.seen.push(object);
@@ -94,7 +95,7 @@ namespace Format.Utils {
         if (context.removePredicate(value)) {
             delete object[context.key];
         }
-        else if (context.deep && Enumerable.indexOf(context.seen, value) === -1) {
+        else if (context.deep && Polyfill.indexOf(context.seen, value) === -1) {
             removeProperty(value, context);
         }
     };

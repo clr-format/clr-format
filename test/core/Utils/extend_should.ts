@@ -3,6 +3,7 @@
 /// <reference path="../../../src/core/Utils/Lazy" />
 /// <reference path="../../../src/core/Utils/Object" />
 /// <reference path="../../../src/core/Utils/Function" />
+/// <reference path="../../../src/core/Utils/Polyfill" />
 
 /* tslint:disable:no-string-literal */
 
@@ -42,7 +43,7 @@ namespace Format.Utils {
             expect(options).toEqual(optionsCopy);
             expect(extend(settings, null, options)).toEqual(merged);
             expect(options).toEqual(optionsCopy);
-            expect(isArray(deepExtend({ "arr": getEmpty() }, nestedarray)["arr"])).toBe(true);
+            expect(Polyfill.isArray(deepExtend({ "arr": getEmpty() }, nestedarray)["arr"])).toBe(true);
             expect(isObject(deepExtend({ "arr": arr }, { "arr": getEmpty() })["arr"])).toBe(true);
             expect(deepExtend(getEmpty(), nestedarray)["arr"]).not.toBe(arr);
             expect(deepExtend(getEmpty(), nestedarray)["arr"]).toEqual(arr);

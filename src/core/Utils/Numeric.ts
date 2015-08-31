@@ -1,12 +1,12 @@
 /// <reference path="../../use-strict" />
 
 /// <reference path="Harmony" />
-/// <reference path="NumberHandler" />
 
 /// <reference path="../Errors/ArgumentError" />
 
 /* tslint:disable:no-bitwise */
 
+/** A [[Format.Utils]] sub-module containing methods related to numeric operations. */
 declare namespace Format.Utils.Numeric {
     /**
      * Determines whether the passed value is an integer.
@@ -16,7 +16,6 @@ declare namespace Format.Utils.Numeric {
     function isInteger(value: number): boolean;
 }
 
-/** A [[Format.Utils]] sub-module containing methods related to numeric operations. */
 namespace Format.Utils.Numeric {
 
     /**
@@ -85,6 +84,11 @@ namespace Format.Utils.Numeric {
      */
     export function toPrecisionMinMax(value: number, minDigits: number, maxDigits: number): string {
         return toMinMax(getToPrecisionHandler(value), minDigits, maxDigits);
+    }
+
+    interface NumberHandler {
+        delegate: (digits: number) => string;
+        defaultMinDigits: number;
     }
 
     /** @private */

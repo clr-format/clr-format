@@ -7,7 +7,6 @@
 /// <reference path="Utils/Numeric" />
 /// <reference path="Utils/Padding" />
 /// <reference path="Utils/Enumerable" />
-/// <reference path="Utils/FormatItemOptions" />
 
 /// <reference path="Globalization/CultureInfo" />
 /// <reference path="Globalization/FormatProvider" />
@@ -69,8 +68,15 @@ namespace Format {
     /** @private */
     var formatItemRegExp = /{+(\d+)(?:,(.+?))?(?::(.+?))?}+/g;
 
+    interface FormatItemOptions {
+        formatItem: string;
+        indexComponent: string;
+        alignmentComponent: string;
+        formatStringComponent: string;
+    }
+
     /** @private */
-    var replaceFormatItem = (provider: Globalization.FormatProvider, args: Object[], options: Utils.FormatItemOptions): string => {
+    var replaceFormatItem = (provider: Globalization.FormatProvider, args: Object[], options: FormatItemOptions): string => {
 
         let escapedBracesCount = Math.floor(getBracesCount(options.formatItem, "{") / 2);
         if (isFullyEscaped(options.formatItem)) {
@@ -117,7 +123,7 @@ namespace Format {
     };
 
     /** @private */
-    var applyFormatting = (provider: Globalization.FormatProvider, args: Object[], options: Utils.FormatItemOptions): string => {
+    var applyFormatting = (provider: Globalization.FormatProvider, args: Object[], options: FormatItemOptions): string => {
 
         let index = +options.indexComponent;
 
@@ -141,7 +147,7 @@ namespace Format {
     /** @private */
     let directions = Utils.Padding.Direction;
     /** @private */
-    var applyAlignment = (formattedString: string, options: Utils.FormatItemOptions): string => {
+    var applyAlignment = (formattedString: string, options: FormatItemOptions): string => {
 
         let totalWidth = +options.alignmentComponent;
         if (!Utils.Numeric.isInteger(totalWidth)) {

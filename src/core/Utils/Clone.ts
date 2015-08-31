@@ -2,6 +2,7 @@
 
 /// <reference path="Types" />
 /// <reference path="Object" />
+/// <reference path="Polyfill" />
 
 declare namespace Format.Utils {
     /**
@@ -30,7 +31,7 @@ namespace Format.Utils {
     let createCloneFunction = (cloneFunc: (object: Object, deep?: boolean, objectIsArray?: boolean) => Object) =>
         (object: Object, deep?: boolean): Object => {
 
-            let objectIsArray = isArray(object);
+            let objectIsArray = Polyfill.isArray(object);
             if (objectIsArray || isObject(object)) {
                 return cloneFunc(object, deep, objectIsArray);
             }
