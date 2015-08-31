@@ -43,11 +43,11 @@ interface ObjectConstructor {
      * Throws an error if the operation results in key duplication or keys with 'undefined' or 'null' values.
      *
      * Must call [[Format.Config.addUtilsToGlobals]] to be defined.
-     * @param T The type of indexable object to update.
+     * @param T The type of object to update.
      * @param object The object to fill with the mapped unique values as keys.
-     * @returns The same instance that was passed as the object parameter updated with the new unique keys.
+     * @returns A new object with all of the original and inverted properties.
      */
-    mapValuesAsKeys<T extends Indexable<number|string|symbol|RegExp>|string[]>(object: T): T;
+    mapValuesAsKeys<T>(object: T): T;
 
 
     /**

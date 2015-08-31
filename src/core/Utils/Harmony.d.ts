@@ -1,4 +1,5 @@
 interface NumberConstructor {
+    /** Determines whether the passed value is an integer. */
     isInteger(value: number): boolean;
 }
 

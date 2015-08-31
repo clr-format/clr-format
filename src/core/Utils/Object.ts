@@ -14,6 +14,16 @@ declare namespace Format.Utils {
     function isArray(object: Object): boolean;
 
     /**
+     * Maps the given object's values as keys with their keys as values and returns the extended object.
+     *
+     * Throws an error if the operation results in key duplication or keys with 'undefined' or 'null' values.
+     * @param T The type of object to update.
+     * @param object The object to update with the mapped unique values as keys.
+     * @returns A new object with all of the original and inverted properties.
+     */
+    function mapValuesAsKeys<T>(object: T): T;
+
+    /**
      * Merge the contents of two or more objects together into the first object.
      * @param T The type of the object to merge into.
      * @param target An object that will receive the new properties.
@@ -64,15 +74,7 @@ namespace Format.Utils {
     /** @private */
     var isEnumerable = (object: Object): boolean => (typeof object === "object" || typeof object === "function") && object !== null;
 
-    /**
-     * Maps the given object's values as keys with their keys as values and returns the extended object.
-     *
-     * Throws an error if the operation results in key duplication or keys with 'undefined' or 'null' values.
-     * @param T The type of indexable object to update.
-     * @param object The object to update with the mapped unique values as keys.
-     * @returns The same instance that was passed as the object parameter updated with the new unique keys.
-     */
-    export function mapValuesAsKeys<T extends Indexable<number|string|symbol|RegExp>|string[]>(object: T): T {
+    Utils.mapValuesAsKeys = <T extends Indexable<string>>(object: T): T => {
 
         if (object == null) {
             throw new Errors.ArgumentNullError("object");
@@ -82,37 +84,34 @@ namespace Format.Utils {
             throw new Errors.ArgumentError("Cannot call method 'enumerateValues' on immutable string objects");
         }
 
-        let objectIsArray = isArray(object);
+        let objectIsArray = isArray(object),
+            result = <T> (objectIsArray ? [] : {});
 
         for (let key in object) {
             if (object.hasOwnProperty(key)) {
-                addValueAsKey(object, key, objectIsArray);
+                let value = object[key];
+
+                validateValueAsKey(object, result, value);
+
+                result[value] = objectIsArray ? +key : key;
+                result[key] = value;
             }
         }
 
-        return object;
-    }
+        return result;
+    };
 
     /** @private */
-    var addValueAsKey = (object: Indexable<number|string|symbol|RegExp>|string[], key: string, objectIsArray: boolean) => {
+    var validateValueAsKey = <T>(object: T, result: T, value: string): void => {
 
-        let value = (<Indexable<number|string|symbol|RegExp>> object)[key];
         if (value == null) {
             throw new Errors.ArgumentError("Cannot call method 'enumerateValues' on objects that contain undefined or null values");
         }
 
-        if (object.hasOwnProperty(<string> value)) {
+        if (object.hasOwnProperty(value) || result.hasOwnProperty(value)) {
             throw new Errors.ArgumentError(`Cannot enumerate value '${value}' because such a key already exists in ${object}`);
         }
-
-        (<Indexable<number|string|symbol|RegExp>> object)[resolveValueAsKey(value)] = objectIsArray ? +key : key;
     };
-
-    /** @private */
-    var resolveValueAsKey = (value: number|string|symbol|RegExp): string|symbol =>
-        typeof value !== "symbol" ?
-            value + "" :
-            value;
 
     Utils.isArray = Array.isArray || function(object: Object): boolean {
         return isType(Types.Array, object);
