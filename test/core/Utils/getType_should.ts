@@ -6,8 +6,6 @@ namespace Format.Utils {
 
     describe("Utils getType", () => {
 
-        let supportsDOM = () => typeof window !== "undefined";
-
         it("should return the appropriate type strings returned by Object.prototype.toString calls", () => {
 
             expect(getType({})).toBe(Types.Object);
@@ -23,10 +21,6 @@ namespace Format.Utils {
             expect(getType(new RegExp(""))).toBe(Types.RegExp);
 
             expect(getType(Function.getEmpty())).toBe(Types.Function);
-
-            if (supportsDOM()) {
-                expect(getType(document.firstChild)).toBe("[object DocumentType]");
-            }
         });
     });
 }

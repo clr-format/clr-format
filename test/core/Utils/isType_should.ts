@@ -6,8 +6,6 @@ namespace Format.Utils {
 
     describe("Utils isType", () => {
 
-        let supportsDOM = () => typeof window !== "undefined";
-
         it("should return the appropriate boolean value respective to the object's Object.prototype.toString call and the type argument", () => {
 
             expect(isType("Object", {})).toBe(true);
@@ -39,11 +37,6 @@ namespace Format.Utils {
 
             expect(isType("Function", Function.getEmpty())).toBe(true);
             expect(isType("Function", undefined)).toBe(false);
-
-            if (supportsDOM()) {
-                expect(isType("DocumentType", document.firstChild)).toBe(true);
-                expect(isType("DocumentType", document)).toBe(false);
-            }
         });
     });
 }
