@@ -18,6 +18,15 @@ namespace Format.Utils {
      * @param object The object to test.
      */
     export function getType(object: Object): string {
+
+        if (object === null) {
+            return Types.Null;
+        }
+
+        if (object === undefined) {
+            return Types.Undefined;
+        }
+
         return Object.prototype.toString.call(object);
     }
 

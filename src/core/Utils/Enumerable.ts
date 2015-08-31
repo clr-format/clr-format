@@ -1,5 +1,6 @@
 /// <reference path="../../use-strict" />
 
+/// <reference path="../Errors/ArgumentError" />
 /// <reference path="../Errors/ArgumentNullError" />
 
 /** A [[Format.Utils]] sub-module containing methods related to enumeration operations. */

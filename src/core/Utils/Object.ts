@@ -114,7 +114,7 @@ namespace Format.Utils {
     };
 
     Utils.isArray = Array.isArray || function(object: Object): boolean {
-        return isType(Types.Array, object);
+        return getType(object) === Types.Array;
     };
 
     Utils.extend = (target: Indexable<Object>, ...objects: Indexable<Object>[]): Object => innerExtend(false, target, objects);

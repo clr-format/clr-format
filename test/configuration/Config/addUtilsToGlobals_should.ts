@@ -11,7 +11,8 @@ namespace Format.Config {
     describe("Config addUtilsToGlobals", () => {
 
         let objectAccessor: any = Object,
-            arrayAccessor: any = Array;
+            arrayAccessor: any = Array,
+            noIndexOf = !arrayAccessor.indexOf;
 
         let expectUndefinedMethods = () => {
 
@@ -80,7 +81,9 @@ namespace Format.Config {
 
             expect(Array.takeWhile).toBe(Utils.Enumerable.takeWhile);
             expect(Array.compact).toBe(Utils.Enumerable.compact);
-            expect(arrayAccessor.indexOf).toBeUndefined();
+            if (noIndexOf) {
+                expect(arrayAccessor.indexOf).toBeUndefined();
+            }
 
             expect(String.insert).toBe(Utils.Text.insert);
             expect(String.isNullOrWhitespace).toBe(Utils.Text.isNullOrWhitespace);

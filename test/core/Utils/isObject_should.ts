@@ -23,8 +23,10 @@ namespace Format.Utils {
             expect(isObject(Number(0))).toBe(false);
             expect(isObject(String(""))).toBe(false);
             expect(isObject(Boolean(true))).toBe(false);
-            expect(isObject(new RegExp(""))).toBe(false);
+
             expect(isObject(new Date())).toBe(false);
+            expect(isObject(new Array())).toBe(false);
+            expect(isObject(new RegExp(""))).toBe(false);
         });
     });
 }
