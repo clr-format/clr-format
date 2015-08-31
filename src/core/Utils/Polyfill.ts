@@ -6,6 +6,8 @@
 /// <reference path="../Errors/ArgumentError" />
 /// <reference path="../Errors/ArgumentNullError" />
 
+/* tslint:disable:no-bitwise */
+
 /** A [[Format.Utils]] sub-module containing methods intended to act as polyfills. */
 declare namespace Format.Utils.Polyfill {
     /**
@@ -47,14 +49,51 @@ namespace Format.Utils.Polyfill {
         return indexOfPolyfill(array, searchElement, fromIndex);
     };
 
+    /**
+     * Returns a supplied numeric expression rounded to the exponent number.
+     * @param value The number to format.
+     * @param exponent The exponent which to use as a rounding base.
+     */
+    export function round(value: number, exponent: number): number {
+
+        if (value == null) {
+            throw new Errors.ArgumentNullError("value");
+        }
+
+        exponent = exponent >> 0;
+        if (!exponent || !isFinite(value)) {
+            return Math.round(value);
+        }
+
+        let sign = value >= 0 ? 1 : -1;
+        value = Math.round(shiftValue(value * sign, -exponent));
+
+        return shiftValue(value, exponent) * sign;
+    };
+
+    var shiftValue = (value: number, exponent: number): number => {
+
+        let valueParts = (value + "").split("e");
+
+        if (valueParts[1]) {
+            exponent += +valueParts[1];
+        }
+
+        return +(valueParts[0] + "e" + exponent);
+    };
+
+    if (+(0.005).toFixed(2) === 0) {
+        let originalToFixed = Number.prototype.toFixed;
+        Number.prototype.toFixed = function(fractionDigits: number): string {
+            return originalToFixed.call(round(this, -fractionDigits), fractionDigits) + "";
+        };
+    }
+
     /** @private */
     var indexOfPolyfill = <T>(array: T[], searchElement: T, fromIndex: number): number => {
 
-        let arrayObject = Object(array);
-
-        /* tslint:disable:no-bitwise */
-        let length = arrayObject.length >>> 0;
-        /* tslint:enable:no-bitwise */
+        let arrayObject = Object(array),
+            length = arrayObject.length >>> 0;
 
         if (length === 0 || fromIndex >= length) {
             return -1;
