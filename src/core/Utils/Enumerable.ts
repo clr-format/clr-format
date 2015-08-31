@@ -37,6 +37,63 @@ namespace Format.Utils.Enumerable {
     }
 
     /**
+     * Returns the first index at which a given element can be found in the array, or -1 if it is not present.
+     * @param array An array instance.
+     * @param searchElement The element to search for.
+     * @param fromIndex The index to start the search at.
+     */
+    export function indexOf<T>(array: T[], searchElement: T, fromIndex?: number): number {
+
+        if (array == null) {
+            throw new Errors.ArgumentNullError("array");
+        }
+
+        fromIndex = +fromIndex || 0;
+
+        if (!Numeric.isInteger(fromIndex)) {
+            throw new Errors.ArgumentError(`Argument 'fromIndex' with value '${fromIndex}' must be an integer`);
+        }
+
+        if (array.indexOf) {
+            return array.indexOf(searchElement, fromIndex);
+        }
+
+        return indexOfPolyfill(array, searchElement, fromIndex);
+    };
+
+    /** @private */
+    var indexOfPolyfill = <T>(array: T[], searchElement: T, fromIndex: number): number => {
+
+        let arrayObject = Object(array);
+
+        /* tslint:disable:no-bitwise */
+        let length = arrayObject.length >>> 0;
+        /* tslint:enable:no-bitwise */
+
+        if (length === 0 || fromIndex >= length) {
+            return -1;
+        }
+
+        for (let index = getIndexOfStartIndex(fromIndex, length); index < length; index += 1) {
+            if (index in arrayObject && arrayObject[index] === searchElement) {
+                return index;
+            }
+        }
+
+        return -1;
+    };
+
+    /** @private */
+    var getIndexOfStartIndex = (fromIndex: number, length: number): number => {
+
+        if (fromIndex < 0) {
+            fromIndex += length;
+        }
+
+        return Math.max(0, fromIndex);
+    };
+
+    /**
      * Removes "holes" (`undefined` elements) from the array making it compact/dense.
      * @param T The type of elements in the array.
      * @param array An array instance.

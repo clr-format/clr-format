@@ -100,7 +100,7 @@ namespace Format.Utils {
         if (context.removePredicate(value)) {
             delete object[context.key];
         }
-        else if (context.deep && context.seen.indexOf(value) === -1) {
+        else if (context.deep && Enumerable.indexOf(context.seen, value) === -1) {
             removeProperty(value, context);
         }
     };

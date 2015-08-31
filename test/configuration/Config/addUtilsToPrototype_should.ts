@@ -11,7 +11,8 @@ namespace Format.Config {
             text = "text",
             textAccessor: any = text,
             func = () => true,
-            funcAccessor: any = func;
+            funcAccessor: any = func,
+            noIndexOf = !array.indexOf;
 
         let expectUndefinedMethods = () => {
 
@@ -43,6 +44,9 @@ namespace Format.Config {
 
             expect(array.takeWhile(() => true)).toEqual(array);
             expect(array.compact()).toBe(array);
+            if (noIndexOf) {
+                expect(array.indexOf).toBeUndefined();
+            }
 
             expect(func.getName()).toBe("");
             expect(func.memoize()).toBeDefined();
