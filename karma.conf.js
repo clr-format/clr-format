@@ -12,8 +12,8 @@ module.exports = function (config) {
         sl_ie_edge: { base: "SauceLabs", browserName: "microsoftedge", version: "20.10240" },
         sl_ie_11: { base: "SauceLabs", browserName: "internet explorer", platform: "Windows 8.1", version: "11" },
         sl_ie_10: { base: "SauceLabs", browserName: "internet explorer", platform: "Windows 8", version: "10" },
-        // sl_ie_9: { base: "SauceLabs", browserName: "internet explorer", version: "9" },
-        // sl_ie_8: { base: "SauceLabs", browserName: "internet explorer", version: "8" },
+        sl_ie_9: { base: "SauceLabs", browserName: "internet explorer", version: "9" },
+        sl_ie_8: { base: "SauceLabs", browserName: "internet explorer", version: "8" },
         sl_android: { base: "SauceLabs", browserName: "android", version: "4.0" },
         sl_iphone: { base: "SauceLabs", browserName: "iphone", version: "8.0" }
     };
