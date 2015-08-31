@@ -3,6 +3,7 @@
 /// <reference path="Object" />
 /// <reference path="Indexable" />
 /// <reference path="Enumerable" />
+/// <reference path="RecursiveContext" />
 
 declare namespace Format.Utils {
     /**
@@ -31,22 +32,15 @@ declare namespace Format.Utils {
      * @returns The same object instance without falsy elements.
      */
     function removeFalsy<T>(object: T, deep?: boolean): T;
+}
 
-    interface RemovePropertyContext {
-        removePredicate: (value: Object) => boolean;
-        seen?: Object[];
-        deep?: boolean;
-        key?: string;
-    }
+namespace Format.Utils {
 
     interface RemovePropertyPredicates extends Indexable<(value: Object) => boolean> {
         undefined(value: Object): boolean;
         ""(value: Object): boolean;
         0(value: Object): boolean;
     }
-}
-
-namespace Format.Utils {
 
     /** @private */
     let removePredicates: RemovePropertyPredicates = {

@@ -1,6 +1,7 @@
 /// <reference path="../../typings/jasmine/jasmine" />
 
-/// <reference path="../../../src/core/Utils/Types" />
+/// <reference path="../../../src/core/Utils/Lazy" />
+/// <reference path="../../../src/core/Utils/Function" />
 
 namespace Format.Utils {
 
@@ -11,6 +12,7 @@ namespace Format.Utils {
             expect(isObject({})).toBe(true);
             expect(isObject(new Object())).toBe(true);
             expect(isObject(new Object(null))).toBe(true);
+            expect(isObject(new Lazy(Function.getEmpty)));
         });
 
         it("should return false if an object is an object derivative", () => {

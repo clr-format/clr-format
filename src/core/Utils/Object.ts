@@ -2,6 +2,7 @@
 
 /// <reference path="Harmony" />
 /// <reference path="Indexable" />
+/// <reference path="RecursiveContext" />
 
 /// <reference path="../Errors/ArgumentError" />
 /// <reference path="../Errors/ArgumentNullError" />
@@ -117,14 +118,14 @@ namespace Format.Utils {
         return getType(object) === Types.Array;
     };
 
-    Utils.extend = (target: Indexable<Object>, ...objects: Indexable<Object>[]): Object => innerExtend(false, target, objects);
+    Utils.extend = (target: Indexable<Object>, ...objects: Indexable<Object>[]): Object => innerExtend(target, objects, { deep: false, seen: [] });
 
-    Utils.deepExtend = (target: Indexable<Object>, ...objects: Indexable<Object>[]): Object => innerExtend(true, target, objects);
+    Utils.deepExtend = (target: Indexable<Object>, ...objects: Indexable<Object>[]): Object => innerExtend(target, objects, { deep: true, seen: [] });
 
     /** @private */
-    var innerExtend = (deep: boolean, target: Indexable<Object>, objects: Indexable<Object>[]): Object => {
+    var innerExtend = (target: Indexable<Object>, objects: Indexable<Object>[], context: RecursiveContext): Object => {
 
-        target = getDeepTarget(deep, target);
+        target = getDeepTarget(target, context);
 
         if (!objects.length) {
             throw new Errors.ArgumentError(`Arguments' list 'options' must contain at least one element`);
@@ -136,17 +137,17 @@ namespace Format.Utils {
                 continue;
             }
 
-            merge(deep, target, objects[i]);
+            merge(target, objects[i], context);
         }
 
         return target;
     };
 
     /** @private */
-    var getDeepTarget = (deep: boolean, target: Indexable<Object>): Indexable<Object> => {
+    var getDeepTarget = (target: Indexable<Object>, context: RecursiveContext): Indexable<Object> => {
 
         if (!isEnumerable(target)) {
-            if (!deep) {
+            if (!context.deep) {
                 throw new Errors.ArgumentError(`Argument 'target' with value '${target}' must be an enumerable object instance`);
             }
 
@@ -157,20 +158,24 @@ namespace Format.Utils {
     };
 
     /** @private */
-    var merge = (deep: boolean, target: Indexable<Object>, object: Indexable<Object>) => {
+    var merge = (target: Indexable<Object>, object: Indexable<Object>, context: RecursiveContext) => {
 
         let objectIsArray = isArray(object);
 
+        context.seen.push(object);
+
         /* tslint:disable:forin */// Intentional use of for-in without checking hasOwnProperty
         for (let key in object) {
+
+            context.key = key;
 
             let copy = <Indexable<Object>> object[key];
             if (copy === target || objectIsArray && !object.hasOwnProperty(key)) {
                 continue;
             }
 
-            if (deep && (isObject(copy) || isArray(copy))) {
-                deepMerge(target, key, copy);
+            if (canDeepMerge(copy, context)) {
+                deepMerge(target, copy, context);
             }
             else if (copy !== undefined) {
                 target[key] = copy;
@@ -180,18 +185,25 @@ namespace Format.Utils {
     };
 
     /** @private */
-    var deepMerge = (target: Indexable<Object>, key: string, copy: Indexable<Object>) => {
+    var canDeepMerge = (copy: Indexable<Object>, context: RecursiveContext): boolean => {
+        return context.deep
+            && Enumerable.indexOf(context.seen, copy) === -1
+            && (isObject(copy) && copy.constructor === Object || isArray(copy));
+    };
 
-        let source = getDeepMergeSource(<Indexable<Object>> target[key], copy);
+    /** @private */
+    var deepMerge = (target: Indexable<Object>, copy: Indexable<Object>, context: RecursiveContext) => {
 
-        target[key] = innerExtend(true, source, [copy]);
+        let source = getDeepMergeSource(<Indexable<Object>> target[context.key], copy);
+
+        target[context.key] = innerExtend(source, [copy], context);
     };
 
     /** @private */
     var getDeepMergeSource = (source: Indexable<Object>, copy: Indexable<Object>): Indexable<Object> => {
 
         if (isArray(copy)) {
-            return isArray(source) ? source : <any> [];
+            return <Indexable<Object>> (isArray(source) ? source : []);
         }
         else {
             return isObject(source) ? source : {};

@@ -78,6 +78,14 @@ namespace Format.Utils {
             }
         });
 
+        it("should ignore cyclic structures when deep merging", () => {
+
+            var cyclic = { a: "normal", b: {} };
+            cyclic.b = cyclic;
+
+            expect(deepExtend({}, cyclic)).toEqual({ a: "normal", b: cyclic });
+        });
+
         it("should throw an ArgumentError when target is not an extensible object instance or no objects were given", () => {
 
             expect(() => extend(undefined, {})).toThrowError(Errors.ArgumentError);
