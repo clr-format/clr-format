@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>RemovePropertyContext | CLR Format</title>
+	<title>NumberHandler | CLR Format</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -63,21 +63,31 @@
 					<a href="../modules/format.utils.html">Utils</a>
 				</li>
 				<li>
-					<a href="format.utils.removepropertycontext.html">RemovePropertyContext</a>
+					<a href="../modules/format.utils.numeric.html">Numeric</a>
+				</li>
+				<li>
+					<a href="format.utils.numeric.numberhandler.html">NumberHandler</a>
 				</li>
 			</ul>
-			<h1>Interface RemovePropertyContext</h1>
+			<h1>Interface NumberHandler</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>An interface servicing similar <a href="../modules/format.utils.numeric.html#tominmax">toMinMax</a> method implementations that differ by the wrapped delegate function.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">RemovePropertyContext</span>
+						<span class="target">NumberHandler</span>
 					</li>
 				</ul>
 			</section>
@@ -88,10 +98,8 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="format.utils.removepropertycontext.html#deep" class="tsd-kind-icon">deep</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="format.utils.removepropertycontext.html#key" class="tsd-kind-icon">key</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="format.utils.removepropertycontext.html#removepredicate" class="tsd-kind-icon">remove<wbr>Predicate</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="format.utils.removepropertycontext.html#seen" class="tsd-kind-icon">seen</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="format.utils.numeric.numberhandler.html#defaultmindigits" class="tsd-kind-icon">default<wbr>Min<wbr>Digits</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="format.utils.numeric.numberhandler.html#delegate" class="tsd-kind-icon">delegate</a></li>
 							</ul>
 						</section>
 					</div>
@@ -100,65 +108,55 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="deep" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> deep</h3>
-					<div class="tsd-signature tsd-kind-icon">deep<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="defaultmindigits" class="tsd-anchor"></a>
+					<h3>default<wbr>Min<wbr>Digits</h3>
+					<div class="tsd-signature tsd-kind-icon">default<wbr>Min<wbr>Digits<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Remove.ts#L38">core/Utils/Remove.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Numeric.ts#L94">core/Utils/Numeric.ts:94</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The minimum number of digits to include in the format if maximum such are specified.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="key" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> key</h3>
-					<div class="tsd-signature tsd-kind-icon">key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="delegate" class="tsd-anchor"></a>
+					<h3>delegate</h3>
+					<div class="tsd-signature tsd-kind-icon">delegate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Remove.ts#L39">core/Utils/Remove.ts:39</a></li>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Numeric.ts#L92">core/Utils/Numeric.ts:92</a></li>
 						</ul>
 					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="removepredicate" class="tsd-anchor"></a>
-					<h3>remove<wbr>Predicate</h3>
-					<div class="tsd-signature tsd-kind-icon">remove<wbr>Predicate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Remove.ts#L36">core/Utils/Remove.ts:36</a></li>
-						</ul>
-					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A number precision format handler function that contains a value to call in its closure.</p>
+						</div>
+					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>digits<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
-												<h5>value: <span class="tsd-signature-type">Object</span></h5>
+												<h5>digits: <span class="tsd-signature-type">number</span></h5>
 											</li>
 										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 									</li>
 								</ul>
 							</li>
 						</ul>
 					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="seen" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> seen</h3>
-					<div class="tsd-signature tsd-kind-icon">seen<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">[]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/src/core/Utils/Remove.ts#L37">core/Utils/Remove.ts:37</a></li>
-						</ul>
-					</aside>
 				</section>
 			</section>
 		</div>
@@ -189,11 +187,14 @@
 									<li class=" tsd-kind-module tsd-parent-kind-module">
 										<a href="../modules/format.utils.function.html">Function</a>
 									</li>
-									<li class=" tsd-kind-module tsd-parent-kind-module">
+									<li class="current tsd-kind-module tsd-parent-kind-module">
 										<a href="../modules/format.utils.numeric.html">Numeric</a>
 									</li>
 									<li class=" tsd-kind-module tsd-parent-kind-module">
 										<a href="../modules/format.utils.padding.html">Padding</a>
+									</li>
+									<li class=" tsd-kind-module tsd-parent-kind-module">
+										<a href="../modules/format.utils.polyfill.html">Polyfill</a>
 									</li>
 									<li class=" tsd-kind-module tsd-parent-kind-module">
 										<a href="../modules/format.utils.text.html">Text</a>
@@ -206,122 +207,65 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../classes/format.utils.lazy.html" class="tsd-kind-icon">Lazy</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
-						<a href="format.utils.removepropertycontext.html" class="tsd-kind-icon">Remove<wbr>Property<wbr>Context</a>
+						<a href="format.utils.numeric.numberhandler.html" class="tsd-kind-icon">Number<wbr>Handler</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="format.utils.removepropertycontext.html#deep" class="tsd-kind-icon">deep</a>
+								<a href="format.utils.numeric.numberhandler.html#defaultmindigits" class="tsd-kind-icon">default<wbr>Min<wbr>Digits</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="format.utils.removepropertycontext.html#key" class="tsd-kind-icon">key</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="format.utils.removepropertycontext.html#removepredicate" class="tsd-kind-icon">remove<wbr>Predicate</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="format.utils.removepropertycontext.html#seen" class="tsd-kind-icon">seen</a>
+								<a href="format.utils.numeric.numberhandler.html#delegate" class="tsd-kind-icon">delegate</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
-						<a href="format.utils.removepropertypredicates.html" class="tsd-kind-icon">Remove<wbr>Property<wbr>Predicates</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-module">
-						<a href="../modules/format.utils.html#types" class="tsd-kind-icon">Types</a>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="../modules/format.utils.numeric.html#applyminmax" class="tsd-kind-icon">apply<wbr>Min<wbr>Max</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/format.utils.html#addvalueaskey" class="tsd-kind-icon">add<wbr>Value<wbr>AsKey</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../modules/format.utils.html#clone" class="tsd-kind-icon">clone</a>
+						<a href="../modules/format.utils.numeric.html#gettoexponentialhandler" class="tsd-kind-icon">get<wbr>ToExponential<wbr>Handler</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/format.utils.html#createclonefunction" class="tsd-kind-icon">create<wbr>Clone<wbr>Function</a>
+						<a href="../modules/format.utils.numeric.html#gettofixedhandler" class="tsd-kind-icon">get<wbr>ToFixed<wbr>Handler</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/format.utils.html#createextendobject" class="tsd-kind-icon">create<wbr>Extend<wbr>Object</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/format.utils.html#createremovefunction" class="tsd-kind-icon">create<wbr>Remove<wbr>Function</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../modules/format.utils.html#deepextend" class="tsd-kind-icon">deep<wbr>Extend</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/format.utils.html#deepmerge" class="tsd-kind-icon">deep<wbr>Merge</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../modules/format.utils.html#extend" class="tsd-kind-icon">extend</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../modules/format.utils.html#fastclone" class="tsd-kind-icon">fast<wbr>Clone</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter tsd-is-private tsd-is-not-exported">
-						<a href="../modules/format.utils.html#filltypes" class="tsd-kind-icon">fill<wbr>Types</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/format.utils.html#getdeepmergesource" class="tsd-kind-icon">get<wbr>Deep<wbr>Merge<wbr>Source</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/format.utils.html#getdeeptarget" class="tsd-kind-icon">get<wbr>Deep<wbr>Target</a>
+						<a href="../modules/format.utils.numeric.html#gettoprecisionhandler" class="tsd-kind-icon">get<wbr>ToPrecision<wbr>Handler</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/format.utils.html#gettype" class="tsd-kind-icon">get<wbr>Type</a>
+						<a href="../modules/format.utils.numeric.html#iscounting" class="tsd-kind-icon">is<wbr>Counting</a>
 					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/format.utils.html#gettypestring" class="tsd-kind-icon">get<wbr>Type<wbr>String</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/format.utils.html#innerextend" class="tsd-kind-icon">inner<wbr>Extend</a>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="../modules/format.utils.numeric.html#iseven" class="tsd-kind-icon">is<wbr>Even</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-						<a href="../modules/format.utils.html#innerremoveproperty" class="tsd-kind-icon">inner<wbr>Remove<wbr>Property</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-						<a href="../modules/format.utils.html#isarray" class="tsd-kind-icon">is<wbr>Array</a>
+						<a href="../modules/format.utils.numeric.html#isinteger" class="tsd-kind-icon">is<wbr>Integer</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/format.utils.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a>
+						<a href="../modules/format.utils.numeric.html#iswhole" class="tsd-kind-icon">is<wbr>Whole</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/format.utils.html#isenumerable" class="tsd-kind-icon">is<wbr>Enumerable</a>
+						<a href="../modules/format.utils.numeric.html#iterateminmax" class="tsd-kind-icon">iterate<wbr>Min<wbr>Max</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/format.utils.html#isobject" class="tsd-kind-icon">is<wbr>Object</a>
+						<a href="../modules/format.utils.numeric.html#toexponentialminmax" class="tsd-kind-icon">to<wbr>Exponential<wbr>Min<wbr>Max</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/format.utils.html#istype" class="tsd-kind-icon">is<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../modules/format.utils.html#mapvaluesaskeys" class="tsd-kind-icon">map<wbr>Values<wbr>AsKeys</a>
+						<a href="../modules/format.utils.numeric.html#tofixedminmax" class="tsd-kind-icon">to<wbr>Fixed<wbr>Min<wbr>Max</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/format.utils.html#merge" class="tsd-kind-icon">merge</a>
+						<a href="../modules/format.utils.numeric.html#tominmax" class="tsd-kind-icon">to<wbr>Min<wbr>Max</a>
 					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../modules/format.utils.html#removeempty" class="tsd-kind-icon">remove<wbr>Empty</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../modules/format.utils.html#removefalsy" class="tsd-kind-icon">remove<wbr>Falsy</a>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="../modules/format.utils.numeric.html#toprecisionminmax" class="tsd-kind-icon">to<wbr>Precision<wbr>Min<wbr>Max</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/format.utils.html#removeproperty" class="tsd-kind-icon">remove<wbr>Property</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../modules/format.utils.html#removeundefined" class="tsd-kind-icon">remove<wbr>Undefined</a>
+						<a href="../modules/format.utils.numeric.html#validatetominmaxdigitsarguments" class="tsd-kind-icon">validate<wbr>ToMin<wbr>Max<wbr>Digits<wbr>Arguments</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/format.utils.html#resolvevalueaskey" class="tsd-kind-icon">resolve<wbr>Value<wbr>AsKey</a>
-					</li>
-					<li class=" tsd-kind-object-literal tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/format.utils.html#removepredicates" class="tsd-kind-icon">remove<wbr>Predicates</a>
+						<a href="../modules/format.utils.numeric.html#validatevalueargument" class="tsd-kind-icon">validate<wbr>Value<wbr>Argument</a>
 					</li>
 				</ul>
 			</nav>
