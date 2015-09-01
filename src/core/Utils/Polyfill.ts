@@ -71,6 +71,7 @@ namespace Format.Utils.Polyfill {
         return shiftValue(value, exponent) * sign;
     };
 
+    /** @private */
     var shiftValue = (value: number, exponent: number): number => {
 
         let valueParts = (value + "").split("e");

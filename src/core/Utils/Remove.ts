@@ -88,6 +88,7 @@ namespace Format.Utils {
         return objectIsArray ? Enumerable.compact(<any> object) : object;
     };
 
+    /** @private */
     var innerRemoveProperty = (object: Indexable<Object>, context: RemovePropertyContext) => {
 
         let value = <Indexable<Object>> object[context.key];
