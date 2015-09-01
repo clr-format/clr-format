@@ -68,10 +68,15 @@ namespace Format {
     /** @private */
     var formatItemRegExp = /{+(\d+)(?:,(.+?))?(?::(.+?))?}+/g;
 
+    /** Defines possible options for a string format replacement operation. */
     interface FormatItemOptions {
+        /** A format string matching the Format Item Syntax. */
         formatItem: string;
+        /** The mandatory index component, also called a parameter specifier, is a number starting from 0 that identifies a corresponding item in the list of objects. */
         indexComponent: string;
+        /** The optional alignment component is a signed integer indicating the preferred formatted field width. */
         alignmentComponent: string;
+        /** The optional formatString component is a format string that is appropriate for the type of object being formatted. */
         formatStringComponent: string;
     }
 

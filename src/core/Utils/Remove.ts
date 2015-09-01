@@ -37,9 +37,13 @@ declare namespace Format.Utils {
 
 namespace Format.Utils {
 
+    /** An interface servicing similar [[removeProperty]] method implementations that differ by a filter-predicate function. */
     interface RemovePropertyPredicates extends Indexable<(value: Object) => boolean> {
+        /** Returns `true` for values equal to `null` or `undefined`. */
         undefined(value: Object): boolean;
+        /** Returns `true` for values equal to `null`, `undefined` or `""`. */
         ""(value: Object): boolean;
+        /** Returns `true` for values that are considered falsy (`null`, `undefined`, `""` or `0`). */
         0(value: Object): boolean;
     }
 
