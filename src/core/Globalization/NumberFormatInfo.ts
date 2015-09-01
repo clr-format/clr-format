@@ -16,6 +16,7 @@ namespace Format.Globalization {
      */
     export class NumberFormatInfo implements FormatProvider {
 
+        /** Gets a read-only instance that is culture-independent (invariant). */
         public static InvariantInfo: NumberFormatInfo;
 
         /** Gets or sets the string to use as the decimal separator in currency values. */

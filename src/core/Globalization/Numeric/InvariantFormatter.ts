@@ -6,7 +6,6 @@
 /// <reference path="DecorationFormatter" />
 /// <reference path="ExponentialFormatter" />
 
-/// <reference path="../CultureInfo" />
 /// <reference path="../CustomFormatter" />
 /// <reference path="../NumberFormatInfo" />
 

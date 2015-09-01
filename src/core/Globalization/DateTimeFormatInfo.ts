@@ -12,6 +12,9 @@ namespace Format.Globalization {
      */
     export class DateTimeFormatInfo implements FormatProvider {
 
+        /** Gets a read-only instance that is culture-independent (invariant). */
+        public static InvariantInfo: DateTimeFormatInfo;
+
         protected locales: string|string[];
 
         private isWritable: boolean;
@@ -26,6 +29,8 @@ namespace Format.Globalization {
         constructor(...args: Object[]) {
             this.isWritable = args[0] !== undefined;
             this.locales = <string|string[]> args[0] || "";
+
+            this.resolveFormatInfo(this.locales);
         }
 
         /**
@@ -34,6 +39,23 @@ namespace Format.Globalization {
          */
         public getFormatter(type: string): CustomFormatter {
             return undefined;
+        }
+
+        private resolveFormatInfo(locales: string|string[]): void {
+            if (!locales) {
+                this.setInvariantFormatInfo();
+            }
+            else {
+                this.resolveCultureFormatInfo(locales);
+            }
+        }
+
+        private setInvariantFormatInfo(): void {
+            DateTimeFormatInfo.InvariantInfo = DateTimeFormatInfo.InvariantInfo || this;
+        }
+
+        private resolveCultureFormatInfo(locales: string|string[]): void {
+            throw new Errors.NotImplementedError("resolveCultureFormatInfo");
         }
     }
 }
