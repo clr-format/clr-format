@@ -19,7 +19,6 @@ namespace Format.Globalization {
         it("should initialize static properties", () => {
             expect(CultureInfo.InvariantCulture).toBeDefined();
             expect(CultureInfo.CurrentCulture).toBe(CultureInfo.InvariantCulture);
-            expect(CultureInfo.CurrentCulture.NumberFormat).toBe(NumberFormatInfo.InvariantInfo);
         });
 
         it("constructor should initialize the locale's and formatters' properties", () => {

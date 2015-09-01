@@ -6,6 +6,11 @@
 /// <reference path="FormatProvider" />
 /// <reference path="CustomFormatter" />
 
+/// <reference path="../Utils/Types" />
+
+/// <reference path="../Errors/NotImplementedError" />
+/// <reference path="../Errors/InvalidOperationError" />
+
 namespace Format.Globalization {
     /**
      * Provides culture-specific information for formatting and parsing numeric values.
@@ -50,7 +55,7 @@ namespace Format.Globalization {
          */
         constructor(locales: string|string[]);
         constructor(...args: Object[]) {
-            this.isWritable = args[0] !== undefined;
+            this.isWritable = args[0] === undefined;
             this.locales = <string|string[]> args[0] || "";
 
             this.resolveFormatInfo(this.locales);
@@ -61,6 +66,11 @@ namespace Format.Globalization {
          * @param type A string indicating the type of the custom formatter to return, see [[Utils.Types]].
          */
         public getFormatter(type: string): CustomFormatter {
+
+            if (type !== Utils.Types.Number) {
+                throw new Errors.InvalidOperationError("The NumberFormatInfo object supports formatting numeric values only");
+            }
+
             return this.formatter;
         }
 
@@ -82,12 +92,12 @@ namespace Format.Globalization {
             this.NumberDecimalDigits = 2;
 
             this.formatter = new Numeric.InvariantFormatter(Numeric.IntlOptionsProvider);
-
-            NumberFormatInfo.InvariantInfo = NumberFormatInfo.InvariantInfo || this;
         }
 
         private resolveCultureFormatInfo(locales: string|string[]): void {
             throw new Errors.NotImplementedError("resolveCultureFormatInfo");
         }
     }
+
+    NumberFormatInfo.InvariantInfo = new NumberFormatInfo("");
 }

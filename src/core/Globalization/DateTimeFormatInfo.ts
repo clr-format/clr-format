@@ -1,6 +1,12 @@
 /// <reference path="../../use-strict" />
 
 /// <reference path="FormatProvider" />
+/// <reference path="CustomFormatter" />
+
+/// <reference path="../Utils/Types" />
+
+/// <reference path="../Errors/NotImplementedError" />
+/// <reference path="../Errors/InvalidOperationError" />
 
 namespace Format.Globalization {
     /**
@@ -18,6 +24,7 @@ namespace Format.Globalization {
         protected locales: string|string[];
 
         private isWritable: boolean;
+        private formatter: CustomFormatter;
 
         /** Initializes a new writable instance of the class that is culture-independent (invariant). */
         constructor();
@@ -27,7 +34,7 @@ namespace Format.Globalization {
          */
         constructor(locales: string|string[]);
         constructor(...args: Object[]) {
-            this.isWritable = args[0] !== undefined;
+            this.isWritable = args[0] === undefined;
             this.locales = <string|string[]> args[0] || "";
 
             this.resolveFormatInfo(this.locales);
@@ -38,7 +45,12 @@ namespace Format.Globalization {
          * @param type A string indicating the type of the custom formatter to return, see [[Utils.Types]].
          */
         public getFormatter(type: string): CustomFormatter {
-            return undefined;
+
+            if (type !== Utils.Types.Date) {
+                throw new Errors.InvalidOperationError("The NumberFormatInfo object supports formatting numeric values only");
+            }
+
+            return this.formatter;
         }
 
         private resolveFormatInfo(locales: string|string[]): void {
@@ -51,11 +63,13 @@ namespace Format.Globalization {
         }
 
         private setInvariantFormatInfo(): void {
-            DateTimeFormatInfo.InvariantInfo = DateTimeFormatInfo.InvariantInfo || this;
+            this.formatter = undefined;
         }
 
         private resolveCultureFormatInfo(locales: string|string[]): void {
             throw new Errors.NotImplementedError("resolveCultureFormatInfo");
         }
     }
+
+    DateTimeFormatInfo.InvariantInfo = new DateTimeFormatInfo("");
 }
