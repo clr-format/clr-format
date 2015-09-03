@@ -34,8 +34,8 @@
   },
   "homepage": "https://github.com/clr-format/clr-format",
   "devDependencies": {
-    "clr-format": "^0.3.2",
-    "del": "^1.2.1",
+    "clr-format": "^0.3.3",
+    "del": "^2.0.0",
     "gulp": "^3.9.0",
     "gulp-add-src": "^0.2.0",
     "gulp-concat": "^2.6.0",

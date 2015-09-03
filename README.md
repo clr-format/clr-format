@@ -2,6 +2,7 @@
 A lightweight, modular JavaScript implementation of a string formatting function that supports composite format strings and globalization
 
 [![Build Status](https://travis-ci.org/clr-format/clr-format.svg?branch=master)](https://travis-ci.org/clr-format/clr-format)
+[![Dev Dependencies](https://david-dm.org/clr-format/clr-format/dev-status.svg)](https://david-dm.org/clr-format/clr-format/#info=devDependencies&view=table)
 
 Installation
 ------------
@@ -108,14 +109,14 @@ Overall, it doesn't seem to affect this project's build.
 
 Planned releases
 ----------------
-##### 0.1.2 (Released)
+##### 0.1 (Released)
 Support for index and alignment components only; *without* any formatting rules specified by a provider or format string component.
 
 ##### 0.2 (Released)
 Addition of a *clr-format-config.js* sub-module/package which can be optionally installed to compliment the core implementation with various pre-defined configurations.
 See [Format.Config] for full documentation.
 
-##### 0.3.1 (Released)
+##### 0.3 (Released)
 Implementation of an invariant number formatting provider and numeric format string components.
 
 ##### 0.4
