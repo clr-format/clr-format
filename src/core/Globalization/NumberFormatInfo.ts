@@ -24,6 +24,12 @@ namespace Format.Globalization {
         /** Gets a read-only instance that is culture-independent (invariant). */
         public static InvariantInfo: NumberFormatInfo;
 
+        /** Gets or sets the currency string. */
+        public static CurrentCurrency: string;
+
+        /** Gets or sets a constructor function to be used for creating culture-variant formatting instances. */
+        public static FormatterConstructor: { new (locales: string|string[], formatInfo: NumberFormatInfo): CustomFormatter };
+
         /** Gets or sets the string to use as the decimal separator in currency values. */
         public CurrencyDecimalSeparator: string;
 
@@ -77,25 +83,21 @@ namespace Format.Globalization {
         private resolveFormatInfo(locales: string|string[]): void {
             if (!locales) {
                 this.setInvariantFormatInfo();
+                this.formatter = new Numeric.InvariantFormatter(Numeric.IntlOptionsProvider);
+            }
+            else if (typeof NumberFormatInfo.FormatterConstructor === "function") {
+                this.formatter = new NumberFormatInfo.FormatterConstructor(this.locales, this);
             }
             else {
-                this.resolveCultureFormatInfo(locales);
+                throw new Errors.InvalidOperationError("No culture-variant formatter was found (load a sub-module implementation or set the FormatterConstructor property)");
             }
         }
 
         private setInvariantFormatInfo(): void {
-
             this.CurrencyDecimalSeparator = this.NumberDecimalSeparator = ".";
             this.CurrencyGroupSeparator = this.NumberGroupSeparator = ",";
-            this.NegativeSign = "-";
-
             this.NumberDecimalDigits = 2;
-
-            this.formatter = new Numeric.InvariantFormatter(Numeric.IntlOptionsProvider);
-        }
-
-        private resolveCultureFormatInfo(locales: string|string[]): void {
-            throw new Errors.NotImplementedError("resolveCultureFormatInfo");
+            this.NegativeSign = "-";
         }
     }
 

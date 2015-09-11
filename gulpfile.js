@@ -29,12 +29,14 @@ gulp.task("clean-all", ["clean"], del.build);
 
 gulp.task("lint", lint());
 gulp.task("lint-core", lint("core"));
+gulp.task("lint-intl", lint("intl"));
 gulp.task("lint-config", lint("config"));
 gulp.task("lint-test", lint("test"));
 
-gulp.task("build", ["build-core", "build-config", "build-npm", "test-npm"]);
+gulp.task("build", ["build-core", "build-intl", "build-config", "build-npm", "test-npm"]);
 gulp.task("build-npm", ["lint-core", "lint-config"], build.npm);
 gulp.task("build-core", ["lint-core"], build.js("core"));
+gulp.task("build-intl", ["build-core", "lint-intl"], build.js("intl"));
 gulp.task("build-config", ["build-core", "lint-config"], build.js("config"));
 gulp.task("build-browser", ["lint-test"], test.browser);
 gulp.task("build-release", ["build", "lint-test"], minify);
@@ -42,6 +44,7 @@ gulp.task("build-release", ["build", "lint-test"], minify);
 gulp.task("test", ["lint-test"], test.jasmine);
 gulp.task("test-npm", ["build-npm"], test.npm);
 gulp.task("test-browser", ["build-core", "build-config", "build-browser"]);
+gulp.task("test-intl", ["build-intl", "test-browser"]);
 
 gulp.task("watch", function () {
     gulp.watch([paths.sources], ["build"]);

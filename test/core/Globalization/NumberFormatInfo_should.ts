@@ -10,6 +10,7 @@ namespace Format.Globalization {
 
         let numberFormatInfo: NumberFormatInfo;
         let numberFormatInfoAccessor: any;
+        let formatterConstructor = NumberFormatInfo.FormatterConstructor;
 
         it("should initialize static properties", () => {
             expect(NumberFormatInfo.InvariantInfo).toBeDefined();
@@ -30,8 +31,9 @@ namespace Format.Globalization {
             expect(numberFormatInfo.NegativeSign).toBe("-");
         });
 
-        it("constructor should throw a NotImplementedError for a locales argument which is not supported", () => {
-            expect(() => new NumberFormatInfo("en-US")).toThrowError(Errors.NotImplementedError);
+        it("constructor should throw a InvalidOperationError for a locales argument without a loaded culture-variant sub-module", () => {
+            delete NumberFormatInfo.FormatterConstructor;
+            expect(() => new NumberFormatInfo("en-US")).toThrowError(Errors.InvalidOperationError);
         });
 
         it("getFormatter should only return a number formatter instance or throw an error", () => {
@@ -40,6 +42,10 @@ namespace Format.Globalization {
 
             expect(numberFormatInfo.getFormatter(Utils.Types.Number) instanceof Numeric.InvariantFormatter).toBe(true);
             expect(() => numberFormatInfo.getFormatter(Utils.Types.Object)).toThrowError(Errors.InvalidOperationError);
+        });
+
+        afterAll(() => {
+            NumberFormatInfo.FormatterConstructor = formatterConstructor;
         });
     });
 }

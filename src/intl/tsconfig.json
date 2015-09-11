@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "target": "ES3",
+        "sourceMap": false,
+        "noImplicitAny": true,
+        "declaration": true,
+        "out": "clr-format-intl.js"
+    }
+}

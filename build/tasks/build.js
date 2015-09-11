@@ -30,7 +30,15 @@ module.exports.js = function (component) {
 };
 
 module.exports.npm = function (component) {
-    return gulp.src([paths.core + globs.allTS, paths.config + globs.allTS, negate(paths.references)])
+
+    var sources = [
+        paths.core + globs.allTS,
+        paths.config + globs.allTS,
+        paths.intl + globs.allTS,
+        negate(paths.references)
+    ];
+
+    return gulp.src(sources)
         .pipe(tsc(tsProjects.npm)).js
         .pipe(addsrc.append(paths.npmExports))
         .pipe(concat(tsProjects.npm.options.out))

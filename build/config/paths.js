@@ -8,6 +8,7 @@ module.exports = {
     dists: dirs.output + globs.allJS,
     docs: dirs.docs + globs.allHTML,
     core: [dirs.sources, dirs.core].join(dirs.separator),
+    intl: [dirs.sources, dirs.intl].join(dirs.separator),
     config: [dirs.sources, dirs.config].join(dirs.separator),
     tsConfig: dirs.separator + files.tsconfig,
     references: dirs.sources + globs.allRefs,

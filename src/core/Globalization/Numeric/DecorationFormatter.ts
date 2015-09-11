@@ -52,7 +52,7 @@ module Format.Globalization.Numeric {
          * Applies negative sign position and symbol, removal of the leading zero, internal and external decorators to the formatted value.
          * @param value The number which is currently being formatted.
          * @param formattedValue The partial resulting format value.
-         * @returns A resulting format value with applied decoration options.
+         * @returns The fully formatted value.
          */
         public applyOptions(value: number, formattedValue: string): string {
 
@@ -122,23 +122,37 @@ module Format.Globalization.Numeric {
             return numericParts.join(decimalSeparator);
         }
 
+        /**
+         * Returns the appropriate decimal separator symbol depending on the available format info and style option.
+         * @param formatInfo An overriding format info instance to be used.
+         */
+        public getDecimalSeparator(formatInfo?: NumberFormatInfo): string {
+
+            formatInfo = formatInfo || this.formatInfo;
+
+            return this.isCurrency() ?
+                formatInfo.CurrencyDecimalSeparator :
+                formatInfo.NumberDecimalSeparator;
+        }
+
+        /**
+         * Returns the appropriate group separator symbol depending on the available format info and style option.
+         * @param formatInfo An overriding format info instance to be used.
+         */
+        public getGroupSeparator(formatInfo?: NumberFormatInfo): string {
+
+            formatInfo = formatInfo || this.formatInfo;
+
+            return this.isCurrency() ?
+                formatInfo.CurrencyGroupSeparator :
+                formatInfo.NumberGroupSeparator;
+        }
+
         private isCurrency(): boolean {
 
             let styles = Specifiers.StandardSpecifiers;
 
             return this.style === styles[styles.decimal];
-        }
-
-        private getDecimalSeparator(): string {
-            return this.isCurrency() ?
-                this.formatInfo.CurrencyDecimalSeparator :
-                this.formatInfo.NumberDecimalSeparator;
-        }
-
-        private getGroupSeparator(): string {
-            return this.isCurrency() ?
-                this.formatInfo.CurrencyGroupSeparator :
-                this.formatInfo.NumberGroupSeparator;
         }
 
         private removeNegativeSign(value: number, formattedValue: string): string {

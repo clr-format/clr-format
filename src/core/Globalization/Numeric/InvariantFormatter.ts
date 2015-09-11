@@ -24,12 +24,12 @@ namespace Format.Globalization.Numeric {
 
         /** Gets the result of the [[baseOptions]] field extended with concrete options returned from the [[optionsProvider]] instance. */
         protected resolvedOptions: T;
+        protected decorationFormatter: DecorationFormatter<T>;
 
         private value: number;
         private baseOptions: T;
         private optionsProvider: OptionsProvider<T>;
         private optionsProviderConstructor: { new (baseOptions: T): OptionsProvider<T> };
-        private decorationFormatter: DecorationFormatter<T>;
 
         /**
          * Creates an instance with base formatting options and initializes an options provider that resolves concrete format options.
@@ -58,7 +58,7 @@ namespace Format.Globalization.Numeric {
         /**
          * Applies all resolved format options to the number.
          * @param value The number to format.
-         * @returns The fully formatted value.
+         * @returns A resulting format value with applied format options.
          */
         protected applyOptions(value: number): string {
 

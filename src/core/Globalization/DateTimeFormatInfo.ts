@@ -1,5 +1,8 @@
 /// <reference path="../../use-strict" />
 
+/// <reference path="DateTime/InvariantFormatter" />
+/// <reference path="DateTime/IntlOptionsProvider" />
+
 /// <reference path="FormatProvider" />
 /// <reference path="CustomFormatter" />
 
@@ -20,6 +23,9 @@ namespace Format.Globalization {
 
         /** Gets a read-only instance that is culture-independent (invariant). */
         public static InvariantInfo: DateTimeFormatInfo;
+
+        /** Gets or sets a constructor function to be used for creating culture-variant formatting instances. */
+        public static FormatterConstructor: { new (locales: string|string[], formatInfo: DateTimeFormatInfo): CustomFormatter };
 
         protected locales: string|string[];
 
@@ -47,7 +53,7 @@ namespace Format.Globalization {
         public getFormatter(type: string): CustomFormatter {
 
             if (type !== Utils.Types.Date) {
-                throw new Errors.InvalidOperationError("The NumberFormatInfo object supports formatting numeric values only");
+                throw new Errors.InvalidOperationError("The DateTimeFormatInfo object supports formatting numeric values only");
             }
 
             return this.formatter;
@@ -55,19 +61,14 @@ namespace Format.Globalization {
 
         private resolveFormatInfo(locales: string|string[]): void {
             if (!locales) {
-                this.setInvariantFormatInfo();
+                this.formatter = new DateTime.InvariantFormatter(DateTime.IntlOptionsProvider);
+            }
+            else if (typeof DateTimeFormatInfo.FormatterConstructor === "function") {
+                this.formatter = new DateTimeFormatInfo.FormatterConstructor(this.locales, this);
             }
             else {
-                this.resolveCultureFormatInfo(locales);
+                throw new Errors.InvalidOperationError("No culture-variant formatter was found (load a sub-module implementation or set the FormatterConstructor property)");
             }
-        }
-
-        private setInvariantFormatInfo(): void {
-            this.formatter = undefined;
-        }
-
-        private resolveCultureFormatInfo(locales: string|string[]): void {
-            throw new Errors.NotImplementedError("resolveCultureFormatInfo");
         }
     }
 

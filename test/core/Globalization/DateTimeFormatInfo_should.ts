@@ -2,12 +2,15 @@
 
 /// <reference path="../../../src/core/Globalization/DateTimeFormatInfo" />
 
+/// <reference path="../../../src/core/Globalization/DateTime/InvariantFormatter" />
+
 namespace Format.Globalization {
 
     describe("DateTimeFormatInfo", () => {
 
         let dateTimeFormatInfoInfo: DateTimeFormatInfo;
         let dateTimeFormatInfoAccessor: any;
+        let formatterConstructor = DateTimeFormatInfo.FormatterConstructor;
 
         it("should initialize static properties", () => {
             expect(DateTimeFormatInfo.InvariantInfo).toBeDefined();
@@ -21,16 +24,21 @@ namespace Format.Globalization {
             expect(dateTimeFormatInfoAccessor.isWritable).toBe(false);
         });
 
-        it("constructor should throw a NotImplementedError for a locales argument which is not supported", () => {
-            expect(() => new DateTimeFormatInfo("en-US")).toThrowError(Errors.NotImplementedError);
+        it("constructor should throw a InvalidOperationError for a locales argument without a loaded culture-variant sub-module", () => {
+            delete DateTimeFormatInfo.FormatterConstructor;
+            expect(() => new DateTimeFormatInfo("en-US")).toThrowError(Errors.InvalidOperationError);
         });
 
-        it("getFormatter should only return a number formatter instance or throw an error", () => {
+        it("getFormatter should only return a date and time formatter instance or throw an error", () => {
 
             dateTimeFormatInfoInfo = new DateTimeFormatInfo("");
 
-            expect(dateTimeFormatInfoInfo.getFormatter(Utils.Types.Date)).toBeUndefined();
+            expect(dateTimeFormatInfoInfo.getFormatter(Utils.Types.Date) instanceof DateTime.InvariantFormatter).toBe(true);
             expect(() => dateTimeFormatInfoInfo.getFormatter(Utils.Types.Object)).toThrowError(Errors.InvalidOperationError);
+        });
+
+        afterAll(() => {
+            DateTimeFormatInfo.FormatterConstructor = formatterConstructor;
         });
     });
 }

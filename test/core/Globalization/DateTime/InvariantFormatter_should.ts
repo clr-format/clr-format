@@ -1,14 +1,14 @@
 /// <reference path="../../../typings/jasmine/jasmine" />
 
-/// <reference path="../../../../src/core/Globalization/Numeric/InvariantFormatter" />
-/// <reference path="../../../../src/core/Globalization/Numeric/IntlOptionsProvider" />
+/// <reference path="../../../../src/core/Globalization/DateTime/InvariantFormatter" />
+/// <reference path="../../../../src/core/Globalization/DateTime/IntlOptionsProvider" />
 
-namespace Format.Globalization.Numeric {
+namespace Format.Globalization.DateTime {
 
     describe("InvariantFormatter", () => {
 
-        let intlOptions: Intl.NumberFormatOptions;
-        let invariantFormatter: InvariantFormatter<Intl.NumberFormatOptions>;
+        let intlOptions: Intl.DateTimeFormatOptions;
+        let invariantFormatter: InvariantFormatter<Intl.DateTimeFormatOptions>;
         let invariantFormatterAccessor: any;
 
         let expectCleanState = () => {
@@ -17,7 +17,6 @@ namespace Format.Globalization.Numeric {
             expect(invariantFormatterAccessor.value).toBeUndefined();
             expect(invariantFormatterAccessor.resolvedOptions).toBeUndefined();
             expect(invariantFormatterAccessor.optionsProvider).toBeUndefined();
-            expect(invariantFormatterAccessor.decorationFormatter).toBeUndefined();
         };
 
         beforeAll(() => {
@@ -32,23 +31,7 @@ namespace Format.Globalization.Numeric {
 
         it("format should apply the format string's options and retain its original clean instance state regardless of output", () => {
 
-            expect(invariantFormatter.format("", 0)).toBe("0");
-            expectCleanState();
-            expect(invariantFormatter.format("e", 0)).toBe("0.000000e+000");
-            expectCleanState();
-            expect(invariantFormatter.format("#", 0)).toBe("");
-            expectCleanState();
-            expect(() => invariantFormatter.format("C", 0)).toThrowError(Errors.NotImplementedError);
-            expectCleanState();
-            expect(() => invariantFormatter.format("Z0", 0)).toThrowError(Errors.FormatError);
-            expectCleanState();
-        });
-
-        it("format should throw InvalidOperationError if the option's provider returns an unsupported style option", () => {
-
-            invariantFormatter = new InvariantFormatter(IntlOptionsProvider, { style: "unsupported" });
-
-            expect(() => invariantFormatter.format("", 0)).toThrowError(Errors.ArgumentError);
+            expect(invariantFormatter.format("", new Date())).toBeDefined();
             expectCleanState();
         });
 
@@ -56,7 +39,7 @@ namespace Format.Globalization.Numeric {
 
             let emptyOptionsProvider: any = () => {
                 return {
-                    resolveOptions: (): Intl.NumberFormatOptions => {
+                    resolveOptions: (): Intl.DateTimeFormatOptions => {
                         return undefined;
                     }
                 };
@@ -64,7 +47,7 @@ namespace Format.Globalization.Numeric {
 
             invariantFormatter = new InvariantFormatter(emptyOptionsProvider, intlOptions);
 
-            expect(() => invariantFormatter.format("", 0)).toThrowError(Errors.InvalidOperationError);
+            expect(() => invariantFormatter.format("", new Date())).toThrowError(Errors.InvalidOperationError);
             expectCleanState();
         });
     });
