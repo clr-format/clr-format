@@ -23,7 +23,7 @@ namespace Format {
 
         beforeAll(() => {
             try {
-                Globalization.CultureInfo.CurrentCulture = new Globalization.CultureInfo("de-DE");
+                Format.setCulture("de-DE");
             }
             catch (error) {
                 hasNoCulturePlugin = error instanceof Errors.InvalidOperationError;
@@ -39,12 +39,33 @@ namespace Format {
             // Currency - https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx#CFormatString
             expect(() => String.format("{0:c}", 1230)).toThrowError(Errors.FormatError);
 
-            Globalization.NumberFormatInfo.CurrentCurrency = "EUR";
+            Format.setCurrency("EUR");
 
             expect(String.format("{0:c}", 1230)).toMatch(/1.230,00\s€/);
             expect(String.format("{0:C0}", 123)).toMatch(/123\s€/);
             expect(String.format("{0:c}", 1230.456)).toMatch(/1.230,46\s€/);
             expect(String.format("{0:C3}", -123.456)).toMatch(/-123,456\s€/);
+
+            Format.setCurrency("ADP");
+
+            expect(String.format("{0:c}", 1230)).toMatch(/1.230\sADP/);
+            expect(String.format("{0:C0}", 123)).toMatch(/123\sADP/);
+            expect(String.format("{0:c}", 1230.456)).toMatch(/1.230\sADP/);
+            expect(String.format("{0:C2}", -123.456)).toMatch(/-123,46\sADP/);
+
+            Format.setCurrency("BHD");
+
+            expect(String.format("{0:c}", 1230)).toMatch(/1.230,000\s(?:BHD|د.ب.)/);
+            expect(String.format("{0:C0}", 123)).toMatch(/123\s(?:BHD|د.ب.)/);
+            expect(String.format("{0:c}", 1230.456)).toMatch(/1.230,456\s(?:BHD|د.ب.)/);
+            expect(String.format("{0:C2}", -123.456)).toMatch(/-123,46\s(?:BHD|د.ب.)/);
+
+            Format.setCurrency("CLF");
+
+            expect(String.format("{0:c}", 1230)).toMatch(/1.230,0000\sCLF/);
+            expect(String.format("{0:C0}", 123)).toMatch(/123\sCLF/);
+            expect(String.format("{0:c}", 1230.456)).toMatch(/1.230,4560\sCLF/);
+            expect(String.format("{0:C3}", -123.456)).toMatch(/-123,456\sCLF/);
 
             // Decimal - https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx#DFormatString
             expect(String.format("{0:d}", 1234.23)).toBe("1234");
@@ -57,9 +78,9 @@ namespace Format {
             expect(String.format("{0:E2}", -1052.0329112756)).toBe("-1,05E+003");
 
             // Fixed-point - https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx#FFormatString
-            expect(String.format("{0:f}", 1234)).toBe("1234,00");
+            expect(String.format("{0:f}", 1234)).toBe("1234,000");
             expect(String.format("{0:F0}", 1234.567)).toBe("1235");
-            expect(String.format("{0:f}", 1234.567)).toBe("1234,57");
+            expect(String.format("{0:f}", 1234.5678)).toBe("1234,568");
             expect(String.format("{0:F4}", -1234.567)).toBe("-1234,5670");
 
             // General - https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx#GFormatString
@@ -77,13 +98,13 @@ namespace Format {
             expect(String.format("{0:G0}", 0.00001234567891)).toBe("1,234567891E-05");
 
             // Number - https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx#NFormatString
-            expect(String.format("{0:n}", 1234)).toBe("1.234,00");
-            expect(String.format("{0:n}", 1234.567)).toBe("1.234,57");
+            expect(String.format("{0:n}", 1234)).toBe("1.234,000");
+            expect(String.format("{0:n}", 1234.5678)).toBe("1.234,568");
             expect(String.format("{0:N1}", 123456789)).toBe("123.456.789,0");
-            expect(String.format("{0:N3}", -1234.56)).toBe("-1.234,560");
+            expect(String.format("{0:N2}", -1234.56)).toBe("-1.234,56");
 
             // Percent - https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx#PFormatString
-            expect(String.format("{0:p}", 1)).toMatch(/100,00\s?%/);
+            expect(String.format("{0:p}", 1)).toMatch(/100,000\s?%/);
             expect(String.format("{0:p0}", 10)).toMatch(/1.000\s?%/);
             expect(String.format("{0:P1}", -0.39678)).toMatch(/-39,7\s?%/);
 

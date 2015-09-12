@@ -42,6 +42,29 @@ namespace Format {
     };
 
     /**
+     * Sets the current default culture (the [[CurrentCulture]] property) based on the supplied locale parameter.
+     * @param locale A string holding a [BCP 47 language tag](http://tools.ietf.org/html/rfc5646).
+     */
+    export function setCulture(locale: string): void {
+        Globalization.CultureInfo.CurrentCulture = locale === "" ?
+            Globalization.CultureInfo.InvariantCulture :
+            new Globalization.CultureInfo(locale);
+    }
+
+    /**
+     * Sets the current default currency (the [[CurrentCurrency]] property) based on the supplied currency code.
+     * @param currencyCode The currency to use in currency formatting. See [current currency & funds code list](http://www.currency-iso.org/en/home/tables/table-a1.html).
+     */
+    export function setCurrency(currencyCode: string): void {
+
+        if (currencyCode == null) {
+            throw new Errors.ArgumentNullError("currencyCode");
+        }
+
+        Globalization.NumberFormatInfo.CurrentCurrency = currencyCode;
+    }
+
+    /**
      * Converts the value of objects to strings based on the formats specified and inserts them into another string.
      *
      * This project-internal (but externally visible) version does not support arbitrary argument overloads.

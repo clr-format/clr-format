@@ -36,6 +36,9 @@ namespace Format.Globalization {
         /** Gets or sets the string that separates groups of digits to the left of the decimal in currency values. */
         public CurrencyGroupSeparator: string;
 
+        /** Gets or sets the number of decimal places to use in currency values. */
+        public CurrencyDecimalDigits: number;
+
         /** Gets or sets the string to use as the decimal separator in numeric values. */
         public NumberDecimalSeparator: string;
 

@@ -3,15 +3,12 @@
 /// <reference path="IntlFormatOptions" />
 
 /// <reference path="../../API" />
+/// <reference path="../../Utils/IntlResolvers" />
 
 namespace Format.Globalization.Numeric {
 
     /** @private */
-    let styles = Specifiers.StandardSpecifiers,
-        decimal = styles[styles.decimal],
-        currency = styles[styles.currency],
-        nonDigitSymbolRegExp = /[^\d]/,
-        invariantReplaceSymbolsRexExp = /[-.]/g;
+    let styles = Specifiers.StandardSpecifiers;
 
     /**
      * Provides culture-specific formatting for numeric values by using the Intl namespace.
@@ -34,46 +31,14 @@ namespace Format.Globalization.Numeric {
             decimal: true,
             percent: true,
 
-            fixedPoint: decimal,
-            undefined: decimal,
-            number: decimal,
+            fixedPoint: styles[styles.decimal],
+            undefined: styles[styles.decimal],
+            number: styles[styles.decimal],
 
             exponential: false,
             roundTrip: false,
             general: false,
             hex: false
-        };
-
-        // Arrow syntax used to preserve 'this' context inside the function at compile time
-        private setResolvedFormatInfo: (formatInfo: NumberFormatInfo) => void = (): void => {
-
-            let sampleValue = 1.2, groupValue = -1234,
-                numberSampler = this.getNativeFormatter(),
-                currencySampler = this.getNativeFormatter({ style: currency, currency: "USD" }),
-                numberNegativeSample = numberSampler.format(-sampleValue),
-                currencyNegativeSample = currencySampler.format(sampleValue);
-
-            this.formatInfo.NegativeSign = numberNegativeSample[0];
-            this.formatInfo.NumberGroupSeparator = numberSampler.format(groupValue)[2];
-            this.formatInfo.NumberDecimalSeparator = numberNegativeSample.substring(1).match(nonDigitSymbolRegExp)[0];
-            this.formatInfo.CurrencyGroupSeparator = currencySampler.format(groupValue)[2];
-            this.formatInfo.CurrencyDecimalSeparator = currencyNegativeSample.substring(1).match(nonDigitSymbolRegExp)[0];
-        };
-
-        // Arrow syntax used to preserve 'this' context inside the function at compile time
-        private replaceInvariantSymbols: (replaceChar: string) => string = (replaceChar: string): string => {
-
-            let invariantFormatInfo = super.getFormatInfo();
-
-            if (replaceChar === invariantFormatInfo.NegativeSign) {
-                return this.getFormatInfo().NegativeSign;
-            }
-
-            if (replaceChar === this.decorationFormatter.getDecimalSeparator(invariantFormatInfo)) {
-                return this.decorationFormatter.getDecimalSeparator();
-            }
-
-            return replaceChar;
         };
 
         /**
@@ -118,7 +83,7 @@ namespace Format.Globalization.Numeric {
             }
             else {
                 formattedValue = super.applyOptions(value);
-                formattedValue = this.applyCultureSpecificFormatting(value, formattedValue);
+                formattedValue = this.applyCultureSpecificFormatting(formattedValue);
             }
 
             return formattedValue;
@@ -129,10 +94,17 @@ namespace Format.Globalization.Numeric {
             return this.formatInfo;
         }
 
+        private setResolvedFormatInfo(formatInfo: NumberFormatInfo): void {
+            Utils.IntlResovlers.setNumberFormatInfo(
+                this.formatInfo,
+                this.getNativeFormatter({ style: styles[styles.decimal] }),
+                this.getNativeFormatter({ style: styles[styles.currency], currency: "USD", useGrouping: true }));
+        }
+
         private overrideOptions(overrideStyle: boolean|string): void {
 
             this.overrideCurrencyOptions();
-            this.overrideFractionOptions();
+            this.overrideDecimalOptions();
 
             if (typeof overrideStyle === "string") {
                 this.resolvedOptions.style = overrideStyle;
@@ -144,17 +116,23 @@ namespace Format.Globalization.Numeric {
         }
 
         private overrideCurrencyOptions(): void {
-            if (this.resolvedOptions.style === currency) {
-                this.resolvedOptions.currency = NumberFormatInfo.CurrentCurrency;
-                this.overrideFractionDigits(2);
+            if (this.resolvedOptions.style === styles[styles.currency]) {
+                let currencyCode = NumberFormatInfo.CurrentCurrency;
+                if (currencyCode) {
+                    this.resolvedOptions.currency = currencyCode;
+                    this.overrideFractionDigits(Utils.IntlResovlers.getCurrencyDecimalDigits(this.formatInfo, currencyCode));
+                }
+                else {
+                    throw new Errors.InvalidOperationError("No currency was set (use the Format.setCurrency method to do so)");
+                }
             }
         }
 
-        private overrideFractionOptions(): void {
+        private overrideDecimalOptions(): void {
             if (this.resolvedOptions.style === styles[styles.fixedPoint] ||
                 this.resolvedOptions.style === styles[styles.percent] ||
                 this.resolvedOptions.style === styles[styles.number]) {
-                this.overrideFractionDigits(2);
+                this.overrideFractionDigits(this.formatInfo.NumberDecimalDigits);
             }
         }
 
@@ -166,20 +144,40 @@ namespace Format.Globalization.Numeric {
             }
         }
 
-        private getNativeFormatter(resolvedOptions?: Intl.NumberFormatOptions): Intl.NumberFormat {
+        private getNativeFormatter(resolvedOptions: Intl.NumberFormatOptions): Intl.NumberFormat {
             return <any> new Intl.NumberFormat(<string> this.locales, resolvedOptions);
         }
 
-        private applyCultureSpecificFormatting(value: number, invariantlyFormattedString: string): string {
+        private applyCultureSpecificFormatting(invariantlyFormattedString: string): string {
 
             if (this.resolvedOptions.style === styles[styles.hex]) {
                 return invariantlyFormattedString;
             }
 
-            return invariantlyFormattedString.replace(
-                invariantReplaceSymbolsRexExp,
+            return Utils.IntlResovlers.applyNumberCultureFormatting(
+                invariantlyFormattedString,
                 this.replaceInvariantSymbols);
         }
+
+        /* tslint:disable:member-ordering */
+
+        // Arrow syntax used to preserve 'this' context inside the function at compile time
+        private replaceInvariantSymbols: (replaceChar: string) => string = (replaceChar: string): string => {
+
+            let invariantFormatInfo = super.getFormatInfo();
+
+            if (replaceChar === invariantFormatInfo.NegativeSign) {
+                return this.getFormatInfo().NegativeSign;
+            }
+
+            if (replaceChar === this.decorationFormatter.getDecimalSeparator(invariantFormatInfo)) {
+                return this.decorationFormatter.getDecimalSeparator();
+            }
+
+            return replaceChar;
+        };
+
+        /* tslint:enable:member-ordering */
     }
 
     NumberFormatInfo.FormatterConstructor = IntlFormatter;
