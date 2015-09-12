@@ -66,15 +66,16 @@
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
 				<h1 id="-clr-format-https-github-com-clr-format-clr-format-"><a href="https://github.com/clr-format/clr-format">clr-format</a></h1>
-				<p>A lightweight, modular JavaScript implementation of a string formatting function that supports composite format strings and globalization</p>
-				<p><a href="https://travis-ci.org/clr-format/clr-format"><img src="https://travis-ci.org/clr-format/clr-format.svg?branch=master" alt="Build Status"></a></p>
+				<p>A lightweight, modular and stand-alone JavaScript implementation of a string formatting function that supports composite format strings, globalization and customization</p>
+				<p><a href="https://travis-ci.org/clr-format/clr-format"><img src="https://travis-ci.org/clr-format/clr-format.svg?branch=master" alt="Build Status"></a>
+				<a href="https://david-dm.org/clr-format/clr-format/#info=devDependencies&amp;view=table"><img src="https://david-dm.org/clr-format/clr-format/dev-status.svg" alt="Dev Dependencies"></a></p>
 				<h2 id="installation">Installation</h2>
 				<p>The following commands can be used to install the script in a context of your choice.</p>
-				<h4 id="-nuget-https-badge-fury-io-nu-clr-format-js-svg-http-badge-fury-io-nu-clr-format-js-"><a href="http://badge.fury.io/nu/clr-format.js"><img src="https://badge.fury.io/nu/clr-format.js.svg" alt="NuGet"></a></h4>
+				<h4 id="-nuget-https-badge-fury-io-nu-clr-format-js-svg-https-www-nuget-org-packages-clr-format-js-"><a href="https://www.nuget.org/packages/clr-format.js"><img src="https://badge.fury.io/nu/clr-format.js.svg" alt="NuGet"></a></h4>
 				<p><code>Install-Package clr-format.js</code></p>
-				<h4 id="-bower-https-badge-fury-io-bo-clr-format-svg-http-badge-fury-io-bo-clr-format-"><a href="http://badge.fury.io/bo/clr-format"><img src="https://badge.fury.io/bo/clr-format.svg" alt="Bower"></a></h4>
+				<h4 id="-bower-https-badge-fury-io-bo-clr-format-svg-http-bower-io-search-q-clr-format-"><a href="http://bower.io/search/?q=clr-format"><img src="https://badge.fury.io/bo/clr-format.svg" alt="Bower"></a></h4>
 				<p><code>bower install clr-format</code></p>
-				<h4 id="-npm-https-badge-fury-io-js-clr-format-svg-http-badge-fury-io-js-clr-format-"><a href="http://badge.fury.io/js/clr-format"><img src="https://badge.fury.io/js/clr-format.svg" alt="NPM"></a></h4>
+				<h4 id="-npm-https-badge-fury-io-js-clr-format-svg-https-www-npmjs-com-package-clr-format-"><a href="https://www.npmjs.com/package/clr-format"><img src="https://badge.fury.io/js/clr-format.svg" alt="NPM"></a></h4>
 				<p><code>npm install clr-format</code></p>
 				<h2 id="latest-version-capabilities">Latest Version Capabilities</h2>
 				<p><a href="https://saucelabs.com/u/clr-format"><img src="https://saucelabs.com/browser-matrix/clr-format.svg" alt="Sauce Test Status"></a></p>
@@ -85,10 +86,20 @@
 
  expect(<span class="hljs-built_in">String</span>.format(<span class="hljs-string">"{0:C}"</span>, <span class="hljs-number">35.23</span>)).toThrowError(Format.Errors.FormatError);
 </code></pre>
-						<p>For lack of a better medium (other than MSDN) please refer to the <a href="https://github.com/clr-format/clr-format/blob/v0.3.2/test/core/String/formatInvariant_should.ts">test cases</a> for a more in-depth showcase of what can be expected as input/output.
-						Also note that the default and only <a href="http://clr-format.github.io/clr-format/interfaces/format.globalization.formatprovider.html">FormatProvider</a> implementation is <a href="http://clr-format.github.io/clr-format/classes/format.globalization.cultureinfo.html#invariantculture">CultureInfo.InvariantCulture</a>. Culture-specific and currency formatting are coming up in the next version.</p>
+						<p>For lack of a better medium (other than MSDN) please refer to the <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/test/core/String/formatInvariant_should.ts">invariant test cases</a> for a more in-depth showcase of what can be expected as input/output.</p>
 					</li>
-					<li><p>Full support for index {<strong>0</strong>} and alignment {0,<strong>-10</strong>} components.</p>
+					<li><p>Optional globalization API contained in <em>clr-format-intl.js</em> that allows for culture-specific number and currency formatting via the <a href="http://clr-format.github.io/clr-format/modules/format.html#setculture">Format.setCulture</a> and <a href="http://clr-format.github.io/clr-format/modules/format.html#setcurrency">Format.setCurrency</a> methods.</p>
+						<pre><code class="lang-javascript"> Format.setCulture(<span class="hljs-string">"de-DE"</span>);
+ expect(<span class="hljs-built_in">String</span>.format(<span class="hljs-string">"{0:N2}"</span>, -<span class="hljs-number">1234.56</span>)).toBe(<span class="hljs-string">"-1.234,56"</span>);
+ expect(<span class="hljs-built_in">String</span>.format(<span class="hljs-string">"{0:#0.0#;(#0.0#,);-0-}"</span>, -<span class="hljs-number">1234.5</span>)).toBe(<span class="hljs-string">"(1,23)"</span>);
+
+ Format.setCurrency(<span class="hljs-string">"EUR"</span>);
+ expect(<span class="hljs-built_in">String</span>.format(<span class="hljs-string">"{0:c}"</span>, <span class="hljs-number">1230</span>)).toBe(<span class="hljs-string">"1.230,00 €"</span>);
+</code></pre>
+						<p>Again you can find all MSDN-like examples compiled in the <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/test/core/String/formatCulture_should.ts#L33">culture-enabled test cases</a>.
+						Requires contextual support for the <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Intl">ECMAScript Intl namespace</a>. For older browsers and cultures outside of &quot;en-US&quot; in Node.JS consider polyfilling with <a href="https://github.com/andyearnshaw/Intl.js">Intl.js</a>.</p>
+					</li>
+					<li><p>Support for mixed index and alignment components.</p>
 						<pre><code class="lang-javascript"> expect(
      <span class="hljs-built_in">String</span>.format(
          <span class="hljs-string">"Format primitives: {0}{5}, {4}, {3}, {1,-8},{2,4}"</span>,
@@ -98,11 +109,9 @@
 					</li>
 					<li><p>Optional configuration API contained in <em>clr-format-config.js</em> and defined under the <a href="http://clr-format.github.io/clr-format/modules/format.config.html">Format.Config</a> namespace.</p>
 						<pre><code class="lang-javascript"> Format.Config.addFormatToPrototype();
- expect(<span class="hljs-string">"Formatting using the injected {0} method"</span>.format(<span class="hljs-string">"prototype"</span>))
-     .toBe(<span class="hljs-string">"Formatting using the injected prototype method"</span>);
+ expect(<span class="hljs-string">"Format using the injected {0} method"</span>.format(<span class="hljs-string">"prototype"</span>))
+     .toBe(<span class="hljs-string">"Format using the injected prototype method"</span>);
 </code></pre>
-					</li>
-					<li><p>Added support for a wider range of browsers like early versions of the mobile Android WebKit browser and even IE8 to the latest versions of modern browsers.</p>
 					</li>
 				</ol>
 				<h2 id="usage">Usage</h2>
@@ -112,7 +121,10 @@
 				<h4 id="as-a-module">As a module</h4>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> format = <span class="hljs-built_in">String</span>.format = <span class="hljs-built_in">require</span>(<span class="hljs-string">"clr-format"</span>);
 
-<span class="hljs-keyword">var</span> formatted = <span class="hljs-built_in">String</span>.format(<span class="hljs-string">"Value: {0,-2}{1}"</span>, <span class="hljs-number">1</span>, <span class="hljs-string">"text"</span>); <span class="hljs-comment">// formatted = "Value: 1 text"</span>
+format.setCulture(<span class="hljs-string">"en-US"</span>);
+format.setCurrency(<span class="hljs-string">"USD"</span>);
+
+<span class="hljs-keyword">var</span> formatted = <span class="hljs-built_in">String</span>.format(<span class="hljs-string">"Value: {0,-6:C}{1}"</span>, <span class="hljs-number">1</span>, <span class="hljs-string">"text"</span>); <span class="hljs-comment">// formatted = "Value: $1.00 text"</span>
 
 <span class="hljs-comment">// Using the configuration API</span>
 format.Config.addFormatToPrototype();
@@ -141,21 +153,21 @@ gulp
 </code></pre>
 				<h4 id="notes">Notes</h4>
 				<ul>
-					<li>The default gulp build tasks&#39; list contains a <a href="https://github.com/gulpjs/gulp/blob/v0.3.2/docs/API.md#gulpwatchglob-opts-cb">watch task</a>
+					<li>The default gulp build tasks&#39; list contains a <a href="https://github.com/gulpjs/gulp/blob/v0.4.0/docs/API.md#gulpwatchglob-opts-cb">watch task</a>
 					which means it will block the console and continuously rebuild the project when files in the source or tests folder are changed.</li>
 					<li>In VSCode pressing <strong>Ctrl</strong> + <strong>Shift</strong> + <strong>B</strong> or <strong>T</strong> will trigger the default build or test command respectively.</li>
 					<li>The <code>--ignore-scripts</code> option is used to stop errors caused by <code>node-gyp</code> rebuild scripts introduced by <code>karma</code>.
 					Overall, it doesn&#39;t seem to affect this project&#39;s build.</li>
 				</ul>
 				<h2 id="planned-releases">Planned releases</h2>
-				<h5 id="0-1-2-released-">0.1.2 (Released)</h5>
+				<h5 id="0-1-released-">0.1 (Released)</h5>
 				<p>Support for index and alignment components only; <em>without</em> any formatting rules specified by a provider or format string component.</p>
 				<h5 id="0-2-released-">0.2 (Released)</h5>
 				<p>Addition of a <em>clr-format-config.js</em> sub-module/package which can be optionally installed to compliment the core implementation with various pre-defined configurations.
 				See <a href="http://clr-format.github.io/clr-format/modules/format.config.html">Format.Config</a> for full documentation.</p>
-				<h5 id="0-3-1-released-">0.3.1 (Released)</h5>
+				<h5 id="0-3-released-">0.3 (Released)</h5>
 				<p>Implementation of an invariant number formatting provider and numeric format string components.</p>
-				<h5 id="0-4">0.4</h5>
+				<h5 id="0-4-released-">0.4 (Released)</h5>
 				<p>Addition of a <em>clr-format-intl.js</em> sub-module/package which can be optionally installed to provide globalization via a bridge to the <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Intl">ECMAScript Intl namespace</a>.</p>
 				<h5 id="0-5">0.5</h5>
 				<p>Complete the implementation with a date formatting provider and date/time format string components.</p>

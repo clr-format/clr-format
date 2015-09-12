@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Options | CLR Format</title>
+	<title>OptionsProvider | CLR Format</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -60,16 +60,16 @@
 					<a href="../modules/format.html">Format</a>
 				</li>
 				<li>
-					<a href="../modules/format.utils.html">Utils</a>
+					<a href="../modules/format.globalization.html">Globalization</a>
 				</li>
 				<li>
-					<a href="../modules/format.utils.padding.html">Padding</a>
+					<a href="../modules/format.globalization.datetime.html">DateTime</a>
 				</li>
 				<li>
-					<a href="format.utils.padding.options.html">Options</a>
+					<a href="format.globalization.datetime.optionsprovider.html">OptionsProvider</a>
 				</li>
 			</ul>
-			<h1>Interface Options</h1>
+			<h1>Interface OptionsProvider&lt;TOptions&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -79,79 +79,94 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Defines possible options for a string padding operation.</p>
+						<p>Provides a mechanism for retrieving concrete date and time formatting options.</p>
 					</div>
 				</div>
+			</section>
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>TOptions</h4>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>The type of the options container.</p>
+							</div>
+						</div>
+					</li>
+				</ul>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Options</span>
+						<a href="format.globalization.optionsprovider.html" class="tsd-signature-type">OptionsProvider</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TOptions</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol">&gt;</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">OptionsProvider</span>
+							</li>
+						</ul>
 					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implemented by</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../classes/format.globalization.datetime.intloptionsprovider.html" class="tsd-signature-type">IntlOptionsProvider</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section ">
-							<h3>Properties</h3>
+						<section class="tsd-index-section tsd-is-inherited">
+							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="format.utils.padding.options.html#direction" class="tsd-kind-icon">direction</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="format.utils.padding.options.html#paddingchar" class="tsd-kind-icon">padding<wbr>Char</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="format.utils.padding.options.html#totalwidth" class="tsd-kind-icon">total<wbr>Width</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="format.globalization.datetime.optionsprovider.html#resolveoptions" class="tsd-kind-icon">resolve<wbr>Options</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="direction" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> direction</h3>
-					<div class="tsd-signature tsd-kind-icon">direction<span class="tsd-signature-symbol">:</span> <a href="../enums/format.utils.padding.direction.html" class="tsd-signature-type">Direction</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/core/Utils/Padding.ts#L18">core/Utils/Padding.ts:18</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The position of the padded characters relative to the original string. Defaults to <a href="../enums/format.utils.padding.direction.html#right">Direction.Right</a>.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="paddingchar" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> padding<wbr>Char</h3>
-					<div class="tsd-signature tsd-kind-icon">padding<wbr>Char<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/core/Utils/Padding.ts#L16">core/Utils/Padding.ts:16</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The padding character. Defaults to <code>&#39; &#39;</code>.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="totalwidth" class="tsd-anchor"></a>
-					<h3>total<wbr>Width</h3>
-					<div class="tsd-signature tsd-kind-icon">total<wbr>Width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/core/Utils/Padding.ts#L14">core/Utils/Padding.ts:14</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The number of characters in the resulting string, equal to the number of original characters plus any additional padding characters.</p>
-						</div>
-					</div>
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<a name="resolveoptions" class="tsd-anchor"></a>
+					<h3>resolve<wbr>Options</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">resolve<wbr>Options<span class="tsd-signature-symbol">(</span>format<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TOptions</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="format.globalization.optionsprovider.html">OptionsProvider</a>.<a href="format.globalization.optionsprovider.html#resolveoptions">resolveOptions</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/core/Globalization/OptionsProvider.ts#L15">core/Globalization/OptionsProvider.ts:15</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns an object that provides formatting options for the specified type.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>format: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A format string containing formatting specifications.</p>
+									</div>
+								</li>
+								<li>
+									<h5>value: <span class="tsd-signature-type">Date</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The value object from which to infer additional options.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TOptions</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -170,34 +185,19 @@
 							<li class=" tsd-kind-module tsd-parent-kind-module">
 								<a href="../modules/format.errors.html">Errors</a>
 							</li>
-							<li class=" tsd-kind-module tsd-parent-kind-module">
-								<a href="../modules/format.globalization.html">Globalization</a>
-							</li>
 							<li class="current tsd-kind-module tsd-parent-kind-module">
-								<a href="../modules/format.utils.html">Utils</a>
+								<a href="../modules/format.globalization.html">Globalization</a>
 								<ul>
-									<li class=" tsd-kind-module tsd-parent-kind-module">
-										<a href="../modules/format.utils.enumerable.html">Enumerable</a>
-									</li>
-									<li class=" tsd-kind-module tsd-parent-kind-module">
-										<a href="../modules/format.utils.function.html">Function</a>
-									</li>
-									<li class=" tsd-kind-module tsd-parent-kind-module">
-										<a href="../modules/format.utils.intlresovlers.html">Intl<wbr>Resovlers</a>
-									</li>
-									<li class=" tsd-kind-module tsd-parent-kind-module">
-										<a href="../modules/format.utils.numeric.html">Numeric</a>
-									</li>
 									<li class="current tsd-kind-module tsd-parent-kind-module">
-										<a href="../modules/format.utils.padding.html">Padding</a>
+										<a href="../modules/format.globalization.datetime.html">Date<wbr>Time</a>
 									</li>
 									<li class=" tsd-kind-module tsd-parent-kind-module">
-										<a href="../modules/format.utils.polyfill.html">Polyfill</a>
-									</li>
-									<li class=" tsd-kind-module tsd-parent-kind-module">
-										<a href="../modules/format.utils.text.html">Text</a>
+										<a href="../modules/format.globalization.numeric.html">Numeric</a>
 									</li>
 								</ul>
+							</li>
+							<li class=" tsd-kind-module tsd-parent-kind-module">
+								<a href="../modules/format.utils.html">Utils</a>
 							</li>
 						</ul>
 					</li>
@@ -205,48 +205,27 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="../enums/format.utils.padding.direction.html" class="tsd-kind-icon">Direction</a>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/format.globalization.datetime.intlformatter.html" class="tsd-kind-icon">Intl<wbr>Formatter</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/format.globalization.datetime.intloptionsprovider.html" class="tsd-kind-icon">Intl<wbr>Options<wbr>Provider</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../classes/format.globalization.datetime.invariantformatter.html" class="tsd-kind-icon">Invariant<wbr>Formatter</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="format.utils.padding.options.html" class="tsd-kind-icon">Options</a>
+					<li class="current tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="format.globalization.datetime.optionsprovider.html" class="tsd-kind-icon">Options<wbr>Provider</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="format.utils.padding.options.html#direction" class="tsd-kind-icon">direction</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="format.utils.padding.options.html#paddingchar" class="tsd-kind-icon">padding<wbr>Char</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="format.utils.padding.options.html#totalwidth" class="tsd-kind-icon">total<wbr>Width</a>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+								<a href="format.globalization.datetime.optionsprovider.html#resolveoptions" class="tsd-kind-icon">resolve<wbr>Options</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/format.utils.padding.html#directionstrategies" class="tsd-kind-icon">direction<wbr>Strategies</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/format.utils.padding.html#getpadwidth" class="tsd-kind-icon">get<wbr>Pad<wbr>Width</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/format.utils.padding.html#getpadding" class="tsd-kind-icon">get<wbr>Padding</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/format.utils.padding.html#ispaddingrequired" class="tsd-kind-icon">is<wbr>Padding<wbr>Required</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/format.utils.padding.html#pad" class="tsd-kind-icon">pad</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/format.utils.padding.html#setdefaultoptions" class="tsd-kind-icon">set<wbr>Default<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/format.utils.padding.html#validateoptions" class="tsd-kind-icon">validate<wbr>Options</a>
-					</li>
 				</ul>
 			</nav>
 		</div>

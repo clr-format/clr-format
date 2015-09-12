@@ -1,0 +1,842 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>IntlFormatter | CLR Format</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+	<script src="../assets/js/modernizr.js"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">CLR Format</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="../modules/format.html">Format</a>
+				</li>
+				<li>
+					<a href="../modules/format.globalization.html">Globalization</a>
+				</li>
+				<li>
+					<a href="../modules/format.globalization.numeric.html">Numeric</a>
+				</li>
+				<li>
+					<a href="format.globalization.numeric.intlformatter.html">IntlFormatter</a>
+				</li>
+			</ul>
+			<h1>Class IntlFormatter</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Provides culture-specific formatting for numeric values by using the Intl namespace.</p>
+					</div>
+					<p>Requires the <em>clr-format-intl.js</em> sub-module to be loaded.</p>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<a href="format.globalization.numeric.invariantformatter.html" class="tsd-signature-type">InvariantFormatter</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">NumberFormatOptions</span><span class="tsd-signature-symbol">&gt;</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">IntlFormatter</span>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../interfaces/format.globalization.customformatter.html" class="tsd-signature-type">CustomFormatter</a></li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="format.globalization.numeric.intlformatter.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-private-protected">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="format.globalization.numeric.intlformatter.html#decorationformatter" class="tsd-kind-icon">decoration<wbr>Formatter</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="format.globalization.numeric.intlformatter.html#formatinfo" class="tsd-kind-icon">format<wbr>Info</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="format.globalization.numeric.intlformatter.html#locales" class="tsd-kind-icon">locales</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="format.globalization.numeric.intlformatter.html#resolvedoptions" class="tsd-kind-icon">resolved<wbr>Options</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="format.globalization.numeric.intlformatter.html#applyculturespecificformatting" class="tsd-kind-icon">apply<wbr>Culture<wbr>Specific<wbr>Formatting</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected"><a href="format.globalization.numeric.intlformatter.html#applyoptions" class="tsd-kind-icon">apply<wbr>Options</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="format.globalization.numeric.intlformatter.html#format" class="tsd-kind-icon">format</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected"><a href="format.globalization.numeric.intlformatter.html#getformatinfo" class="tsd-kind-icon">get<wbr>Format<wbr>Info</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="format.globalization.numeric.intlformatter.html#getnativeformatter" class="tsd-kind-icon">get<wbr>Native<wbr>Formatter</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="format.globalization.numeric.intlformatter.html#overridecurrencyoptions" class="tsd-kind-icon">override<wbr>Currency<wbr>Options</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="format.globalization.numeric.intlformatter.html#overridedecimaloptions" class="tsd-kind-icon">override<wbr>Decimal<wbr>Options</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="format.globalization.numeric.intlformatter.html#overridefractiondigits" class="tsd-kind-icon">override<wbr>Fraction<wbr>Digits</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="format.globalization.numeric.intlformatter.html#overrideoptions" class="tsd-kind-icon">override<wbr>Options</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="format.globalization.numeric.intlformatter.html#replaceinvariantsymbols" class="tsd-kind-icon">replace<wbr>Invariant<wbr>Symbols</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="format.globalization.numeric.intlformatter.html#setresolvedformatinfo" class="tsd-kind-icon">set<wbr>Resolved<wbr>Format<wbr>Info</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
+							<h3>Object literals</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-object-literal tsd-parent-kind-class tsd-is-private"><a href="format.globalization.numeric.intlformatter.html#supportedstyles" class="tsd-kind-icon">supported<wbr>Styles</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Intl<wbr>Formatter<span class="tsd-signature-symbol">(</span>locales<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, formatInfo<span class="tsd-signature-symbol">: </span><a href="format.globalization.numberformatinfo.html" class="tsd-signature-type">NumberFormatInfo</a>, numberOptions<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">NumberFormatOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="format.globalization.numeric.intlformatter.html" class="tsd-signature-type">IntlFormatter</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overwrites <a href="format.globalization.numeric.invariantformatter.html">InvariantFormatter</a>.<a href="format.globalization.numeric.invariantformatter.html#constructor">constructor</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/intl/Globalization/Numeric/IntlFormatter.ts#L42">intl/Globalization/Numeric/IntlFormatter.ts:42</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Initializes a new object that enables language sensitive number formatting.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>locales: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The locales argument must be either a string holding a BCP 47 language tag, or an array of such language tags.
+											See: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_identification_and_negotiation">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_identification_and_negotiation</a></p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>formatInfo: <a href="format.globalization.numberformatinfo.html" class="tsd-signature-type">NumberFormatInfo</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>An instance that will provide culture-specific number format information.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> numberOptions: <span class="tsd-signature-type">NumberFormatOptions</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>An object with some or all of the standardized properties.
+											See: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat</a></p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="format.globalization.numeric.intlformatter.html" class="tsd-signature-type">IntlFormatter</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="decorationformatter" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> decoration<wbr>Formatter</h3>
+					<div class="tsd-signature tsd-kind-icon">decoration<wbr>Formatter<span class="tsd-signature-symbol">:</span> <a href="format.globalization.numeric.decorationformatter.html" class="tsd-signature-type">DecorationFormatter</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">NumberFormatOptions</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="format.globalization.numeric.invariantformatter.html">InvariantFormatter</a>.<a href="format.globalization.numeric.invariantformatter.html#decorationformatter">decorationFormatter</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/core/Globalization/Numeric/InvariantFormatter.ts#L29">core/Globalization/Numeric/InvariantFormatter.ts:29</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Gets the initialized formatting <a href="format.globalization.numeric.decorationformatter.html">DecorationFormatter</a> instance.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="formatinfo" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> format<wbr>Info</h3>
+					<div class="tsd-signature tsd-kind-icon">format<wbr>Info<span class="tsd-signature-symbol">:</span> <a href="format.globalization.numberformatinfo.html" class="tsd-signature-type">NumberFormatInfo</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/intl/Globalization/Numeric/IntlFormatter.ts#L21">intl/Globalization/Numeric/IntlFormatter.ts:21</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="locales" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> locales</h3>
+					<div class="tsd-signature tsd-kind-icon">locales<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/intl/Globalization/Numeric/IntlFormatter.ts#L20">intl/Globalization/Numeric/IntlFormatter.ts:20</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="resolvedoptions" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> resolved<wbr>Options</h3>
+					<div class="tsd-signature tsd-kind-icon">resolved<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">NumberFormatOptions</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="format.globalization.numeric.invariantformatter.html">InvariantFormatter</a>.<a href="format.globalization.numeric.invariantformatter.html#resolvedoptions">resolvedOptions</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/core/Globalization/Numeric/InvariantFormatter.ts#L26">core/Globalization/Numeric/InvariantFormatter.ts:26</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Gets the result of the <a href="format.globalization.datetime.invariantformatter.html#baseoptions">baseOptions</a> field extended with concrete options returned from the <a href="format.globalization.datetime.invariantformatter.html#optionsprovider">optionsProvider</a> instance.</p>
+						</div>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="applyculturespecificformatting" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> apply<wbr>Culture<wbr>Specific<wbr>Formatting</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">apply<wbr>Culture<wbr>Specific<wbr>Formatting<span class="tsd-signature-symbol">(</span>invariantlyFormattedString<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/intl/Globalization/Numeric/IntlFormatter.ts#L151">intl/Globalization/Numeric/IntlFormatter.ts:151</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>invariantlyFormattedString: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+					<a name="applyoptions" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> apply<wbr>Options</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">apply<wbr>Options<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overwrites <a href="format.globalization.numeric.invariantformatter.html">InvariantFormatter</a>.<a href="format.globalization.numeric.invariantformatter.html#applyoptions">applyOptions</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/intl/Globalization/Numeric/IntlFormatter.ts#L75">intl/Globalization/Numeric/IntlFormatter.ts:75</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Applies all resolved format options to the number.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The number to format.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>A resulting format value with applied format and culture-specific options.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="format" class="tsd-anchor"></a>
+					<h3>format</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">format<span class="tsd-signature-symbol">(</span>formatString<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overwrites <a href="format.globalization.numeric.invariantformatter.html">InvariantFormatter</a>.<a href="format.globalization.numeric.invariantformatter.html#format">format</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/intl/Globalization/Numeric/IntlFormatter.ts#L66">intl/Globalization/Numeric/IntlFormatter.ts:66</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Converts the number to an equivalent string representation using specified format and invariant culture formatting information.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>formatString: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>value: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The number to format.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+					<a name="getformatinfo" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Format<wbr>Info</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Format<wbr>Info<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="format.globalization.numberformatinfo.html" class="tsd-signature-type">NumberFormatInfo</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overwrites <a href="format.globalization.numeric.invariantformatter.html">InvariantFormatter</a>.<a href="format.globalization.numeric.invariantformatter.html#getformatinfo">getFormatInfo</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/intl/Globalization/Numeric/IntlFormatter.ts#L93">intl/Globalization/Numeric/IntlFormatter.ts:93</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the format info instance used for culture-specific formatting.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="format.globalization.numberformatinfo.html" class="tsd-signature-type">NumberFormatInfo</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="getnativeformatter" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Native<wbr>Formatter</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Native<wbr>Formatter<span class="tsd-signature-symbol">(</span>resolvedOptions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NumberFormatOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NumberFormat</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/intl/Globalization/Numeric/IntlFormatter.ts#L147">intl/Globalization/Numeric/IntlFormatter.ts:147</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>resolvedOptions: <span class="tsd-signature-type">NumberFormatOptions</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">NumberFormat</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="overridecurrencyoptions" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> override<wbr>Currency<wbr>Options</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">override<wbr>Currency<wbr>Options<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/intl/Globalization/Numeric/IntlFormatter.ts#L118">intl/Globalization/Numeric/IntlFormatter.ts:118</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="overridedecimaloptions" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> override<wbr>Decimal<wbr>Options</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">override<wbr>Decimal<wbr>Options<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/intl/Globalization/Numeric/IntlFormatter.ts#L131">intl/Globalization/Numeric/IntlFormatter.ts:131</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="overridefractiondigits" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> override<wbr>Fraction<wbr>Digits</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">override<wbr>Fraction<wbr>Digits<span class="tsd-signature-symbol">(</span>overrideValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/intl/Globalization/Numeric/IntlFormatter.ts#L139">intl/Globalization/Numeric/IntlFormatter.ts:139</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>overrideValue: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="overrideoptions" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> override<wbr>Options</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">override<wbr>Options<span class="tsd-signature-symbol">(</span>overrideStyle<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/intl/Globalization/Numeric/IntlFormatter.ts#L104">intl/Globalization/Numeric/IntlFormatter.ts:104</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>overrideStyle: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="replaceinvariantsymbols" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> replace<wbr>Invariant<wbr>Symbols</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">replace<wbr>Invariant<wbr>Symbols<span class="tsd-signature-symbol">(</span>replaceChar<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/intl/Globalization/Numeric/IntlFormatter.ts#L165">intl/Globalization/Numeric/IntlFormatter.ts:165</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>replaceChar: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="setresolvedformatinfo" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> set<wbr>Resolved<wbr>Format<wbr>Info</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Resolved<wbr>Format<wbr>Info<span class="tsd-signature-symbol">(</span>formatInfo<span class="tsd-signature-symbol">: </span><a href="format.globalization.numberformatinfo.html" class="tsd-signature-type">NumberFormatInfo</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/intl/Globalization/Numeric/IntlFormatter.ts#L97">intl/Globalization/Numeric/IntlFormatter.ts:97</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>formatInfo: <a href="format.globalization.numberformatinfo.html" class="tsd-signature-type">NumberFormatInfo</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
+				<h2>Object literals</h2>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-class tsd-is-private">
+					<a name="supportedstyles" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> supported<wbr>Styles</h3>
+					<div class="tsd-signature tsd-kind-icon">supported<wbr>Styles<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/intl/Globalization/Numeric/IntlFormatter.ts#L28">intl/Globalization/Numeric/IntlFormatter.ts:28</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Possible values are:</p>
+							<ul>
+								<li>&quot;decimal&quot; for plain number formatting (acts as override for &quot;fixed-point&quot;, &quot;number&quot; or &quot;undefined&quot;);</li>
+								<li>&quot;currency&quot; for currency formatting;</li>
+								<li>&quot;percent&quot; for percent formatting;</li>
+							</ul>
+						</div>
+					</div>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="supportedstyles.currency" class="tsd-anchor"></a>
+						<h3>currency</h3>
+						<div class="tsd-signature tsd-kind-icon">currency<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/intl/Globalization/Numeric/IntlFormatter.ts#L30">intl/Globalization/Numeric/IntlFormatter.ts:30</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="supportedstyles.decimal" class="tsd-anchor"></a>
+						<h3>decimal</h3>
+						<div class="tsd-signature tsd-kind-icon">decimal<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/intl/Globalization/Numeric/IntlFormatter.ts#L31">intl/Globalization/Numeric/IntlFormatter.ts:31</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="supportedstyles.exponential" class="tsd-anchor"></a>
+						<h3>exponential</h3>
+						<div class="tsd-signature tsd-kind-icon">exponential<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/intl/Globalization/Numeric/IntlFormatter.ts#L38">intl/Globalization/Numeric/IntlFormatter.ts:38</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="supportedstyles.fixedpoint" class="tsd-anchor"></a>
+						<h3>fixed<wbr>Point</h3>
+						<div class="tsd-signature tsd-kind-icon">fixed<wbr>Point<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/intl/Globalization/Numeric/IntlFormatter.ts#L34">intl/Globalization/Numeric/IntlFormatter.ts:34</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="supportedstyles.general" class="tsd-anchor"></a>
+						<h3>general</h3>
+						<div class="tsd-signature tsd-kind-icon">general<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/intl/Globalization/Numeric/IntlFormatter.ts#L40">intl/Globalization/Numeric/IntlFormatter.ts:40</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="supportedstyles.hex" class="tsd-anchor"></a>
+						<h3>hex</h3>
+						<div class="tsd-signature tsd-kind-icon">hex<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/intl/Globalization/Numeric/IntlFormatter.ts#L41">intl/Globalization/Numeric/IntlFormatter.ts:41</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="supportedstyles.number" class="tsd-anchor"></a>
+						<h3>number</h3>
+						<div class="tsd-signature tsd-kind-icon">number<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/intl/Globalization/Numeric/IntlFormatter.ts#L36">intl/Globalization/Numeric/IntlFormatter.ts:36</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="supportedstyles.percent" class="tsd-anchor"></a>
+						<h3>percent</h3>
+						<div class="tsd-signature tsd-kind-icon">percent<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/intl/Globalization/Numeric/IntlFormatter.ts#L32">intl/Globalization/Numeric/IntlFormatter.ts:32</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="supportedstyles.roundtrip" class="tsd-anchor"></a>
+						<h3>round<wbr>Trip</h3>
+						<div class="tsd-signature tsd-kind-icon">round<wbr>Trip<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/intl/Globalization/Numeric/IntlFormatter.ts#L39">intl/Globalization/Numeric/IntlFormatter.ts:39</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="supportedstyles.undefined" class="tsd-anchor"></a>
+						<h3>undefined</h3>
+						<div class="tsd-signature tsd-kind-icon">undefined<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/intl/Globalization/Numeric/IntlFormatter.ts#L35">intl/Globalization/Numeric/IntlFormatter.ts:35</a></li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="../modules/format.html">Format</a>
+						<ul>
+							<li class=" tsd-kind-module tsd-parent-kind-module">
+								<a href="../modules/format.config.html">Config</a>
+							</li>
+							<li class=" tsd-kind-module tsd-parent-kind-module">
+								<a href="../modules/format.errors.html">Errors</a>
+							</li>
+							<li class="current tsd-kind-module tsd-parent-kind-module">
+								<a href="../modules/format.globalization.html">Globalization</a>
+								<ul>
+									<li class=" tsd-kind-module tsd-parent-kind-module">
+										<a href="../modules/format.globalization.datetime.html">Date<wbr>Time</a>
+									</li>
+									<li class="current tsd-kind-module tsd-parent-kind-module">
+										<a href="../modules/format.globalization.numeric.html">Numeric</a>
+										<ul>
+											<li class=" tsd-kind-module tsd-parent-kind-module">
+												<a href="../modules/format.globalization.numeric.specifiers.html">Specifiers</a>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li class=" tsd-kind-module tsd-parent-kind-module">
+								<a href="../modules/format.utils.html">Utils</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="format.globalization.numeric.decorationformatter.html" class="tsd-kind-icon">Decoration<wbr>Formatter</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="format.globalization.numeric.exponentialformatter.html" class="tsd-kind-icon">Exponential<wbr>Formatter</a>
+					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class tsd-parent-kind-module">
+						<a href="format.globalization.numeric.intlformatter.html" class="tsd-kind-icon">Intl<wbr>Formatter</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+								<a href="format.globalization.numeric.intlformatter.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="format.globalization.numeric.intlformatter.html#decorationformatter" class="tsd-kind-icon">decoration<wbr>Formatter</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="format.globalization.numeric.intlformatter.html#formatinfo" class="tsd-kind-icon">format<wbr>Info</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="format.globalization.numeric.intlformatter.html#locales" class="tsd-kind-icon">locales</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="format.globalization.numeric.intlformatter.html#resolvedoptions" class="tsd-kind-icon">resolved<wbr>Options</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="format.globalization.numeric.intlformatter.html#applyculturespecificformatting" class="tsd-kind-icon">apply<wbr>Culture<wbr>Specific<wbr>Formatting</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+								<a href="format.globalization.numeric.intlformatter.html#applyoptions" class="tsd-kind-icon">apply<wbr>Options</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="format.globalization.numeric.intlformatter.html#format" class="tsd-kind-icon">format</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+								<a href="format.globalization.numeric.intlformatter.html#getformatinfo" class="tsd-kind-icon">get<wbr>Format<wbr>Info</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="format.globalization.numeric.intlformatter.html#getnativeformatter" class="tsd-kind-icon">get<wbr>Native<wbr>Formatter</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="format.globalization.numeric.intlformatter.html#overridecurrencyoptions" class="tsd-kind-icon">override<wbr>Currency<wbr>Options</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="format.globalization.numeric.intlformatter.html#overridedecimaloptions" class="tsd-kind-icon">override<wbr>Decimal<wbr>Options</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="format.globalization.numeric.intlformatter.html#overridefractiondigits" class="tsd-kind-icon">override<wbr>Fraction<wbr>Digits</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="format.globalization.numeric.intlformatter.html#overrideoptions" class="tsd-kind-icon">override<wbr>Options</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="format.globalization.numeric.intlformatter.html#replaceinvariantsymbols" class="tsd-kind-icon">replace<wbr>Invariant<wbr>Symbols</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="format.globalization.numeric.intlformatter.html#setresolvedformatinfo" class="tsd-kind-icon">set<wbr>Resolved<wbr>Format<wbr>Info</a>
+							</li>
+							<li class=" tsd-kind-object-literal tsd-parent-kind-class tsd-is-private">
+								<a href="format.globalization.numeric.intlformatter.html#supportedstyles" class="tsd-kind-icon">supported<wbr>Styles</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="format.globalization.numeric.intloptionsprovider.html" class="tsd-kind-icon">Intl<wbr>Options<wbr>Provider</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="format.globalization.numeric.invariantformatter.html" class="tsd-kind-icon">Invariant<wbr>Formatter</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
+						<a href="../interfaces/format.globalization.numeric.customexponentialstate.html" class="tsd-kind-icon">Custom<wbr>Exponential<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../interfaces/format.globalization.numeric.optionsprovider.html" class="tsd-kind-icon">Options<wbr>Provider</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="../modules/format.globalization.numeric.html#styles" class="tsd-kind-icon">styles</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.io" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
