@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "gulp build-release && karma start"
+    "test": "gulp build-release && karma start && karma start karma.conf.intl.js"
   },
   "repository": {
     "type": "git",
