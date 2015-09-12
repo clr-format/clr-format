@@ -41,8 +41,6 @@ namespace Format.Config.Definitions {
         hostObject.prototype[name || actualName] = getProtoWrapper(bareFunction);
     };
 
-    /* tslint:disable:no-shadowed-variable */// TSLint #500
-
     /** @private */
     var addAll = (addFunc: (utilFunction: Function, hostObject: Indexable<Function>, name: string) => void, source: any, hostObject: any) => {
         for (let key in source) {
@@ -51,7 +49,6 @@ namespace Format.Config.Definitions {
             }
         }
     };
-    /* tslint:enable:no-shadowed-variable */
 
     /** @private */
     var asStatic = (utilFunction: Function, globalObject: Indexable<Function>, name: string) => {

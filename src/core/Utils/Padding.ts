@@ -83,8 +83,6 @@ namespace Format.Utils.Padding {
     /** @private */
     var getPadding = (padWidth: number, options: Options): string => new Array(padWidth + 1).join(options.paddingChar);
 
-    /* tslint:disable:no-shadowed-variable */// TSLint #500
-
     /** @private */
     var directionStrategies: Indexable<(value: string, options: Options) => string> = {};
 
@@ -102,5 +100,4 @@ namespace Format.Utils.Padding {
 
         return getPadding(left, options) + value + getPadding(right, options);
     };
-    /* tslint:enable:no-shadowed-variable */
 }

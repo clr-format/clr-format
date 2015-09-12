@@ -140,8 +140,6 @@ module Format.Globalization.Numeric {
             });
         }
 
-        /* tslint:disable:no-shadowed-variable */// TSLint #500
-
         private resolveFromState(customState: CustomExponentialState): string {
 
             let exponentialValue = "";
@@ -282,8 +280,6 @@ module Format.Globalization.Numeric {
 
             return "e" + sign + paddedExponent;
         }
-
-        /* tslint:enable:no-shadowed-variable */
     }
 
     interface CustomExponentialState {

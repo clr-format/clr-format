@@ -25,8 +25,6 @@ declare namespace Format.Utils {
 
 namespace Format.Utils {
 
-    /* tslint:disable:no-shadowed-variable */// TSLint #500
-
     /** @private */
     let createCloneFunction = (cloneFunc: (object: Object, deep?: boolean, objectIsArray?: boolean) => Object) =>
         (object: Object, deep?: boolean): Object => {
@@ -41,8 +39,6 @@ namespace Format.Utils {
 
             return object;
         };
-
-    /* tslint:enable:no-shadowed-variable */
 
     Utils.clone = createCloneFunction((object: Object, deep?: boolean, objectIsArray?: boolean): Object =>
         deep ? deepExtend(createExtendObject(object, objectIsArray), object) :
