@@ -6,6 +6,7 @@ module.exports = function () {
     var format = require([dirs.parent, readJSON(files.package).main].join(dirs.separator));
 
     testCore(format);
+    testIntl(format);
     testConfig(format);
 };
 
@@ -15,6 +16,17 @@ function testCore(format) {
     }
     catch (error) {
         logError("Core cannot be loaded", error);
+    }
+}
+
+function testIntl(format) {
+    try {
+        format.setCulture("en-US");
+        format.setCurrency("USD");
+        format("Value: {0,-6:C}{1}", 1, "text");
+    }
+    catch (error) {
+        logError("Intl module cannot be loaded", error);
     }
 }
 
