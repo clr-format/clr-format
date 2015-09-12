@@ -22,6 +22,11 @@ namespace Format.Utils {
         };
 
         it("should replace the culture invariant symbols with culture-specific ones", () => {
+
+            if (!Utils.IntlResovlers) {
+                return;
+            }
+
             expect(IntlResovlers.applyNumberCultureFormatting("1.2", replaceInvariantSymbols)).toBe("1,2");
             expect(IntlResovlers.applyNumberCultureFormatting("-123", replaceInvariantSymbols)).toBe("#123");
             expect(IntlResovlers.applyNumberCultureFormatting("-123.4", replaceInvariantSymbols)).toBe("#123,4");

@@ -15,11 +15,11 @@ namespace Format.Utils {
             return <any> new Intl.NumberFormat(locale, resolvedOptions);
         };
 
-        let supportsCultures = getNativeFormatter("de-DE").format(1.2) === "1,2";
+        let supportsCultures = supportsIntl && getNativeFormatter("de-DE").format(1.2) === "1,2";
 
         it("should set the proper values for different locales", () => {
 
-            if (!supportsIntl) {
+            if (!(Utils.IntlResovlers && supportsIntl)) {
                 return;
             }
 

@@ -12,6 +12,10 @@ namespace Format.Utils {
 
         it("should return the proper currency decimal digits option", () => {
 
+            if (!Utils.IntlResovlers) {
+                return;
+            }
+
             expect(IntlResovlers.getCurrencyDecimalDigits(formatInfo, "AFA")).toBe(0);
             expect(IntlResovlers.getCurrencyDecimalDigits(formatInfo, "USD")).toBe(2);
             expect(IntlResovlers.getCurrencyDecimalDigits(formatInfo, "EUR")).toBe(2);
