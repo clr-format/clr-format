@@ -1,5 +1,5 @@
 # [clr-format](https://github.com/clr-format/clr-format)
-A lightweight, modular JavaScript implementation of a string formatting function that supports composite format strings and globalization
+A lightweight, modular and stand-alone JavaScript implementation of a string formatting function that supports composite format strings, globalization and customization
 
 [![Build Status](https://travis-ci.org/clr-format/clr-format.svg?branch=master)](https://travis-ci.org/clr-format/clr-format)
 [![Dev Dependencies](https://david-dm.org/clr-format/clr-format/dev-status.svg)](https://david-dm.org/clr-format/clr-format/#info=devDependencies&view=table)
@@ -8,13 +8,13 @@ Installation
 ------------
 The following commands can be used to install the script in a context of your choice.
 
-#### [![NuGet](https://badge.fury.io/nu/clr-format.js.svg)](http://badge.fury.io/nu/clr-format.js)
+#### [![NuGet](https://badge.fury.io/nu/clr-format.js.svg)](https://www.nuget.org/packages/clr-format.js)
 `Install-Package clr-format.js`
 
-#### [![Bower](https://badge.fury.io/bo/clr-format.svg)](http://badge.fury.io/bo/clr-format)
+#### [![Bower](https://badge.fury.io/bo/clr-format.svg)](http://bower.io/search/?q=clr-format)
 `bower install clr-format`
 
-#### [![NPM](https://badge.fury.io/js/clr-format.svg)](http://badge.fury.io/js/clr-format)
+#### [![NPM](https://badge.fury.io/js/clr-format.svg)](https://www.npmjs.com/package/clr-format)
 `npm install clr-format`
 
 Latest Version Capabilities
@@ -30,10 +30,22 @@ Latest Version Capabilities
 
     expect(String.format("{0:C}", 35.23)).toThrowError(Format.Errors.FormatError);
     ```
-For lack of a better medium (other than MSDN) please refer to the [test cases][formatInvariant_should.ts] for a more in-depth showcase of what can be expected as input/output.
-Also note that the default and only [FormatProvider] implementation is [CultureInfo.InvariantCulture]. Culture-specific and currency formatting are coming up in the next version.
+For lack of a better medium (other than MSDN) please refer to the [invariant test cases][formatInvariant_should.ts] for a more in-depth showcase of what can be expected as input/output.
 
-2. Full support for index \{__0__\} and alignment \{0,__-10__\} components.
+2. Optional globalization API contained in *clr-format-intl.js* that allows for culture-specific number and currency formatting via the [Format.setCulture] and [Format.setCurrency] methods.
+
+    ```javascript
+    Format.setCulture("de-DE");
+    expect(String.format("{0:N2}", -1234.56)).toBe("-1.234,56");
+    expect(String.format("{0:#0.0#;(#0.0#,);-0-}", -1234.5)).toBe("(1,23)");
+
+    Format.setCurrency("EUR");
+    expect(String.format("{0:c}", 1230)).toBe("1.230,00 €");
+    ```
+Again you can find all MSDN-like examples compiled in the [culture-enabled test cases][formatCulture_should.ts].
+Requires contextual support for the [ECMAScript Intl namespace]. For older browsers and cultures outside of "en-US" in Node.JS consider polyfilling with [Intl.js].
+
+3. Support for mixed index and alignment components.
 
     ```javascript
     expect(
@@ -43,15 +55,13 @@ Also note that the default and only [FormatProvider] implementation is [CultureI
         .toBe("Format primitives: 0, true, 3, {\"a\":1} , [2]");
     ```
 
-3. Optional configuration API contained in *clr-format-config.js* and defined under the [Format.Config] namespace.
+4. Optional configuration API contained in *clr-format-config.js* and defined under the [Format.Config] namespace.
 
     ```javascript
     Format.Config.addFormatToPrototype();
-    expect("Formatting using the injected {0} method".format("prototype"))
-        .toBe("Formatting using the injected prototype method");
+    expect("Format using the injected {0} method".format("prototype"))
+        .toBe("Format using the injected prototype method");
     ```
-
-4. Added support for a wider range of browsers like early versions of the mobile Android WebKit browser and even IE8 to the latest versions of modern browsers.
 
 Usage
 -----
@@ -65,7 +75,10 @@ var formatted = String.format("Value: {0:00-00}", 345.6); // formatted = "Value:
 ```javascript
 var format = String.format = require("clr-format");
 
-var formatted = String.format("Value: {0,-2}{1}", 1, "text"); // formatted = "Value: 1 text"
+format.setCulture("en-US");
+format.setCurrency("USD");
+
+var formatted = String.format("Value: {0,-6:C}{1}", 1, "text"); // formatted = "Value: $1.00 text"
 
 // Using the configuration API
 format.Config.addFormatToPrototype();
@@ -119,7 +132,7 @@ See [Format.Config] for full documentation.
 ##### 0.3 (Released)
 Implementation of an invariant number formatting provider and numeric format string components.
 
-##### 0.4
+##### 0.4 (Released)
 Addition of a *clr-format-intl.js* sub-module/package which can be optionally installed to provide globalization via a bridge to the [ECMAScript Intl namespace].
 
 ##### 0.5
@@ -136,11 +149,13 @@ Complete the implementation with a date formatting provider and date/time format
 [Getting started with the String.Format method]: https://msdn.microsoft.com/en-us/library/system.string.format.aspx#Starting
 [ECMAScript Intl namespace]: https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Intl
 [Gulp watch task]: https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpwatchglob-opts-cb
+[Intl.js]: https://github.com/andyearnshaw/Intl.js
 
 [GitHub pages documentation]: http://clr-format.github.io/clr-format
 [Format.Config]: http://clr-format.github.io/clr-format/modules/format.config.html
 [String.format]: http://clr-format.github.io/clr-format/interfaces/stringconstructor.html#format
-[FormatProvider]: http://clr-format.github.io/clr-format/interfaces/format.globalization.formatprovider.html
-[CultureInfo.InvariantCulture]: http://clr-format.github.io/clr-format/classes/format.globalization.cultureinfo.html#invariantculture
+[Format.setCulture]: http://clr-format.github.io/clr-format/modules/format.html#setculture
+[Format.setCurrency]: http://clr-format.github.io/clr-format/modules/format.html#setcurrency
 
 [formatInvariant_should.ts]: https://github.com/clr-format/clr-format/blob/master/test/core/String/formatInvariant_should.ts
+[formatCulture_should.ts]: https://github.com/clr-format/clr-format/blob/master/test/core/String/formatCulture_should.ts#L33
