@@ -46,7 +46,7 @@ function restoreSubmoduleFile(publish) {
 function replaceSourceLinks(publish) {
     return function () {
         return gulp.src(paths.docs)
-            .pipe(replace(/blob\/[^\/]+/g, "blob/" + git.getLatestReleaseTag()))
+            .pipe(replace(/blob\/[^\/]+/g, "blob/v" + getVersion()))
             .pipe(gulp.dest(dirs.docs))
             .on("end", publish ? commitDocs : stageDocs);
     }

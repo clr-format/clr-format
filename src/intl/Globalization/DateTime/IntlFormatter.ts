@@ -5,7 +5,11 @@
 /// <reference path="../../API" />
 
 namespace Format.Globalization.DateTime {
-    /** Provides culture-specific formatting for date and time values by using the Intl namespace. */
+    /**
+     * Provides culture-specific formatting for date and time values by using the Intl namespace.
+     *
+     * Requires the *clr-format-intl.js* sub-module to be loaded.
+     */
     export class IntlFormatter extends InvariantFormatter<Intl.DateTimeFormatOptions> {
 
         private locales: string|string[];
@@ -36,8 +40,18 @@ namespace Format.Globalization.DateTime {
             return super.format(formatString, value);
         }
 
+        /**
+         * Applies all resolved format options to the date object.
+         * @param value The date to format.
+         * @returns A resulting format value with applied format and culture-specific options.
+         */
         protected applyOptions(value: Date): string {
             return this.getNativeFormatter(this.resolvedOptions).format(<any> value);
+        }
+
+        /** Returns the format info instance used for culture-specific formatting. */
+        protected getFormatInfo(): DateTimeFormatInfo {
+            return this.formatInfo;
         }
 
         private getNativeFormatter(resolvedOptions?: Intl.DateTimeFormatOptions): Intl.DateTimeFormat {

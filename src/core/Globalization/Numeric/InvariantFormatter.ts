@@ -24,6 +24,8 @@ namespace Format.Globalization.Numeric {
 
         /** Gets the result of the [[baseOptions]] field extended with concrete options returned from the [[optionsProvider]] instance. */
         protected resolvedOptions: T;
+
+        /** Gets the initialized formatting [[DecorationFormatter]] instance. */
         protected decorationFormatter: DecorationFormatter<T>;
 
         private value: number;

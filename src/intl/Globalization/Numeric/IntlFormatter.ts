@@ -6,13 +6,18 @@
 
 namespace Format.Globalization.Numeric {
 
+    /** @private */
     let styles = Specifiers.StandardSpecifiers,
         decimal = styles[styles.decimal],
         currency = styles[styles.currency],
         nonDigitSymbolRegExp = /[^\d]/,
         invariantReplaceSymbolsRexExp = /[-.]/g;
 
-    /** Provides culture-specific formatting for numeric values by using the Intl namespace. */
+    /**
+     * Provides culture-specific formatting for numeric values by using the Intl namespace.
+     *
+     * Requires the *clr-format-intl.js* sub-module to be loaded.
+     */
     export class IntlFormatter extends InvariantFormatter<Intl.NumberFormatOptions> {
 
         private locales: string|string[];
@@ -97,6 +102,11 @@ namespace Format.Globalization.Numeric {
             return super.format(formatString, value);
         }
 
+        /**
+         * Applies all resolved format options to the number.
+         * @param value The number to format.
+         * @returns A resulting format value with applied format and culture-specific options.
+         */
         protected applyOptions(value: number): string {
 
             let formattedValue: string,
@@ -114,6 +124,7 @@ namespace Format.Globalization.Numeric {
             return formattedValue;
         }
 
+        /** Returns the format info instance used for culture-specific formatting. */
         protected getFormatInfo(): NumberFormatInfo {
             return this.formatInfo;
         }
