@@ -27,9 +27,11 @@ Usage:
   Format.setCurrency("EUR");
   formatted = String.format("{0:c}", 1230); // formatted = "1.230,00 €"
 
-  // Using the configuration API (clr-format-config.js)
-  Format.Config.addFormatToPrototype();
+  // Using the chainable configuration API (clr-format-config.js)
+  Format.Config.addFormatToPrototype().addToStringOverload();
+
   formatted = "Value:{0,10}".format("prototype"); // formatted = "Value: prototype"
+  formatted = (1234.5678).toString("#,0.00"); // formatted = "1,234.57"
         </description>
         <releaseNotes>
 1. Support for all of .NET's standard and custom numeric format strings (except for currency with the invariant culture).

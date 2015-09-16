@@ -23,6 +23,7 @@ Latest Version Capabilities
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/clr-format.svg)](https://saucelabs.com/u/clr-format)
 
 1. Support for all of .NET's [standard][Standard Numeric Format Specifiers] and [custom][Custom Numeric Format String] numeric format strings (except for currency).
+For lack of a better medium (other than MSDN) please refer to the [invariant test cases][formatInvariant_should.ts] for a more in-depth showcase of what can be expected as input/output.
 
     ```javascript
     expect(String.format("{0:P1}", -0.39678)).toBe("-39.7 %");
@@ -30,9 +31,10 @@ Latest Version Capabilities
 
     expect(String.format("{0:C}", 35.23)).toThrowError(Format.Errors.FormatError);
     ```
-For lack of a better medium (other than MSDN) please refer to the [invariant test cases][formatInvariant_should.ts] for a more in-depth showcase of what can be expected as input/output.
 
 2. Optional globalization API contained in *clr-format-intl.js* that allows for culture-specific number and currency formatting via the [Format.setCulture] and [Format.setCurrency] methods.
+You can find all MSDN-like examples compiled in the [culture-enabled test cases][formatCulture_should.ts].
+Requires contextual support for the [ECMAScript Intl namespace]. For older browsers and cultures outside of "en-US" in Node.JS consider polyfilling with [Intl.js].
 
     ```javascript
     Format.setCulture("de-DE");
@@ -42,8 +44,6 @@ For lack of a better medium (other than MSDN) please refer to the [invariant tes
     Format.setCurrency("EUR");
     expect(String.format("{0:c}", 1230)).toBe("1.230,00 €");
     ```
-Again you can find all MSDN-like examples compiled in the [culture-enabled test cases][formatCulture_should.ts].
-Requires contextual support for the [ECMAScript Intl namespace]. For older browsers and cultures outside of "en-US" in Node.JS consider polyfilling with [Intl.js].
 
 3. Support for mixed index and alignment components.
 
@@ -61,6 +61,9 @@ Requires contextual support for the [ECMAScript Intl namespace]. For older brows
     Format.Config.addFormatToPrototype();
     expect("Format using the injected {0} method".format("prototype"))
         .toBe("Format using the injected prototype method");
+
+    Format.Config.addToStringOverload();
+    expect((1234.5678).toString("#,0.00")).toBe("1,234.57");
     ```
 
 Usage
@@ -80,9 +83,10 @@ format.setCurrency("USD");
 
 var formatted = String.format("Value: {0,-6:C}{1}", 1, "text"); // formatted = "Value: $1.00 text"
 
-// Using the configuration API
-format.Config.addFormatToPrototype();
+// Using the chainable configuration API
+format.Config.addFormatToPrototype().addToStringOverload();
 formatted = "Value:{0,10}".format("prototype"); // formatted = "Value: prototype"
+formatted = (1234.5678).toString("D6"); // formatted = "001235"
 ```
 
 API Documentation
