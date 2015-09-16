@@ -1,5 +1,6 @@
 /// <reference path="../use-strict" />
 
+/// <reference path="API/Date" />
 /// <reference path="API/Array" />
 /// <reference path="API/Object" />
 /// <reference path="API/String" />

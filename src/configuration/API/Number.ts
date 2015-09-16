@@ -76,9 +76,37 @@ interface NumberConstructor {
 /**
  * Extends the built-in javascript `Number` object's prototype.
  *
- * The [[Format.Config.addUtilsToPrototype]] method must be called in order to access the definitions.
+ * Various [[Format.Config]] methods can be called in order to access the additional definitions, see each method for more details.
  */
 interface Number {
+    /**
+     * Converts the numeric value of this instance to its equivalent string representation, using the specified format.
+     *
+     * Must call [[Format.Config.addToStringOverload]] to be defined.
+     * @param format A standard or custom numeric format string.
+     * @returns The formatted numeric value.
+     */
+    toString(format: string): string;
+
+    /**
+     * Converts the numeric value of this instance to its equivalent string representation using the specified culture-specific format information.
+     *
+     * Must call [[Format.Config.addToStringOverload]] to be defined.
+     * @param provider An object that supplies culture-specific formatting information.
+     * @returns The formatted numeric value.
+     */
+    toString(provider: Format.Globalization.FormatProvider): string;
+
+    /**
+     * Converts the numeric value of this instance to its equivalent string representation using the specified format and culture-specific format information.
+     *
+     * Must call [[Format.Config.addToStringOverload]] to be defined.
+     * @param format A standard or custom numeric format string.
+     * @param provider An object that supplies culture-specific formatting information.
+     * @returns The formatted numeric value.
+     */
+    toString(format: string, provider: Format.Globalization.FormatProvider): string;
+
     /**
      * Determines whether the value is an integer.
      *

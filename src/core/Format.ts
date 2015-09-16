@@ -91,6 +91,18 @@ namespace Format {
     /** @private */
     var formatItemRegExp = /{+(\d+)(?:,(.+?))?(?::(.+?))?}+/g;
 
+    /**
+     * Converts the object's value to string based on the format specified and returns it.
+     * @param formatStringComponent A format string component (part of the composite format string). See: https://msdn.microsoft.com/en-us/library/txafckwd.aspx
+     * @param value The object to format.
+     * @param provider An object that supplies culture-specific formatting information.
+     */
+    export function innerComponentFormat(formatStringComponent: string, value: Object, provider?: Globalization.FormatProvider): string {
+        let valueType = Utils.getType(value);
+        provider = provider || Globalization.CultureInfo.CurrentCulture;
+        return provider.getFormatter(valueType).format(formatStringComponent, value);
+    }
+
     /** Defines possible options for a string format replacement operation. */
     interface FormatItemOptions {
         /** A format string matching the Format Item Syntax. */
@@ -160,10 +172,8 @@ namespace Format {
                 "Index (zero based) must be strictly less than the size of the argument's array");
         }
 
-        let value = args[index], valueType = Utils.getType(value);
-
         try {
-            return provider.getFormatter(valueType).format(options.formatStringComponent, value);
+            return innerComponentFormat(options.formatStringComponent, args[index], provider);
         }
         catch (error) {
             throw new Errors.FormatError(

@@ -43,6 +43,11 @@ namespace Format.Config {
         return Config;
     }
 
+    export function addToStringOverload() {
+        Definitions.addToStringOverload();
+        return Config;
+    }
+
     /** Removes the [[String.format]] prototype wrapper that is defined by calling [[addFormatToPrototype]]. */
     export function removeFormatFromPrototype() {
         Definitions.removeFormatFromPrototype();
@@ -52,6 +57,11 @@ namespace Format.Config {
     /** Removes the [[String.padLeft]] and [[String.padRight]] functions that are defined by calling [[addPaddingToPrototype]]. */
     export function removePaddingFromPrototype() {
         Definitions.removePaddingFromPrototype();
+        return Config;
+    }
+
+    export function removeToStringOverload() {
+        Definitions.removeToStringOverload();
         return Config;
     }
 

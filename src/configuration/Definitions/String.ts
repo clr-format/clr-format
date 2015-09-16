@@ -34,12 +34,26 @@ namespace Format.Config.Definitions {
         }
     };
 
+    export var addToStringOverload = () => {
+        Number.prototype.toString = numberToStringOverload;
+        Date.prototype.toString = dateToStringOverload;
+    };
+
+    export var removeToStringOverload = () => {
+        if (Number.prototype.toString === numberToStringOverload) {
+            Number.prototype.toString = numberToStringProto;
+        }
+
+        if (Date.prototype.toString === dateToStringOverload) {
+            Date.prototype.toString = dateToStringProto;
+        }
+    };
+
     /** @private */
     var formatProto = function(...args: Object[]): string {
 
-        let provider = <Format.Globalization.FormatProvider> args[0];
-        if (provider && typeof provider.getFormatter === "function") {
-            args.shift();
+        if (isProvider(args[0])) {
+            let provider = <Format.Globalization.FormatProvider> args.shift();
             return Format.innerFormat(provider, this, args);
         }
 
@@ -47,13 +61,49 @@ namespace Format.Config.Definitions {
     };
 
     /** @private */
-    let getPaddingProto = function(direction: Utils.Padding.Direction): (width: number, char?: string) => string {
-        return function(totalWidth: number, paddingChar?: string): string {
+    let getPaddingProto = (direction: Utils.Padding.Direction): (width: number, char?: string) => string =>
+        function(totalWidth: number, paddingChar?: string): string {
             return Utils.Padding.pad(this, { direction, totalWidth, paddingChar });
         };
-    };
 
     /** @private */
     var padLeftProto = getPaddingProto(Utils.Padding.Direction.Left),
-        padRightProto = getPaddingProto(Utils.Padding.Direction.Right);
+        padRightProto = getPaddingProto(Utils.Padding.Direction.Right),
+        numberToStringProto = Number.prototype.toString,
+        dateToStringProto = Date.prototype.toString;
+
+    /** @private */
+    let getToStringOverload = (originalProto: Function) =>
+        function(...args: Object[]): string {
+
+            if (typeof args[0] === "number" && originalProto === numberToStringProto) {
+                return originalProto.apply(this, args);
+            }
+
+            let format = "";
+
+            if (isProvider(args[0])) {
+                return Format.innerComponentFormat(format, this, <Format.Globalization.FormatProvider> args[0]);
+            }
+
+            if (typeof args[0] === "string") {
+                format = <string> args[0];
+
+                if (isProvider(args[1])) {
+                    let provider = <Format.Globalization.FormatProvider> args[1];
+                    return Format.innerComponentFormat(format, this, provider);
+                }
+
+                return Format.innerComponentFormat(format, this);
+            }
+
+            return originalProto.apply(this, args);
+        };
+
+    /** @private */
+    var numberToStringOverload = getToStringOverload(numberToStringProto),
+        dateToStringOverload = getToStringOverload(dateToStringProto);
+
+    /** @private */
+    var isProvider = (provider: Object): boolean => provider && typeof (<Format.Globalization.FormatProvider> provider).getFormatter === "function";
 }
