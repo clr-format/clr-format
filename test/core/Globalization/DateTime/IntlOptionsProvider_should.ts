@@ -17,7 +17,7 @@ namespace Format.Globalization.DateTime {
 
         it("constructor should initialize the resolved options' object with a cloned copy", () => {
 
-            createInstance({ minimumFractionDigits: 1 });
+            createInstance({});
 
             expect(intlOptionsProviderAccessor.resolvedOptions).toEqual(intlOptions);
             expect(intlOptionsProviderAccessor.resolvedOptions).not.toBe(intlOptions);

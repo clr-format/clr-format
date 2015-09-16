@@ -15,7 +15,7 @@ var jasmine = require("gulp-jasmine");
 module.exports.jasmine = function (minifyOpts) {
 
     var build = gulp.src(paths.tests)
-        .pipe(tsc(tsProjects.tests)).js;
+        .pipe(tsc(tsProjects.testsJasmine)).js;
 
     if (typeof minifyOpts !== "function") {
         build = build.pipe(wrap({ src: paths.coreTemplate }))
@@ -33,7 +33,7 @@ module.exports.npm = function () {
 module.exports.browser = function (minifyOpts) {
 
     var build = gulp.src(paths.tests)
-        .pipe(tsc({ noImplicitAny: true })).js
+        .pipe(tsc(tsProjects.testsBrowser)).js
         .pipe(concat(files.testsBrowser))
         .pipe(wrap({ src: paths.iifeTemplate }));
 
