@@ -47,6 +47,7 @@ namespace Format.Globalization.Numeric {
          * Converts the number to an equivalent string representation using specified format and invariant culture formatting information.
          * @param format A format string containing formatting specifications.
          * @param value The number to format.
+         * @returns The formatted numeric value.
          */
         public format(format: string, value: number): string {
             try {

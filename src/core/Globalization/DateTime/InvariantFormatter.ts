@@ -33,6 +33,7 @@ namespace Format.Globalization.DateTime {
          * Converts the date to an equivalent string representation using specified format and invariant culture formatting information.
          * @param format A format string containing formatting specifications.
          * @param value The date to format.
+         * @returns The formatted date value.
          */
         public format(format: string, value: Date): string {
             try {

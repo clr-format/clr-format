@@ -43,6 +43,11 @@ namespace Format.Config {
         return Config;
     }
 
+    /**
+     * Adds the [[Number.toString]] and [[Date.toString]] overloads while retaining the original `toString` behaviour if those overloads are not matched by the supplied parameters.
+     *
+     * For example `(12).toString(2) === "1100"` but `(12).toString("2") === String.format("{0:2}", 12)` because it matches the format string overload.
+     */
     export function addToStringOverload() {
         Definitions.addToStringOverload();
         return Config;
@@ -60,6 +65,7 @@ namespace Format.Config {
         return Config;
     }
 
+    /** Removes the [[Number.toString]] and [[Date.toString]] overloads that are set by calling [[addToStringOverload]] and restores the original `toString` behaviour. */
     export function removeToStringOverload() {
         Definitions.removeToStringOverload();
         return Config;

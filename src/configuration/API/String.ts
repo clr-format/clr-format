@@ -36,6 +36,7 @@ interface String {
      *
      * Must call [[Format.Config.addFormatToPrototype]] to be defined.
      * @param args A list of arguments that contains zero or more objects to format.
+     * @returns A copy of the current instance in which the format items have been replaced by the string representation of the corresponding objects in args.
      */
     format(...args: Object[]): string;
 
@@ -45,6 +46,7 @@ interface String {
      * Must call [[Format.Config.addFormatToPrototype]] to be defined.
      * @param provider An object that supplies culture-specific formatting information.
      * @param args A list of arguments that contains zero or more objects to format.
+     * @returns A copy of the current instance in which the format items have been replaced by the string representation of the corresponding objects in args.
      */
     format(provider: Format.Globalization.FormatProvider, ...args: Object[]): string;
 

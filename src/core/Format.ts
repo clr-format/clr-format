@@ -71,6 +71,7 @@ namespace Format {
      * @param provider An object that supplies culture-specific formatting information.
      * @param format A composite format string. See: https://msdn.microsoft.com/en-us/library/txafckwd.aspx
      * @param args An array of arguments that contains zero or more objects to format.
+     * @returns A copy of the format string in which the format items have been replaced by the string representation of the corresponding objects in args.
      */
     export function innerFormat(provider: Globalization.FormatProvider, format: string, args: Object[]): string {
 
@@ -96,6 +97,7 @@ namespace Format {
      * @param formatStringComponent A format string component (part of the composite format string). See: https://msdn.microsoft.com/en-us/library/txafckwd.aspx
      * @param value The object to format.
      * @param provider An object that supplies culture-specific formatting information.
+     * @returns The string representation of the object's value, formatted as specified by the format string component and provider.
      */
     export function innerComponentFormat(formatStringComponent: string, value: Object, provider?: Globalization.FormatProvider): string {
         let valueType = Utils.getType(value);

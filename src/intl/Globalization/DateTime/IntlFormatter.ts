@@ -35,6 +35,7 @@ namespace Format.Globalization.DateTime {
          * Converts the date to an equivalent string representation using specified format and invariant culture formatting information.
          * @param format A format string containing formatting specifications.
          * @param value The date to format.
+         * @returns The formatted date value.
          */
         public format(formatString: string, value: Date): string {
             return super.format(formatString, value);
