@@ -94,12 +94,14 @@
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.config.html#addformattoprototype" class="tsd-kind-icon">add<wbr>Format<wbr>ToPrototype</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.config.html#addpaddingtoprototype" class="tsd-kind-icon">add<wbr>Padding<wbr>ToPrototype</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.config.html#addtoprototype" class="tsd-kind-icon">add<wbr>ToPrototype</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.config.html#addtostringoverload" class="tsd-kind-icon">add<wbr>ToString<wbr>Overload</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.config.html#addutilstoglobals" class="tsd-kind-icon">add<wbr>Utils<wbr>ToGlobals</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.config.html#addutilstoprototype" class="tsd-kind-icon">add<wbr>Utils<wbr>ToPrototype</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.config.html#disablememoization" class="tsd-kind-icon">disable<wbr>Memoization</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.config.html#enablememoization" class="tsd-kind-icon">enable<wbr>Memoization</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.config.html#removeformatfromprototype" class="tsd-kind-icon">remove<wbr>Format<wbr>From<wbr>Prototype</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.config.html#removepaddingfromprototype" class="tsd-kind-icon">remove<wbr>Padding<wbr>From<wbr>Prototype</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.config.html#removetostringoverload" class="tsd-kind-icon">remove<wbr>ToString<wbr>Overload</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.config.html#removeutilglobals" class="tsd-kind-icon">remove<wbr>Util<wbr>Globals</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="format.config.html#removeutilsfromprototype" class="tsd-kind-icon">remove<wbr>Utils<wbr>From<wbr>Prototype</a></li>
 							</ul>
@@ -119,7 +121,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/configuration/Config.ts#L35">configuration/Config.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/configuration/Config.ts#L35">configuration/Config.ts:35</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -146,7 +148,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/configuration/Config.ts#L41">configuration/Config.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/configuration/Config.ts#L41">configuration/Config.ts:41</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -168,7 +170,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/configuration/Config.ts#L23">configuration/Config.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/configuration/Config.ts#L23">configuration/Config.ts:23</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -202,6 +204,29 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="addtostringoverload" class="tsd-anchor"></a>
+					<h3>add<wbr>ToString<wbr>Overload</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>ToString<wbr>Overload<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Config</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/configuration/Config.ts#L51">configuration/Config.ts:51</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds the <a href="../interfaces/number.html#tostring">Number.toString</a> and <a href="../interfaces/date.html#tostring">Date.toString</a> overloads while retaining the original <code>toString</code> behaviour if those overloads are not matched by the supplied parameters.</p>
+								</div>
+								<p>For example <code>(12).toString(2) === &quot;1100&quot;</code> but <code>(12).toString(&quot;2&quot;) === String.format(&quot;{0:2}&quot;, 12)</code> because it matches the format string overload.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Config</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
 					<a name="addutilstoglobals" class="tsd-anchor"></a>
 					<h3>add<wbr>Utils<wbr>ToGlobals</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
@@ -211,7 +236,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/configuration/Config.ts#L69">configuration/Config.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/configuration/Config.ts#L85">configuration/Config.ts:85</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -242,7 +267,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/configuration/Config.ts#L91">configuration/Config.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/configuration/Config.ts#L107">configuration/Config.ts:107</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -273,7 +298,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/configuration/Config.ts#L109">configuration/Config.ts:109</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/configuration/Config.ts#L125">configuration/Config.ts:125</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -295,7 +320,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/configuration/Config.ts#L103">configuration/Config.ts:103</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/configuration/Config.ts#L119">configuration/Config.ts:119</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -317,7 +342,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/configuration/Config.ts#L47">configuration/Config.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/configuration/Config.ts#L57">configuration/Config.ts:57</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -339,12 +364,34 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/configuration/Config.ts#L53">configuration/Config.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/configuration/Config.ts#L63">configuration/Config.ts:63</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Removes the <a href="../interfaces/string.html#padleft">String.padLeft</a> and <a href="../interfaces/string.html#padright">String.padRight</a> functions that are defined by calling <a href="format.config.html#addpaddingtoprototype">addPaddingToPrototype</a>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Config</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="removetostringoverload" class="tsd-anchor"></a>
+					<h3>remove<wbr>ToString<wbr>Overload</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>ToString<wbr>Overload<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Config</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/configuration/Config.ts#L69">configuration/Config.ts:69</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes the <a href="../interfaces/number.html#tostring">Number.toString</a> and <a href="../interfaces/date.html#tostring">Date.toString</a> overloads that are set by calling <a href="format.config.html#addtostringoverload">addToStringOverload</a> and restores the original <code>toString</code> behaviour.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Config</span></h4>
@@ -361,7 +408,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/configuration/Config.ts#L75">configuration/Config.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/configuration/Config.ts#L91">configuration/Config.ts:91</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -383,7 +430,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.0/src/configuration/Config.ts#L97">configuration/Config.ts:97</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/configuration/Config.ts#L113">configuration/Config.ts:113</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -439,6 +486,9 @@
 						<a href="format.config.html#addtoprototype" class="tsd-kind-icon">add<wbr>ToPrototype</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="format.config.html#addtostringoverload" class="tsd-kind-icon">add<wbr>ToString<wbr>Overload</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="format.config.html#addutilstoglobals" class="tsd-kind-icon">add<wbr>Utils<wbr>ToGlobals</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
@@ -455,6 +505,9 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="format.config.html#removepaddingfromprototype" class="tsd-kind-icon">remove<wbr>Padding<wbr>From<wbr>Prototype</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="format.config.html#removetostringoverload" class="tsd-kind-icon">remove<wbr>ToString<wbr>Overload</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="format.config.html#removeutilglobals" class="tsd-kind-icon">remove<wbr>Util<wbr>Globals</a>
