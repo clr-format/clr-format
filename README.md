@@ -108,6 +108,7 @@ To develop and contribute simply install NodeJS, clone the repository, install n
 #### Building the project
 ```bash
 git clone https://github.com/clr-format/clr-format.git
+cd clr-format
 npm install --ignore-scripts
 npm install --global gulp
 gulp
