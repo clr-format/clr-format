@@ -2,7 +2,7 @@
 /// <reference path="../../../Utils/Indexable" />
 
 /** A [[Globalization.Numeric]] sub-module containing classes related to numeric format specifier operations. */
-module Format.Globalization.Numeric.Specifiers {
+namespace Format.Globalization.Numeric.Specifiers {
     /**
      * A custom numeric exponent format string takes the form `Esxxx`, where:
      * - `E` is a single lower or uppercase 'E' character marking the begining of the exponential notation specifier.

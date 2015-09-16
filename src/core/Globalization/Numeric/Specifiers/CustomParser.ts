@@ -6,7 +6,7 @@
 /// <reference path="../../../Utils/Clone" />
 /// <reference path="../../../Utils/Function" />
 
-module Format.Globalization.Numeric.Specifiers {
+namespace Format.Globalization.Numeric.Specifiers {
     /**
      * A [Custom Numeric Format String](https://msdn.microsoft.com/en-us/library/0c899ak8.aspx) parser implementation.
      * It does not produce concrete formatting options but does lend its intermediate and final state to visiting instances.

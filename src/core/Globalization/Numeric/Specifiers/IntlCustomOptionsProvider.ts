@@ -9,7 +9,7 @@
 /// <reference path="../../../Utils/Object" />
 /// <reference path="../../../Utils/Remove" />
 
-module Format.Globalization.Numeric.Specifiers {
+namespace Format.Globalization.Numeric.Specifiers {
     /**
      * An [[OptionsProvider]] implementation that handles [Custom Numeric Format String](https://msdn.microsoft.com/en-us/library/0c899ak8.aspx). The type of the returned options object is an
      * extended version of [Intl.NumberFormat's options](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat#Parameters) parameter.

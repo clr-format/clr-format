@@ -3,7 +3,7 @@
 /// <reference path="../../../../src/core/Globalization/Numeric/DecorationFormatter" />
 /// <reference path="../../../../src/core/Globalization/Numeric/IntlOptionsProvider" />
 
-module Format.Globalization.Numeric {
+namespace Format.Globalization.Numeric {
 
     describe("DecorationFormatter", () => {
 

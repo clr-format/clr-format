@@ -1,6 +1,6 @@
 /// <reference path="CustomFormatter" />
 
-module Format.Globalization {
+namespace Format.Globalization {
     /**
      * Provides a mechanism for retrieving an object which contains resolved formatting options.
      * @param TOptions The type of the options container.

@@ -9,7 +9,7 @@
 
 /// <reference path="../../Errors/ArgumentError" />
 
-module Format.Globalization.Numeric {
+namespace Format.Globalization.Numeric {
     /**
      * Partial formatter implementation that applies exponential notation options to the resulting value.
      * @param T The type of the options container.

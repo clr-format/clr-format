@@ -8,7 +8,7 @@
 /// <reference path="../../Utils/Text" />
 /// <reference path="../../Utils/Indexable" />
 
-module Format.Globalization.Numeric {
+namespace Format.Globalization.Numeric {
     /**
      * Partial formatter implementation that applies decoration options to the resulting value.
      * @param T The type of the options container.

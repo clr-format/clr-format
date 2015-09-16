@@ -5,7 +5,7 @@
 
 /// <reference path="../../Utils/Clone" />
 
-module Format.Globalization.DateTime {
+namespace Format.Globalization.DateTime {
     /**
      * An [[OptionsProvider]] implementation that handles both [Standard Date and Time Format Strings](https://msdn.microsoft.com/en-us/library/az4se3k1.aspx) and
      * [Custom Date and Time Format Strings](https://msdn.microsoft.com/en-us/library/8kb3ddd4.aspx). The type of the returned options object is an

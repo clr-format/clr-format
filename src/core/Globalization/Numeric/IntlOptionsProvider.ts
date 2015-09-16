@@ -9,7 +9,7 @@
 
 /// <reference path="../../Utils/Clone" />
 
-module Format.Globalization.Numeric {
+namespace Format.Globalization.Numeric {
     /**
      * An [[OptionsProvider]] implementation that handles both [Standard Numeric Format Specifiers](https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx) and
      * [Custom Numeric Format String](https://msdn.microsoft.com/en-us/library/0c899ak8.aspx). The type of the returned options object is an

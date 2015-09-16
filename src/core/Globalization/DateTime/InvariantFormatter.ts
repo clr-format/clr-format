@@ -4,7 +4,7 @@
 
 /// <reference path="../CustomFormatter" />
 
-module Format.Globalization.DateTime {
+namespace Format.Globalization.DateTime {
     /**
      * Invariant formatter implementation that applies invariant culture format to a date and time value.
      * @param T The type of the options container.
