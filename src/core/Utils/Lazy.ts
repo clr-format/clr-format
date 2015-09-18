@@ -10,7 +10,7 @@ namespace Format.Utils {
     /**
      * Provides support for lazy initialization.
      *
-     * See: https://msdn.microsoft.com/en-us/library/dd642331.aspx
+     * See: https://msdn.microsoft.com/library/dd642331.aspx
      * @param T The type of object that is being lazily initialized.
      */
     export class Lazy<T> {

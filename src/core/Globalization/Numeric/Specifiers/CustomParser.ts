@@ -8,7 +8,7 @@
 
 namespace Format.Globalization.Numeric.Specifiers {
     /**
-     * A [Custom Numeric Format String](https://msdn.microsoft.com/en-us/library/0c899ak8.aspx) parser implementation.
+     * A [Custom Numeric Format String](https://msdn.microsoft.com/library/0c899ak8.aspx) parser implementation.
      * It does not produce concrete formatting options but does lend its intermediate and final state to visiting instances.
      */
     export class CustomParser {

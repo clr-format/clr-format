@@ -4,7 +4,7 @@
 /** A [[Globalization.DateTime]] sub-module containing classes related to date and time format specifier operations. */
 namespace Format.Globalization.DateTime.Specifiers {
     /**
-     * Provides a compilation enforced mapping of the [Custom Date and Time Format Specifiers](https://msdn.microsoft.com/en-us/library/8kb3ddd4.aspx).
+     * Provides a compilation enforced mapping of the [Custom Date and Time Format Specifiers](https://msdn.microsoft.com/library/8kb3ddd4.aspx).
      * @param T The type of the specifier's value/handler.
      */
     export interface CustomSpecifiersMap<T> extends Indexable<T> {
@@ -51,7 +51,7 @@ namespace Format.Globalization.DateTime.Specifiers {
     /**
      * Exposes a map of the custom date and time format specifiers to their character or regexp representation as well as the inverse relation.
      *
-     * See: https://msdn.microsoft.com/en-us/library/8kb3ddd4.aspx
+     * See: https://msdn.microsoft.com/library/8kb3ddd4.aspx
      */
     export let CustomSpecifiers = Utils.mapValuesAsKeys(<CustomSpecifiersMap<string>> {
         dayPlaceholder: "d",

@@ -7,9 +7,9 @@
 
 namespace Format.Globalization.DateTime {
     /**
-     * An [[OptionsProvider]] implementation that handles both [Standard Date and Time Format Strings](https://msdn.microsoft.com/en-us/library/az4se3k1.aspx) and
-     * [Custom Date and Time Format Strings](https://msdn.microsoft.com/en-us/library/8kb3ddd4.aspx). The type of the returned options object is an
-     * extended version of [Intl.DateTimeFormat's options](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat#Parameters) parameter.
+     * An [[OptionsProvider]] implementation that handles both [Standard Date and Time Format Strings](https://msdn.microsoft.com/library/az4se3k1.aspx) and
+     * [Custom Date and Time Format Strings](https://msdn.microsoft.com/library/8kb3ddd4.aspx). The type of the returned options object is an
+     * extended version of [Intl.DateTimeFormat's options](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat#Parameters) parameter.
      */
     export class IntlOptionsProvider implements OptionsProvider<Intl.DateTimeFormatOptions> {
 

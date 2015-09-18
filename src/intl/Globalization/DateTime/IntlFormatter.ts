@@ -16,10 +16,10 @@ namespace Format.Globalization.DateTime {
         /**
          * Initializes a new object that enables language sensitive date and time formatting.
          * @param locales The locales argument must be either a string holding a BCP 47 language tag, or an array of such language tags.
-         * See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_identification_and_negotiation
+         * See: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_identification_and_negotiation
          * @param formatInfo An instance that will provide culture-specific date and time format information.
          * @param dateOptions Optional object with some or all of the standardized properties.
-         * See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat
+         * See: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat
          */
         constructor(locales: string|string[], formatInfo: DateTimeFormatInfo, dateOptions?: Intl.DateTimeFormatOptions) {
 

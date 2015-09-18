@@ -6,7 +6,7 @@ namespace Format.Errors {
     /**
      * An error that is thrown when a method call is invalid for the object's current state.
      *
-     * See: https://msdn.microsoft.com/en-us/library/system.invalidoperationexception.aspx
+     * See: https://msdn.microsoft.com/library/system.invalidoperationexception.aspx
      */
     export class InvalidOperationError extends SystemError {
         /**

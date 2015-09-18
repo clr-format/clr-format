@@ -2,7 +2,7 @@ namespace Format.Globalization {
     /**
      * Defines a method that supports custom formatting of the value of an object.
      *
-     * See: https://msdn.microsoft.com/en-us/library/system.icustomformatter.aspx
+     * See: https://msdn.microsoft.com/library/system.icustomformatter.aspx
      */
     export interface CustomFormatter {
         /**

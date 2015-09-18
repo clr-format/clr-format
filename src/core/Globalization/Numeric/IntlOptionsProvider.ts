@@ -11,9 +11,9 @@
 
 namespace Format.Globalization.Numeric {
     /**
-     * An [[OptionsProvider]] implementation that handles both [Standard Numeric Format Specifiers](https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx) and
-     * [Custom Numeric Format String](https://msdn.microsoft.com/en-us/library/0c899ak8.aspx). The type of the returned options object is an
-     * extended version of [Intl.NumberFormat's options](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat#Parameters) parameter.
+     * An [[OptionsProvider]] implementation that handles both [Standard Numeric Format Specifiers](https://msdn.microsoft.com/library/dwhawy9k.aspx) and
+     * [Custom Numeric Format String](https://msdn.microsoft.com/library/0c899ak8.aspx). The type of the returned options object is an
+     * extended version of [Intl.NumberFormat's options](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat#Parameters) parameter.
      */
     export class IntlOptionsProvider implements OptionsProvider<Intl.NumberFormatOptions> {
 

@@ -12,7 +12,7 @@ namespace Format.Globalization.Numeric.Specifiers {
     export let CustomExponentRexExp = /^E([-\+]?)(0+)/i;
 
     /**
-     * Provides a compilation enforced mapping of the [Custom Numeric Format Specifiers](https://msdn.microsoft.com/en-us/library/0c899ak8.aspx).
+     * Provides a compilation enforced mapping of the [Custom Numeric Format Specifiers](https://msdn.microsoft.com/library/0c899ak8.aspx).
      * @param T The type of the specifier's value/handler.
      */
     export interface CustomSpecifiersMap<T> extends Indexable<T> {
@@ -60,7 +60,7 @@ namespace Format.Globalization.Numeric.Specifiers {
     /**
      * Exposes a map of the custom numeric format specifiers to their character or regexp representation as well as the inverse relation.
      *
-     * See: https://msdn.microsoft.com/en-us/library/0c899ak8.aspx
+     * See: https://msdn.microsoft.com/library/0c899ak8.aspx
      */
     export let CustomSpecifiers = Utils.mapValuesAsKeys(<CustomSpecifiersMap<string>> {
         zeroPlaceholder: "0",

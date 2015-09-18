@@ -37,11 +37,11 @@ namespace Format.Globalization.Numeric.Specifiers {
 
         it("resolveOptions should resolve the custom numeric format string into Intl-based options", () => {
 
-            // Zero placeholder - https://msdn.microsoft.com/en-us/library/0c899ak8.aspx#Specifier0
+            // Zero placeholder - https://msdn.microsoft.com/library/0c899ak8.aspx#Specifier0
             expect(resolveOptions("00000")).toEqual({ minimumFractionDigits: 0, maximumFractionDigits: 0, minimumIntegerDigits: 5 });
             expect(resolveOptions("00-00")).toEqual({ minimumFractionDigits: 0, maximumFractionDigits: 0, minimumIntegerDigits: 4, internalDecorators: { "-3": "-" } });
 
-            // Digit placeholder - https://msdn.microsoft.com/en-us/library/0c899ak8.aspx#SpecifierD
+            // Digit placeholder - https://msdn.microsoft.com/library/0c899ak8.aspx#SpecifierD
             expect(resolveOptions("#####")).toEqual({ noLeadingZeroIntegerDigit: true, minimumFractionDigits: 0, maximumFractionDigits: 0 });
             expect(resolveOptions("[##-##-###-#]", 1)).toEqual({
                 minimumFractionDigits: 0, maximumFractionDigits: 0, prefixDecorator: "[", internalDecorators: { "-7": "-", "-5": "-", "-2": "-" }, suffixDecorator: "]"
@@ -50,7 +50,7 @@ namespace Format.Globalization.Numeric.Specifiers {
                 minimumFractionDigits: 0, maximumFractionDigits: 0, prefixDecorator: "(", internalDecorators: { "-8": ") ", "-5": "-" }
             });
 
-            // Decimal point - https://msdn.microsoft.com/en-us/library/0c899ak8.aspx#SpecifierPt
+            // Decimal point - https://msdn.microsoft.com/library/0c899ak8.aspx#SpecifierPt
             expect(resolveOptions("0.00")).toEqual({ minimumFractionDigits: 2, maximumFractionDigits: 2, minimumIntegerDigits: 1 });
             expect(resolveOptions("00.00")).toEqual({ minimumFractionDigits: 2, maximumFractionDigits: 2, minimumIntegerDigits: 2 });
             expect(resolveOptions("#.##", 1)).toEqual({ minimumFractionDigits: 0, maximumFractionDigits: 2 });
@@ -65,7 +65,7 @@ namespace Format.Globalization.Numeric.Specifiers {
                 noLeadingZeroIntegerDigit: true, minimumFractionDigits: 6, maximumFractionDigits: 6, internalDecorators: Object({ 0: "[", 2: "-", 4: "-" }), suffixDecorator: "]"
             });
 
-            // Group separator and number scaling - https://msdn.microsoft.com/en-us/library/0c899ak8.aspx#SpecifierTh
+            // Group separator and number scaling - https://msdn.microsoft.com/library/0c899ak8.aspx#SpecifierTh
             expect(resolveOptions("##,#", 1)).toEqual({ minimumFractionDigits: 0, maximumFractionDigits: 0, useGrouping: true });
             expect(resolveOptions(",#", 1)).toEqual({ minimumFractionDigits: 0, maximumFractionDigits: 0 });
             expect(resolveOptions("#,", 1000)).toEqual({ minimumFractionDigits: 0, maximumFractionDigits: 0, valueDivisor: 1000 });
@@ -95,7 +95,7 @@ namespace Format.Globalization.Numeric.Specifiers {
                 minimumFractionDigits: 0, maximumFractionDigits: 2, prefixDecorator: "-", internalDecorators: { 1: "-", "-2": "-" }, suffixDecorator: "-", minimumIntegerDigits: 6, useGrouping: true
             });
 
-            // Percentage placeholder - https://msdn.microsoft.com/en-us/library/0c899ak8.aspx#SpecifierPct
+            // Percentage placeholder - https://msdn.microsoft.com/library/0c899ak8.aspx#SpecifierPct
             expect(resolveOptions("%#0.00")).toEqual({ minimumFractionDigits: 2, maximumFractionDigits: 2, valueDivisor: 0.01, prefixDecorator: "%", minimumIntegerDigits: 1 });
             expect(resolveOptions("##.0 %", 0.01)).toEqual({ minimumFractionDigits: 1, maximumFractionDigits: 1, valueDivisor: 0.01, suffixDecorator: " %" });
             expect(resolveOptions("##.0 %%", -0.0001)).toEqual({ minimumFractionDigits: 1, maximumFractionDigits: 1, valueDivisor: 0.0001, suffixDecorator: " %%" });
@@ -104,14 +104,14 @@ namespace Format.Globalization.Numeric.Specifiers {
             expect(resolveOptions("#.00, %", -0.001)).toEqual({ noLeadingZeroIntegerDigit: true, minimumFractionDigits: 2, maximumFractionDigits: 2, valueDivisor: 0.01, suffixDecorator: " %" });
             expect(resolveOptions("00%0,")).toEqual({ minimumFractionDigits: 0, maximumFractionDigits: 0, valueDivisor: 0.01, internalDecorators: { "-2": "%" }, minimumIntegerDigits: 3 });
 
-            // Per mille placeholder - https://msdn.microsoft.com/en-us/library/0c899ak8.aspx#SpecifierPerMille
+            // Per mille placeholder - https://msdn.microsoft.com/library/0c899ak8.aspx#SpecifierPerMille
             expect(resolveOptions("‰#0.00")).toEqual({ minimumFractionDigits: 2, maximumFractionDigits: 2, valueDivisor: 0.001, prefixDecorator: "‰", minimumIntegerDigits: 1 });
             expect(resolveOptions("##.0 ‰", 0.0001)).toEqual({ noLeadingZeroIntegerDigit: true, minimumFractionDigits: 1, maximumFractionDigits: 1, valueDivisor: 0.001, suffixDecorator: " ‰" });
             expect(resolveOptions("##.0 ‰‰", 0.000001)).toEqual({ minimumFractionDigits: 1, maximumFractionDigits: 1, valueDivisor: 0.000001, suffixDecorator: " ‰‰" });
             expect(resolveOptions("#0.##\u2030")).toEqual({ minimumFractionDigits: 0, maximumFractionDigits: 2, valueDivisor: 0.001, suffixDecorator: "‰", minimumIntegerDigits: 1 });
             expect(resolveOptions("##.0, ‰")).toEqual({ noLeadingZeroIntegerDigit: true, minimumFractionDigits: 1, maximumFractionDigits: 1, valueDivisor: 0.001, suffixDecorator: " ‰" });
 
-            // Exponential notation - https://msdn.microsoft.com/en-us/library/0c899ak8.aspx#SpecifierExponent
+            // Exponential notation - https://msdn.microsoft.com/library/0c899ak8.aspx#SpecifierExponent
             expect(resolveOptions("#0.0e0")).toEqual({
                 minimumFractionDigits: 1, maximumFractionDigits: 1, minimumIntegerDigits: 2, style: "exponential", upperCase: false, negativellySignedExponent: true, minimumExponentDigits: 1
             });
@@ -163,7 +163,7 @@ namespace Format.Globalization.Numeric.Specifiers {
                 minimumFractionDigits: 1, maximumFractionDigits: 4, minimumIntegerDigits: 2, style: "exponential", upperCase: true, negativellySignedExponent: false, minimumExponentDigits: 1
             });
 
-            // Escape character - https://msdn.microsoft.com/en-us/library/0c899ak8.aspx#SpecifierEscape
+            // Escape character - https://msdn.microsoft.com/library/0c899ak8.aspx#SpecifierEscape
             expect(resolveOptions("\\###00\\#")).toEqual({ minimumFractionDigits: 0, maximumFractionDigits: 0, prefixDecorator: "#", suffixDecorator: "#", minimumIntegerDigits: 2 });
             expect(resolveOptions("\\;##00\\;")).toEqual({ minimumFractionDigits: 0, maximumFractionDigits: 0, prefixDecorator: ";", suffixDecorator: ";", minimumIntegerDigits: 2 });
             expect(resolveOptions("';;;'##00';;;'")).toEqual({ minimumFractionDigits: 0, maximumFractionDigits: 0, prefixDecorator: ";;;", suffixDecorator: ";;;", minimumIntegerDigits: 2 });
@@ -188,7 +188,7 @@ namespace Format.Globalization.Numeric.Specifiers {
             expect(resolveOptions("0.#'e0'")).toEqual({ minimumFractionDigits: 0, maximumFractionDigits: 1, suffixDecorator: "e0", minimumIntegerDigits: 1 });
             expect(resolveOptions("00';'00")).toEqual({ minimumFractionDigits: 0, maximumFractionDigits: 0, internalDecorators: { "-3": ";" }, minimumIntegerDigits: 4 });
 
-            // Section separator - https://msdn.microsoft.com/en-us/library/0c899ak8.aspx#SectionSeparator
+            // Section separator - https://msdn.microsoft.com/library/0c899ak8.aspx#SectionSeparator
             expect(resolveOptions("#0.0#;", -1)).toEqual({ minimumFractionDigits: 1, maximumFractionDigits: 2, minimumIntegerDigits: 1 });
             expect(resolveOptions("#0.0#;(#0.0#)", 0)).toEqual({ minimumFractionDigits: 1, maximumFractionDigits: 2, minimumIntegerDigits: 1 });
             expect(resolveOptions("#0.0#;(#0.0#);", 0.005)).toEqual({ minimumFractionDigits: 1, maximumFractionDigits: 2, minimumIntegerDigits: 1 });

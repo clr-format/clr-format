@@ -6,7 +6,7 @@ namespace Format.Errors {
     /**
      * An error that is thrown when a requested method or operation is not implemented.
      *
-     * See: https://msdn.microsoft.com/en-us/library/system.notimplementedexception.aspx
+     * See: https://msdn.microsoft.com/library/system.notimplementedexception.aspx
      */
     export class NotImplementedError extends SystemError {
         /**

@@ -17,7 +17,7 @@ namespace Format.Globalization {
      *
      * Information about the culture itself and the application of overrides will be made available through this class at a later point.
      *
-     * See: https://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.aspx
+     * See: https://msdn.microsoft.com/library/system.globalization.datetimeformatinfo.aspx
      */
     export class DateTimeFormatInfo implements FormatProvider {
 

@@ -11,7 +11,7 @@ namespace Format.Errors {
     /**
      * Base system error class that allows for syntactic C#-like `Error` class extension.
      *
-     * See: https://msdn.microsoft.com/en-us/library/system.systemexception.aspx
+     * See: https://msdn.microsoft.com/library/system.systemexception.aspx
      */
     export class SystemError extends ErrorClass {
 

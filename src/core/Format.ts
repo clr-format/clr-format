@@ -53,7 +53,7 @@ namespace Format {
 
     /**
      * Sets the current default currency (the [[CurrentCurrency]] property) based on the supplied currency code.
-     * @param currencyCode The currency to use in currency formatting. See [current currency & funds code list](http://www.currency-iso.org/en/home/tables/table-a1.html).
+     * @param currencyCode The currency to use in currency formatting. See [current currency & funds code list](http://www.currency-iso.org/home/tables/table-a1.html).
      */
     export function setCurrency(currencyCode: string): void {
 
@@ -69,7 +69,7 @@ namespace Format {
      *
      * This project-internal (but externally visible) version does not support arbitrary argument overloads.
      * @param provider An object that supplies culture-specific formatting information.
-     * @param format A composite format string. See: https://msdn.microsoft.com/en-us/library/txafckwd.aspx
+     * @param format A composite format string. See: https://msdn.microsoft.com/library/txafckwd.aspx
      * @param args An array of arguments that contains zero or more objects to format.
      * @returns A copy of the format string in which the format items have been replaced by the string representation of the corresponding objects in args.
      */
@@ -94,7 +94,7 @@ namespace Format {
 
     /**
      * Converts the object's value to string based on the format specified and returns it.
-     * @param formatStringComponent A format string component (part of the composite format string). See: https://msdn.microsoft.com/en-us/library/txafckwd.aspx
+     * @param formatStringComponent A format string component (part of the composite format string). See: https://msdn.microsoft.com/library/txafckwd.aspx
      * @param value The object to format.
      * @param provider An object that supplies culture-specific formatting information.
      * @returns The string representation of the object's value, formatted as specified by the format string component and provider.

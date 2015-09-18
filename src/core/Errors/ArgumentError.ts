@@ -6,7 +6,7 @@ namespace Format.Errors {
     /**
      * An error that is thrown when one of the arguments provided to a function is not valid.
      *
-     * See: https://msdn.microsoft.com/en-us/library/system.argumentexception.aspx
+     * See: https://msdn.microsoft.com/library/system.argumentexception.aspx
      */
     export class ArgumentError extends SystemError {
         /**

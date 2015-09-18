@@ -13,8 +13,8 @@
 
 namespace Format.Globalization.Numeric.Specifiers {
     /**
-     * An [[OptionsProvider]] implementation that handles [Standard Numeric Format Specifiers](https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx). The type of the returned options object is an
-     * extended version of [Intl.NumberFormat's options](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat#Parameters) parameter.
+     * An [[OptionsProvider]] implementation that handles [Standard Numeric Format Specifiers](https://msdn.microsoft.com/library/dwhawy9k.aspx). The type of the returned options object is an
+     * extended version of [Intl.NumberFormat's options](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat#Parameters) parameter.
      */
     export class IntlStandardOptionsProvider implements Globalization.OptionsProvider<Intl.NumberFormatOptions, number> {
 
@@ -34,7 +34,7 @@ namespace Format.Globalization.Numeric.Specifiers {
 
         /**
          * Returns an object that provides numeric formatting options resolved from standard numeric specifiers.
-         * @param format A format string representing a [Standard Numeric Format Specifiers](https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx).
+         * @param format A format string representing a [Standard Numeric Format Specifiers](https://msdn.microsoft.com/library/dwhawy9k.aspx).
          * @param value The value object from which to infer additional options.
          */
         public resolveOptions(format: string, value: number): Intl.NumberFormatOptions {
@@ -73,20 +73,20 @@ namespace Format.Globalization.Numeric.Specifiers {
         /* tslint:disable:member-ordering */
 
         private resolvers: Specifiers.StandardSpecifiersMap<() => void> = {
-            /** See: https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx#CFormatString */
+            /** See: https://msdn.microsoft.com/library/dwhawy9k.aspx#CFormatString */
             currency: (): void => {
                 this.options.useGrouping = true;
                 this.options.minimumFractionDigits = this.precision;
                 this.options.maximumFractionDigits = this.precision;
             },
 
-            /** See: https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx#DFormatString */
+            /** See: https://msdn.microsoft.com/library/dwhawy9k.aspx#DFormatString */
             decimal: (): void => {
                 this.options.minimumIntegerDigits = this.precision;
                 this.options.maximumFractionDigits = 0;
             },
 
-            /** See: https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx#EFormatString */
+            /** See: https://msdn.microsoft.com/library/dwhawy9k.aspx#EFormatString */
             exponential: (): void => {
 
                 let precision = this.precision >= 0 ? this.precision :
@@ -98,13 +98,13 @@ namespace Format.Globalization.Numeric.Specifiers {
                 this.options.minimumExponentDigits = 3;
             },
 
-            /** See: https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx#FFormatString */
+            /** See: https://msdn.microsoft.com/library/dwhawy9k.aspx#FFormatString */
             fixedPoint: (): void => {
                 this.options.minimumFractionDigits = this.precision;
                 this.options.maximumFractionDigits = this.precision;
             },
 
-            /** See: https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx#GFormatString */
+            /** See: https://msdn.microsoft.com/library/dwhawy9k.aspx#GFormatString */
             general: (): void => {
                 this.options.minimumExponentDigits = 2;
                 this.options.upperCase = this.specifier === this.specifier.toUpperCase();
@@ -114,21 +114,21 @@ namespace Format.Globalization.Numeric.Specifiers {
                 }
             },
 
-            /** See: https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx#NFormatString */
+            /** See: https://msdn.microsoft.com/library/dwhawy9k.aspx#NFormatString */
             number: (): void => {
                 this.resolvers.fixedPoint();
                 this.options.useGrouping = true;
             },
 
-            /** See: https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx#PFormatString */
+            /** See: https://msdn.microsoft.com/library/dwhawy9k.aspx#PFormatString */
             percent: (): void => {
                 this.resolvers.number();
             },
 
-            /** See: https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx#RFormatString */
+            /** See: https://msdn.microsoft.com/library/dwhawy9k.aspx#RFormatString */
             roundTrip: Utils.Function.getEmpty(),
 
-            /** See: https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx#XFormatString */
+            /** See: https://msdn.microsoft.com/library/dwhawy9k.aspx#XFormatString */
             hex: (): void => {
                 this.options.minimumSignificantDigits = this.precision;
                 this.options.upperCase = this.specifier === this.specifier.toUpperCase();

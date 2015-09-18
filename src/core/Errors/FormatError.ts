@@ -6,7 +6,7 @@ namespace Format.Errors {
     /**
      * An error that is thrown when the format of an argument is invalid, or when a composite format string is not well formed.
      *
-     * See: https://msdn.microsoft.com/en-us/library/system.formatexception.aspx
+     * See: https://msdn.microsoft.com/library/system.formatexception.aspx
      */
     export class FormatError extends SystemError {
         /**

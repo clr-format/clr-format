@@ -44,10 +44,10 @@ namespace Format.Globalization.Numeric {
         /**
          * Initializes a new object that enables language sensitive number formatting.
          * @param locales The locales argument must be either a string holding a BCP 47 language tag, or an array of such language tags.
-         * See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_identification_and_negotiation
+         * See: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_identification_and_negotiation
          * @param formatInfo An instance that will provide culture-specific number format information.
          * @param numberOptions An object with some or all of the standardized properties.
-         * See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat
+         * See: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat
          */
         constructor(locales: string|string[], formatInfo: NumberFormatInfo, numberOptions?: Intl.NumberFormatOptions) {
 

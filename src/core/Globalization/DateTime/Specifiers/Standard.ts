@@ -4,7 +4,7 @@
 
 namespace Format.Globalization.DateTime.Specifiers {
     /**
-     * Provides a compilation enforced mapping of the [Standard Date and Time Format Specifiers](https://msdn.microsoft.com/en-us/library/az4se3k1.aspx).
+     * Provides a compilation enforced mapping of the [Standard Date and Time Format Specifiers](https://msdn.microsoft.com/library/az4se3k1.aspx).
      * @param T The type of the specifier's value/handler.
      */
     export interface StandardSpecifiersMap<T> extends Indexable<T> {
@@ -46,7 +46,7 @@ namespace Format.Globalization.DateTime.Specifiers {
      * A standard date and time format string uses a single format specifier to define the text representation of a date and time value.
      * Any date and time format string that contains more than one character, including white space, is interpreted as a custom date and time format string.
      *
-     * See: https://msdn.microsoft.com/en-us/library/az4se3k1.aspx
+     * See: https://msdn.microsoft.com/library/az4se3k1.aspx
      */
     export let StandardSpecifiers = Utils.mapValuesAsKeys(<StandardSpecifiersMap<string>> {
         shortDate: "d",

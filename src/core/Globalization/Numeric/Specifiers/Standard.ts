@@ -19,7 +19,7 @@ namespace Format.Globalization.Numeric.Specifiers {
     export let DefaultStandardExponentialPrecision = 6;
 
     /**
-     * Provides a compilation enforced mapping of the [Standard Numeric Format Specifiers](https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx).
+     * Provides a compilation enforced mapping of the [Standard Numeric Format Specifiers](https://msdn.microsoft.com/library/dwhawy9k.aspx).
      * @param T The type of the specifier's value/handler.
      */
     export interface StandardSpecifiersMap<T> extends Indexable<T> {
@@ -46,7 +46,7 @@ namespace Format.Globalization.Numeric.Specifiers {
     /**
      * Exposes a map of the standard numeric format specifiers to their alphabetic character representation as well as the inverse relation.
      *
-     * See: https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx
+     * See: https://msdn.microsoft.com/library/dwhawy9k.aspx
      */
     export let StandardSpecifiers = Utils.mapValuesAsKeys(<StandardSpecifiersMap<string>> {
         currency: "C",

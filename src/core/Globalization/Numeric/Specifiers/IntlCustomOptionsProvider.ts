@@ -11,8 +11,8 @@
 
 namespace Format.Globalization.Numeric.Specifiers {
     /**
-     * An [[OptionsProvider]] implementation that handles [Custom Numeric Format String](https://msdn.microsoft.com/en-us/library/0c899ak8.aspx). The type of the returned options object is an
-     * extended version of [Intl.NumberFormat's options](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat#Parameters) parameter.
+     * An [[OptionsProvider]] implementation that handles [Custom Numeric Format String](https://msdn.microsoft.com/library/0c899ak8.aspx). The type of the returned options object is an
+     * extended version of [Intl.NumberFormat's options](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat#Parameters) parameter.
      */
     export class IntlCustomOptionsProvider implements Globalization.OptionsProvider<Intl.NumberFormatOptions, number> {
 
@@ -53,7 +53,7 @@ namespace Format.Globalization.Numeric.Specifiers {
 
         /**
          * Returns an object that provides numeric formatting options resolved from custom numeric specifiers.
-         * @param format A format string representing a [Custom Numeric Format String](https://msdn.microsoft.com/en-us/library/0c899ak8.aspx).
+         * @param format A format string representing a [Custom Numeric Format String](https://msdn.microsoft.com/library/0c899ak8.aspx).
          * @param value The value object from which to infer additional options.
          */
         public resolveOptions(format: string, value: number): Intl.NumberFormatOptions {
@@ -179,7 +179,7 @@ namespace Format.Globalization.Numeric.Specifiers {
 
         private resolvers: Specifiers.CustomSpecifiersMap< () => void> = {
 
-            /** See: https://msdn.microsoft.com/en-us/library/0c899ak8.aspx#Specifier0 */
+            /** See: https://msdn.microsoft.com/library/0c899ak8.aspx#Specifier0 */
             zeroPlaceholder: (): void => {
                 this.resolvers.digitPlaceholder();
                 if (!this.parser.isAfterDecimal()) {
@@ -187,17 +187,17 @@ namespace Format.Globalization.Numeric.Specifiers {
                 }
             },
 
-            /** See: https://msdn.microsoft.com/en-us/library/0c899ak8.aspx#SpecifierD */
+            /** See: https://msdn.microsoft.com/library/0c899ak8.aspx#SpecifierD */
             digitPlaceholder: (): void => {
                 this.options.noDigits = false;
             },
 
-            /** See: https://msdn.microsoft.com/en-us/library/0c899ak8.aspx#SpecifierPt */
+            /** See: https://msdn.microsoft.com/library/0c899ak8.aspx#SpecifierPt */
             decimalPoint: (): void => {
                 this.resolvers.digitPlaceholder();
             },
 
-            /** See: https://msdn.microsoft.com/en-us/library/0c899ak8.aspx#SpecifierTh */
+            /** See: https://msdn.microsoft.com/library/0c899ak8.aspx#SpecifierTh */
             groupSeparatorOrNumberScaling: (): void => {
                 if (!this.parser.isBeforeNumericSpecifiers()) {
                     if (!this.parser.isAfterDecimal() && !this.parser.isAfterNumericSpecifiers()) {
@@ -209,21 +209,21 @@ namespace Format.Globalization.Numeric.Specifiers {
                 }
             },
 
-            /** See: https://msdn.microsoft.com/en-us/library/0c899ak8.aspx#SpecifierPct */
+            /** See: https://msdn.microsoft.com/library/0c899ak8.aspx#SpecifierPct */
             percentagePlaceholder: (): void => {
                 this.decoractingCharResolver();
                 this.resetValueDivisor();
                 this.options.valueDivisor /= 100;
             },
 
-            /** See: https://msdn.microsoft.com/en-us/library/0c899ak8.aspx#SpecifierPerMille */
+            /** See: https://msdn.microsoft.com/library/0c899ak8.aspx#SpecifierPerMille */
             perMillePlaceholder: (): void => {
                 this.decoractingCharResolver();
                 this.resetValueDivisor();
                 this.options.valueDivisor /= 1000;
             },
 
-            /** See: https://msdn.microsoft.com/en-us/library/0c899ak8.aspx#SpecifierExponent */
+            /** See: https://msdn.microsoft.com/library/0c899ak8.aspx#SpecifierExponent */
             exponent: (): void => {
                 if (this.parser.isExponentMatched()) {
                     this.options.style = StandardSpecifiers[StandardSpecifiers.exponential];
@@ -236,10 +236,10 @@ namespace Format.Globalization.Numeric.Specifiers {
                 }
             },
 
-            /** See: https://msdn.microsoft.com/en-us/library/0c899ak8.aspx#SpecifierEscape */
+            /** See: https://msdn.microsoft.com/library/0c899ak8.aspx#SpecifierEscape */
             escapeChar: undefined,
 
-            /** See: https://msdn.microsoft.com/en-us/library/0c899ak8.aspx#SectionSeparator */
+            /** See: https://msdn.microsoft.com/library/0c899ak8.aspx#SectionSeparator */
             sectionSeparator: undefined,
 
             /** Indicates that the enclosed characters should be copied to the result string unchanged. */

@@ -6,7 +6,7 @@ namespace Format.Errors {
     /**
      * An error that is thrown when an `undefined` or `null` argument is passed to a method that does not accept it as a valid argument.
      *
-     * See: https://msdn.microsoft.com/en-us/library/system.argumentnullexception.aspx
+     * See: https://msdn.microsoft.com/library/system.argumentnullexception.aspx
      */
     export class ArgumentNullError extends ArgumentError {
         /**
