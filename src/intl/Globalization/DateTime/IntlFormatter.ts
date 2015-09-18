@@ -1,7 +1,5 @@
 /// <reference path="../../../use-strict" />
 
-/// <reference path="IntlFormatOptions" />
-
 /// <reference path="../../API" />
 
 namespace Format.Globalization.DateTime {
