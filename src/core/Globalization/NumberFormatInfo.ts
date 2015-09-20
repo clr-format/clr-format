@@ -97,8 +97,13 @@ namespace Format.Globalization {
         }
 
         private setInvariantFormatInfo(): void {
-            this.CurrencyDecimalSeparator = this.NumberDecimalSeparator = ".";
-            this.CurrencyGroupSeparator = this.NumberGroupSeparator = ",";
+
+            this.CurrencyDecimalSeparator =
+            this.NumberDecimalSeparator = ".";
+
+            this.CurrencyGroupSeparator =
+            this.NumberGroupSeparator = ",";
+
             this.NumberDecimalDigits = 2;
             this.NegativeSign = "-";
         }

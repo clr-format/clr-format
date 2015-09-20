@@ -5,7 +5,6 @@
 /// <reference path="../IntlFormatOptions" />
 /// <reference path="../../OptionsProvider" />
 
-/// <reference path="../../../Utils/Object" />
 /// <reference path="../../../Utils/Remove" />
 /// <reference path="../../../Utils/Function" />
 
@@ -60,7 +59,7 @@ namespace Format.Globalization.Numeric.Specifiers {
             this.style = StandardSpecifiers[this.specifier.toUpperCase()];
 
             if (!this.style) {
-                throw new Errors.FormatError(`Format specifier '${format}' is invalid`);
+                throw new Errors.FormatError(`Numeric format specifier '${format}' is invalid`);
             }
 
             this.precision = standardSpecifierGroups[2] !== "" ?
@@ -73,6 +72,7 @@ namespace Format.Globalization.Numeric.Specifiers {
         /* tslint:disable:member-ordering */
 
         private resolvers: Specifiers.StandardSpecifiersMap<() => void> = {
+
             /** See: https://msdn.microsoft.com/library/dwhawy9k.aspx#CFormatString */
             currency: (): void => {
                 this.options.useGrouping = true;
