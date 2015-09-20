@@ -71,7 +71,7 @@ namespace Format.Globalization.Numeric.Specifiers {
 
         /* tslint:disable:member-ordering */
 
-        private resolvers: Specifiers.StandardSpecifiersMap<() => void> = {
+        private resolvers: StandardSpecifiersMap<() => void> = {
 
             /** See: https://msdn.microsoft.com/library/dwhawy9k.aspx#CFormatString */
             currency: (): void => {

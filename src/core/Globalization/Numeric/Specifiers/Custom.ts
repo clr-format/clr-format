@@ -1,3 +1,5 @@
+/// <reference path="../../../../use-strict" />
+
 /// <reference path="../../../Utils/Object" />
 /// <reference path="../../../Utils/Indexable" />
 

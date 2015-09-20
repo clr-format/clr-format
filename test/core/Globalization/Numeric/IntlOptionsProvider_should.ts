@@ -24,8 +24,8 @@ namespace Format.Globalization.Numeric {
 
             createInstance({ minimumFractionDigits: 1 });
 
-            expect(intlOptionsProviderAccessor.resolvedOptions).toEqual(intlOptions);
-            expect(intlOptionsProviderAccessor.resolvedOptions).not.toBe(intlOptions);
+            expect(intlOptionsProviderAccessor.options).toEqual(intlOptions);
+            expect(intlOptionsProviderAccessor.options).not.toBe(intlOptions);
         });
 
         it("resolveOptions should resolve the format string into accessible options", () => {
