@@ -8,35 +8,35 @@ namespace Format.Globalization.DateTime.Specifiers {
      * @param T The type of the specifier's value/handler.
      */
     export interface StandardSpecifiersMap<T> extends Indexable<T> {
-        /** Format specifier `d` represents a custom date and time format string that is defined by a specific culture's [[DateTimeFormatInfo.ShortDatePattern]] property. */
+        /** Format specifier `d` represents a custom date and time format string that is defined by a specific culture's short date pattern. */
         shortDate: T;
-        /** Format specifier `D` represents a custom date and time format string that is defined by a specific culture's [[DateTimeFormatInfo.LongDatePattern]] property. */
+        /** Format specifier `D` represents a custom date and time format string that is defined by a specific culture's long date pattern. */
         longDate: T;
         /** Format specifier `f` represents a combination of the long date `D` and short time `t` patterns, separated by a space. */
         fullDateShortTime: T;
-        /** Format specifier `F` represents a custom date and time format string that is defined by the current [[DateTimeFormatInfo.FullDateTimePattern]] property. */
+        /** Format specifier `F` represents a custom date and time format string that is defined by a specific culture's full date and time pattern. */
         fullDateLongTime: T;
         /** Format specifier `g` represents a combination of the short date `d` and short time `t` patterns, separated by a space. */
         generalDateShortTime: T;
         /** Format specifier `G` represents a combination of the short date `d` and long time `T` patterns, separated by a space. */
         generalDateLongTime: T;
-        /** Format specifier `M` or `m` represents a custom date and time format string that is defined by the current [[DateTimeFormatInfo.MonthDayPattern]] property. */
+        /** Format specifier `M` or `m` represents a custom date and time format string that is defined by a specific culture's month and day pattern. */
         monthDate: T;
         /** Format specifier `O` or `o` represents a custom date and time format string using a pattern that preserves time zone information and emits a result string that complies with ISO 8601. */
         roundTrip: T;
-        /** Format specifier `R` or `r` represents a custom date and time format string that is defined by the [[DateTimeFormatInfo.RFC1123Pattern]] property. */
+        /** Format specifier `R` or `r` represents a custom date and time format string that is defined by the RFC1123 date pattern. */
         rfc1123: T;
-        /** Format specifier `s` represents a custom date and time format string that is defined by the [[DateTimeFormatInfo.SortableDateTimePattern]] property. */
+        /** Format specifier `s` represents a custom date and time format string that is defined by the sortable date and time pattern. */
         sortable: T;
-        /** Format specifier `t` represents a custom date and time format string that is defined by the current [[DateTimeFormatInfo.ShortTimePattern]] property. */
+        /** Format specifier `t` represents a custom date and time format string that is defined by a specific culture's short time pattern. */
         shortTime: T;
-        /** Format specifier `T` represents a custom date and time format string that is defined by a specific culture's [[DateTimeFormatInfo.LongTimePattern]] property. */
+        /** Format specifier `T` represents a custom date and time format string that is defined by a specific culture's long time pattern. */
         longTime: T;
-        /** Format specifier `u` represents a custom date and time format string that is defined by the [[DateTimeFormatInfo.UniversalSortableDateTimePattern]] property. */
+        /** Format specifier `u` represents a custom date and time format string that is defined by the UTC sortable date and time pattern. */
         universalSortable: T;
-        /** Format specifier `U` represents a custom date and time format string that is defined by a specified culture's [[DateTimeFormatInfo.FullDateTimePattern]] property. */
+        /** Format specifier `U` represents a custom date and time format string that is defined by a specific culture's full date and time pattern in UTC. */
         universalFull: T;
-        /** Format specifier `Y` or `y` represents a custom date and time format string that is defined by the [[DateTimeFormatInfo.YearMonthPattern]] property of a specified culture. */
+        /** Format specifier `Y` or `y` represents a custom date and time format string that is defined by a specific culture's year and month pattern. */
         yearMonth: T;
     }
 
