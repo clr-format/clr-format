@@ -7,7 +7,7 @@ namespace Format.Globalization.DateTime.Specifiers {
     describe("CustomSpecifiersRegExp", () => {
 
         it("should match the expected value", () => {
-            expect(CustomSpecifiersRegExp).toEqual(/[dfFghHmMstyz]+|K|:|\/|"[^"]*"|'[^']*'|\%.|\\./g);
+            expect(CustomSpecifiersRegExp).toEqual(new RegExp("[dfFghHmMstyz]+|K|:|/|\"[^\"]*\"|'[^']*'|\\%.|\\\\.", "g"));
         });
     });
 }
