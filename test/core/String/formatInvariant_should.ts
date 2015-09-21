@@ -196,6 +196,7 @@ namespace Format {
         it("should apply the optional format items' standard date and time format string component to values", () => {
 
             let date = new Date(2015, 8, 21, 13, 4, 55);
+            let utcDate = new Date("2015-09-21T10:04:55.000Z");
 
             /** Short Date - https://msdn.microsoft.com/library/az4se3k1.aspx#ShortDate */
             expect(String.format("{0:d}", date)).toBe("09/21/2015");
@@ -221,12 +222,12 @@ namespace Format {
             expect(String.format("{0:M}", date)).toBe("September 21");
 
             /** Round-trip - https://msdn.microsoft.com/library/az4se3k1.aspx#Roundtrip */
-            expect(String.format("{0:o}", date)).toBe("2015-09-21T10:04:55.000Z");
-            expect(String.format("{0:O}", date)).toBe("2015-09-21T10:04:55.000Z");
+            expect(String.format("{0:o}", utcDate)).toBe("2015-09-21T10:04:55.000Z");
+            expect(String.format("{0:O}", utcDate)).toBe("2015-09-21T10:04:55.000Z");
 
             /** RFC1123 - https://msdn.microsoft.com/library/az4se3k1.aspx#RFC1123 */
-            expect(String.format("{0:r}", date)).toMatch(/Mon, 21 Sep 2015 10:04:55 GMT|UTC/);
-            expect(String.format("{0:R}", date)).toMatch(/Mon, 21 Sep 2015 10:04:55 GMT|UTC/);
+            expect(String.format("{0:r}", utcDate)).toMatch(/Mon, 21 Sep 2015 10:04:55 GMT|UTC/);
+            expect(String.format("{0:R}", utcDate)).toMatch(/Mon, 21 Sep 2015 10:04:55 GMT|UTC/);
 
             /** Sortable - https://msdn.microsoft.com/library/az4se3k1.aspx#Sortable */
             expect(String.format("{0:s}", date)).toBe("2015-09-21T13:04:55");
@@ -238,10 +239,10 @@ namespace Format {
             expect(String.format("{0:T}", date)).toBe("13:04:55");
 
             /** Universal Sortable - https://msdn.microsoft.com/library/az4se3k1.aspx#UniversalSortable */
-            expect(String.format("{0:u}", date)).toBe("2015-09-21 10:04:55Z");
+            expect(String.format("{0:u}", utcDate)).toBe("2015-09-21 10:04:55Z");
 
             /** Universal Full - https://msdn.microsoft.com/library/az4se3k1.aspx#UniversalFull */
-            expect(String.format("{0:U}", date)).toBe("Monday, 21 September 2015 10:04:55");
+            expect(String.format("{0:U}", utcDate)).toBe("Monday, 21 September 2015 10:04:55");
 
             /** YearMonth - https://msdn.microsoft.com/library/az4se3k1.aspx#YearMonth */
             expect(String.format("{0:y}", date)).toBe("2015 September");
