@@ -10,7 +10,7 @@ namespace Format.Globalization.DateTime.Specifiers {
      * @param T The type of the specifier's value/handler.
      */
     export interface CustomSpecifiersMap<T> extends Indexable<T> {
-        /** Format specifier `d` (up to 4 times, plus any additional) represents the day of the month as a number from 1 through 31. */
+        /** Format specifier `d` (up to 4 times, plus any additional) represents the day of the month as a number from 1 through 31, or as an abbreviated or full day of the week. */
         dayPlaceholder: T;
         /** Format specifier `f` (up to 7 times) represents the n-th most significant digit of the seconds fraction. */
         zeroSubSecondPlaceholder: T;

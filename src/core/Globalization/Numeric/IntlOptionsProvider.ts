@@ -29,7 +29,7 @@ namespace Format.Globalization.Numeric {
         /**
          * Returns an object that provides numeric formatting options resolved from numeric format specifiers.
          * @param format A format string containing formatting specifications.
-         * @param value The value object from which to infer additional options.
+         * @param value The numeric object from which to infer additional options.
          */
         public resolveOptions(format: string, value: number): Intl.NumberFormatOptions {
 

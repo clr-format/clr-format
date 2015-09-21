@@ -59,16 +59,6 @@ namespace Format.Globalization.Numeric {
         }
 
         /**
-         * Converts the number to an equivalent string representation using specified format and invariant culture formatting information.
-         * @param format A format string containing formatting specifications.
-         * @param value The number to format.
-         * @returns The formatted numeric value.
-         */
-        public format(formatString: string, value: number): string {
-            return super.format(formatString, value);
-        }
-
-        /**
          * Applies all resolved format options to the number.
          * @param value The number to format.
          * @returns A resulting format value with applied format and culture-specific options.
