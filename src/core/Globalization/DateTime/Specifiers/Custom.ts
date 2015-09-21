@@ -5,6 +5,10 @@
 
 /** A [[Globalization.DateTime]] sub-module containing classes related to date and time format specifier operations. */
 namespace Format.Globalization.DateTime.Specifiers {
+
+    /** The default standard exponential precision specifier. */
+    export let MaxSubSecondPrecision = 3;
+
     /**
      * Provides a compilation enforced mapping of the [Custom Date and Time Format Specifiers](https://msdn.microsoft.com/library/8kb3ddd4.aspx).
      * @param T The type of the specifier's value/handler.
@@ -12,10 +16,10 @@ namespace Format.Globalization.DateTime.Specifiers {
     export interface CustomSpecifiersMap<T> extends Indexable<T> {
         /** Format specifier `d` (up to 4 times, plus any additional) represents the day of the month as a number from 1 through 31, or as an abbreviated or full day of the week. */
         dayPlaceholder: T;
-        /** Format specifier `f` (up to 7 times) represents the n-th most significant digit of the seconds fraction. */
-        zeroSubSecondPlaceholder: T;
-        /** Format specifier `F` (up to 7 times) represents the n-th most significant digit of the seconds fraction. Nothing is displayed if the digit is zero. */
+        /** Format specifier `f` (up to [[MaxSubSecondPrecision]] times) represents the n-th most significant digit of the seconds fraction. */
         digitSubSecondPlaceholder: T;
+        /** Format specifier `F` (up to [[MaxSubSecondPrecision]] times) represents the n-th most significant digit of the seconds fraction. Nothing is displayed if the digit is zero. */
+        zeroSubSecondPlaceholder: T;
         /** Format specifier `g` or `gg` (plus any number of additional `g` specifiers) represents the period or era, such as A.D. */
         eraPlaceholder: T;
         /** Format specifier `h` or `hh` (plus any number of additional `h` specifiers) represents the hour as a number from (0)1 through 12. */
@@ -57,8 +61,8 @@ namespace Format.Globalization.DateTime.Specifiers {
      */
     export let CustomSpecifiers = Utils.mapValuesAsKeys(<CustomSpecifiersMap<string>> {
         dayPlaceholder: "d",
-        zeroSubSecondPlaceholder: "f",
-        digitSubSecondPlaceholder: "F",
+        digitSubSecondPlaceholder: "f",
+        zeroSubSecondPlaceholder: "F",
         eraPlaceholder: "g",
         hour12Placeholder: "h",
         hour24Placeholdr: "H",
@@ -79,21 +83,19 @@ namespace Format.Globalization.DateTime.Specifiers {
 
     /** @private */
     let specifiers = CustomSpecifiers,
+        getEscapePattern = (escapeChar: string): string => `\\${escapeChar}.`,
         getLiteralPattern = (literalStringDelimeter: string): string =>
-            `${literalStringDelimeter}[^${literalStringDelimeter}]*${literalStringDelimeter}`,
-        getEscapePattern = (escapeChar: string): string =>
-            `\\${escapeChar}.`;
+            `${literalStringDelimeter}[^${literalStringDelimeter}]*${literalStringDelimeter}`;
 
     export let CustomSpecifiersRegExp = new RegExp(
         [
             `[${[
                 specifiers.dayPlaceholder,
-                specifiers.zeroSubSecondPlaceholder,
                 specifiers.digitSubSecondPlaceholder,
+                specifiers.zeroSubSecondPlaceholder,
                 specifiers.eraPlaceholder,
                 specifiers.hour12Placeholder,
                 specifiers.hour24Placeholdr,
-                specifiers.timeZonePlaceholder,
                 specifiers.minutePlaceholder,
                 specifiers.monthPlaceholder,
                 specifiers.secondPlaceholder,
@@ -101,6 +103,7 @@ namespace Format.Globalization.DateTime.Specifiers {
                 specifiers.yearPlaceholder,
                 specifiers.hoursOffsetPlaceholder
             ].join("") }]+`,
+            specifiers.timeZonePlaceholder,
             specifiers.timeSeparator,
             specifiers.dateSeparator,
             getLiteralPattern(specifiers.literalStringDelimeterDouble),

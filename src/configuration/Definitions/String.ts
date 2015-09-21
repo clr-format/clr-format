@@ -54,10 +54,10 @@ namespace Format.Config.Definitions {
 
         if (isProvider(args[0])) {
             let provider = <Format.Globalization.FormatProvider> args.shift();
-            return Format.innerFormat(provider, this, args);
+            return innerFormat(provider, this, args);
         }
 
-        return Format.innerFormat(undefined, this, args);
+        return innerFormat(undefined, this, args);
     };
 
     /** @private */
@@ -83,7 +83,7 @@ namespace Format.Config.Definitions {
             let format = "";
 
             if (isProvider(args[0])) {
-                return Format.innerComponentFormat(format, this, <Format.Globalization.FormatProvider> args[0]);
+                return innerComponentFormat(format, this, <Format.Globalization.FormatProvider> args[0]);
             }
 
             if (typeof args[0] === "string") {
@@ -91,10 +91,10 @@ namespace Format.Config.Definitions {
 
                 if (isProvider(args[1])) {
                     let provider = <Format.Globalization.FormatProvider> args[1];
-                    return Format.innerComponentFormat(format, this, provider);
+                    return innerComponentFormat(format, this, provider);
                 }
 
-                return Format.innerComponentFormat(format, this);
+                return innerComponentFormat(format, this);
             }
 
             return originalProto.apply(this, args);

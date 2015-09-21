@@ -15,7 +15,7 @@ namespace Format.Globalization {
     /**
      * Provides culture-specific information about the format of date and time values.
      *
-     * Information about the culture itself and the application of overrides will be made available through this class at a later point.
+     * Full information about the culture and the application of overrides will be made available through this class at a later point.
      *
      * See: https://msdn.microsoft.com/library/system.globalization.datetimeformatinfo.aspx
      */
@@ -26,6 +26,12 @@ namespace Format.Globalization {
 
         /** Gets or sets a constructor function to be used for creating culture-variant formatting instances. */
         public static FormatterConstructor: { new (locales: string|string[], formatInfo: DateTimeFormatInfo): CustomFormatter };
+
+        /** Gets or sets a one-dimensional array of type String containing the culture-specific abbreviated names of the days of the week. */
+        public AbbreviatedDayNames: string[];
+
+        /** Gets or sets a one-dimensional string array that contains the culture-specific full names of the days of the week. */
+        public DayNames: string[];
 
         protected locales: string|string[];
 
@@ -61,6 +67,7 @@ namespace Format.Globalization {
 
         private resolveFormatInfo(locales: string|string[]): void {
             if (!locales) {
+                this.setInvariantFormatInfo();
                 this.formatter = new DateTime.InvariantFormatter(DateTime.IntlOptionsProvider);
             }
             else if (typeof DateTimeFormatInfo.FormatterConstructor === "function") {
@@ -69,6 +76,12 @@ namespace Format.Globalization {
             else {
                 throw new Errors.InvalidOperationError("No culture-variant formatter was found (load a sub-module implementation or set the FormatterConstructor property)");
             }
+        }
+
+        private setInvariantFormatInfo(): void {
+
+            this.AbbreviatedDayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+            this.DayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         }
     }
 

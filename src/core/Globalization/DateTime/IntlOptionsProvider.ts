@@ -79,14 +79,14 @@ namespace Format.Globalization.DateTime {
             shortDate: (): void => {
                 this.options.day =
                 this.options.year =
-                this.options.month = "numeric";
+                this.options.month = numeric;
             },
 
             /** See: https://msdn.microsoft.com/library/az4se3k1.aspx#LongDate */
             longDate: (): void => {
                 this.resolvers.shortDate();
                 this.resolvers.monthDate();
-                this.options.weekday = "long";
+                this.options.weekday = long;
             },
 
             /** See: https://msdn.microsoft.com/library/az4se3k1.aspx#FullDateShortTime */
@@ -115,8 +115,8 @@ namespace Format.Globalization.DateTime {
 
             /** See: https://msdn.microsoft.com/library/az4se3k1.aspx#MonthDay */
             monthDate: (): void => {
-                this.options.day = "numeric";
-                this.options.month = "long";
+                this.options.day = numeric;
+                this.options.month = long;
             },
 
             /** See: https://msdn.microsoft.com/library/az4se3k1.aspx#Roundtrip */
@@ -131,13 +131,13 @@ namespace Format.Globalization.DateTime {
             /** See: https://msdn.microsoft.com/library/az4se3k1.aspx#ShortTime */
             shortTime: (): void => {
                 this.options.hour =
-                this.options.minute = "numeric";
+                this.options.minute = numeric;
             },
 
             /** See: https://msdn.microsoft.com/library/az4se3k1.aspx#LongTime */
             longTime: (): void => {
                 this.resolvers.shortTime();
-                this.options.second = "numeric";
+                this.options.second = numeric;
             },
 
             /** See: https://msdn.microsoft.com/library/az4se3k1.aspx#UniversalSortable */
@@ -153,11 +153,14 @@ namespace Format.Globalization.DateTime {
 
             /** See: https://msdn.microsoft.com/library/az4se3k1.aspx#YearMonth */
             yearMonth: (): void => {
-                this.options.year = "numeric";
-                this.options.month = "long";
+                this.options.year = numeric;
+                this.options.month = long;
             }
         };
 
         /* tslint:enable:member-ordering */
     }
+
+    /** @private */
+    var numeric = "numeric", long = "long";
 }

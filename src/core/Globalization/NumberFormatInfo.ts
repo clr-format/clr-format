@@ -15,7 +15,7 @@ namespace Format.Globalization {
     /**
      * Provides culture-specific information for formatting and parsing numeric values.
      *
-     * Information about the culture itself and the application of overrides will be made available through this class at a later point.
+     * Full information about the culture and the application of overrides will be made available through this class at a later point.
      *
      * See: https://msdn.microsoft.com/library/system.globalization.numberformatinfo.aspx
      */
