@@ -9,5 +9,8 @@ namespace Format.Globalization.DateTime {
      * @param TOptions The type of the options container.
      */
     export interface OptionsProvider<TOptions> extends Globalization.OptionsProvider<TOptions, Date> {
+        /** Returns the formatting style to use. */
+        getStyle(): string;
+        useUTC(): boolean;
     }
 }
