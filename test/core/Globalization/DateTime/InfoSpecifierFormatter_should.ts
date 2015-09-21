@@ -8,7 +8,7 @@ namespace Format.Globalization.DateTime {
 
     describe("InfoSpecifierFormatter format", () => {
 
-        let date = new Date("2015-09-01");
+        let date = new Date(2015, 8, 1);
 
         let infoSpecifierFormatter: InfoSpecifierFormatter;
         let infoSpecifierFormatterAccessor: any;
