@@ -39,6 +39,11 @@ namespace Format.Globalization.Numeric {
          * @param options A base options object that can be overridden by resolved options.
          */
         constructor(optionsProviderConstructor: { new (baseOptions: T): OptionsProvider<T> }, options?: T) {
+
+            if (typeof optionsProviderConstructor !== "function") {
+                throw new TypeError("Cannot create an instance without a concrete options provider's constructor");
+            }
+
             this.optionsProviderConstructor = optionsProviderConstructor;
             this.baseOptions = options || <T> {};
         }

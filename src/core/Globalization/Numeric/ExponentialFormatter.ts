@@ -8,6 +8,7 @@
 /// <reference path="../../Utils/Indexable" />
 
 /// <reference path="../../Errors/ArgumentError" />
+/// <reference path="../../Errors/ArgumentNullError" />
 
 namespace Format.Globalization.Numeric {
     /**
@@ -27,6 +28,11 @@ namespace Format.Globalization.Numeric {
          * @param optionsProvider A numeric options provider whose resolved options will be used.
          */
         constructor(optionsProvider: OptionsProvider<T>) {
+
+            if (optionsProvider == null) {
+                throw new Errors.ArgumentNullError("optionsProvider");
+            }
+
             this.minimumIntegerDigits = this.floorOption(optionsProvider.getMinimumIntegerDigits());
             this.minimumFractionDigits = this.floorOption(optionsProvider.getMinimumFractionDigits());
             this.maximumFractionDigits = this.floorOption(optionsProvider.getMaximumFractionDigits());

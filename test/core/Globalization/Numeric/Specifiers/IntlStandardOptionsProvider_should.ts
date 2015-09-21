@@ -27,6 +27,11 @@ namespace Format.Globalization.Numeric.Specifiers {
             expect(intlStandardOptionsProviderAccessor.options).toBe(intlOptions);
         });
 
+        it("constructor should throw an ArgumentNullError for parameter(s) with null or undefined values", () => {
+            expect(() => new IntlStandardOptionsProvider(null)).toThrowError(Errors.ArgumentNullError);
+            expect(() => new IntlStandardOptionsProvider(undefined)).toThrowError(Errors.ArgumentNullError);
+        });
+
         it("resolveOptions should resolve the standard numeric format string into Intl-based options", () => {
 
             // Currency - https://msdn.microsoft.com/library/dwhawy9k.aspx#CFormatString

@@ -28,6 +28,11 @@ namespace Format.Globalization.Numeric {
             expect(intlOptionsProviderAccessor.options).not.toBe(intlOptions);
         });
 
+        it("constructor should throw an ArgumentNullError for parameter(s) with null or undefined values", () => {
+            expect(() => new IntlOptionsProvider(null)).toThrowError(Errors.ArgumentNullError);
+            expect(() => new IntlOptionsProvider(undefined)).toThrowError(Errors.ArgumentNullError);
+        });
+
         it("resolveOptions should resolve the format string into accessible options", () => {
 
             resolveOptions("");

@@ -53,6 +53,14 @@ namespace Format.Globalization.Numeric {
 
             super(IntlOptionsProvider, numberOptions);
 
+            if (locales == null) {
+                throw new Errors.ArgumentNullError("locales");
+            }
+
+            if (formatInfo == null) {
+                throw new Errors.ArgumentNullError("formatInfo");
+            }
+
             this.locales = locales;
             this.formatInfo = formatInfo;
             this.setResolvedFormatInfo(formatInfo);

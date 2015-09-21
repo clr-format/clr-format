@@ -34,6 +34,11 @@ namespace Format.Globalization.Numeric {
             expect(exponentialFormatterAccessor.negativellySignedExponent).toBe(intlOptions.negativellySignedExponent);
         });
 
+        it("constructor should throw an ArgumentNullError for parameter(s) with null or undefined values", () => {
+            expect(() => new ExponentialFormatter(null)).toThrowError(Errors.ArgumentNullError);
+            expect(() => new ExponentialFormatter(undefined)).toThrowError(Errors.ArgumentNullError);
+        });
+
         it("applyOptions should apply the provided exponential format options", () => {
 
             setOptions({ minimumIntegerDigits: 4.2, minimumFractionDigits: null });

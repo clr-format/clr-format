@@ -8,13 +8,13 @@ namespace Format.Utils {
 
     describe("IntlResovlers getCurrencyDecimalDigits", () => {
 
+        if (!Utils.IntlResovlers) {
+            return;
+        }
+
         let formatInfo = new Globalization.NumberFormatInfo();
 
         it("should return the proper currency decimal digits option", () => {
-
-            if (!Utils.IntlResovlers) {
-                return;
-            }
 
             expect(IntlResovlers.getCurrencyDecimalDigits(formatInfo, "AFA")).toBe(0);
             expect(IntlResovlers.getCurrencyDecimalDigits(formatInfo, "USD")).toBe(2);

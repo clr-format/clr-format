@@ -2,13 +2,22 @@
 
 /// <reference path="../../../src/core/Format" />
 /// <reference path="../../../src/core/Globalization/CultureInfo" />
-/// <reference path="../../../src/intl/Globalization/Numeric/IntlFormatter" />
 
 namespace Format {
 
     describe("String format (culture-variant)", () => {
 
-        let hasNoCulturePlugin: boolean = false;
+        try {
+            setCulture("de-DE");
+        }
+        catch (error) {
+            if (error instanceof Errors.InvalidOperationError) {
+                return;
+            }
+        }
+        finally {
+            setCulture("");
+        }
 
         let replaceDecimalSeparator = (value: string) => value.replace(
             Globalization.CultureInfo.InvariantCulture.NumberFormat.NumberDecimalSeparator,
@@ -21,20 +30,9 @@ namespace Format {
             return replaceDecimalSeparator(formatter.format(value));
         };
 
-        beforeAll(() => {
-            try {
-                Format.setCulture("de-DE");
-            }
-            catch (error) {
-                hasNoCulturePlugin = error instanceof Errors.InvalidOperationError;
-            }
-        });
+        beforeAll(() => setCulture("de-DE"));
 
         it("should apply the optional format items' standard numeric format string component to values", () => {
-
-            if (hasNoCulturePlugin) {
-                return;
-            }
 
             // Currency - https://msdn.microsoft.com/library/dwhawy9k.aspx#CFormatString
             expect(() => String.format("{0:c}", 1230)).toThrowError(Errors.FormatError);
@@ -124,10 +122,6 @@ namespace Format {
         });
 
         it("should apply the optional format items' custom numeric format string component to values", () => {
-
-            if (hasNoCulturePlugin) {
-                return;
-            }
 
             // Zero placeholder - https://msdn.microsoft.com/library/0c899ak8.aspx#Specifier0
             expect(String.format("{0:00000}", 1234.5678)).toBe("01235");
@@ -246,5 +240,7 @@ namespace Format {
             expect(String.format("{0:prefix X2 suffix}", -1.2)).toBe("-prefix X2 suffix");
             expect(String.format("{0:prefix .X2 suffix}", -1.2)).toBe("-prefix 1X2 suffix");
         });
+
+        afterAll(() => setCulture(""));
     });
 }

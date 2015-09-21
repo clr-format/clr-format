@@ -8,6 +8,10 @@ namespace Format.Utils {
 
     describe("IntlResovlers applyNumberCultureFormatting", () => {
 
+        if (!Utils.IntlResovlers) {
+            return;
+        }
+
         let replaceInvariantSymbols = (replaceChar: string): string => {
 
             if (replaceChar === Globalization.NumberFormatInfo.InvariantInfo.NegativeSign) {
@@ -22,11 +26,6 @@ namespace Format.Utils {
         };
 
         it("should replace the culture invariant symbols with culture-specific ones", () => {
-
-            if (!Utils.IntlResovlers) {
-                return;
-            }
-
             expect(IntlResovlers.applyNumberCultureFormatting("1.2", replaceInvariantSymbols)).toBe("1,2");
             expect(IntlResovlers.applyNumberCultureFormatting("-123", replaceInvariantSymbols)).toBe("#123");
             expect(IntlResovlers.applyNumberCultureFormatting("-123.4", replaceInvariantSymbols)).toBe("#123,4");

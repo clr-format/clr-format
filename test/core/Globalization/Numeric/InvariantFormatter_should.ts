@@ -30,6 +30,11 @@ namespace Format.Globalization.Numeric {
             expect(invariantFormatterAccessor.optionsProviderConstructor).toBe(IntlOptionsProvider);
         });
 
+        it("constructor should throw an ArgumentNullError for parameter(s) with null or undefined values", () => {
+            expect(() => new InvariantFormatter(null)).toThrowError(TypeError);
+            expect(() => new InvariantFormatter(undefined)).toThrowError(TypeError);
+        });
+
         it("format should apply the format string's options and retain its original clean instance state regardless of output", () => {
 
             expect(invariantFormatter.format("", 0)).toBe("0");

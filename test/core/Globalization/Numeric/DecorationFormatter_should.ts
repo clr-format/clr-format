@@ -49,6 +49,13 @@ namespace Format.Globalization.Numeric {
             expect(decorationFormatterAccessor.formatInfo).toBe(alternativeFormatInfo);
         });
 
+        it("constructor should throw an ArgumentNullError for parameter(s) with null or undefined values", () => {
+            expect(() => new DecorationFormatter(null, null)).toThrowError(Errors.ArgumentNullError);
+            expect(() => new DecorationFormatter(undefined, undefined)).toThrowError(Errors.ArgumentNullError);
+            expect(() => new DecorationFormatter(new IntlOptionsProvider({}), null)).toThrowError(Errors.ArgumentNullError);
+            expect(() => new DecorationFormatter(new IntlOptionsProvider({}), undefined)).toThrowError(Errors.ArgumentNullError);
+        });
+
         it("applyOptions should apply the provided format decoration options", () => {
 
             resolveOptions({

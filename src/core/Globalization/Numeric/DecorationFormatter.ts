@@ -8,6 +8,8 @@
 /// <reference path="../../Utils/Text" />
 /// <reference path="../../Utils/Indexable" />
 
+/// <reference path="../../Errors/ArgumentNullError" />
+
 namespace Format.Globalization.Numeric {
     /**
      * Partial formatter implementation that applies decoration options to the resulting value.
@@ -37,6 +39,15 @@ namespace Format.Globalization.Numeric {
          * @param formatInfo An instance that provides culture-specific number format information.
          */
         constructor(optionsProvider: OptionsProvider<T>, formatInfo: NumberFormatInfo) {
+
+            if (optionsProvider == null) {
+                throw new Errors.ArgumentNullError("optionsProvider");
+            }
+
+            if (formatInfo == null) {
+                throw new Errors.ArgumentNullError("formatInfo");
+            }
+
             this.style = optionsProvider.getStyle();
             this.noDigits = optionsProvider.hasNoDigits();
             this.upperCase = optionsProvider.isUpperCase();

@@ -21,6 +21,11 @@ namespace Format.Globalization.DateTime {
             expect(infoSpecifierFormatterAccessor.formatInfo).toBe(DateTimeFormatInfo.InvariantInfo);
         });
 
+        it("constructor should throw an ArgumentNullError for parameter(s) with null or undefined values", () => {
+            expect(() => new InfoSpecifierFormatter(null)).toThrowError(Errors.ArgumentNullError);
+            expect(() => new InfoSpecifierFormatter(undefined)).toThrowError(Errors.ArgumentNullError);
+        });
+
         it("format should initialize the value field", () => {
 
             infoSpecifierFormatter.format("", date);

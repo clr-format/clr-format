@@ -35,6 +35,11 @@ namespace Format.Globalization.Numeric.Specifiers {
             expect(intlCustomOptionsProviderAccessor.options.suffixDecorator).toBe("");
         });
 
+        it("constructor should throw an ArgumentNullError for parameter(s) with null or undefined values", () => {
+            expect(() => new IntlCustomOptionsProvider(null)).toThrowError(Errors.ArgumentNullError);
+            expect(() => new IntlCustomOptionsProvider(undefined)).toThrowError(Errors.ArgumentNullError);
+        });
+
         it("resolveOptions should resolve the custom numeric format string into Intl-based options", () => {
 
             // Zero placeholder - https://msdn.microsoft.com/library/0c899ak8.aspx#Specifier0

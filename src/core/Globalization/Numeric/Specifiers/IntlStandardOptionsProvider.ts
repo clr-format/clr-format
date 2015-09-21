@@ -9,6 +9,7 @@
 /// <reference path="../../../Utils/Function" />
 
 /// <reference path="../../../Errors/FormatError" />
+/// <reference path="../../../Errors/ArgumentNullError" />
 
 namespace Format.Globalization.Numeric.Specifiers {
     /**
@@ -28,6 +29,11 @@ namespace Format.Globalization.Numeric.Specifiers {
          * @param numberOptions A base options object containing properties defined for the Intl.NumberFormat's options parameter.
          */
         constructor(numberOptions: Intl.NumberFormatOptions) {
+
+            if (numberOptions == null) {
+                throw new Errors.ArgumentNullError("numberOptions");
+            }
+
             this.options = numberOptions;
         }
 

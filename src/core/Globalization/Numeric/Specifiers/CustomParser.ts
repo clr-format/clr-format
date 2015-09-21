@@ -6,6 +6,8 @@
 /// <reference path="../../../Utils/Clone" />
 /// <reference path="../../../Utils/Function" />
 
+/// <reference path="../../../Errors/ArgumentNullError" />
+
 namespace Format.Globalization.Numeric.Specifiers {
     /**
      * A [Custom Numeric Format String](https://msdn.microsoft.com/library/0c899ak8.aspx) parser implementation.
@@ -52,6 +54,11 @@ namespace Format.Globalization.Numeric.Specifiers {
          * @param format A format string containing formatting specifications.
          */
         constructor(format: string) {
+
+            if (format == null) {
+                throw new Errors.ArgumentNullError("format");
+            }
+
             this.index = 0;
             this.format = format;
             this.lookahead = new Utils.Lazy(this.getLookahead);

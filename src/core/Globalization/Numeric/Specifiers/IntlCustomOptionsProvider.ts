@@ -9,6 +9,8 @@
 /// <reference path="../../../Utils/Object" />
 /// <reference path="../../../Utils/Remove" />
 
+/// <reference path="../../../Errors/ArgumentNullError" />
+
 namespace Format.Globalization.Numeric.Specifiers {
     /**
      * An [[OptionsProvider]] implementation that handles [Custom Numeric Format String](https://msdn.microsoft.com/library/0c899ak8.aspx). The type of the returned options object is an
@@ -40,7 +42,12 @@ namespace Format.Globalization.Numeric.Specifiers {
          * Creates an instance with base formatting options which will be extended and/or overridden by resolved options.
          * @param numberOptions A base options object containing properties defined for the Intl.NumberFormat's options parameter.
          */
-        constructor(numberOptions?: Intl.NumberFormatOptions) {
+        constructor(numberOptions: Intl.NumberFormatOptions) {
+
+            if (numberOptions == null) {
+                throw new Errors.ArgumentNullError("numberOptions");
+            }
+
             this.options = Utils.extend(numberOptions, <Intl.NumberFormatOptions> {
                 noDigits: true,
                 noLeadingZeroIntegerDigit: true,

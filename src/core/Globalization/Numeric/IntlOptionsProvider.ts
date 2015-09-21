@@ -8,6 +8,8 @@
 
 /// <reference path="../../Utils/Clone" />
 
+/// <reference path="../../Errors/ArgumentNullError" />
+
 namespace Format.Globalization.Numeric {
     /**
      * An [[OptionsProvider]] implementation that handles both [Standard Numeric Format Specifiers](https://msdn.microsoft.com/library/dwhawy9k.aspx) and
@@ -23,6 +25,11 @@ namespace Format.Globalization.Numeric {
          * @param numberOptions A base options object containing properties defined for the Intl.NumberFormat's options parameter.
          */
         constructor(numberOptions: Intl.NumberFormatOptions) {
+
+            if (numberOptions == null) {
+                throw new Errors.ArgumentNullError("numberOptions");
+            }
+
             this.options = Utils.clone(numberOptions);
         }
 

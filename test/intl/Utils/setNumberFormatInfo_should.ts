@@ -11,6 +11,10 @@ namespace Format.Utils {
         let formatInfo = new Globalization.NumberFormatInfo();
         let supportsIntl = typeof Intl !== "undefined" && typeof Intl.NumberFormat !== "undefined";
 
+        if (!(Utils.IntlResovlers && supportsIntl)) {
+            return;
+        }
+
         let getNativeFormatter = (locale: string, resolvedOptions?: Intl.NumberFormatOptions): Intl.NumberFormat => {
             return <any> new Intl.NumberFormat(locale, resolvedOptions);
         };
@@ -18,10 +22,6 @@ namespace Format.Utils {
         let supportsCultures = supportsIntl && getNativeFormatter("de-DE").format(1.2) === "1,2";
 
         it("should set the proper values for different locales", () => {
-
-            if (!(Utils.IntlResovlers && supportsIntl)) {
-                return;
-            }
 
             let locale = "en-US",
                 styles = Globalization.Numeric.Specifiers.StandardSpecifiers,

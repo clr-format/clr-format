@@ -30,6 +30,11 @@ namespace Format.Globalization.DateTime {
             expect(intlOptionsProviderAccessor.options).not.toBe(intlOptions);
         });
 
+        it("constructor should throw an ArgumentNullError for parameter(s) with null or undefined values", () => {
+            expect(() => new IntlOptionsProvider(null)).toThrowError(Errors.ArgumentNullError);
+            expect(() => new IntlOptionsProvider(undefined)).toThrowError(Errors.ArgumentNullError);
+        });
+
         it("resolveOptions should resolve the standard date and time format string into Intl-based options", () => {
 
             expect(resolveOptions("d")).toEqual({ month: numeric, year: numeric, day: numeric, style: "shortDate" });

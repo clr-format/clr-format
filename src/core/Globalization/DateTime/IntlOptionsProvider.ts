@@ -10,6 +10,7 @@
 /// <reference path="../../Utils/Function" />
 
 /// <reference path="../../Errors/FormatError" />
+/// <reference path="../../Errors/ArgumentNullError" />
 
 namespace Format.Globalization.DateTime {
     /**
@@ -27,6 +28,11 @@ namespace Format.Globalization.DateTime {
          * @param dateTimeOptions A base options object containing properties defined for the Intl.DateTimeFormat's options parameter.
          */
         constructor(dateTimeOptions: Intl.DateTimeFormatOptions) {
+
+            if (dateTimeOptions == null) {
+                throw new Errors.ArgumentNullError("dateTimeOptions");
+            }
+
             this.options = Utils.clone(dateTimeOptions);
         }
 

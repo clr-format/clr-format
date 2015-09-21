@@ -25,6 +25,14 @@ namespace Format.Globalization.DateTime {
 
             super(IntlOptionsProvider, dateOptions);
 
+            if (locales == null) {
+                throw new Errors.ArgumentNullError("locales");
+            }
+
+            if (formatInfo == null) {
+                throw new Errors.ArgumentNullError("formatInfo");
+            }
+
             this.locales = locales;
             this.formatInfo = formatInfo;
         }

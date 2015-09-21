@@ -8,6 +8,7 @@
 /// <reference path="../../Utils/Padding" />
 
 /// <reference path="../../Errors/FormatError" />
+/// <reference path="../../Errors/ArgumentNullError" />
 
 namespace Format.Globalization.DateTime {
 
@@ -22,6 +23,11 @@ namespace Format.Globalization.DateTime {
          * @param formatInfo An instance that provides culture-specific date and time format information.
          */
         constructor(formatInfo: DateTimeFormatInfo) {
+
+            if (formatInfo == null) {
+                throw new Errors.ArgumentNullError("formatInfo");
+            }
+
             this.formatInfo = formatInfo;
         }
 
