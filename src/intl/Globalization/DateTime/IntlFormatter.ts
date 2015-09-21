@@ -11,7 +11,6 @@ namespace Format.Globalization.DateTime {
     export class IntlFormatter extends InvariantFormatter<Intl.DateTimeFormatOptions> {
 
         private locales: string|string[];
-        private formatInfo: DateTimeFormatInfo;
 
         /**
          * Initializes a new object that enables language sensitive date and time formatting.
@@ -23,18 +22,13 @@ namespace Format.Globalization.DateTime {
          */
         constructor(locales: string|string[], formatInfo: DateTimeFormatInfo, dateOptions?: Intl.DateTimeFormatOptions) {
 
-            super(IntlOptionsProvider, dateOptions);
+            super(IntlOptionsProvider, formatInfo, dateOptions);
 
             if (locales == null) {
                 throw new Errors.ArgumentNullError("locales");
             }
 
-            if (formatInfo == null) {
-                throw new Errors.ArgumentNullError("formatInfo");
-            }
-
             this.locales = locales;
-            this.formatInfo = formatInfo;
         }
 
         /**
@@ -54,11 +48,6 @@ namespace Format.Globalization.DateTime {
          */
         protected applyOptions(value: Date): string {
             return this.getNativeFormatter(this.resolvedOptions).format(<any> value);
-        }
-
-        /** Returns the format info instance used for culture-specific formatting. */
-        protected getFormatInfo(): DateTimeFormatInfo {
-            return this.formatInfo;
         }
 
         private getNativeFormatter(resolvedOptions?: Intl.DateTimeFormatOptions): Intl.DateTimeFormat {

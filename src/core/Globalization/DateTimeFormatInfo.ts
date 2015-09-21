@@ -86,7 +86,7 @@ namespace Format.Globalization {
         private resolveFormatInfo(locales: string|string[]): void {
             if (!locales) {
                 this.setInvariantFormatInfo();
-                this.formatter = new DateTime.InvariantFormatter(DateTime.IntlOptionsProvider);
+                this.formatter = new DateTime.InvariantFormatter(DateTime.IntlOptionsProvider, this);
             }
             else if (typeof DateTimeFormatInfo.FormatterConstructor === "function") {
                 this.formatter = new DateTimeFormatInfo.FormatterConstructor(this.locales, this);

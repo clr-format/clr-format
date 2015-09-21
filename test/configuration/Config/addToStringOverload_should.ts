@@ -7,7 +7,7 @@ namespace Format.Config {
 
     describe("Config addToStringOverload", () => {
 
-        var num = 12, date = new Date(),
+        var num = 12, date = new Date(2015, 8, 21, 20, 3, 39),
             dateString = date.toString(),
             numberToStringProto = Number.prototype.toString,
             dateToStringProto = Date.prototype.toString;
@@ -28,14 +28,14 @@ namespace Format.Config {
             expect(num.toString()).toBe("12");
             expect(num.toString(2)).toBe("1100");
             expect(num.toString("2")).toBe("2"); // String.format("{0:2}", 12)
-            expect(num.toString(Globalization.CultureInfo.InvariantCulture)).toBe("12");
             expect(num.toString("#.00", Globalization.CultureInfo.InvariantCulture)).toBe("12.00");
+            expect(num.toString(Globalization.CultureInfo.InvariantCulture)).toBe("12");
 
             expect(date.toString).not.toBe(dateToStringProto);
             expect(date.toString()).toBe(dateString);
-            expect(date.toString("MMMM dd, yyyy")).toBe(dateString);
-            expect(date.toString(Globalization.CultureInfo.InvariantCulture)).toBe(dateString);
-            expect(date.toString("MMMM dd, yyyy", Globalization.CultureInfo.InvariantCulture)).toBe(dateString);
+            expect(date.toString("MMMM dd, yyyy")).toBe("September 21, 2015");
+            expect(date.toString("MMMM dd, yyyy", Globalization.CultureInfo.InvariantCulture)).toBe("September 21, 2015");
+            expect(date.toString(Globalization.CultureInfo.InvariantCulture)).toBe("09/21/2015 20:03:39");
         });
 
         it("should remove 'format' callable from a string instance after Format.Config.removeToStringOverload() is used", () => {
