@@ -12,6 +12,7 @@
 /// <reference path="../../Utils/Numeric" />
 
 /// <reference path="../../Errors/ArgumentError" />
+/// <reference path="../../Errors/ArgumentNullError" />
 /// <reference path="../../Errors/NotImplementedError" />
 /// <reference path="../../Errors/InvalidOperationError" />
 
@@ -24,6 +25,7 @@ namespace Format.Globalization.Numeric {
 
         /** Gets the result of the [[baseOptions]] field extended with concrete options returned from the [[optionsProvider]] instance. */
         protected resolvedOptions: T;
+        protected formatInfo: NumberFormatInfo;
 
         /** Gets the initialized formatting [[DecorationFormatter]] instance. */
         protected decorationFormatter: DecorationFormatter<T>;
@@ -36,15 +38,21 @@ namespace Format.Globalization.Numeric {
         /**
          * Creates an instance with base formatting options and initializes an options provider that resolves concrete format options.
          * @param optionsProviderConstructor A numeric options provider constructor which will be used to resolve options.
+         * @param formatInfo An instance that can provide custom invariant numeric format information.
          * @param options A base options object that can be overridden by resolved options.
          */
-        constructor(optionsProviderConstructor: { new (baseOptions: T): OptionsProvider<T> }, options?: T) {
+        constructor(optionsProviderConstructor: { new (baseOptions: T): OptionsProvider<T> }, formatInfo: NumberFormatInfo, options?: T) {
 
             if (typeof optionsProviderConstructor !== "function") {
                 throw new TypeError("Cannot create an instance without a concrete options provider's constructor");
             }
 
+            if (formatInfo == null) {
+                throw new Errors.ArgumentNullError("formatInfo");
+            }
+
             this.optionsProviderConstructor = optionsProviderConstructor;
+            this.formatInfo = formatInfo;
             this.baseOptions = options || <T> {};
         }
 
@@ -90,15 +98,6 @@ namespace Format.Globalization.Numeric {
             return this.decorationFormatter.applyGrouping(result);
         }
 
-        /**
-         * Returns the format info instance to use for culture-specific formatting.
-         *
-         * Must be overridden by subclasses that are not culture invariant.
-         */
-        protected getFormatInfo(): NumberFormatInfo {
-            return NumberFormatInfo.InvariantInfo;
-        }
-
         private innerFormat(format: string, value: number): string {
 
             this.optionsProvider = new this.optionsProviderConstructor(this.baseOptions);
@@ -110,7 +109,7 @@ namespace Format.Globalization.Numeric {
             }
 
             this.setValue(value);
-            this.decorationFormatter = new DecorationFormatter(this.optionsProvider, this.getFormatInfo());
+            this.decorationFormatter = new DecorationFormatter(this.optionsProvider, this.formatInfo);
 
             return this.decorationFormatter.applyOptions(this.value, this.applyOptions(this.value));
         }
@@ -134,7 +133,7 @@ namespace Format.Globalization.Numeric {
 
         private applyDecimalFormat(): string {
 
-            let formatInfo = this.getFormatInfo();
+            let formatInfo = this.formatInfo;
 
             let minimumFractionDigits = this.optionsProvider.getMinimumFractionDigits();
             if (minimumFractionDigits === undefined) {

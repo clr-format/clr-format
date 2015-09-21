@@ -1,5 +1,7 @@
 /// <reference path="../../../typings/jasmine/jasmine" />
 
+/// <reference path="../../../../src/core/Globalization/NumberFormatInfo" />
+
 /// <reference path="../../../../src/core/Globalization/Numeric/InvariantFormatter" />
 /// <reference path="../../../../src/core/Globalization/Numeric/IntlOptionsProvider" />
 
@@ -22,7 +24,7 @@ namespace Format.Globalization.Numeric {
 
         beforeAll(() => {
             intlOptions = {};
-            invariantFormatter = invariantFormatterAccessor = new InvariantFormatter(IntlOptionsProvider, intlOptions);
+            invariantFormatter = invariantFormatterAccessor = new InvariantFormatter(IntlOptionsProvider, NumberFormatInfo.InvariantInfo, intlOptions);
         });
 
         it("constructor should initialize the options' object and options provider's constructor function", () => {
@@ -31,8 +33,10 @@ namespace Format.Globalization.Numeric {
         });
 
         it("constructor should throw an ArgumentNullError for parameter(s) with null or undefined values", () => {
-            expect(() => new InvariantFormatter(null)).toThrowError(TypeError);
-            expect(() => new InvariantFormatter(undefined)).toThrowError(TypeError);
+            expect(() => new InvariantFormatter(null, null)).toThrowError(TypeError);
+            expect(() => new InvariantFormatter(undefined, undefined)).toThrowError(TypeError);
+            expect(() => new InvariantFormatter(IntlOptionsProvider, null)).toThrowError(Errors.ArgumentNullError);
+            expect(() => new InvariantFormatter(IntlOptionsProvider, undefined)).toThrowError(Errors.ArgumentNullError);
         });
 
         it("format should apply the format string's options and retain its original clean instance state regardless of output", () => {
@@ -51,7 +55,7 @@ namespace Format.Globalization.Numeric {
 
         it("format should throw InvalidOperationError if the option's provider returns an unsupported style option", () => {
 
-            invariantFormatter = new InvariantFormatter(IntlOptionsProvider, { style: "unsupported" });
+            invariantFormatter = new InvariantFormatter(IntlOptionsProvider, NumberFormatInfo.InvariantInfo, { style: "unsupported" });
 
             expect(() => invariantFormatter.format("", 0)).toThrowError(Errors.ArgumentError);
             expectCleanState();
@@ -67,7 +71,7 @@ namespace Format.Globalization.Numeric {
                 };
             };
 
-            invariantFormatter = new InvariantFormatter(emptyOptionsProvider, intlOptions);
+            invariantFormatter = new InvariantFormatter(emptyOptionsProvider, NumberFormatInfo.InvariantInfo, intlOptions);
 
             expect(() => invariantFormatter.format("", 0)).toThrowError(Errors.InvalidOperationError);
             expectCleanState();

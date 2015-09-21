@@ -86,7 +86,7 @@ namespace Format.Globalization {
         private resolveFormatInfo(locales: string|string[]): void {
             if (!locales) {
                 this.setInvariantFormatInfo();
-                this.formatter = new Numeric.InvariantFormatter(Numeric.IntlOptionsProvider);
+                this.formatter = new Numeric.InvariantFormatter(Numeric.IntlOptionsProvider, this);
             }
             else if (typeof NumberFormatInfo.FormatterConstructor === "function") {
                 this.formatter = new NumberFormatInfo.FormatterConstructor(this.locales, this);

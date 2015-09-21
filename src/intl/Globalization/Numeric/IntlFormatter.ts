@@ -18,7 +18,6 @@ namespace Format.Globalization.Numeric {
     export class IntlFormatter extends InvariantFormatter<Intl.NumberFormatOptions> {
 
         private locales: string|string[];
-        private formatInfo: NumberFormatInfo;
 
         /** Possible values are:
          * - "decimal" for plain number formatting (acts as override for "fixed-point", "number" or "undefined");
@@ -51,18 +50,13 @@ namespace Format.Globalization.Numeric {
          */
         constructor(locales: string|string[], formatInfo: NumberFormatInfo, numberOptions?: Intl.NumberFormatOptions) {
 
-            super(IntlOptionsProvider, numberOptions);
+            super(IntlOptionsProvider, formatInfo, numberOptions);
 
             if (locales == null) {
                 throw new Errors.ArgumentNullError("locales");
             }
 
-            if (formatInfo == null) {
-                throw new Errors.ArgumentNullError("formatInfo");
-            }
-
             this.locales = locales;
-            this.formatInfo = formatInfo;
             this.setResolvedFormatInfo(formatInfo);
         }
 
@@ -86,11 +80,6 @@ namespace Format.Globalization.Numeric {
             }
 
             return formattedValue;
-        }
-
-        /** Returns the format info instance used for culture-specific formatting. */
-        protected getFormatInfo(): NumberFormatInfo {
-            return this.formatInfo;
         }
 
         private setResolvedFormatInfo(formatInfo: NumberFormatInfo): void {
@@ -163,13 +152,13 @@ namespace Format.Globalization.Numeric {
         // Arrow syntax used to preserve 'this' context inside the function at compile time
         private replaceInvariantSymbols: (replaceChar: string) => string = (replaceChar: string): string => {
 
-            let invariantFormatInfo = super.getFormatInfo();
+            let invariantInfo = NumberFormatInfo.InvariantInfo;
 
-            if (replaceChar === invariantFormatInfo.NegativeSign) {
-                return this.getFormatInfo().NegativeSign;
+            if (replaceChar === invariantInfo.NegativeSign) {
+                return this.formatInfo.NegativeSign;
             }
 
-            if (replaceChar === this.decorationFormatter.getDecimalSeparator(invariantFormatInfo)) {
+            if (replaceChar === this.decorationFormatter.getDecimalSeparator(invariantInfo)) {
                 return this.decorationFormatter.getDecimalSeparator();
             }
 
