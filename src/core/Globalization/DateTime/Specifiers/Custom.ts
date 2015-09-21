@@ -85,10 +85,19 @@ namespace Format.Globalization.DateTime.Specifiers {
     let specifiers = CustomSpecifiers,
         getEscapePattern = (escapeChar: string): string => `\\${escapeChar}.`,
         getLiteralPattern = (literalStringDelimeter: string): string =>
-            `${literalStringDelimeter}[^${literalStringDelimeter}]*${literalStringDelimeter}`;
+            `${literalStringDelimeter}[^${literalStringDelimeter}]*?${literalStringDelimeter}`;
 
     export let CustomSpecifiersRegExp = new RegExp(
         [
+            getLiteralPattern(specifiers.literalStringDelimeterSingle),
+            getLiteralPattern(specifiers.literalStringDelimeterDouble),
+            getEscapePattern(specifiers.singleCharFormatSpecifier),
+            getEscapePattern(specifiers.escapeChar),
+            specifiers.timeZonePlaceholder,
+            specifiers.timeSeparator,
+            specifiers.dateSeparator,
+            specifiers.literalStringDelimeterSingle,
+            specifiers.literalStringDelimeterDouble,
             `[${[
                 specifiers.dayPlaceholder,
                 specifiers.digitSubSecondPlaceholder,
@@ -102,14 +111,7 @@ namespace Format.Globalization.DateTime.Specifiers {
                 specifiers.amPmPlaceholder,
                 specifiers.yearPlaceholder,
                 specifiers.hoursOffsetPlaceholder
-            ].join("") }]+`,
-            specifiers.timeZonePlaceholder,
-            specifiers.timeSeparator,
-            specifiers.dateSeparator,
-            getLiteralPattern(specifiers.literalStringDelimeterDouble),
-            getLiteralPattern(specifiers.literalStringDelimeterSingle),
-            getEscapePattern(specifiers.singleCharFormatSpecifier),
-            getEscapePattern(specifiers.escapeChar)
+            ].join("") }]+`
         ].join("|"),
         "g");
 }

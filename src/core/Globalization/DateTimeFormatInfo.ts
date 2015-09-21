@@ -30,8 +30,26 @@ namespace Format.Globalization {
         /** Gets or sets a one-dimensional array of type String containing the culture-specific abbreviated names of the days of the week. */
         public AbbreviatedDayNames: string[];
 
+        /** Gets or sets a one-dimensional string array that contains the culture-specific abbreviated names of the months. */
+        public AbbreviatedMonthNames: string[];
+
+        /** Gets or sets the string designator for hours that are "ante meridiem" (before noon). */
+        public AMDesignator: string;
+
+        /** Gets or sets the string that separates the components of a date, that is, the year, month, and day. */
+        public DateSeparator: string;
+
         /** Gets or sets a one-dimensional string array that contains the culture-specific full names of the days of the week. */
         public DayNames: string[];
+
+        /** Gets or sets a one-dimensional array of type String containing the culture-specific full names of the months. */
+        public MonthNames: string[];
+
+        /** Gets or sets the string designator for hours that are "post meridiem" (after noon). */
+        public PMDesignator: string;
+
+        /** Gets or sets the string that separates the components of time, that is, the hour, minutes, and seconds. */
+        public TimeSeparator: string;
 
         protected locales: string|string[];
 
@@ -81,7 +99,16 @@ namespace Format.Globalization {
         private setInvariantFormatInfo(): void {
 
             this.AbbreviatedDayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+            this.AbbreviatedMonthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", ""];
+
             this.DayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            this.MonthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", ""];
+
+            this.AMDesignator = "AM";
+            this.PMDesignator = "PM";
+
+            this.DateSeparator = "/";
+            this.TimeSeparator = ":";
         }
     }
 
