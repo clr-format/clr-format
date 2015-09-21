@@ -8,7 +8,7 @@ namespace Format.Globalization.DateTime {
      *
      * Requires the *clr-format-intl.js* sub-module to be loaded.
      */
-    export class IntlFormatter extends InvariantFormatter<Intl.DateTimeFormatOptions> {
+    export class IntlFormatter extends InfoFormatter<Intl.DateTimeFormatOptions> {
 
         private locales: string|string[];
 
@@ -32,7 +32,7 @@ namespace Format.Globalization.DateTime {
         }
 
         /**
-         * Converts the date to an equivalent string representation using specified format and invariant culture formatting information.
+         * Converts the date to an equivalent string representation using specified format and culture formatting information.
          * @param format A format string containing formatting specifications.
          * @param value The date to format.
          * @returns The formatted date value.

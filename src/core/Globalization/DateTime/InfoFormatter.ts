@@ -11,10 +11,10 @@
 
 namespace Format.Globalization.DateTime {
     /**
-     * Invariant formatter implementation that applies invariant culture format to a date and time value.
+     * Base formatter implementation that applies raw culture information formatting to a date and time value.
      * @param T The type of the options container.
      */
-    export class InvariantFormatter<T> implements CustomFormatter {
+    export class InfoFormatter<T> implements CustomFormatter {
 
         /** Gets the result of the [[baseOptions]] field extended with concrete options returned from the [[optionsProvider]] instance. */
         protected resolvedOptions: T;
@@ -29,7 +29,7 @@ namespace Format.Globalization.DateTime {
         /**
          * Creates an instance with base formatting options and initializes an options provider that resolves concrete format options.
          * @param optionsProviderConstructor A date and time options provider constructor which will be used to resolve options.
-         * @param formatInfo An instance that can provide custom invariant date and time format information.
+         * @param formatInfo An instance that can provide custom date and time format information.
          * @param options A base options object that can be overridden by resolved options.
          */
         constructor(optionsProviderConstructor: { new (baseOptions: T): OptionsProvider<T> }, formatInfo: DateTimeFormatInfo, options?: T) {
@@ -48,7 +48,7 @@ namespace Format.Globalization.DateTime {
         }
 
         /**
-         * Converts the date to an equivalent string representation using specified format and invariant culture formatting information.
+         * Converts the date to an equivalent string representation using specified format and culture formatting information.
          * @param format A format string containing formatting specifications.
          * @param value The date to format.
          * @returns The formatted date value.

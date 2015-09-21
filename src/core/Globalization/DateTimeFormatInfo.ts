@@ -1,6 +1,6 @@
 /// <reference path="../../use-strict" />
 
-/// <reference path="DateTime/InvariantFormatter" />
+/// <reference path="DateTime/InfoFormatter" />
 /// <reference path="DateTime/IntlOptionsProvider" />
 
 /// <reference path="FormatProvider" />
@@ -86,7 +86,7 @@ namespace Format.Globalization {
         private resolveFormatInfo(locales: string|string[]): void {
             if (!locales) {
                 this.setInvariantFormatInfo();
-                this.formatter = new DateTime.InvariantFormatter(DateTime.IntlOptionsProvider, this);
+                this.formatter = new DateTime.InfoFormatter(DateTime.IntlOptionsProvider, this);
             }
             else if (typeof DateTimeFormatInfo.FormatterConstructor === "function") {
                 this.formatter = new DateTimeFormatInfo.FormatterConstructor(this.locales, this);

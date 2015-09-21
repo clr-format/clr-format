@@ -4,7 +4,7 @@
 /// <reference path="../../../src/core/Globalization/NumberFormatInfo" />
 /// <reference path="../../../src/core/Globalization/CultureInfo" />
 
-/// <reference path="../../../src/core/Globalization/Numeric/InvariantFormatter" />
+/// <reference path="../../../src/core/Globalization/Numeric/InfoFormatter" />
 
 /// <reference path="../../../src/core/Utils/Types" />
 
@@ -35,8 +35,8 @@ namespace Format.Globalization {
 
             cultureInfo = new CultureInfo("");
 
-            expect(cultureInfo.getFormatter(Utils.Types.Date) instanceof DateTime.InvariantFormatter).toBe(true);
-            expect(cultureInfo.getFormatter(Utils.Types.Number) instanceof Numeric.InvariantFormatter).toBe(true);
+            expect(cultureInfo.getFormatter(Utils.Types.Date) instanceof DateTime.InfoFormatter).toBe(true);
+            expect(cultureInfo.getFormatter(Utils.Types.Number) instanceof Numeric.InfoFormatter).toBe(true);
             expect(cultureInfo.getFormatter(Utils.Types.Object)).toBe(staticAccessor.objectFormatter);
             expect(cultureInfo.getFormatter(Utils.Types.Array)).toBe(staticAccessor.objectFormatter);
             expect(cultureInfo.getFormatter(Utils.Types.RegExp)).toBe(staticAccessor.fallbackFormatter);

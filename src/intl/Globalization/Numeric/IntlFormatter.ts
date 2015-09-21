@@ -15,7 +15,7 @@ namespace Format.Globalization.Numeric {
      *
      * Requires the *clr-format-intl.js* sub-module to be loaded.
      */
-    export class IntlFormatter extends InvariantFormatter<Intl.NumberFormatOptions> {
+    export class IntlFormatter extends InfoFormatter<Intl.NumberFormatOptions> {
 
         private locales: string|string[];
 
@@ -136,6 +136,7 @@ namespace Format.Globalization.Numeric {
             return <any> new Intl.NumberFormat(<string> this.locales, resolvedOptions);
         }
 
+        // TODO - Move to a separate formatter in the core project
         private applyCultureSpecificFormatting(invariantlyFormattedString: string): string {
 
             if (this.resolvedOptions.style === styles[styles.hex]) {

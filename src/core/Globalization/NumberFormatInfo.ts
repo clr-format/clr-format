@@ -1,6 +1,6 @@
 /// <reference path="../../use-strict" />
 
-/// <reference path="Numeric/InvariantFormatter" />
+/// <reference path="Numeric/InfoFormatter" />
 /// <reference path="Numeric/IntlOptionsProvider" />
 
 /// <reference path="FormatProvider" />
@@ -86,7 +86,7 @@ namespace Format.Globalization {
         private resolveFormatInfo(locales: string|string[]): void {
             if (!locales) {
                 this.setInvariantFormatInfo();
-                this.formatter = new Numeric.InvariantFormatter(Numeric.IntlOptionsProvider, this);
+                this.formatter = new Numeric.InfoFormatter(Numeric.IntlOptionsProvider, this);
             }
             else if (typeof NumberFormatInfo.FormatterConstructor === "function") {
                 this.formatter = new NumberFormatInfo.FormatterConstructor(this.locales, this);

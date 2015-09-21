@@ -12,7 +12,7 @@
 
 namespace Format.Globalization.DateTime {
 
-    /** A [[CustomFormatter]] implementation that replaces [Custom Date and Time Format Specifiers](https://msdn.microsoft.com/library/8kb3ddd4.aspx) with their culture-invariant values. */
+    /** A [[CustomFormatter]] implementation that replaces [Custom Date and Time Format Specifiers](https://msdn.microsoft.com/library/8kb3ddd4.aspx) with their culture information values. */
     export class InfoSpecifierFormatter implements CustomFormatter {
 
         private value: Date;

@@ -2,10 +2,11 @@
 
 /// <reference path="../../../src/core/Globalization/DateTimeFormatInfo" />
 
-/// <reference path="../../../src/core/Globalization/DateTime/InvariantFormatter" />
+/// <reference path="../../../src/core/Globalization/DateTime/InfoFormatter" />
 
 namespace Format.Globalization {
 
+    // TODO - Fill in tests
     describe("DateTimeFormatInfo", () => {
 
         let dateTimeFormatInfoInfo: DateTimeFormatInfo;
@@ -33,7 +34,7 @@ namespace Format.Globalization {
 
             dateTimeFormatInfoInfo = new DateTimeFormatInfo("");
 
-            expect(dateTimeFormatInfoInfo.getFormatter(Utils.Types.Date) instanceof DateTime.InvariantFormatter).toBe(true);
+            expect(dateTimeFormatInfoInfo.getFormatter(Utils.Types.Date) instanceof DateTime.InfoFormatter).toBe(true);
             expect(() => dateTimeFormatInfoInfo.getFormatter(Utils.Types.Object)).toThrowError(Errors.InvalidOperationError);
         });
 

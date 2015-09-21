@@ -18,10 +18,10 @@
 
 namespace Format.Globalization.Numeric {
     /**
-     * Invariant formatter implementation that applies invariant culture format to a numeric value.
+     * Base formatter implementation that applies raw culture information formatting to a numeric value.
      * @param T The type of the options container.
      */
-    export class InvariantFormatter<T> implements CustomFormatter {
+    export class InfoFormatter<T> implements CustomFormatter {
 
         /** Gets the result of the [[baseOptions]] field extended with concrete options returned from the [[optionsProvider]] instance. */
         protected resolvedOptions: T;
@@ -38,7 +38,7 @@ namespace Format.Globalization.Numeric {
         /**
          * Creates an instance with base formatting options and initializes an options provider that resolves concrete format options.
          * @param optionsProviderConstructor A numeric options provider constructor which will be used to resolve options.
-         * @param formatInfo An instance that can provide custom invariant numeric format information.
+         * @param formatInfo An instance that can provide custom numeric format information.
          * @param options A base options object that can be overridden by resolved options.
          */
         constructor(optionsProviderConstructor: { new (baseOptions: T): OptionsProvider<T> }, formatInfo: NumberFormatInfo, options?: T) {
@@ -57,7 +57,7 @@ namespace Format.Globalization.Numeric {
         }
 
         /**
-         * Converts the number to an equivalent string representation using specified format and invariant culture formatting information.
+         * Converts the number to an equivalent string representation using specified format and culture formatting information.
          * @param format A format string containing formatting specifications.
          * @param value The number to format.
          * @returns The formatted numeric value.
@@ -152,7 +152,7 @@ namespace Format.Globalization.Numeric {
 
         private formatters: Specifiers.StandardSpecifiersMap<() => string> = {
 
-            /** The currency format is not supported by this culture invariant instance. */
+            /** The currency format is not supported by this basic instance. */
             currency: (): string => {
                 throw new Errors.NotImplementedError("currency");
             },

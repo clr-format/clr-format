@@ -2,10 +2,11 @@
 
 /// <reference path="../../../src/core/Globalization/NumberFormatInfo" />
 
-/// <reference path="../../../src/core/Globalization/Numeric/InvariantFormatter" />
+/// <reference path="../../../src/core/Globalization/Numeric/InfoFormatter" />
 
 namespace Format.Globalization {
 
+    // TODO - Fill in tests
     describe("NumberFormatInfo", () => {
 
         let numberFormatInfo: NumberFormatInfo;
@@ -40,7 +41,7 @@ namespace Format.Globalization {
 
             numberFormatInfo = new NumberFormatInfo("");
 
-            expect(numberFormatInfo.getFormatter(Utils.Types.Number) instanceof Numeric.InvariantFormatter).toBe(true);
+            expect(numberFormatInfo.getFormatter(Utils.Types.Number) instanceof Numeric.InfoFormatter).toBe(true);
             expect(() => numberFormatInfo.getFormatter(Utils.Types.Object)).toThrowError(Errors.InvalidOperationError);
         });
 
