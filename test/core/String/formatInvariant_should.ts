@@ -197,6 +197,9 @@ namespace Format {
 
             let date = new Date(2015, 8, 21, 13, 4, 55);
             let utcDate = new Date("2015-09-21T10:04:55.000Z");
+            if (isNaN(<any> utcDate)) {
+                utcDate = new Date("2015/09/21 10:04:55Z");
+            }
 
             /** Short Date - https://msdn.microsoft.com/library/az4se3k1.aspx#ShortDate */
             expect(String.format("{0:d}", date)).toBe("09/21/2015");
@@ -222,8 +225,8 @@ namespace Format {
             expect(String.format("{0:M}", date)).toBe("September 21");
 
             /** Round-trip - https://msdn.microsoft.com/library/az4se3k1.aspx#Roundtrip */
-            expect(String.format("{0:o}", utcDate)).toBe("2015-09-21T10:04:55.000Z");
-            expect(String.format("{0:O}", utcDate)).toBe("2015-09-21T10:04:55.000Z");
+            expect(String.format("{0:o}", utcDate)).toMatch(/2015-09-21T10:04:55(?:\.000)?Z/);
+            expect(String.format("{0:O}", utcDate)).toMatch(/2015-09-21T10:04:55(?:\.000)?Z/);
 
             /** RFC1123 - https://msdn.microsoft.com/library/az4se3k1.aspx#RFC1123 */
             expect(String.format("{0:r}", utcDate)).toMatch(/Mon, 21 Sep 2015 10:04:55 GMT|UTC/);
