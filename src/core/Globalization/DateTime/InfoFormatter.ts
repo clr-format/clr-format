@@ -110,14 +110,7 @@ namespace Format.Globalization.DateTime {
             this.value = value;
 
             if (this.optionsProvider.useUTC()) {
-                this.value = new Date(
-                    value.getUTCFullYear(),
-                    value.getUTCMonth(),
-                    value.getUTCDate(),
-                    value.getUTCHours(),
-                    value.getUTCMinutes(),
-                    value.getUTCSeconds(),
-                    value.getUTCMilliseconds());
+                this.value = new Date(this.value.getTime() + this.value.getTimezoneOffset() * 60000);
             }
         }
 
