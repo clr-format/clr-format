@@ -21,7 +21,7 @@ namespace Format.Config {
      * @param name The name of the new prototype method which is added, defaults to the bare function's name. Required if the bare function is anonymous.
      */
     export function addToPrototype(bareFunction: Function, hostObject: Object, name?: string) {
-        Definitions.addToPrototype(bareFunction, hostObject, name);
+        Definitions.addToPrototype_(bareFunction, hostObject, name);
         return Config;
     }
 
@@ -33,13 +33,13 @@ namespace Format.Config {
      * - The trailing arguments will be used as replacement values starting from 0
      */
     export function addFormatToPrototype() {
-        Definitions.addFormatToPrototype();
+        Definitions.addFormatToPrototype_();
         return Config;
     }
 
     /** Adds the [[String.padLeft]] and [[String.padRight]] functions, which allows for direct instance calls like `"123".padLeft(5, "0")`. */
     export function addPaddingToPrototype() {
-        Definitions.addPaddingToPrototype();
+        Definitions.addPaddingToPrototype_();
         return Config;
     }
 
@@ -49,25 +49,25 @@ namespace Format.Config {
      * For example `(12).toString(2) === "1100"` but `(12).toString("2") === String.format("{0:2}", 12)` because it matches the format string overload.
      */
     export function addToStringOverload() {
-        Definitions.addToStringOverload();
+        Definitions.addToStringOverload_();
         return Config;
     }
 
     /** Removes the [[String.format]] prototype wrapper that is defined by calling [[addFormatToPrototype]]. */
     export function removeFormatFromPrototype() {
-        Definitions.removeFormatFromPrototype();
+        Definitions.removeFormatFromPrototype_();
         return Config;
     }
 
     /** Removes the [[String.padLeft]] and [[String.padRight]] functions that are defined by calling [[addPaddingToPrototype]]. */
     export function removePaddingFromPrototype() {
-        Definitions.removePaddingFromPrototype();
+        Definitions.removePaddingFromPrototype_();
         return Config;
     }
 
     /** Removes the [[Number.toString]] and [[Date.toString]] overloads that are set by calling [[addToStringOverload]] and restores the original `toString` behaviour. */
     export function removeToStringOverload() {
-        Definitions.removeToStringOverload();
+        Definitions.removeToStringOverload_();
         return Config;
     }
 
@@ -83,13 +83,13 @@ namespace Format.Config {
      * - [[Format.Utils.Enumerable]] => [[ArrayConstructor]]
      */
     export function addUtilsToGlobals() {
-        Definitions.addUtilsToGlobals();
+        Definitions.addUtilsToGlobals_();
         return Config;
     }
 
     /** Removes the static methods from global objects that are defined by calling [[addUtilsToGlobals]]. */
     export function removeUtilGlobals() {
-        Definitions.removeUtilGlobals();
+        Definitions.removeUtilGlobals_();
         return Config;
     }
 
@@ -105,25 +105,25 @@ namespace Format.Config {
      * - [[Format.Utils.Enumerable]] => [[Array]]
      */
     export function addUtilsToPrototype() {
-        Definitions.addUtilsToPrototype();
+        Definitions.addUtilsToPrototype_();
         return Config;
     }
 
     /** Removes the instance methods from global objects that are defined by calling [[addUtilsToPrototype]]. */
     export function removeUtilsFromPrototype() {
-        Definitions.removeUtilsFromPrototype();
+        Definitions.removeUtilsFromPrototype_();
         return Config;
     }
 
     /** Enables performance improvements through memoization of key inner functions at the cost of memory. */
     export function enableMemoization() {
-        Definitions.enableMemoization();
+        Definitions.enableMemoization_();
         return Config;
     }
 
     /** Disables performance improvements through memoization of key inner functions and releases the used memory. */
     export function disableMemoization() {
-        Definitions.disableMemoization();
+        Definitions.disableMemoization_();
         return Config;
     }
 }

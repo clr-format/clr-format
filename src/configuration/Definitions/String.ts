@@ -9,22 +9,26 @@
  */
 namespace Format.Config.Definitions {
 
-    export var addFormatToPrototype = () => {
+    /** @private */
+    export var addFormatToPrototype_ = () => {
         String.prototype.format = formatProto;
     };
 
-    export var removeFormatFromPrototype = () => {
+    /** @private */
+    export var removeFormatFromPrototype_ = () => {
         if (String.prototype.format === formatProto) {
             delete String.prototype.format;
         }
     };
 
-    export var addPaddingToPrototype = () => {
+    /** @private */
+    export var addPaddingToPrototype_ = () => {
         String.prototype.padLeft = padLeftProto;
         String.prototype.padRight = padRightProto;
     };
 
-    export var removePaddingFromPrototype = () => {
+    /** @private */
+    export var removePaddingFromPrototype_ = () => {
         if (String.prototype.padLeft === padLeftProto) {
             delete String.prototype.padLeft;
         }
@@ -34,12 +38,14 @@ namespace Format.Config.Definitions {
         }
     };
 
-    export var addToStringOverload = () => {
+    /** @private */
+    export var addToStringOverload_ = () => {
         Number.prototype.toString = numberToStringOverload;
         Date.prototype.toString = dateToStringOverload;
     };
 
-    export var removeToStringOverload = () => {
+    /** @private */
+    export var removeToStringOverload_ = () => {
         if (Number.prototype.toString === numberToStringOverload) {
             Number.prototype.toString = numberToStringProto;
         }
@@ -63,9 +69,9 @@ namespace Format.Config.Definitions {
     /** @private */
     let padding = Utils.Padding,
         getPaddingProto = (direction: Utils.Padding.Direction): (width: number, char?: string) => string =>
-        function(totalWidth: number, paddingChar?: string): string {
-            return padding.pad(this, { direction, totalWidth, paddingChar });
-        };
+            function(totalWidth: number, paddingChar?: string): string {
+                return padding.pad(this, { direction, totalWidth, paddingChar });
+            };
 
     /** @private */
     var paddingDirection = padding.Direction,

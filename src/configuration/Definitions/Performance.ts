@@ -5,11 +5,13 @@ namespace Format.Config.Definitions {
     /** @private */
     let memoizedRegistry: Indexable<Function> = {};
 
-    export function enableMemoization(): void {
+    /** @private */
+    export function enableMemoization_(): void {
         memoize(Format, "getBracesCount");
     }
 
-    export function disableMemoization(): void {
+    /** @private */
+    export function disableMemoization_(): void {
         unmemoize(Format, "getBracesCount");
     }
 

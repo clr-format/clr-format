@@ -16,7 +16,8 @@ namespace Format.Config.Definitions {
             func.getEmpty
         ];
 
-    export var addUtilsToGlobals = () => {
+    /** @private */
+    export var addUtilsToGlobals_ = () => {
         addAll(asStatic, utils, Object);
         addAll(asStatic, text, String);
         addAll(asStatic, numeric, Number);
@@ -24,17 +25,20 @@ namespace Format.Config.Definitions {
         addAll(asStatic, func, Function);
     };
 
-    export var addUtilsToPrototype = () => {
+    /** @private */
+    export var addUtilsToPrototype_ = () => {
         addAll(asPrototype, text, String.prototype);
         addAll(asPrototype, numeric, Number.prototype);
         addAll(asPrototype, enumerable, Array.prototype);
         addAll(asPrototype, func, Function.prototype);
     };
 
-    export var removeUtilGlobals = () => unregister(globalRegistry);
-    export var removeUtilsFromPrototype = () => unregister(prototypeRegistry);
+    /** @private */
+    export var removeUtilGlobals_ = () => unregister(globalRegistry),
+        removeUtilsFromPrototype_ = () => unregister(prototypeRegistry);
 
-    export var addToPrototype = (bareFunction: Function, hostObject: any, name: string) => {
+    /** @private */
+    export var addToPrototype_ = (bareFunction: Function, hostObject: any, name: string) => {
 
         let actualName = func.getName(bareFunction);
         if (actualName === "" && !name) {
