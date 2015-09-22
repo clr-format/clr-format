@@ -1,5 +1,6 @@
 var dirs = require("../config/dirs.js");
 var globs = require("../config/globs.js");
+var files = require("../config/files.js");
 var paths = require("../config/paths.js");
 var negate = require("../utils/negate.js");
 var tsProjects = require("../config/tsProjects.js");
@@ -8,6 +9,7 @@ var gulp = require("gulp");
 var tsc = require("gulp-typescript");
 var wrap = require("gulp-wrap");
 var empty = require("gulp-empty");
+var uglify = require("gulp-uglify");
 var addsrc = require("gulp-add-src");
 var concat = require("gulp-concat");
 var replace = require("gulp-replace");
@@ -43,4 +45,18 @@ module.exports.npm = function (component) {
         .pipe(addsrc.append(paths.npmExports))
         .pipe(concat(tsProjects.npm.options.out))
         .pipe(gulp.dest(dirs.output));
+};
+
+module.exports.test = function (minifyOpts) {
+
+    var build = gulp.src(paths.tests)
+        .pipe(tsc(tsProjects.testsBrowser)).js
+        .pipe(concat(files.testsBrowser))
+        .pipe(wrap({ src: paths.iifeTemplate }));
+
+    if (typeof minifyOpts !== "function") {
+        build = build.pipe(uglify(minifyOpts));
+    }
+
+    return build.pipe(gulp.dest(dirs.build));
 };

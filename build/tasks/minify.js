@@ -2,7 +2,8 @@ var test = require("./test.js");
 var dirs = require("../config/dirs.js");
 var globs = require("../config/globs.js");
 var paths = require("../config/paths.js");
-var negate = require("../utils/negate.js")
+var build = require("./build.js");
+var negate = require("../utils/negate.js");
 var mangleProps = require("../utils/mangleProps.js");
 
 var gulp = require("gulp");
@@ -43,13 +44,17 @@ module.exports = function () {
         .pipe(uglify(beautifyOptions))
         .pipe(gulp.dest(dirs.output));
 
-    sources.push(negate(dirs.output + globs.allNPM));
-
-    gulp.src(sources)
+    return gulp.src(sources.concat(negate(dirs.output + globs.allNPM)))
         .pipe(uglify(minifyOptions))
         .pipe(mangleProps({ regex: /_$/ }))
         .pipe(rename({ suffix: ".min" }))
         .pipe(gulp.dest(dirs.output));
+};
 
-    return test.jasmine(beautifyOptions) && test.browser(beautifyOptions);
+module.exports.jasmine = function () {
+    test.jasmine(beautifyOptions);
+};
+
+module.exports.browser = function () {
+    build.test(beautifyOptions);
 };

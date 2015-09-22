@@ -2,7 +2,7 @@ var dirs = require("../config/dirs.js");
 var branches = require("../config/branches.js");
 
 var git = require("../utils/git.js");
-var tsdoc = require("./tsdoc.js");
+var docs = require("./docs.js");
 var format = require("clr-format");
 var version = require("./version.js");
 var getVersion = require("../utils/getVersion.js");
@@ -105,7 +105,7 @@ function rollbackState(branch, error) {
 function matchLastCommitMessage() {
 
     var lastCommitMessage = git.getLastCommitMessage();
-    if (lastCommitMessage === tsdoc.getCommitMessage()) {
+    if (lastCommitMessage === docs.getCommitMessage()) {
         git.submodule.reset(dirs.docs, "--hard HEAD~1");
 
         return true;
