@@ -13,6 +13,7 @@ var uglify = require("gulp-uglify");
 var addsrc = require("gulp-add-src");
 var concat = require("gulp-concat");
 var replace = require("gulp-replace");
+var stripLine = require('gulp-strip-line');
 
 module.exports.js = function (component) {
 
@@ -51,6 +52,7 @@ module.exports.test = function (minifyOpts) {
 
     var build = gulp.src(paths.tests)
         .pipe(tsc(tsProjects.testsBrowser)).js
+        .pipe(stripLine(/\(\w+Accessor\.\w+_\)/))
         .pipe(concat(files.testsBrowser))
         .pipe(wrap({ src: paths.iifeTemplate }));
 
