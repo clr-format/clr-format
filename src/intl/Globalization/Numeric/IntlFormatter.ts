@@ -16,15 +16,12 @@ namespace Format.Globalization.Numeric {
      * Requires the *clr-format-intl.js* sub-module to be loaded.
      */
     export class IntlFormatter extends InfoFormatter<Intl.NumberFormatOptions> {
-
-        private locales: string|string[];
-
         /** Possible values are:
          * - "decimal" for plain number formatting (acts as override for "fixed-point", "number" or "undefined");
          * - "currency" for currency formatting;
          * - "percent" for percent formatting;
          */
-        private supportedStyles: Specifiers.StandardSpecifiersMap<boolean|string> = {
+        private static supportedStyles: Specifiers.StandardSpecifiersMap<boolean|string> = {
 
             currency: true,
             decimal: true,
@@ -39,6 +36,8 @@ namespace Format.Globalization.Numeric {
             general: false,
             hex: false
         };
+
+        private locales: string|string[];
 
         /**
          * Initializes a new object that enables language sensitive number formatting.
@@ -57,7 +56,11 @@ namespace Format.Globalization.Numeric {
             }
 
             this.locales = locales;
-            this.setResolvedFormatInfo(formatInfo);
+
+            Utils.IntlResovlers.setNumberFormatInfo_(
+                this.formatInfo,
+                this.getNativeFormatter({ style: styles[styles.decimal] }),
+                this.getNativeFormatter({ style: styles[styles.currency], currency: "USD", useGrouping: true }));
         }
 
         /**
@@ -68,11 +71,12 @@ namespace Format.Globalization.Numeric {
         protected applyOptions(value: number): string {
 
             let formattedValue: string,
-                supportedStyle: boolean|string = this.supportedStyles[this.resolvedOptions.style];
+                resolvedOptions = this.resolvedOptions,
+                supportedStyle: boolean|string = IntlFormatter.supportedStyles[resolvedOptions.style];
 
             if (supportedStyle) {
                 this.overrideOptions(supportedStyle);
-                formattedValue = this.getNativeFormatter(this.resolvedOptions).format(value);
+                formattedValue = this.getNativeFormatter(resolvedOptions).format(value);
             }
             else {
                 formattedValue = super.applyOptions(value);
@@ -82,32 +86,30 @@ namespace Format.Globalization.Numeric {
             return formattedValue;
         }
 
-        private setResolvedFormatInfo(formatInfo: NumberFormatInfo): void {
-            Utils.IntlResovlers.setNumberFormatInfo_(
-                this.formatInfo,
-                this.getNativeFormatter({ style: styles[styles.decimal] }),
-                this.getNativeFormatter({ style: styles[styles.currency], currency: "USD", useGrouping: true }));
-        }
-
         private overrideOptions(overrideStyle: boolean|string): void {
 
             this.overrideCurrencyOptions();
             this.overrideDecimalOptions();
 
+            let resolvedOptions = this.resolvedOptions;
+
             if (typeof overrideStyle === "string") {
-                this.resolvedOptions.style = overrideStyle;
+                resolvedOptions.style = overrideStyle;
             }
 
-            if (this.resolvedOptions.useGrouping == null) {
-                this.resolvedOptions.useGrouping = false;
+            if (resolvedOptions.useGrouping == null) {
+                resolvedOptions.useGrouping = false;
             }
         }
 
         private overrideCurrencyOptions(): void {
-            if (this.resolvedOptions.style === styles[styles.currency]) {
+
+            let resolvedOptions = this.resolvedOptions;
+
+            if (resolvedOptions.style === styles[styles.currency]) {
                 let currencyCode = NumberFormatInfo.CurrentCurrency;
                 if (currencyCode) {
-                    this.resolvedOptions.currency = currencyCode;
+                    resolvedOptions.currency = currencyCode;
                     this.overrideFractionDigits(Utils.IntlResovlers.getCurrencyDecimalDigits_(this.formatInfo, currencyCode));
                 }
                 else {
@@ -117,18 +119,26 @@ namespace Format.Globalization.Numeric {
         }
 
         private overrideDecimalOptions(): void {
-            if (this.resolvedOptions.style === styles[styles.fixedPoint] ||
-                this.resolvedOptions.style === styles[styles.percent] ||
-                this.resolvedOptions.style === styles[styles.number]) {
+
+            let resolvedOptions = this.resolvedOptions;
+
+            if (resolvedOptions.style === styles[styles.fixedPoint] ||
+                resolvedOptions.style === styles[styles.percent] ||
+                resolvedOptions.style === styles[styles.number]) {
+
                 this.overrideFractionDigits(this.formatInfo.NumberDecimalDigits);
             }
         }
 
         private overrideFractionDigits(overrideValue: number): void {
-            if (this.resolvedOptions.minimumFractionDigits == null &&
-                this.resolvedOptions.maximumFractionDigits == null) {
-                this.resolvedOptions.minimumFractionDigits = overrideValue;
-                this.resolvedOptions.maximumFractionDigits = overrideValue;
+
+            let resolvedOptions = this.resolvedOptions;
+
+            if (resolvedOptions.minimumFractionDigits == null &&
+                resolvedOptions.maximumFractionDigits == null) {
+
+                resolvedOptions.minimumFractionDigits = overrideValue;
+                resolvedOptions.maximumFractionDigits = overrideValue;
             }
         }
 

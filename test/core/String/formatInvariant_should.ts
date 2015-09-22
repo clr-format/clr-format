@@ -268,18 +268,16 @@ namespace Format {
 
             date.setDate(16); // 2015-09-16
             expect(String.format("{0:%d}", date)).toBe("16");
-            expect(String.format("{0:dd}", date)).toBe("16");
             expect(String.format("{0:ddd}", date)).toBe("Wed");
-            expect(String.format("{0:dddd}", date)).toBe("Wednesday");
+            expect(String.format("{0:ddddd}", date)).toBe("Wednesday");
 
             // Digit Sub-Second placeholder - https://msdn.microsoft.com/library/8kb3ddd4.aspx#fSpecifier
             date.setMilliseconds(4); // 2015-09-16T00:00:00.003
-            expect(String.format("{0:%f}", date)).toBe("");
-            expect(String.format("{0:ff}", date)).toBe("");
+            expect(String.format("{0:%f}", date)).toBe("0");
+            expect(String.format("{0:ff}", date)).toBe("00");
             expect(String.format("{0:fff}", date)).toBe("004");
 
             date.setMilliseconds(45); // 2015-09-16T00:00:00.045
-            expect(String.format("{0:%f}", date)).toBe("");
             expect(String.format("{0:ff}", date)).toBe("04");
             expect(String.format("{0:fff}", date)).toBe("045");
 
@@ -289,17 +287,18 @@ namespace Format {
             expect(String.format("{0:fff}", date)).toBe("456");
 
             date.setMilliseconds(0); // 2015-09-16T00:00:00.000
-            expect(String.format("{0:fff}", date)).toBe("");
+            expect(String.format("{0:fff}", date)).toBe("000");
 
             expect(() => String.format("{0:ffff}", date)).toThrowError(Errors.FormatError);
 
             // Zero Sub-Second placeholder - https://msdn.microsoft.com/library/8kb3ddd4.aspx#F_Specifier
             date.setMilliseconds(4); // 2015-09-16T00:00:00.003
-            expect(String.format("{0:%F}", date)).toBe("0");
-            expect(String.format("{0:FF}", date)).toBe("00");
+            expect(String.format("{0:%F}", date)).toBe("");
+            expect(String.format("{0:FF}", date)).toBe("");
             expect(String.format("{0:FFF}", date)).toBe("004");
 
             date.setMilliseconds(45); // 2015-09-16T00:00:00.045
+            expect(String.format("{0:%F}", date)).toBe("");
             expect(String.format("{0:FF}", date)).toBe("04");
             expect(String.format("{0:FFF}", date)).toBe("045");
 
@@ -309,7 +308,7 @@ namespace Format {
             expect(String.format("{0:FFF}", date)).toBe("456");
 
             date.setMilliseconds(0); // 2015-09-16T00:00:00.000
-            expect(String.format("{0:FFF}", date)).toBe("000");
+            expect(String.format("{0:FFF}", date)).toBe("");
 
             expect(() => String.format("{0:FFFF}", date)).toThrowError(Errors.FormatError);
 

@@ -1,8 +1,16 @@
 /// <reference path="../../../use-strict" />
 
+/// <reference path="IntlSpecifiersFormatter" />
+
 /// <reference path="../../API" />
 
+/// <reference path="../../../core/Globalization/DateTime/IntlFormatOptions" />
+
 namespace Format.Globalization.DateTime {
+
+    /** @private */
+    let styles = Specifiers.Standard;
+
     /**
      * Provides culture-specific formatting for date and time values by using the Intl namespace.
      *
@@ -47,7 +55,26 @@ namespace Format.Globalization.DateTime {
          * @returns A resulting format value with applied format and culture-specific options.
          */
         protected applyOptions(value: Date): string {
-            return this.getNativeFormatter(this.resolvedOptions).format(<any> value);
+
+            let resolvedOptions = this.resolvedOptions;
+
+            if (resolvedOptions.style === styles[styles.roundTrip] ||
+                resolvedOptions.style === styles[styles.rfc1123] ||
+                resolvedOptions.style === styles[styles.sortable] ||
+                resolvedOptions.style === styles[styles.universalSortable]) {
+
+                return super.applyOptions(value);
+            }
+
+            return this.getNativeFormatter(resolvedOptions).format(<any> value);
+        }
+
+        /** Returns the formatter instance that will be used to replace all custom date and time specifiers. */
+        protected getSpecifiersFormatter(): CustomFormatter {
+            return new IntlSpecifiersFormatter(
+                this.formatInfo,
+                (resolvedOptions: Intl.DateTimeFormatOptions) =>
+                    this.getNativeFormatter(resolvedOptions));
         }
 
         private getNativeFormatter(resolvedOptions?: Intl.DateTimeFormatOptions): Intl.DateTimeFormat {

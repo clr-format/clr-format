@@ -15,7 +15,8 @@ namespace Format.Globalization.DateTime {
     /** A [[CustomFormatter]] implementation that replaces [Custom Date and Time Format Specifiers](https://msdn.microsoft.com/library/8kb3ddd4.aspx) with their culture information values. */
     export class InfoSpecifierFormatter implements CustomFormatter {
 
-        private value_: Date;
+        protected value: Date;
+
         private formatInfo_: DateTimeFormatInfo;
 
         /**
@@ -39,7 +40,7 @@ namespace Format.Globalization.DateTime {
          */
         public format(format: string, value: Date): string {
 
-            this.value_ = value;
+            this.value = value;
 
             return format.replace(Specifiers.CustomSpecifiersRegExp, this.formatSpecifier_);
         }
@@ -55,68 +56,68 @@ namespace Format.Globalization.DateTime {
             /** See: https://msdn.microsoft.com/library/8kb3ddd4.aspx#dSpecifier */
             dayPlaceholder: (specifierCount: number): Object => {
                 switch (specifierCount) {
-                    case 1: case 2: return pad(this.value_.getDate(), specifierCount);
-                    case 3: return this.formatInfo_.AbbreviatedDayNames[this.value_.getDay()];
-                    default: return this.formatInfo_.DayNames[this.value_.getDay()];
+                    case 1: case 2: return pad(this.value.getDate(), specifierCount);
+                    case 3: return this.formatInfo_.AbbreviatedDayNames[this.value.getDay()];
+                    default: return this.formatInfo_.DayNames[this.value.getDay()];
                 }
             },
 
             /** See: https://msdn.microsoft.com/library/8kb3ddd4.aspx#fSpecifier */
-            digitSubSecondPlaceholder: (specifierCount: number): Object => {
-                let subSecond = this.getSubSecond_(specifierCount, customSpecifiers.digitSubSecondPlaceholder);
-                return subSecond ? pad(subSecond, specifierCount) : "";
+            zeroSubSecondPlaceholder: (specifierCount: number): Object => {
+                return pad(
+                    this.getSubSecond_(specifierCount, customSpecifiers.digitSubSecondPlaceholder),
+                    specifierCount);
             },
 
             /** See: https://msdn.microsoft.com/library/8kb3ddd4.aspx#F_Specifier */
-            zeroSubSecondPlaceholder: (specifierCount: number): Object => {
-                return pad(
-                    this.getSubSecond_(specifierCount, customSpecifiers.zeroSubSecondPlaceholder),
-                    specifierCount);
+            digitSubSecondPlaceholder: (specifierCount: number): Object => {
+                let subSecond = this.getSubSecond_(specifierCount, customSpecifiers.zeroSubSecondPlaceholder);
+                return subSecond ? pad(subSecond, specifierCount) : "";
             },
 
             /** See: https://msdn.microsoft.com/library/8kb3ddd4.aspx#gSpecifier */
             eraPlaceholder: (specifierCount: number): Object =>
-                this.value_.getFullYear() < 0 ? "B.C." : "A.D.",
+                this.value.getFullYear() < 0 ? "B.C." : "A.D.",
 
             /** See: https://msdn.microsoft.com/library/8kb3ddd4.aspx#hSpecifier */
             hour12Placeholder: (specifierCount: number): Object =>
-                pad2(this.value_.getHours() % 12 || 12, specifierCount),
+                pad2(this.value.getHours() % 12 || 12, specifierCount),
 
             /** See: https://msdn.microsoft.com/library/8kb3ddd4.aspx#H_Specifier */
             hour24Placeholdr: (specifierCount: number): Object =>
-                pad2(this.value_.getHours(), specifierCount),
+                pad2(this.value.getHours(), specifierCount),
 
             /** See: https://msdn.microsoft.com/library/8kb3ddd4.aspx#KSpecifier */
             timeZonePlaceholder: (): Object =>
-                `${ this.getHoursOffset_() }:${ pad2(Math.abs(this.value_.getTimezoneOffset() % 60)) }`,
+                `${ this.getHoursOffset_() }:${ pad2(Math.abs(this.value.getTimezoneOffset() % 60)) }`,
 
             /** See: https://msdn.microsoft.com/library/8kb3ddd4.aspx#mSpecifier */
             minutePlaceholder: (specifierCount: number): Object =>
-                pad2(this.value_.getMinutes(), specifierCount),
+                pad2(this.value.getMinutes(), specifierCount),
 
             /** See: https://msdn.microsoft.com/library/8kb3ddd4.aspx#M_Specifier */
             monthPlaceholder: (specifierCount: number): Object => {
                 switch (specifierCount) {
-                    case 1: case 2: return pad(this.value_.getMonth() + 1, specifierCount);
-                    case 3: return this.formatInfo_.AbbreviatedMonthNames[this.value_.getMonth()];
-                    default: return this.formatInfo_.MonthNames[this.value_.getMonth()];
+                    case 1: case 2: return pad(this.value.getMonth() + 1, specifierCount);
+                    case 3: return this.formatInfo_.AbbreviatedMonthNames[this.value.getMonth()];
+                    default: return this.formatInfo_.MonthNames[this.value.getMonth()];
                 }
             },
 
             /** See: https://msdn.microsoft.com/library/8kb3ddd4.aspx#sSpecifier */
             secondPlaceholder: (specifierCount: number): Object =>
-                pad2(this.value_.getSeconds(), specifierCount),
+                pad2(this.value.getSeconds(), specifierCount),
 
             /** See: https://msdn.microsoft.com/library/8kb3ddd4.aspx#tSpecifier */
             amPmPlaceholder: (specifierCount: number): Object => (
-                this.value_.getHours() < 12 ?
+                this.value.getHours() < 12 ?
                     this.formatInfo_.AMDesignator :
                     this.formatInfo_.PMDesignator
-                ).substring(0, specifierCount),
+                ).substr(0, specifierCount === 1 ? 1 : undefined),
 
             /** See: https://msdn.microsoft.com/library/8kb3ddd4.aspx#ySpecifier */
             yearPlaceholder: (specifierCount: number): Object => {
-                let year = this.value_.getFullYear();
+                let year = this.value.getFullYear();
                 if (specifierCount <= 2) {
                     year %= 100;
                 }
@@ -174,14 +175,14 @@ namespace Format.Globalization.DateTime {
             }
 
             return Math.floor(
-                this.value_.getMilliseconds() /
+                this.value.getMilliseconds() /
                 Math.pow(10, maxPrecision - precision));
         }
 
         private getHoursOffset_(totalWidth: number = 2): string {
             return innerComponentFormat(
                 `+${ pad(0, totalWidth) };-${ pad(0, totalWidth) }`,
-                Math.floor(-this.value_.getTimezoneOffset() / 60));
+                Math.floor(-this.value.getTimezoneOffset() / 60));
         }
     }
 

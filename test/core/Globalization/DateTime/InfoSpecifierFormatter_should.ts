@@ -27,10 +27,15 @@ namespace Format.Globalization.DateTime {
             expect(() => new InfoSpecifierFormatter(undefined)).toThrowError(Errors.ArgumentNullError);
         });
 
-        it("format should initialize the value field and replace custom date and time format specifiers with values", () => {
+        it("format should initialize the value field", () => {
+            infoSpecifierFormatter.format("", date);
+            expect(infoSpecifierFormatterAccessor.value).toBe(date);
+        });
+
+        it("format should replace custom date and time format specifiers with values", () => {
 
             infoSpecifierFormatter.format("", date);
-            expect(infoSpecifierFormatterAccessor.value_).toBe(date);
+            expect(infoSpecifierFormatterAccessor.value).toBe(date);
 
             // Date/Day placeholder - https://msdn.microsoft.com/library/8kb3ddd4.aspx#dSpecifier
             date.setDate(6); // 2015-09-06
@@ -41,18 +46,16 @@ namespace Format.Globalization.DateTime {
 
             date.setDate(16); // 2015-09-16
             expect(infoSpecifierFormatter.format("d", date)).toBe("16");
-            expect(infoSpecifierFormatter.format("dd", date)).toBe("16");
             expect(infoSpecifierFormatter.format("ddd", date)).toBe("Wed");
-            expect(infoSpecifierFormatter.format("dddd", date)).toBe("Wednesday");
+            expect(infoSpecifierFormatter.format("ddddd", date)).toBe("Wednesday");
 
             // Digit Sub-Second placeholder - https://msdn.microsoft.com/library/8kb3ddd4.aspx#fSpecifier
             date.setMilliseconds(4); // 2015-09-16T00:00:00.003
-            expect(infoSpecifierFormatter.format("f", date)).toBe("");
-            expect(infoSpecifierFormatter.format("ff", date)).toBe("");
+            expect(infoSpecifierFormatter.format("f", date)).toBe("0");
+            expect(infoSpecifierFormatter.format("ff", date)).toBe("00");
             expect(infoSpecifierFormatter.format("fff", date)).toBe("004");
 
             date.setMilliseconds(45); // 2015-09-16T00:00:00.045
-            expect(infoSpecifierFormatter.format("f", date)).toBe("");
             expect(infoSpecifierFormatter.format("ff", date)).toBe("04");
             expect(infoSpecifierFormatter.format("fff", date)).toBe("045");
 
@@ -62,17 +65,18 @@ namespace Format.Globalization.DateTime {
             expect(infoSpecifierFormatter.format("fff", date)).toBe("456");
 
             date.setMilliseconds(0); // 2015-09-16T00:00:00.000
-            expect(infoSpecifierFormatter.format("fff", date)).toBe("");
+            expect(infoSpecifierFormatter.format("fff", date)).toBe("000");
 
             expect(() => infoSpecifierFormatter.format("ffff", date)).toThrowError(Errors.FormatError);
 
             // Zero Sub-Second placeholder - https://msdn.microsoft.com/library/8kb3ddd4.aspx#F_Specifier
             date.setMilliseconds(4); // 2015-09-16T00:00:00.003
-            expect(infoSpecifierFormatter.format("F", date)).toBe("0");
-            expect(infoSpecifierFormatter.format("FF", date)).toBe("00");
+            expect(infoSpecifierFormatter.format("F", date)).toBe("");
+            expect(infoSpecifierFormatter.format("FF", date)).toBe("");
             expect(infoSpecifierFormatter.format("FFF", date)).toBe("004");
 
             date.setMilliseconds(45); // 2015-09-16T00:00:00.045
+            expect(infoSpecifierFormatter.format("F", date)).toBe("");
             expect(infoSpecifierFormatter.format("FF", date)).toBe("04");
             expect(infoSpecifierFormatter.format("FFF", date)).toBe("045");
 
@@ -82,7 +86,7 @@ namespace Format.Globalization.DateTime {
             expect(infoSpecifierFormatter.format("FFF", date)).toBe("456");
 
             date.setMilliseconds(0); // 2015-09-16T00:00:00.000
-            expect(infoSpecifierFormatter.format("FFF", date)).toBe("000");
+            expect(infoSpecifierFormatter.format("FFF", date)).toBe("");
 
             expect(() => infoSpecifierFormatter.format("FFFF", date)).toThrowError(Errors.FormatError);
 

@@ -17,9 +17,9 @@ namespace Format.Globalization.DateTime.Specifiers {
         /** Format specifier `d` (up to 4 times, plus any additional) represents the day of the month as a number from 1 through 31, or as an abbreviated or full day of the week. */
         dayPlaceholder: T;
         /** Format specifier `f` (up to [[MaxSubSecondPrecision]] times) represents the n-th most significant digit of the seconds fraction. */
-        digitSubSecondPlaceholder: T;
-        /** Format specifier `F` (up to [[MaxSubSecondPrecision]] times) represents the n-th most significant digit of the seconds fraction. Nothing is displayed if the digit is zero. */
         zeroSubSecondPlaceholder: T;
+        /** Format specifier `F` (up to [[MaxSubSecondPrecision]] times) represents the n-th most significant digit of the seconds fraction. Nothing is displayed if the digit is zero. */
+        digitSubSecondPlaceholder: T;
         /** Format specifier `g` or `gg` (plus any number of additional `g` specifiers) represents the period or era, such as A.D. */
         eraPlaceholder: T;
         /** Format specifier `h` or `hh` (plus any number of additional `h` specifiers) represents the hour as a number from (0)1 through 12. */
@@ -61,8 +61,8 @@ namespace Format.Globalization.DateTime.Specifiers {
      */
     export let Custom = Utils.mapValuesAsKeys(<CustomSpecifiersMap<string>> {
         dayPlaceholder: "d",
-        digitSubSecondPlaceholder: "f",
-        zeroSubSecondPlaceholder: "F",
+        zeroSubSecondPlaceholder: "f",
+        digitSubSecondPlaceholder: "F",
         eraPlaceholder: "g",
         hour12Placeholder: "h",
         hour24Placeholdr: "H",
@@ -100,8 +100,8 @@ namespace Format.Globalization.DateTime.Specifiers {
             specifiers.literalStringDelimeterDouble,
             `[${[
                 specifiers.dayPlaceholder,
-                specifiers.digitSubSecondPlaceholder,
                 specifiers.zeroSubSecondPlaceholder,
+                specifiers.digitSubSecondPlaceholder,
                 specifiers.eraPlaceholder,
                 specifiers.hour12Placeholder,
                 specifiers.hour24Placeholdr,

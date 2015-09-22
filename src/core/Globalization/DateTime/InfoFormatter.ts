@@ -69,14 +69,11 @@ namespace Format.Globalization.DateTime {
         protected applyOptions(value: Date): string {
 
             let style = this.optionsProvider_.getStyle();
-            if (style) {
-
-                if (this.formatters_.hasOwnProperty(style)) {
-                    return this.formatters_[style]();
-                }
-
-                throw new Errors.ArgumentError(`Option 'style' with base or resolved value '${style}' is not supported`);
+            if (this.formatters_.hasOwnProperty(style)) {
+                return this.formatters_[style]();
             }
+
+            throw new Errors.ArgumentError(`Option 'style' with base or resolved value '${style}' is not supported`);
         }
 
         /** Returns the formatter instance that will be used to replace all custom date and time specifiers. */
@@ -101,7 +98,9 @@ namespace Format.Globalization.DateTime {
             this.setValue_(value);
             this.specifiersFormatter_ = this.getSpecifiersFormatter();
 
-            return this.applyOptions(this.value_) || this.specifiersFormatter_.format(format, this.value_);
+            return this.optionsProvider_.getStyle() ?
+                this.applyOptions(this.value_) :
+                this.specifiersFormatter_.format(format, this.value_);
         }
 
         private setValue_(value: Date): void {
