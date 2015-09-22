@@ -2,7 +2,7 @@
   "name": "clr-format",
   "version": "0.4.1",
   "description": "A lightweight, modular and stand-alone JavaScript implementation of a string formatting function that supports composite format strings, globalization and customization",
-  "main": "dist/clr-format-npm.js",
+  "main": "./dist/clr-format-npm.js",
   "directories": {
     "test": "test"
   },
@@ -34,28 +34,28 @@
   },
   "homepage": "https://github.com/clr-format/clr-format",
   "devDependencies": {
-    "clr-format": "^0.4.0",
+    "clr-format": "^0.4.1",
     "del": "^2.0.2",
     "gulp": "^3.9.0",
     "gulp-add-src": "^0.2.0",
     "gulp-concat": "^2.6.0",
     "gulp-empty": "^0.1.1",
-    "gulp-jasmine": "^2.0.1",
+    "gulp-jasmine": "^2.1.0",
     "gulp-nuget": "0.0.3",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
     "gulp-tslint": "^3.3.0-beta",
     "gulp-typedoc": "^1.2.1",
-    "gulp-typescript": "^2.8.3",
+    "gulp-typescript": "^2.9.0",
     "gulp-uglify": "^1.4.1",
     "gulp-wrap": "^0.11.0",
     "jasmine-core": "^2.3.4",
-    "karma": "^0.13.9",
+    "karma": "^0.13.10",
     "karma-jasmine": "^0.3.6",
     "karma-sauce-launcher": "^0.2.14",
     "mversion": "^1.10.1",
-    "request": "^2.62.0",
+    "request": "^2.63.0",
     "shelljs": "^0.5.3",
-    "typescript": "^1.6.0-dev.20150915"
+    "typescript": "^1.6.2"
   }
 }
