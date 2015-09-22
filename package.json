@@ -56,6 +56,8 @@
     "mversion": "^1.10.1",
     "request": "^2.63.0",
     "shelljs": "^0.5.3",
-    "typescript": "^1.6.2"
+    "through2": "^2.0.0",
+    "typescript": "^1.6.2",
+    "uglify-js": "^2.4.24"
   }
 }

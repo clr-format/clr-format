@@ -1,8 +1,9 @@
+var test = require("./test.js");
 var dirs = require("../config/dirs.js");
 var globs = require("../config/globs.js");
 var paths = require("../config/paths.js");
 var negate = require("../utils/negate.js")
-var test = require("./test.js");
+var mangleProps = require("../utils/mangleProps.js");
 
 var gulp = require("gulp");
 var rename = require("gulp-rename");
@@ -46,6 +47,7 @@ module.exports = function () {
 
     gulp.src(sources)
         .pipe(uglify(minifyOptions))
+        .pipe(mangleProps({ regex: /_$/ }))
         .pipe(rename({ suffix: ".min" }))
         .pipe(gulp.dest(dirs.output));
 
