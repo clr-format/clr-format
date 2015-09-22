@@ -59,7 +59,7 @@ namespace Format.Globalization.DateTime.Specifiers {
      *
      * See: https://msdn.microsoft.com/library/8kb3ddd4.aspx
      */
-    export let CustomSpecifiers = Utils.mapValuesAsKeys(<CustomSpecifiersMap<string>> {
+    export let Custom = Utils.mapValuesAsKeys(<CustomSpecifiersMap<string>> {
         dayPlaceholder: "d",
         digitSubSecondPlaceholder: "f",
         zeroSubSecondPlaceholder: "F",
@@ -82,7 +82,7 @@ namespace Format.Globalization.DateTime.Specifiers {
     });
 
     /** @private */
-    let specifiers = CustomSpecifiers,
+    let specifiers = Custom,
         getEscapePattern = (escapeChar: string): string => `\\${escapeChar}.`,
         getLiteralPattern = (literalStringDelimeter: string): string =>
             `${literalStringDelimeter}[^${literalStringDelimeter}]*?${literalStringDelimeter}`;

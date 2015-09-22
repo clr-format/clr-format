@@ -19,11 +19,11 @@ namespace Format.Globalization.DateTime {
         protected resolvedOptions: T;
         protected formatInfo: DateTimeFormatInfo;
 
-        private value: Date;
-        private baseOptions: T;
-        private specifiersFormatter: CustomFormatter;
-        private optionsProvider: OptionsProvider<T>;
-        private optionsProviderConstructor: { new (baseOptions: T): OptionsProvider<T> };
+        private value_: Date;
+        private baseOptions_: T;
+        private specifiersFormatter_: CustomFormatter;
+        private optionsProvider_: OptionsProvider<T>;
+        private optionsProviderConstructor_: { new (baseOptions: T): OptionsProvider<T> };
 
         /**
          * Creates an instance with base formatting options and initializes an options provider that resolves concrete format options.
@@ -41,9 +41,9 @@ namespace Format.Globalization.DateTime {
                 throw new Errors.ArgumentNullError("formatInfo");
             }
 
-            this.optionsProviderConstructor = optionsProviderConstructor;
+            this.optionsProviderConstructor_ = optionsProviderConstructor;
             this.formatInfo = formatInfo;
-            this.baseOptions = options || <T> {};
+            this.baseOptions_ = options || <T> {};
         }
 
         /**
@@ -54,10 +54,10 @@ namespace Format.Globalization.DateTime {
          */
         public format(format: string, value: Date): string {
             try {
-                return this.innerFormat(format, value);
+                return this.innerFormat_(format, value);
             }
             finally {
-                this.cleanup();
+                this.cleanup_();
             }
         }
 
@@ -68,11 +68,11 @@ namespace Format.Globalization.DateTime {
          */
         protected applyOptions(value: Date): string {
 
-            let style = this.optionsProvider.getStyle();
+            let style = this.optionsProvider_.getStyle();
             if (style) {
 
-                if (this.formatters.hasOwnProperty(style)) {
-                    return this.formatters[style]();
+                if (this.formatters_.hasOwnProperty(style)) {
+                    return this.formatters_[style]();
                 }
 
                 throw new Errors.ArgumentError(`Option 'style' with base or resolved value '${style}' is not supported`);
@@ -84,63 +84,63 @@ namespace Format.Globalization.DateTime {
             return new InfoSpecifierFormatter(this.formatInfo);
         }
 
-        private innerFormat(format: string, value: Date): string {
+        private innerFormat_(format: string, value: Date): string {
 
             if (!format) {
-                format = Specifiers.StandardSpecifiers.generalDateLongTime;
+                format = Specifiers.Standard.generalDateLongTime;
             }
 
-            this.optionsProvider = new this.optionsProviderConstructor(this.baseOptions);
-            this.resolvedOptions = this.optionsProvider.resolveOptions(format, value);
+            this.optionsProvider_ = new this.optionsProviderConstructor_(this.baseOptions_);
+            this.resolvedOptions = this.optionsProvider_.resolveOptions(format, value);
 
             if (!Utils.isObject(this.resolvedOptions)) {
                 throw new Errors.InvalidOperationError(
                     "Invocation of 'optionsProvider' member's method 'resolveOptions' did not initialize instance member 'resolvedOptions' properly");
             }
 
-            this.setValue(value);
-            this.specifiersFormatter = this.getSpecifiersFormatter();
+            this.setValue_(value);
+            this.specifiersFormatter_ = this.getSpecifiersFormatter();
 
-            return this.applyOptions(this.value) || this.specifiersFormatter.format(format, this.value);
+            return this.applyOptions(this.value_) || this.specifiersFormatter_.format(format, this.value_);
         }
 
-        private setValue(value: Date): void {
+        private setValue_(value: Date): void {
 
-            this.value = value;
+            this.value_ = value;
 
-            if (this.optionsProvider.useUTC()) {
-                this.value = new Date(this.value.getTime() + this.value.getTimezoneOffset() * 60000);
+            if (this.optionsProvider_.useUTC()) {
+                this.value_ = new Date(this.value_.getTime() + this.value_.getTimezoneOffset() * 60000);
             }
         }
 
-        private cleanup(): void {
-            delete this.value;
+        private cleanup_(): void {
             delete this.resolvedOptions;
-            delete this.optionsProvider;
-            delete this.specifiersFormatter;
+            delete this.value_;
+            delete this.optionsProvider_;
+            delete this.specifiersFormatter_;
         }
 
         /* tslint:disable:member-ordering */
 
-        private formatters: Specifiers.StandardSpecifiersMap<() => string> = {
-            shortDate: (): string => this.specifiersFormatter.format("MM/dd/yyyy", this.value),
-            longDate: (): string => this.specifiersFormatter.format("dddd, dd MMMM yyyy", this.value),
-            fullDateShortTime: (): string => this.formatters.longDate() + " " + this.formatters.shortTime(),
-            fullDateLongTime: (): string => this.formatters.longDate() + " " + this.formatters.longTime(),
-            generalDateShortTime: (): string => this.formatters.shortDate() + " " + this.formatters.shortTime(),
-            generalDateLongTime: (): string => this.formatters.shortDate() + " " + this.formatters.longTime(),
-            monthDate: (): string => this.specifiersFormatter.format("MMMM dd", this.value),
+        private formatters_: Specifiers.StandardSpecifiersMap<() => string> = {
+            shortDate: (): string => this.specifiersFormatter_.format("MM/dd/yyyy", this.value_),
+            longDate: (): string => this.specifiersFormatter_.format("dddd, dd MMMM yyyy", this.value_),
+            fullDateShortTime: (): string => this.formatters_.longDate() + " " + this.formatters_.shortTime(),
+            fullDateLongTime: (): string => this.formatters_.longDate() + " " + this.formatters_.longTime(),
+            generalDateShortTime: (): string => this.formatters_.shortDate() + " " + this.formatters_.shortTime(),
+            generalDateLongTime: (): string => this.formatters_.shortDate() + " " + this.formatters_.longTime(),
+            monthDate: (): string => this.specifiersFormatter_.format("MMMM dd", this.value_),
             roundTrip: (): string => {
-                let result = JSON.stringify(this.value);
+                let result = JSON.stringify(this.value_);
                 return result.substring(1, result.length - 1);
             },
-            rfc1123: (): string => this.value.toUTCString(),
-            sortable: (): string => this.specifiersFormatter.format("yyyy-MM-ddTHH':'mm':'ss", this.value),
-            shortTime: (): string => this.specifiersFormatter.format("HH:mm", this.value),
-            longTime: (): string => this.specifiersFormatter.format("HH:mm:ss", this.value),
-            universalSortable: (): string => this.specifiersFormatter.format("yyyy-MM-dd HH':'mm':'ssZ", this.value),
-            universalFull: (): string => this.formatters.fullDateLongTime(),
-            yearMonth: (): string => this.specifiersFormatter.format("yyyy MMMM", this.value)
+            rfc1123: (): string => this.value_.toUTCString(),
+            sortable: (): string => this.specifiersFormatter_.format("yyyy-MM-ddTHH':'mm':'ss", this.value_),
+            shortTime: (): string => this.specifiersFormatter_.format("HH:mm", this.value_),
+            longTime: (): string => this.specifiersFormatter_.format("HH:mm:ss", this.value_),
+            universalSortable: (): string => this.specifiersFormatter_.format("yyyy-MM-dd HH':'mm':'ssZ", this.value_),
+            universalFull: (): string => this.formatters_.fullDateLongTime(),
+            yearMonth: (): string => this.specifiersFormatter_.format("yyyy MMMM", this.value_)
         };
 
         /* tslint:enable:member-ordering */

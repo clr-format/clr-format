@@ -17,8 +17,9 @@ namespace Format.Globalization.DateTime {
             infoSpecifierFormatter = infoSpecifierFormatterAccessor = new InfoSpecifierFormatter(DateTimeFormatInfo.InvariantInfo);
         });
 
-        it("constructor should initialize the format info field", () => {
-            expect(infoSpecifierFormatterAccessor.formatInfo).toBe(DateTimeFormatInfo.InvariantInfo);
+        it("constructor should initialize the value and format info fields", () => {
+            expect(infoSpecifierFormatter).toBeDefined();
+            expect(infoSpecifierFormatterAccessor.formatInfo_).toBe(DateTimeFormatInfo.InvariantInfo);
         });
 
         it("constructor should throw an ArgumentNullError for parameter(s) with null or undefined values", () => {
@@ -26,14 +27,10 @@ namespace Format.Globalization.DateTime {
             expect(() => new InfoSpecifierFormatter(undefined)).toThrowError(Errors.ArgumentNullError);
         });
 
-        it("format should initialize the value field", () => {
+        it("format should initialize the value field and replace custom date and time format specifiers with values", () => {
 
             infoSpecifierFormatter.format("", date);
-
-            expect(infoSpecifierFormatterAccessor.value).toBe(date);
-        });
-
-        it("format should replace custom date and time format specifiers with values", () => {
+            expect(infoSpecifierFormatterAccessor.value_).toBe(date);
 
             // Date/Day placeholder - https://msdn.microsoft.com/library/8kb3ddd4.aspx#dSpecifier
             date.setDate(6); // 2015-09-06

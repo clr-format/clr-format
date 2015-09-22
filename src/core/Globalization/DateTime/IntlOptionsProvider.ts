@@ -19,9 +19,8 @@ namespace Format.Globalization.DateTime {
      */
     export class IntlOptionsProvider implements OptionsProvider<Intl.DateTimeFormatOptions> {
 
-        private options: Intl.DateTimeFormatOptions;
-
-        private style: string;
+        private style_: string;
+        private options_: Intl.DateTimeFormatOptions;
 
         /**
          * Creates an instance with base formatting options which will be extended and/or overridden by resolved options.
@@ -33,7 +32,7 @@ namespace Format.Globalization.DateTime {
                 throw new Errors.ArgumentNullError("dateTimeOptions");
             }
 
-            this.options = Utils.clone(dateTimeOptions);
+            this.options_ = Utils.clone(dateTimeOptions);
         }
 
         /**
@@ -43,34 +42,35 @@ namespace Format.Globalization.DateTime {
          */
         public resolveOptions(format: string, value: Date): Intl.DateTimeFormatOptions {
 
-            if (this.tryInitializeSpecifierOptions(format)) {
-                this.resolvers[this.style]();
-                this.options.style = this.style;
+            if (this.tryInitializeSpecifierOptions_(format)) {
+                this.resolvers_[this.style_]();
+                this.options_.style = this.style_;
             }
 
-            return Utils.removeUndefined(this.options);
+            return Utils.removeUndefined(this.options_);
         }
 
         /** Returns the formatting style to use. Values should match the property names defined in [[Specifiers.StandardSpecifiersMap]]. */
         public getStyle(): string {
-            return this.options.style;
+            return this.options_.style;
         }
 
         /** Returns whether to use UTC time or not. */
         public useUTC(): boolean {
-            return this.options.toUTC;
+            return this.options_.toUTC;
         }
 
-        private tryInitializeSpecifierOptions(format: string): boolean {
+        private tryInitializeSpecifierOptions_(format: string): boolean {
 
             if (format.length !== 1) {
                 return false;
             }
 
-            let specifiers = Specifiers.StandardSpecifiers;
-            this.style = specifiers[format] || specifiers[format.toUpperCase()];
+            let standardSpecifiers = Specifiers.Standard;
 
-            if (!this.style) {
+            this.style_ = standardSpecifiers[format] || standardSpecifiers[format.toUpperCase()];
+
+            if (!this.style_) {
                 throw new Errors.FormatError(`Date and time format specifier '${format}' is invalid`);
             }
 
@@ -79,88 +79,88 @@ namespace Format.Globalization.DateTime {
 
         /* tslint:disable:member-ordering */
 
-        private resolvers: Specifiers.StandardSpecifiersMap<() => void> = {
+        private resolvers_: Specifiers.StandardSpecifiersMap<() => void> = {
 
             /** See: https://msdn.microsoft.com/library/az4se3k1.aspx#ShortDate */
             shortDate: (): void => {
-                this.options.day =
-                this.options.year =
-                this.options.month = numeric;
+                this.options_.day =
+                this.options_.year =
+                this.options_.month = numeric;
             },
 
             /** See: https://msdn.microsoft.com/library/az4se3k1.aspx#LongDate */
             longDate: (): void => {
-                this.resolvers.shortDate();
-                this.resolvers.monthDate();
-                this.options.weekday = long;
+                this.resolvers_.shortDate();
+                this.resolvers_.monthDate();
+                this.options_.weekday = long;
             },
 
             /** See: https://msdn.microsoft.com/library/az4se3k1.aspx#FullDateShortTime */
             fullDateShortTime: (): void => {
-                this.resolvers.longDate();
-                this.resolvers.shortTime();
+                this.resolvers_.longDate();
+                this.resolvers_.shortTime();
             },
 
             /** See: https://msdn.microsoft.com/library/az4se3k1.aspx#FullDateLongTime */
             fullDateLongTime: (): void => {
-                this.resolvers.longDate();
-                this.resolvers.longTime();
+                this.resolvers_.longDate();
+                this.resolvers_.longTime();
             },
 
             /** See: https://msdn.microsoft.com/library/az4se3k1.aspx#GeneralDateShortTime */
             generalDateShortTime: (): void => {
-                this.resolvers.shortDate();
-                this.resolvers.shortTime();
+                this.resolvers_.shortDate();
+                this.resolvers_.shortTime();
             },
 
             /** See: https://msdn.microsoft.com/library/az4se3k1.aspx#GeneralDateLongTime */
             generalDateLongTime: (): void => {
-                this.resolvers.shortDate();
-                this.resolvers.longTime();
+                this.resolvers_.shortDate();
+                this.resolvers_.longTime();
             },
 
             /** See: https://msdn.microsoft.com/library/az4se3k1.aspx#MonthDay */
             monthDate: (): void => {
-                this.options.day = numeric;
-                this.options.month = long;
+                this.options_.day = numeric;
+                this.options_.month = long;
             },
 
             /** See: https://msdn.microsoft.com/library/az4se3k1.aspx#Roundtrip */
-            roundTrip: Utils.Function.getEmpty(),
+            roundTrip: empty,
 
             /** See: https://msdn.microsoft.com/library/az4se3k1.aspx#RFC1123 */
-            rfc1123: Utils.Function.getEmpty(),
+            rfc1123: empty,
 
             /** See: https://msdn.microsoft.com/library/az4se3k1.aspx#Sortable */
-            sortable: Utils.Function.getEmpty(),
+            sortable: empty,
 
             /** See: https://msdn.microsoft.com/library/az4se3k1.aspx#ShortTime */
             shortTime: (): void => {
-                this.options.hour =
-                this.options.minute = numeric;
+                this.options_.hour =
+                this.options_.minute = numeric;
             },
 
             /** See: https://msdn.microsoft.com/library/az4se3k1.aspx#LongTime */
             longTime: (): void => {
-                this.resolvers.shortTime();
-                this.options.second = numeric;
+                this.resolvers_.shortTime();
+                this.options_.second = numeric;
             },
 
             /** See: https://msdn.microsoft.com/library/az4se3k1.aspx#UniversalSortable */
             universalSortable: (): void => {
-                this.options.toUTC = true;
+                this.options_.toUTC = true;
             },
 
             /** See: https://msdn.microsoft.com/library/az4se3k1.aspx#UniversalFull */
             universalFull: (): void => {
-                this.resolvers.fullDateLongTime();
-                this.options.toUTC = true;
+                this.resolvers_.fullDateLongTime();
+                this.options_.toUTC = true;
             },
 
             /** See: https://msdn.microsoft.com/library/az4se3k1.aspx#YearMonth */
             yearMonth: (): void => {
-                this.options.year = numeric;
-                this.options.month = long;
+                this.options_.year = numeric;
+                this.options_.month = long;
             }
         };
 
@@ -168,5 +168,5 @@ namespace Format.Globalization.DateTime {
     }
 
     /** @private */
-    var numeric = "numeric", long = "long";
+    var numeric = "numeric", long = "long", empty = Utils.Function.getEmpty();
 }

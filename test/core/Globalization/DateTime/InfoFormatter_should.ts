@@ -7,19 +7,19 @@
 
 namespace Format.Globalization.DateTime {
 
-    describe("InfoFormatter", () => {
+    describe("DateTime.InfoFormatter", () => {
 
         let intlOptions: Intl.DateTimeFormatOptions;
         let infoFormatter: InfoFormatter<Intl.DateTimeFormatOptions>;
         let infoFormatterAccessor: any;
 
         let expectCleanState = () => {
-            expect(infoFormatterAccessor.optionsProviderConstructor).toBe(IntlOptionsProvider);
-            expect(infoFormatterAccessor.baseOptions).toBe(intlOptions);
-            expect(infoFormatterAccessor.value).toBeUndefined();
             expect(infoFormatterAccessor.resolvedOptions).toBeUndefined();
-            expect(infoFormatterAccessor.optionsProvider).toBeUndefined();
-            expect(infoFormatterAccessor.specifiersFormatter).toBeUndefined();
+            expect(infoFormatterAccessor.value_).toBeUndefined();
+            expect(infoFormatterAccessor.baseOptions_).toBe(intlOptions);
+            expect(infoFormatterAccessor.specifiersFormatter_).toBeUndefined();
+            expect(infoFormatterAccessor.optionsProvider_).toBeUndefined();
+            expect(infoFormatterAccessor.optionsProviderConstructor_).toBe(IntlOptionsProvider);
         };
 
         beforeAll(() => {
@@ -27,9 +27,11 @@ namespace Format.Globalization.DateTime {
             infoFormatter = infoFormatterAccessor = new InfoFormatter(IntlOptionsProvider, DateTimeFormatInfo.InvariantInfo, intlOptions);
         });
 
-        it("constructor should initialize the options' object and options provider's constructor function", () => {
-            expect(infoFormatterAccessor.baseOptions).toBe(intlOptions);
-            expect(infoFormatterAccessor.optionsProviderConstructor).toBe(IntlOptionsProvider);
+        it("constructor should initialize the options' object, format info instance and options provider's constructor function", () => {
+            expect(infoFormatter).toBeDefined();
+            expect(infoFormatterAccessor.formatInfo).toBe(DateTimeFormatInfo.InvariantInfo);
+            expect(infoFormatterAccessor.baseOptions_).toBe(intlOptions);
+            expect(infoFormatterAccessor.optionsProviderConstructor_).toBe(IntlOptionsProvider);
         });
 
         it("constructor should throw an ArgumentNullError for parameter(s) with null or undefined values", () => {

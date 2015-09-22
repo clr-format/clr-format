@@ -48,7 +48,7 @@ namespace Format.Globalization.DateTime.Specifiers {
      *
      * See: https://msdn.microsoft.com/library/az4se3k1.aspx
      */
-    export let StandardSpecifiers = Utils.mapValuesAsKeys(<StandardSpecifiersMap<string>> {
+    export let Standard = Utils.mapValuesAsKeys(<StandardSpecifiersMap<string>> {
         shortDate: "d",
         longDate: "D",
         fullDateShortTime: "f",

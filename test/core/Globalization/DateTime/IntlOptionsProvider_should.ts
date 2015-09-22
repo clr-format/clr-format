@@ -4,7 +4,7 @@
 
 namespace Format.Globalization.DateTime {
 
-    describe("IntlOptionsProvider", () => {
+    describe("DateTime.IntlOptionsProvider", () => {
 
         let intlOptions: Intl.DateTimeFormatOptions;
         let intlOptionsProvider: IntlOptionsProvider;
@@ -26,8 +26,9 @@ namespace Format.Globalization.DateTime {
 
             createInstance({ day: numeric });
 
-            expect(intlOptionsProviderAccessor.options).toEqual(intlOptions);
-            expect(intlOptionsProviderAccessor.options).not.toBe(intlOptions);
+            expect(intlOptionsProvider).toBeDefined();
+            expect(intlOptionsProviderAccessor.options_).toEqual(intlOptions);
+            expect(intlOptionsProviderAccessor.options_).not.toBe(intlOptions);
         });
 
         it("constructor should throw an ArgumentNullError for parameter(s) with null or undefined values", () => {
