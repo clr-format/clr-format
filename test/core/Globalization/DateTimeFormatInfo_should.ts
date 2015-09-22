@@ -8,7 +8,7 @@ namespace Format.Globalization {
 
     describe("DateTimeFormatInfo", () => {
 
-        let dateTimeFormatInfoInfo: DateTimeFormatInfo;
+        let dateTimeFormatInfo: DateTimeFormatInfo;
         let dateTimeFormatInfoAccessor: any;
         let formatterConstructor = DateTimeFormatInfo.FormatterConstructor;
 
@@ -18,27 +18,37 @@ namespace Format.Globalization {
 
         it("constructor should initialize locale's and format specific properties", () => {
 
-            dateTimeFormatInfoInfo = dateTimeFormatInfoAccessor = new DateTimeFormatInfo("");
+            dateTimeFormatInfo = dateTimeFormatInfoAccessor = new DateTimeFormatInfo("");
 
-            expect(dateTimeFormatInfoAccessor.locales).toBe("");
-            expect(dateTimeFormatInfoAccessor.isWritable).toBe(false);
+            expect(dateTimeFormatInfo).toBeDefined();
+            expect(dateTimeFormatInfoAccessor.locales_).toBe("");
+            expect(dateTimeFormatInfoAccessor.isWritable_).toBe(false);
+
+            expect(dateTimeFormatInfo.AbbreviatedDayNames).toEqual(["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]);
+            expect(dateTimeFormatInfo.AbbreviatedMonthNames).toEqual(["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", ""]);
+            expect(dateTimeFormatInfo.DayNames).toEqual(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]);
+            expect(dateTimeFormatInfo.MonthNames).toEqual(["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", ""]);
+            expect(dateTimeFormatInfo.AMDesignator).toBe("AM");
+            expect(dateTimeFormatInfo.PMDesignator).toBe("PM");
+            expect(dateTimeFormatInfo.DateSeparator).toBe("/");
+            expect(dateTimeFormatInfo.TimeSeparator).toBe(":");
         });
 
         it("constructor should throw a InvalidOperationError for a locales argument without a loaded culture-variant sub-module", () => {
+
             delete DateTimeFormatInfo.FormatterConstructor;
+
             expect(() => new DateTimeFormatInfo("en-US")).toThrowError(Errors.InvalidOperationError);
+
+            DateTimeFormatInfo.FormatterConstructor = formatterConstructor;
         });
 
         it("getFormatter should only return a date and time formatter instance or throw an error", () => {
 
-            dateTimeFormatInfoInfo = new DateTimeFormatInfo("");
+            dateTimeFormatInfo = new DateTimeFormatInfo("");
 
-            expect(dateTimeFormatInfoInfo.getFormatter(Utils.Types.Date) instanceof DateTime.InfoFormatter).toBe(true);
-            expect(() => dateTimeFormatInfoInfo.getFormatter(Utils.Types.Object)).toThrowError(Errors.InvalidOperationError);
-        });
-
-        afterAll(() => {
-            DateTimeFormatInfo.FormatterConstructor = formatterConstructor;
+            expect(dateTimeFormatInfo.getFormatter(Utils.Types.Date) instanceof DateTime.InfoFormatter).toBe(true);
+            expect(() => dateTimeFormatInfo.getFormatter(Utils.Types.Object)).toThrowError(Errors.InvalidOperationError);
         });
     });
 }

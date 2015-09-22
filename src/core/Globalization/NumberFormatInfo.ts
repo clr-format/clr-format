@@ -51,10 +51,9 @@ namespace Format.Globalization {
         /** Gets or sets the string that denotes that the associated number is negative. */
         public NegativeSign: string;
 
-        protected locales: string|string[];
-
-        private isWritable: boolean;
-        private formatter: CustomFormatter;
+        private isWritable_: boolean;
+        private locales_: string|string[];
+        private formatter_: CustomFormatter;
 
         /** Initializes a new writable instance of the class that is culture-independent (invariant). */
         constructor();
@@ -64,10 +63,10 @@ namespace Format.Globalization {
          */
         constructor(locales: string|string[]);
         constructor(...args: Object[]) {
-            this.isWritable = args[0] === undefined;
-            this.locales = <string|string[]> args[0] || "";
+            this.isWritable_ = args[0] === undefined;
+            this.locales_ = <string|string[]> args[0] || "";
 
-            this.resolveFormatInfo(this.locales);
+            this.resolveFormatInfo_(this.locales_);
         }
 
         /**
@@ -80,23 +79,23 @@ namespace Format.Globalization {
                 throw new Errors.InvalidOperationError("The NumberFormatInfo object supports formatting numeric values only");
             }
 
-            return this.formatter;
+            return this.formatter_;
         }
 
-        private resolveFormatInfo(locales: string|string[]): void {
+        private resolveFormatInfo_(locales: string|string[]): void {
             if (!locales) {
-                this.setInvariantFormatInfo();
-                this.formatter = new Numeric.InfoFormatter(Numeric.IntlOptionsProvider, this);
+                this.setInvariantFormatInfo_();
+                this.formatter_ = new Numeric.InfoFormatter(Numeric.IntlOptionsProvider, this);
             }
             else if (typeof NumberFormatInfo.FormatterConstructor === "function") {
-                this.formatter = new NumberFormatInfo.FormatterConstructor(this.locales, this);
+                this.formatter_ = new NumberFormatInfo.FormatterConstructor(this.locales_, this);
             }
             else {
                 throw new Errors.InvalidOperationError("No culture-variant formatter was found (load a sub-module implementation or set the FormatterConstructor property)");
             }
         }
 
-        private setInvariantFormatInfo(): void {
+        private setInvariantFormatInfo_(): void {
 
             this.CurrencyDecimalSeparator =
             this.NumberDecimalSeparator = ".";

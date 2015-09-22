@@ -30,8 +30,8 @@ namespace Format.Globalization {
         /** Gets or sets a [[NumberFormatInfo]] that defines the culturally appropriate format of displaying numbers, currency, and percentage. */
         public NumberFormat: NumberFormatInfo;
 
-        private locales: string|string[];
-        private formatters: Indexable<CustomFormatter>;
+        private locales_: string|string[];
+        private formatters_: Indexable<CustomFormatter>;
 
         /**
          * Initializes a new instance of the [[CultureInfo]] class based on the culture specified by *locales*.
@@ -43,25 +43,27 @@ namespace Format.Globalization {
                 throw new Errors.ArgumentNullError("locales");
             }
 
-            this.locales = locales;
+            this.locales_ = locales;
 
             this.DateTimeFormat = new DateTimeFormatInfo(locales);
             this.NumberFormat = new NumberFormatInfo(locales);
 
-            this.formatters = this.getFormatters(locales);
+            this.formatters_ = this.getFormatters_(locales);
         }
 
         public getFormatter(type: string): CustomFormatter {
-            return this.formatters[type] || CultureInfo.fallbackFormatter;
+            return this.formatters_[type] || CultureInfo.fallbackFormatter_;
         }
 
-        private getFormatters(locales: string|string[]): Indexable<CustomFormatter> {
+        private getFormatters_(locales: string|string[]): Indexable<CustomFormatter> {
 
             let formatters: Indexable<CustomFormatter> = {}, types = Utils.Types;
 
             formatters[types.Date] = this.DateTimeFormat.getFormatter(types.Date);
             formatters[types.Number] = this.NumberFormat.getFormatter(types.Number);
-            formatters[types.Object] = formatters[types.Array] = CultureInfo.objectFormatter;
+
+            formatters[types.Array] =
+            formatters[types.Object] = CultureInfo.objectFormatter_;
 
             return formatters;
         }
@@ -69,7 +71,7 @@ namespace Format.Globalization {
         /* tslint:disable:member-ordering */
 
         /** Core implementation of a [[CustomFormatter]] for `Object` and `Array` instances. */
-        private static objectFormatter: CustomFormatter = {
+        private static objectFormatter_: CustomFormatter = {
             /**
              * Converts the value of the given object using `JSON.stringify`.
              * @param value An object to format.
@@ -78,7 +80,7 @@ namespace Format.Globalization {
         };
 
         /** Fallback implementation of a [[CustomFormatter]] for any objects. */
-        private static fallbackFormatter: CustomFormatter = {
+        private static fallbackFormatter_: CustomFormatter = {
             /**
              * Converts the value of the given object using the `+ ""` operator.
              * @param value An object to format.

@@ -20,8 +20,9 @@ namespace Format.Globalization {
 
             numberFormatInfo = numberFormatInfoAccessor = new NumberFormatInfo("");
 
-            expect(numberFormatInfoAccessor.locales).toBe("");
-            expect(numberFormatInfoAccessor.isWritable).toBe(false);
+            expect(numberFormatInfo).toBeDefined();
+            expect(numberFormatInfoAccessor.locales_).toBe("");
+            expect(numberFormatInfoAccessor.isWritable_).toBe(false);
 
             expect(numberFormatInfo.CurrencyDecimalSeparator).toBe(".");
             expect(numberFormatInfo.CurrencyGroupSeparator).toBe(",");
@@ -32,8 +33,12 @@ namespace Format.Globalization {
         });
 
         it("constructor should throw a InvalidOperationError for a locales argument without a loaded culture-variant sub-module", () => {
+
             delete NumberFormatInfo.FormatterConstructor;
+
             expect(() => new NumberFormatInfo("en-US")).toThrowError(Errors.InvalidOperationError);
+
+            NumberFormatInfo.FormatterConstructor = formatterConstructor;
         });
 
         it("getFormatter should only return a number formatter instance or throw an error", () => {
@@ -42,10 +47,6 @@ namespace Format.Globalization {
 
             expect(numberFormatInfo.getFormatter(Utils.Types.Number) instanceof Numeric.InfoFormatter).toBe(true);
             expect(() => numberFormatInfo.getFormatter(Utils.Types.Object)).toThrowError(Errors.InvalidOperationError);
-        });
-
-        afterAll(() => {
-            NumberFormatInfo.FormatterConstructor = formatterConstructor;
         });
     });
 }
