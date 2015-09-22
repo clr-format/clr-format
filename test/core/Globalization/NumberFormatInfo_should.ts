@@ -6,7 +6,6 @@
 
 namespace Format.Globalization {
 
-    // TODO - Fill in tests
     describe("NumberFormatInfo", () => {
 
         let numberFormatInfo: NumberFormatInfo;

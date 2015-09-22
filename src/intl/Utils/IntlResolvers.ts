@@ -57,7 +57,6 @@ namespace Format.Utils.IntlResovlers {
         ROL: 0, RWF: 0, TJR: 0, TMM: 0, TND: 3, TPE: 0, TRL: 0, TWD: 0, UGX: 0, VND: 0, VUV: 0, XAF: 0, XOF: 0, XPF: 0
     };
 
-    // TODO - Move to a separate formatter in the core project
     /**
      * Returns a culture-variant version of the given invariantly formatted string. Matches decimal separators and negative signs for the callback.
      * @param invariantlyFormattedString An invariantly formatted string to replace with culture-specific symbols.
