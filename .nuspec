@@ -44,9 +44,7 @@ Usage:
         <file src="dist\*.d.ts" target="content\" />
         <file src="dist\clr-format.js" target="content\" />
         <file src="dist\clr-format.min.js" target="content\" />
-        <file src="dist\clr-format-intl.js" target="content\" />
-        <file src="dist\clr-format-config.js" target="content\" />
-        <file src="dist\clr-format-intl.min.js" target="content\" />
-        <file src="dist\clr-format-config.min.js" target="content\" />
+        <file src="dist\clr-format-intl*.js" target="content\" />
+        <file src="dist\clr-format-config*.js" target="content\" />
     </files>
 </package>

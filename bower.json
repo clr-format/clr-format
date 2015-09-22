@@ -24,17 +24,13 @@
   "license": "MIT",
   "ignore": [
     "**/.*",
-    "node_modules",
-    "bower_components",
-    "gulpfile.js",
-    "karma.*.js",
-    "*npm*.js",
-    "*.nupkg",
+    "/*.js",
     "*.json",
-    "*.yml",
-    "*.md",
+    "TODO.md",
     "build",
+    "src",
     "test",
-    "docs"
+    "dist/*.nupkg",
+    "dist/*npm*.js"
   ]
 }
