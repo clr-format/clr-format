@@ -24,15 +24,16 @@ namespace Format.Globalization.Numeric.Specifiers {
 
             createInstance({ minimumFractionDigits: 1 });
 
-            expect(intlCustomOptionsProviderAccessor.options).toBe(intlOptions);
-            expect(intlCustomOptionsProviderAccessor.options.minimumFractionDigits).toBe(intlOptions.minimumFractionDigits);
+            expect(intlCustomOptionsProvider).toBeDefined();
+            expect(intlCustomOptionsProviderAccessor.options_).toBe(intlOptions);
+            expect(intlCustomOptionsProviderAccessor.options_.minimumFractionDigits).toBe(intlOptions.minimumFractionDigits);
 
-            expect(intlCustomOptionsProviderAccessor.options.noDigits).toBe(true);
-            expect(intlCustomOptionsProviderAccessor.options.noLeadingZeroIntegerDigit).toBe(true);
-            expect(intlCustomOptionsProviderAccessor.options.valueDivisor).toBe(1);
-            expect(intlCustomOptionsProviderAccessor.options.prefixDecorator).toBe("");
-            expect(intlCustomOptionsProviderAccessor.options.internalDecorators).toEqual({});
-            expect(intlCustomOptionsProviderAccessor.options.suffixDecorator).toBe("");
+            expect(intlCustomOptionsProviderAccessor.options_.noDigits).toBe(true);
+            expect(intlCustomOptionsProviderAccessor.options_.noLeadingZeroIntegerDigit).toBe(true);
+            expect(intlCustomOptionsProviderAccessor.options_.valueDivisor).toBe(1);
+            expect(intlCustomOptionsProviderAccessor.options_.prefixDecorator).toBe("");
+            expect(intlCustomOptionsProviderAccessor.options_.internalDecorators).toEqual({});
+            expect(intlCustomOptionsProviderAccessor.options_.suffixDecorator).toBe("");
         });
 
         it("constructor should throw an ArgumentNullError for parameter(s) with null or undefined values", () => {

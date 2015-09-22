@@ -17,21 +17,21 @@ namespace Format.Globalization.Numeric {
      */
     export class DecorationFormatter<T> {
 
-        private static groupSeparatorRegExp: RegExp = /\B(?=(\d{3})+(?!\d))/g;
+        private static groupSeparatorRegExp_: RegExp = /\B(?=(\d{3})+(?!\d))/g;
 
-        private style: string;
-        private noDigits: boolean;
-        private upperCase: boolean;
-        private useGrouping: boolean;
-        private noLeadingZeroIntegerDigit: boolean;
-        private prefixDecorator: string;
-        private suffixDecorator: string;
-        private internalDecorators: Indexable<string>;
+        private style_: string;
+        private noDigits_: boolean;
+        private upperCase_: boolean;
+        private useGrouping_: boolean;
+        private noLeadingZeroIntegerDigit_: boolean;
+        private prefixDecorator_: string;
+        private suffixDecorator_: string;
+        private internalDecorators_: Indexable<string>;
 
-        private formatInfo: NumberFormatInfo;
+        private formatInfo_: NumberFormatInfo;
 
-        private decimalOffset: number;
-        private restoreNegativeSign: boolean;
+        private decimalOffset_: number;
+        private restoreNegativeSign_: boolean;
 
         /**
          * Creates an instance that uses the resolved options from the specified options provider and applies culture-specific formatting based on the given format info.
@@ -48,15 +48,15 @@ namespace Format.Globalization.Numeric {
                 throw new Errors.ArgumentNullError("formatInfo");
             }
 
-            this.style = optionsProvider.getStyle();
-            this.noDigits = optionsProvider.hasNoDigits();
-            this.upperCase = optionsProvider.isUpperCase();
-            this.useGrouping = optionsProvider.useGrouping();
-            this.noLeadingZeroIntegerDigit = optionsProvider.hasNoLeadingZeroIntegerDigit();
-            this.prefixDecorator = optionsProvider.getPrefixDecorator();
-            this.suffixDecorator = optionsProvider.getSuffixDecorator();
-            this.internalDecorators = optionsProvider.getInternalDecorators();
-            this.formatInfo = formatInfo;
+            this.style_ = optionsProvider.getStyle();
+            this.noDigits_ = optionsProvider.hasNoDigits();
+            this.upperCase_ = optionsProvider.isUpperCase();
+            this.useGrouping_ = optionsProvider.useGrouping();
+            this.noLeadingZeroIntegerDigit_ = optionsProvider.hasNoLeadingZeroIntegerDigit();
+            this.prefixDecorator_ = optionsProvider.getPrefixDecorator();
+            this.suffixDecorator_ = optionsProvider.getSuffixDecorator();
+            this.internalDecorators_ = optionsProvider.getInternalDecorators();
+            this.formatInfo_ = formatInfo;
         }
 
         /**
@@ -67,12 +67,12 @@ namespace Format.Globalization.Numeric {
          */
         public applyOptions(value: number, formattedValue: string): string {
 
-            formattedValue = this.removeNegativeSign(value, formattedValue);
-            formattedValue = this.applyDigitOptions(value, formattedValue);
-            formattedValue = this.applyInternalDecorators(formattedValue);
-            formattedValue = this.applyExternalDecorators(formattedValue);
+            formattedValue = this.removeNegativeSign_(value, formattedValue);
+            formattedValue = this.applyDigitOptions_(value, formattedValue);
+            formattedValue = this.applyInternalDecorators_(formattedValue);
+            formattedValue = this.applyExternalDecorators_(formattedValue);
 
-            return this.applyNegativeSign(value, formattedValue);
+            return this.applyNegativeSign_(value, formattedValue);
         }
 
         /**
@@ -81,7 +81,7 @@ namespace Format.Globalization.Numeric {
          * @returns A resulting format value with the applied uppercase option.
          */
         public applyUppercase(formattedValue: string): string {
-            return this.upperCase ?
+            return this.upperCase_ ?
                 formattedValue.toUpperCase() :
                 formattedValue;
         }
@@ -93,7 +93,7 @@ namespace Format.Globalization.Numeric {
          */
         public applyGrouping(formattedValue: string): string {
 
-            if (!this.useGrouping) {
+            if (!this.useGrouping_) {
                 return formattedValue;
             }
 
@@ -101,7 +101,7 @@ namespace Format.Globalization.Numeric {
                 numericParts = formattedValue.split(decimalSeparator);
 
             numericParts[0] = numericParts[0].replace(
-                DecorationFormatter.groupSeparatorRegExp,
+                DecorationFormatter.groupSeparatorRegExp_,
                 this.getGroupSeparator());
 
             return numericParts.join(decimalSeparator);
@@ -120,7 +120,7 @@ namespace Format.Globalization.Numeric {
             let decimalSeparator: string = this.getDecimalSeparator(),
                 numericParts = formattedValue.split(decimalSeparator);
 
-            numericParts[0] = this.removeNegativeSign(value, numericParts[0]);
+            numericParts[0] = this.removeNegativeSign_(value, numericParts[0]);
 
             if (numericParts[0].length < paddingWidth) {
                 numericParts[0] = Utils.Padding.pad(numericParts[0], {
@@ -139,9 +139,9 @@ namespace Format.Globalization.Numeric {
          */
         public getDecimalSeparator(formatInfo?: NumberFormatInfo): string {
 
-            formatInfo = formatInfo || this.formatInfo;
+            formatInfo = formatInfo || this.formatInfo_;
 
-            return this.isCurrency() ?
+            return this.isCurrency_() ?
                 formatInfo.CurrencyDecimalSeparator :
                 formatInfo.NumberDecimalSeparator;
         }
@@ -152,77 +152,77 @@ namespace Format.Globalization.Numeric {
          */
         public getGroupSeparator(formatInfo?: NumberFormatInfo): string {
 
-            formatInfo = formatInfo || this.formatInfo;
+            formatInfo = formatInfo || this.formatInfo_;
 
-            return this.isCurrency() ?
+            return this.isCurrency_() ?
                 formatInfo.CurrencyGroupSeparator :
                 formatInfo.NumberGroupSeparator;
         }
 
-        private isCurrency(): boolean {
+        private isCurrency_(): boolean {
 
-            let styles = Specifiers.StandardSpecifiers;
+            let styles = Specifiers.Standard;
 
-            return this.style === styles[styles.decimal];
+            return this.style_ === styles[styles.decimal];
         }
 
-        private removeNegativeSign(value: number, formattedValue: string): string {
+        private removeNegativeSign_(value: number, formattedValue: string): string {
 
-            if (this.restoreNegativeSign) {
+            if (this.restoreNegativeSign_) {
                 return formattedValue;
             }
 
-            this.restoreNegativeSign = value < 0 && formattedValue[0] === this.formatInfo.NegativeSign;
+            this.restoreNegativeSign_ = value < 0 && formattedValue[0] === this.formatInfo_.NegativeSign;
 
-            return this.restoreNegativeSign ?
+            return this.restoreNegativeSign_ ?
                 formattedValue.substring(1) :
                 formattedValue;
         }
 
-        private applyDigitOptions(value: number, formattedValue: string): string {
+        private applyDigitOptions_(value: number, formattedValue: string): string {
 
-            if (this.noDigits) {
+            if (this.noDigits_) {
                 return "";
             }
 
-            return this.shouldRemoveLeadingZero(value) ?
+            return this.shouldRemoveLeadingZero_(value) ?
                 formattedValue = formattedValue.substring(1) :
                 formattedValue;
         }
 
-        private shouldRemoveLeadingZero(value: number): boolean {
+        private shouldRemoveLeadingZero_(value: number): boolean {
 
-            let styles = Specifiers.StandardSpecifiers;
+            let styles = Specifiers.Standard;
 
-            return this.noLeadingZeroIntegerDigit
-                && this.style !== styles[styles.exponential]
-                && this.style !== styles[styles.roundTrip]
-                && this.style !== styles[styles.general]
-                && this.style !== styles[styles.hex]
+            return this.noLeadingZeroIntegerDigit_
+                && this.style_ !== styles[styles.exponential]
+                && this.style_ !== styles[styles.roundTrip]
+                && this.style_ !== styles[styles.general]
+                && this.style_ !== styles[styles.hex]
                 && Math.abs(value) < 1;
         }
 
-        private applyInternalDecorators(formattedValue: string): string {
+        private applyInternalDecorators_(formattedValue: string): string {
 
-            if (!this.internalDecorators) {
+            if (!this.internalDecorators_) {
                 return formattedValue;
             }
 
             let decimalSeparator: string = this.getDecimalSeparator(),
                 numericParts = formattedValue.split(decimalSeparator);
 
-            this.decimalOffset = 0;
+            this.decimalOffset_ = 0;
 
-            for (let key in this.internalDecorators) {
-                if (this.internalDecorators.hasOwnProperty(key)) {
-                    this.applyInternalDecorator(numericParts, +key, this.internalDecorators[key]);
+            for (let key in this.internalDecorators_) {
+                if (this.internalDecorators_.hasOwnProperty(key)) {
+                    this.applyInternalDecorator_(numericParts, +key, this.internalDecorators_[key]);
                 }
             }
 
             return numericParts.join(decimalSeparator);
         }
 
-        private applyInternalDecorator(numericParts: string[], index: number, decorator: string): void {
+        private applyInternalDecorator_(numericParts: string[], index: number, decorator: string): void {
 
             let integralPart = numericParts[0],
                 insert = Utils.Text.insert;
@@ -232,8 +232,8 @@ namespace Format.Globalization.Numeric {
                 numericParts[0] = insert(integralPart, Math.max(0, index), decorator);
             }
             else {
-                index += this.decimalOffset;
-                this.decimalOffset += decorator.length;
+                index += this.decimalOffset_;
+                this.decimalOffset_ += decorator.length;
 
                 let decimalPart = numericParts[1];
                 if (decimalPart) {
@@ -245,22 +245,22 @@ namespace Format.Globalization.Numeric {
             }
         }
 
-        private applyExternalDecorators(formattedValue: string): string {
+        private applyExternalDecorators_(formattedValue: string): string {
 
-            if (this.prefixDecorator) {
-                formattedValue = this.prefixDecorator + formattedValue;
+            if (this.prefixDecorator_) {
+                formattedValue = this.prefixDecorator_ + formattedValue;
             }
 
-            if (this.suffixDecorator) {
-                formattedValue += this.suffixDecorator;
+            if (this.suffixDecorator_) {
+                formattedValue += this.suffixDecorator_;
             }
 
             return formattedValue;
         }
 
-        private applyNegativeSign(value: number, formattedValue: string): string {
-            return this.restoreNegativeSign ?
-                this.formatInfo.NegativeSign + formattedValue :
+        private applyNegativeSign_(value: number, formattedValue: string): string {
+            return this.restoreNegativeSign_ ?
+                this.formatInfo_.NegativeSign + formattedValue :
                 formattedValue;
         }
     }

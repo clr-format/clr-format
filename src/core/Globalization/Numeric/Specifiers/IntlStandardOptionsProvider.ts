@@ -18,11 +18,11 @@ namespace Format.Globalization.Numeric.Specifiers {
      */
     export class IntlStandardOptionsProvider implements Globalization.OptionsProvider<Intl.NumberFormatOptions, number> {
 
-        private options: Intl.NumberFormatOptions;
+        private options_: Intl.NumberFormatOptions;
 
-        private specifier: string;
-        private precision: number;
-        private style: string;
+        private specifier_: string;
+        private precision_: number;
+        private style_: string;
 
         /**
          * Creates an instance with base formatting options which will be extended and/or overridden by resolved options.
@@ -34,7 +34,7 @@ namespace Format.Globalization.Numeric.Specifiers {
                 throw new Errors.ArgumentNullError("numberOptions");
             }
 
-            this.options = numberOptions;
+            this.options_ = numberOptions;
         }
 
         /**
@@ -44,16 +44,16 @@ namespace Format.Globalization.Numeric.Specifiers {
          */
         public resolveOptions(format: string, value: number): Intl.NumberFormatOptions {
 
-            if (this.tryInitializeSpecifierOptions(format)) {
+            if (this.tryInitializeSpecifierOptions_(format)) {
 
-                this.resolvers[this.style]();
-                this.options.style = this.style;
+                this.resolvers_[this.style_]();
+                this.options_.style = this.style_;
 
-                return Utils.removeUndefined(this.options);
+                return Utils.removeUndefined(this.options_);
             }
         }
 
-        private tryInitializeSpecifierOptions(format: string): boolean {
+        private tryInitializeSpecifierOptions_(format: string): boolean {
 
             let standardSpecifierGroups = StandardSpecifierRexExp.exec(format);
 
@@ -61,14 +61,14 @@ namespace Format.Globalization.Numeric.Specifiers {
                 return false;
             }
 
-            this.specifier = standardSpecifierGroups[1];
-            this.style = StandardSpecifiers[this.specifier.toUpperCase()];
+            this.specifier_ = standardSpecifierGroups[1];
+            this.style_ = Standard[this.specifier_.toUpperCase()];
 
-            if (!this.style) {
+            if (!this.style_) {
                 throw new Errors.FormatError(`Numeric format specifier '${format}' is invalid`);
             }
 
-            this.precision = standardSpecifierGroups[2] !== "" ?
+            this.precision_ = standardSpecifierGroups[2] !== "" ?
                 +standardSpecifierGroups[2] :
                 undefined;
 
@@ -77,58 +77,58 @@ namespace Format.Globalization.Numeric.Specifiers {
 
         /* tslint:disable:member-ordering */
 
-        private resolvers: StandardSpecifiersMap<() => void> = {
+        private resolvers_: StandardSpecifiersMap<() => void> = {
 
             /** See: https://msdn.microsoft.com/library/dwhawy9k.aspx#CFormatString */
             currency: (): void => {
-                this.options.useGrouping = true;
-                this.options.minimumFractionDigits = this.precision;
-                this.options.maximumFractionDigits = this.precision;
+                this.options_.useGrouping = true;
+                this.options_.minimumFractionDigits = this.precision_;
+                this.options_.maximumFractionDigits = this.precision_;
             },
 
             /** See: https://msdn.microsoft.com/library/dwhawy9k.aspx#DFormatString */
             decimal: (): void => {
-                this.options.minimumIntegerDigits = this.precision;
-                this.options.maximumFractionDigits = 0;
+                this.options_.minimumIntegerDigits = this.precision_;
+                this.options_.maximumFractionDigits = 0;
             },
 
             /** See: https://msdn.microsoft.com/library/dwhawy9k.aspx#EFormatString */
             exponential: (): void => {
 
-                let precision = this.precision >= 0 ? this.precision :
-                    Specifiers.DefaultStandardExponentialPrecision;
+                let precision = this.precision_ >= 0 ? this.precision_ :
+                    DefaultStandardExponentialPrecision;
 
-                this.options.upperCase = this.specifier === this.specifier.toUpperCase();
-                this.options.minimumFractionDigits = precision;
-                this.options.maximumFractionDigits = precision;
-                this.options.minimumExponentDigits = 3;
+                this.options_.upperCase = this.specifier_ === this.specifier_.toUpperCase();
+                this.options_.minimumFractionDigits = precision;
+                this.options_.maximumFractionDigits = precision;
+                this.options_.minimumExponentDigits = 3;
             },
 
             /** See: https://msdn.microsoft.com/library/dwhawy9k.aspx#FFormatString */
             fixedPoint: (): void => {
-                this.options.minimumFractionDigits = this.precision;
-                this.options.maximumFractionDigits = this.precision;
+                this.options_.minimumFractionDigits = this.precision_;
+                this.options_.maximumFractionDigits = this.precision_;
             },
 
             /** See: https://msdn.microsoft.com/library/dwhawy9k.aspx#GFormatString */
             general: (): void => {
-                this.options.minimumExponentDigits = 2;
-                this.options.upperCase = this.specifier === this.specifier.toUpperCase();
-                if (this.precision >= 1) {
-                    this.options.maximumSignificantDigits = this.precision;
-                    this.options.maximumFractionDigits = this.precision >= 1 ? this.precision - 1 : undefined;
+                this.options_.minimumExponentDigits = 2;
+                this.options_.upperCase = this.specifier_ === this.specifier_.toUpperCase();
+                if (this.precision_ >= 1) {
+                    this.options_.maximumSignificantDigits = this.precision_;
+                    this.options_.maximumFractionDigits = this.precision_ >= 1 ? this.precision_ - 1 : undefined;
                 }
             },
 
             /** See: https://msdn.microsoft.com/library/dwhawy9k.aspx#NFormatString */
             number: (): void => {
-                this.resolvers.fixedPoint();
-                this.options.useGrouping = true;
+                this.resolvers_.fixedPoint();
+                this.options_.useGrouping = true;
             },
 
             /** See: https://msdn.microsoft.com/library/dwhawy9k.aspx#PFormatString */
             percent: (): void => {
-                this.resolvers.number();
+                this.resolvers_.number();
             },
 
             /** See: https://msdn.microsoft.com/library/dwhawy9k.aspx#RFormatString */
@@ -136,8 +136,8 @@ namespace Format.Globalization.Numeric.Specifiers {
 
             /** See: https://msdn.microsoft.com/library/dwhawy9k.aspx#XFormatString */
             hex: (): void => {
-                this.options.minimumSignificantDigits = this.precision;
-                this.options.upperCase = this.specifier === this.specifier.toUpperCase();
+                this.options_.minimumSignificantDigits = this.precision_;
+                this.options_.upperCase = this.specifier_ === this.specifier_.toUpperCase();
             }
         };
 

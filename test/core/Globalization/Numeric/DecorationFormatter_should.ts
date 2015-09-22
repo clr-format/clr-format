@@ -16,6 +16,8 @@ namespace Format.Globalization.Numeric {
                 new IntlOptionsProvider(intlOptions), formatInfo || new NumberFormatInfo());
         };
 
+        let styles = Specifiers.Standard;
+
         beforeAll(() => {
             alternativeFormatInfo.NegativeSign = "!";
             alternativeFormatInfo.NumberGroupSeparator = " ";
@@ -37,16 +39,17 @@ namespace Format.Globalization.Numeric {
 
             resolveOptions(intlOptions, alternativeFormatInfo);
 
-            expect(decorationFormatterAccessor.style).toBe(intlOptions.style);
-            expect(decorationFormatterAccessor.noDigits).toBe(intlOptions.noDigits);
-            expect(decorationFormatterAccessor.upperCase).toBe(intlOptions.upperCase);
-            expect(decorationFormatterAccessor.useGrouping).toBe(intlOptions.useGrouping);
-            expect(decorationFormatterAccessor.noLeadingZeroIntegerDigit).toBe(intlOptions.noLeadingZeroIntegerDigit);
-            expect(decorationFormatterAccessor.prefixDecorator).toBe(intlOptions.prefixDecorator);
-            expect(decorationFormatterAccessor.suffixDecorator).toBe(intlOptions.suffixDecorator);
-            expect(decorationFormatterAccessor.internalDecorators).toBe(intlOptions.internalDecorators);
+            expect(decorationFormatter).toBeDefined();
+            expect(decorationFormatterAccessor.style_).toBe(intlOptions.style);
+            expect(decorationFormatterAccessor.noDigits_).toBe(intlOptions.noDigits);
+            expect(decorationFormatterAccessor.upperCase_).toBe(intlOptions.upperCase);
+            expect(decorationFormatterAccessor.useGrouping_).toBe(intlOptions.useGrouping);
+            expect(decorationFormatterAccessor.noLeadingZeroIntegerDigit_).toBe(intlOptions.noLeadingZeroIntegerDigit);
+            expect(decorationFormatterAccessor.prefixDecorator_).toBe(intlOptions.prefixDecorator);
+            expect(decorationFormatterAccessor.suffixDecorator_).toBe(intlOptions.suffixDecorator);
+            expect(decorationFormatterAccessor.internalDecorators_).toBe(intlOptions.internalDecorators);
 
-            expect(decorationFormatterAccessor.formatInfo).toBe(alternativeFormatInfo);
+            expect(decorationFormatterAccessor.formatInfo_).toBe(alternativeFormatInfo);
         });
 
         it("constructor should throw an ArgumentNullError for parameter(s) with null or undefined values", () => {
@@ -77,9 +80,10 @@ namespace Format.Globalization.Numeric {
             });
             expect(decorationFormatter.applyOptions(12345.12345, "12345.1235")).toBe("prefix 12-3<->45.1-2<->35 suffix");
 
+
             /* tslint:disable:align */
             resolveOptions({
-                style: Specifiers.StandardSpecifiers[Specifiers.StandardSpecifiers.general],
+                style: styles[styles.general],
                 noLeadingZeroIntegerDigit: true,
                 prefixDecorator: "prefix ",
                 suffixDecorator: " suffix",

@@ -17,11 +17,11 @@ namespace Format.Globalization.Numeric {
      */
     export class ExponentialFormatter<T> {
 
-        private minimumIntegerDigits: number;
-        private minimumFractionDigits: number;
-        private maximumFractionDigits: number;
-        private minimumExponentDigits: number;
-        private negativellySignedExponent: boolean;
+        private minimumIntegerDigits_: number;
+        private minimumFractionDigits_: number;
+        private maximumFractionDigits_: number;
+        private minimumExponentDigits_: number;
+        private negativellySignedExponent_: boolean;
 
         /**
          * Creates an instance that uses the resolved options from the specified options provider.
@@ -33,11 +33,11 @@ namespace Format.Globalization.Numeric {
                 throw new Errors.ArgumentNullError("optionsProvider");
             }
 
-            this.minimumIntegerDigits = this.floorOption(optionsProvider.getMinimumIntegerDigits());
-            this.minimumFractionDigits = this.floorOption(optionsProvider.getMinimumFractionDigits());
-            this.maximumFractionDigits = this.floorOption(optionsProvider.getMaximumFractionDigits());
-            this.minimumExponentDigits = this.floorOption(optionsProvider.getMinimumExponentDigits());
-            this.negativellySignedExponent = optionsProvider.isNegativellySignedExponent();
+            this.minimumIntegerDigits_ = this.floorOption_(optionsProvider.getMinimumIntegerDigits());
+            this.minimumFractionDigits_ = this.floorOption_(optionsProvider.getMinimumFractionDigits());
+            this.maximumFractionDigits_ = this.floorOption_(optionsProvider.getMaximumFractionDigits());
+            this.minimumExponentDigits_ = this.floorOption_(optionsProvider.getMinimumExponentDigits());
+            this.negativellySignedExponent_ = optionsProvider.isNegativellySignedExponent();
         }
 
         /**
@@ -47,15 +47,15 @@ namespace Format.Globalization.Numeric {
          */
         public applyOptions(value: number): string {
 
-            this.validateOption(() => this.minimumIntegerDigits, 1);
+            this.validateOption_(() => this.minimumIntegerDigits_, 1);
 
-            if (this.minimumIntegerDigits > 1) {
-                this.validateCustomOptions();
+            if (this.minimumIntegerDigits_ > 1) {
+                this.validateCustomOptions_();
 
-                return this.toCustomExponential(value);
+                return this.toCustomExponential_(value);
             }
 
-            return this.toExponential(value);
+            return this.toExponential_(value);
         }
 
         /**
@@ -64,12 +64,12 @@ namespace Format.Globalization.Numeric {
          */
         public applyExponentPadding(formattedExponentialValue: string): string {
 
-            this.validateOption(() => this.minimumExponentDigits, 1);
+            this.validateOption_(() => this.minimumExponentDigits_, 1);
 
-            if (this.minimumExponentDigits > 1) {
+            if (this.minimumExponentDigits_ > 1) {
 
                 let exponentIndex = formattedExponentialValue.lastIndexOf("e") + 2,
-                    paddedExponent = this.getPaddedExponent(formattedExponentialValue.substring(exponentIndex));
+                    paddedExponent = this.getPaddedExponent_(formattedExponentialValue.substring(exponentIndex));
 
                 formattedExponentialValue = formattedExponentialValue.substring(0, exponentIndex) + paddedExponent;
             }
@@ -77,13 +77,13 @@ namespace Format.Globalization.Numeric {
             return formattedExponentialValue;
         }
 
-        private floorOption(optionValue: number): number {
+        private floorOption_(optionValue: number): number {
             return optionValue != null ?
                 Math.floor(optionValue) :
                 undefined;
         }
 
-        private validateOption(optionSelector: () => number, minValue: number): void {
+        private validateOption_(optionSelector: () => number, minValue: number): void {
             let optionValue = optionSelector();
             if (optionValue !== undefined &&
                 (!isFinite(optionValue) || optionValue < minValue)) {
@@ -92,42 +92,42 @@ namespace Format.Globalization.Numeric {
             }
         }
 
-        private validateCustomOptions(): void {
+        private validateCustomOptions_(): void {
 
-            this.validateOption(() => this.minimumFractionDigits, 0);
-            this.validateOption(() => this.maximumFractionDigits, 0);
-            this.validateOption(() => this.minimumExponentDigits, 1);
+            this.validateOption_(() => this.minimumFractionDigits_, 0);
+            this.validateOption_(() => this.maximumFractionDigits_, 0);
+            this.validateOption_(() => this.minimumExponentDigits_, 1);
 
-            if (this.minimumFractionDigits > this.maximumFractionDigits) {
+            if (this.minimumFractionDigits_ > this.maximumFractionDigits_) {
                 throw new RangeError(
-                    `Argument 'minimumFractionDigits=${this.minimumFractionDigits}' cannot be greater than argument 'maximumFractionDigits=${this.maximumFractionDigits}'`);
+                    `Argument 'minimumFractionDigits=${this.minimumFractionDigits_}' cannot be greater than argument 'maximumFractionDigits=${this.maximumFractionDigits_}'`);
             }
         }
 
-        private toExponential(value: number): string {
+        private toExponential_(value: number): string {
 
-            let exponentialValue = Utils.Numeric.toExponentialMinMax(value, this.minimumFractionDigits, this.maximumFractionDigits);
+            let exponentialValue = Utils.Numeric.toExponentialMinMax(value, this.minimumFractionDigits_, this.maximumFractionDigits_);
 
             exponentialValue = this.applyExponentPadding(exponentialValue);
-            exponentialValue = this.applyExponentSigning(exponentialValue);
+            exponentialValue = this.applyExponentSigning_(exponentialValue);
 
             return exponentialValue;
         }
 
-        private getPaddedExponent(exponent: string): string {
+        private getPaddedExponent_(exponent: string): string {
 
             let padding = Utils.Padding;
 
             return padding.pad(exponent, {
-                totalWidth: this.minimumExponentDigits,
+                totalWidth: this.minimumExponentDigits_,
                 direction: padding.Direction.Left,
                 paddingChar: "0"
             });
         }
 
-        private applyExponentSigning(exponentialValue: string): string {
+        private applyExponentSigning_(exponentialValue: string): string {
 
-            if (this.negativellySignedExponent) {
+            if (this.negativellySignedExponent_) {
 
                 let positiveExponentSignIndex = exponentialValue.lastIndexOf("+");
                 if (positiveExponentSignIndex > 0) {
@@ -138,50 +138,50 @@ namespace Format.Globalization.Numeric {
             return exponentialValue;
         }
 
-        private toCustomExponential(value: number): string {
-            return this.resolveFromState({
-                index: 0,
-                digits: value.toString(),
-                power: -this.minimumIntegerDigits,
-                offset: this.minimumIntegerDigits,
-                nonZeroEncountered: false,
-                afterDecimal: false
+        private toCustomExponential_(value: number): string {
+            return this.resolveFromState_({
+                index_: 0,
+                digits_: value.toString(),
+                power_: -this.minimumIntegerDigits_,
+                offset_: this.minimumIntegerDigits_,
+                nonZeroEncountered_: false,
+                afterDecimal_: false
             });
         }
 
-        private resolveFromState(customState: CustomExponentialState): string {
+        private resolveFromState_(customState: CustomExponentialState): string {
 
             let exponentialValue = "";
 
-            for (let len = customState.digits.length; customState.index < len; customState.index += 1) {
-                exponentialValue += this.resolveFromDigit(customState);
+            for (let len = customState.digits_.length; customState.index_ < len; customState.index_ += 1) {
+                exponentialValue += this.resolveFromDigit_(customState);
             }
 
-            return this.resolveOffset(exponentialValue, customState) + this.resolveExponent(customState);
+            return this.resolveOffset_(exponentialValue, customState) + this.resolveExponent_(customState);
         }
 
-        private resolveFromDigit(customState: CustomExponentialState): string {
+        private resolveFromDigit_(customState: CustomExponentialState): string {
 
-            let digit = customState.digits[customState.index],
-                resolver = this.resolvers[digit];
+            let digit = customState.digits_[customState.index_],
+                resolver = this.resolvers_[digit];
 
             digit = resolver ? resolver(digit, customState) :
-                this.resolveNonZeroDigit(digit, customState);
+                this.resolveNonZeroDigit_(digit, customState);
 
             return !digit ? "" :
-                digit + this.resolveDecimalPoint(customState);
+                digit + this.resolveDecimalPoint_(customState);
         }
 
         /* tslint:disable:member-ordering */
 
-        private resolvers: Indexable<(digitChar: string, customState?: CustomExponentialState) => string> = {
+        private resolvers_: Indexable<(digitChar: string, customState?: CustomExponentialState) => string> = {
             "0": (digitChar: string, customState: CustomExponentialState): string => {
-                return customState.nonZeroEncountered ?
-                    this.resolveDigit(digitChar, customState) :
+                return customState.nonZeroEncountered_ ?
+                    this.resolveDigit_(digitChar, customState) :
                     "";
             },
             ".": (digitChar: string, customState: CustomExponentialState): string => {
-                customState.afterDecimal = true;
+                customState.afterDecimal_ = true;
                 return "";
             },
             "-": (digitChar: string): string => digitChar
@@ -189,59 +189,59 @@ namespace Format.Globalization.Numeric {
 
         /* tslint:enable:member-ordering */
 
-        private resolveNonZeroDigit(digitChar: string, customState: CustomExponentialState): string {
+        private resolveNonZeroDigit_(digitChar: string, customState: CustomExponentialState): string {
 
-            if (!customState.nonZeroEncountered) {
-                customState.nonZeroEncountered = true;
+            if (!customState.nonZeroEncountered_) {
+                customState.nonZeroEncountered_ = true;
             }
 
-            return this.resolveDigit(digitChar, customState);
+            return this.resolveDigit_(digitChar, customState);
         }
 
-        private resolveDigit(digitChar: string, customState: CustomExponentialState): string {
+        private resolveDigit_(digitChar: string, customState: CustomExponentialState): string {
 
-            this.resolvePowerState(customState);
-            this.resolveDigitState(customState);
+            this.resolvePowerState_(customState);
+            this.resolveDigitState_(customState);
 
-            if (this.maximumFractionDigits !== undefined) {
-                if (customState.decimalDigits > this.maximumFractionDigits) {
+            if (this.maximumFractionDigits_ !== undefined) {
+                if (customState.decimalDigits_ > this.maximumFractionDigits_) {
                     return "";
                 }
-                else if (customState.decimalDigits === this.maximumFractionDigits) {
-                    return this.resolveDigitRounding(digitChar, customState);
+                else if (customState.decimalDigits_ === this.maximumFractionDigits_) {
+                    return this.resolveDigitRounding_(digitChar, customState);
                 }
             }
 
             return digitChar;
         }
 
-        private resolvePowerState(customState: CustomExponentialState): void {
-            if (customState.nonZeroEncountered) {
-                customState.offset -= 1;
-                if (!customState.afterDecimal) {
-                    customState.power += 1;
+        private resolvePowerState_(customState: CustomExponentialState): void {
+            if (customState.nonZeroEncountered_) {
+                customState.offset_ -= 1;
+                if (!customState.afterDecimal_) {
+                    customState.power_ += 1;
                 }
             }
-            else if (customState.afterDecimal) {
-                customState.power -= 1;
+            else if (customState.afterDecimal_) {
+                customState.power_ -= 1;
             }
         }
 
-        private resolveDigitState(customState: CustomExponentialState): void {
+        private resolveDigitState_(customState: CustomExponentialState): void {
 
-            if (customState.decimalDigits >= 0) {
-                customState.decimalDigits += 1;
+            if (customState.decimalDigits_ >= 0) {
+                customState.decimalDigits_ += 1;
             }
 
-            if (customState.offset === 0) {
-                customState.decimalDigits = 0;
+            if (customState.offset_ === 0) {
+                customState.decimalDigits_ = 0;
             }
         }
 
-        private resolveDigitRounding(digitChar: string, customState: CustomExponentialState): string {
-            let nextDigit = +customState.digits[customState.index + 1];
+        private resolveDigitRounding_(digitChar: string, customState: CustomExponentialState): string {
+            let nextDigit = +customState.digits_[customState.index_ + 1];
             if (isNaN(nextDigit)) {
-                nextDigit = +customState.digits[customState.index + 2];
+                nextDigit = +customState.digits_[customState.index_ + 2];
             }
 
             return nextDigit >= 5 ?
@@ -249,26 +249,26 @@ namespace Format.Globalization.Numeric {
                 digitChar;
         }
 
-        private resolveDecimalPoint(customState: CustomExponentialState): string {
-            return customState.offset === 0 && this.maximumFractionDigits !== 0 ? "." : "";
+        private resolveDecimalPoint_(customState: CustomExponentialState): string {
+            return customState.offset_ === 0 && this.maximumFractionDigits_ !== 0 ? "." : "";
         }
 
-        private resolveOffset(exponentialValue: string, customState: CustomExponentialState): string {
+        private resolveOffset_(exponentialValue: string, customState: CustomExponentialState): string {
 
             let padding = Utils.Padding;
 
-            if (customState.offset > 0) {
+            if (customState.offset_ > 0) {
                 exponentialValue = padding.pad(exponentialValue, {
-                    totalWidth: exponentialValue.length + customState.offset,
+                    totalWidth: exponentialValue.length + customState.offset_,
                     paddingChar: "0"
                 });
 
-                if (this.minimumFractionDigits > 0) {
+                if (this.minimumFractionDigits_ > 0) {
                     exponentialValue += ".";
                 }
             }
 
-            let decimalOffset = this.minimumFractionDigits - (customState.decimalDigits || 0);
+            let decimalOffset = this.minimumFractionDigits_ - (customState.decimalDigits_ || 0);
             if (decimalOffset > 0) {
                 exponentialValue = padding.pad(exponentialValue, {
                     totalWidth: exponentialValue.length + decimalOffset,
@@ -279,14 +279,14 @@ namespace Format.Globalization.Numeric {
             return exponentialValue;
         }
 
-        private resolveExponent(customState: CustomExponentialState): string {
+        private resolveExponent_(customState: CustomExponentialState): string {
 
-            let paddedExponent = Math.abs(customState.power).toString(),
-                sign = customState.power < 0 ? "-" :
-                    this.negativellySignedExponent ? "" : "+";
+            let paddedExponent = Math.abs(customState.power_).toString(),
+                sign = customState.power_ < 0 ? "-" :
+                    this.negativellySignedExponent_ ? "" : "+";
 
-            if (this.minimumExponentDigits > 1) {
-                paddedExponent = this.getPaddedExponent(paddedExponent);
+            if (this.minimumExponentDigits_ > 1) {
+                paddedExponent = this.getPaddedExponent_(paddedExponent);
             }
 
             return "e" + sign + paddedExponent;
@@ -294,12 +294,12 @@ namespace Format.Globalization.Numeric {
     }
 
     interface CustomExponentialState {
-        index: number;
-        power: number;
-        offset: number;
-        digits: string;
-        afterDecimal: boolean;
-        decimalDigits?: number;
-        nonZeroEncountered: boolean;
+        index_: number;
+        power_: number;
+        offset_: number;
+        digits_: string;
+        afterDecimal_: boolean;
+        decimalDigits_?: number;
+        nonZeroEncountered_: boolean;
     }
 }

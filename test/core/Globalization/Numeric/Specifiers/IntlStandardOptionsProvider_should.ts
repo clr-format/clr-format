@@ -24,7 +24,8 @@ namespace Format.Globalization.Numeric.Specifiers {
 
             createInstance({ minimumFractionDigits: 1 });
 
-            expect(intlStandardOptionsProviderAccessor.options).toBe(intlOptions);
+            expect(intlStandardOptionsProvider).toBeDefined();
+            expect(intlStandardOptionsProviderAccessor.options_).toBe(intlOptions);
         });
 
         it("constructor should throw an ArgumentNullError for parameter(s) with null or undefined values", () => {

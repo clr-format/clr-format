@@ -18,7 +18,7 @@ namespace Format.Globalization.Numeric {
      */
     export class IntlOptionsProvider implements OptionsProvider<Intl.NumberFormatOptions> {
 
-        private options: Intl.NumberFormatOptions;
+        private options_: Intl.NumberFormatOptions;
 
         /**
          * Creates an instance with base formatting options which will be extended and/or overridden by resolved options.
@@ -30,7 +30,7 @@ namespace Format.Globalization.Numeric {
                 throw new Errors.ArgumentNullError("numberOptions");
             }
 
-            this.options = Utils.clone(numberOptions);
+            this.options_ = Utils.clone(numberOptions);
         }
 
         /**
@@ -41,96 +41,96 @@ namespace Format.Globalization.Numeric {
         public resolveOptions(format: string, value: number): Intl.NumberFormatOptions {
 
             if (format) {
-                let standardSpecifierOptionsProvider = new Specifiers.IntlStandardOptionsProvider(this.options),
+                let standardSpecifierOptionsProvider = new Specifiers.IntlStandardOptionsProvider(this.options_),
                     standardSpecifierOptions = standardSpecifierOptionsProvider.resolveOptions(format, value);
 
                 if (!standardSpecifierOptions) {
-                    let customSpecifierOptionsProvider = new Specifiers.IntlCustomOptionsProvider(this.options);
+                    let customSpecifierOptionsProvider = new Specifiers.IntlCustomOptionsProvider(this.options_);
                     customSpecifierOptionsProvider.resolveOptions(format, value);
                 }
             }
 
-            return this.options;
+            return this.options_;
         }
 
         /** Returns the formatting style to use. Values should match the property names defined in [[Specifiers.StandardSpecifiersMap]]. */
         public getStyle(): string {
-            return this.options.style;
+            return this.options_.style;
         }
 
         /** Returns whether to use grouping separators or not. */
         public useGrouping(): boolean {
-            return this.options.useGrouping;
+            return this.options_.useGrouping;
         }
 
         /** Returns the minimum number of integer digits to use. */
         public getMinimumIntegerDigits(): number {
-            return this.options.minimumIntegerDigits;
+            return this.options_.minimumIntegerDigits;
         }
 
         /** Returns the minimum number of fraction digits to use. */
         public getMinimumFractionDigits(): number {
-            return this.options.minimumFractionDigits;
+            return this.options_.minimumFractionDigits;
         }
 
         /** Returns the maximum number of fraction digits to use. */
         public getMaximumFractionDigits(): number {
-            return this.options.maximumFractionDigits;
+            return this.options_.maximumFractionDigits;
         }
 
         /** Returns the minimum number of significant digits to use. */
         public getMinimumSignificantDigits(): number {
-            return this.options.minimumSignificantDigits;
+            return this.options_.minimumSignificantDigits;
         }
 
         /** Returns the maximum number of significant digits to use. */
         public getMaximumSignificantDigits(): number {
-            return this.options.maximumSignificantDigits;
+            return this.options_.maximumSignificantDigits;
         }
 
         /** Returns whether to ommit all digits or not. */
         public hasNoDigits(): boolean {
-            return this.options.noDigits;
+            return this.options_.noDigits;
         }
 
         /** Returns whether to ommit a single zero digit before the decimal point or not. */
         public hasNoLeadingZeroIntegerDigit(): boolean {
-            return this.options.noLeadingZeroIntegerDigit;
+            return this.options_.noLeadingZeroIntegerDigit;
         }
 
         /** Returns whether an uppercase representation is required or not. */
         public isUpperCase(): boolean {
-            return this.options.upperCase;
+            return this.options_.upperCase;
         }
 
         /** Returns whether an exponent sign is required only for negative exponents or not. */
         public isNegativellySignedExponent(): boolean {
-            return this.options.negativellySignedExponent;
+            return this.options_.negativellySignedExponent;
         }
 
         /** Returns the minimum number of exponent digits to use. */
         public getMinimumExponentDigits(): number {
-            return this.options.minimumExponentDigits;
+            return this.options_.minimumExponentDigits;
         }
 
         /** Returns the divisor that will be applied to the value before formatting. */
         public getValueDivisor(): number {
-            return this.options.valueDivisor;
+            return this.options_.valueDivisor;
         }
 
         /** Returns the string that will be added before the numeric format value. */
         public getPrefixDecorator(): string {
-            return this.options.prefixDecorator;
+            return this.options_.prefixDecorator;
         }
 
         /** Returns the mapping of index-to-text values which are inside the numeric part of the format. */
         public getInternalDecorators(): Indexable<string> {
-            return this.options.internalDecorators;
+            return this.options_.internalDecorators;
         }
 
         /** Returns the string that will be added after the numeric format value. */
         public getSuffixDecorator(): string {
-            return this.options.suffixDecorator;
+            return this.options_.suffixDecorator;
         }
     }
 }

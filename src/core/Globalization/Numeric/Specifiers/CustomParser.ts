@@ -15,35 +15,35 @@ namespace Format.Globalization.Numeric.Specifiers {
      */
     export class CustomParser {
 
-        private index: number;
-        private sections: string[];
-        private sectionIndex: number;
-        private decimalPointIndex: number;
-        private format: string;
-        private escapeOne: boolean;
-        private escapeManyChar: string;
-        private exponentGroups: RegExpExecArray;
-        private exponentMatchIndex: number;
-        private secondaryExponent: string;
-        private firstNumericSpecifierIndex: number;
-        private innerNumericSpecifiersIndex: number;
-        private lastNumericSpecifierIndex: number;
-        private firstZeroSpecifierIndex: number;
-        private lastZeroSpecifierIndex: number;
-        private lastGroupSeparatorIndex: number;
+        private index_: number;
+        private format_: string;
+        private sections_: string[];
+        private escapeOne_: boolean;
+        private sectionIndex_: number;
+        private escapeManyChar_: string;
+        private secondaryExponent_: string;
+        private decimalPointIndex_: number;
+        private exponentMatchIndex_: number;
+        private exponentGroups_: RegExpExecArray;
+        private firstNumericSpecifierIndex_: number;
+        private innerNumericSpecifiersIndex_: number;
+        private lastNumericSpecifierIndex_: number;
+        private firstZeroSpecifierIndex_: number;
+        private lastZeroSpecifierIndex_: number;
+        private lastGroupSeparatorIndex_: number;
 
-        private lookahead: Utils.Lazy<CustomParser>;
+        private lookahead_: Utils.Lazy<CustomParser>;
 
         // Arrow syntax used to preserve 'this' context inside the function at compile time
-        private getLookahead: () => CustomParser = (): CustomParser => {
+        private getLookahead_: () => CustomParser = (): CustomParser => {
 
             let lookahead = this;
 
-            if (this.index < this.format.length - 1) {
+            if (this.index_ < this.format_.length - 1) {
                 lookahead = Utils.clone(this);
-                lookahead.index += 1;
-                lookahead.escapeOne = false;
-                lookahead.doDetachedParse();
+                lookahead.index_ += 1;
+                lookahead.escapeOne_ = false;
+                lookahead.doDetachedParse_();
             }
 
             return lookahead;
@@ -59,9 +59,9 @@ namespace Format.Globalization.Numeric.Specifiers {
                 throw new Errors.ArgumentNullError("format");
             }
 
-            this.index = 0;
-            this.format = format;
-            this.lookahead = new Utils.Lazy(this.getLookahead);
+            this.index_ = 0;
+            this.format_ = format;
+            this.lookahead_ = new Utils.Lazy(this.getLookahead_);
         }
 
         /**
@@ -73,16 +73,16 @@ namespace Format.Globalization.Numeric.Specifiers {
 
             let parser = new CustomParser(format);
 
-            parser.sections = ["", "", ""];
-            parser.sectionIndex = 0;
-            parser.doDetachedParse();
+            parser.sections_ = ["", "", ""];
+            parser.sectionIndex_ = 0;
+            parser.doDetachedParse_();
 
-            return parser.sections;
+            return parser.sections_;
         }
 
         /** Returns the current character visited by the parser. */
         public getCurrentChar(): string {
-            return this.secondaryExponent || this.format[this.index];
+            return this.secondaryExponent_ || this.format_[this.index_];
         }
 
         /**
@@ -90,16 +90,16 @@ namespace Format.Globalization.Numeric.Specifiers {
          * If the [[format]] string contains a [[CustomSpecifiersMap.exponent]] specifier then [[CustomSpecifiersMap.digitPlaceholder]] are counted as well.
          */
         public getDigitsBeforeDecimal(): number {
-            return this.exponentMatchIndex >= 0 ?
-                this.getNumberPlaceholderCountBeforeDecimal() :
-                this.getZeroPlaceholderCountBeforeDecimal();
+            return this.exponentMatchIndex_ >= 0 ?
+                this.getNumberPlaceholderCountBeforeDecimal_() :
+                this.getZeroPlaceholderCountBeforeDecimal_();
         }
 
         /** Returns the number of both [[CustomSpecifiersMap.zeroPlaceholder]] and [[CustomSpecifiersMap.digitPlaceholder]] specifiers after the [[CustomSpecifiersMap.decimalPoint]]. */
         public getNumberPlaceholderCountAfterDecimal(): number {
 
             if (this.isAfterDecimal()) {
-                return this.innerNumericSpecifiersIndex - this.decimalPointIndex;
+                return this.innerNumericSpecifiersIndex_ - this.decimalPointIndex_;
             }
 
             return 0;
@@ -108,8 +108,8 @@ namespace Format.Globalization.Numeric.Specifiers {
         /** Returns the number of [[CustomSpecifiersMap.zeroPlaceholder]] specifiers after the [[CustomSpecifiersMap.decimalPoint]]. */
         public getZeroPlaceholderCountAfterDecimal(): number {
 
-            if (this.lastZeroSpecifierIndex >= this.decimalPointIndex) {
-                return this.lastZeroSpecifierIndex - this.decimalPointIndex;
+            if (this.lastZeroSpecifierIndex_ >= this.decimalPointIndex_) {
+                return this.lastZeroSpecifierIndex_ - this.decimalPointIndex_;
             }
 
             return 0;
@@ -117,12 +117,12 @@ namespace Format.Globalization.Numeric.Specifiers {
 
         /** Returns the sign character following the [[CustomSpecifiersMap.exponent]] specifier. */
         public getExponentSign(): string {
-            return this.exponentGroups[1];
+            return this.exponentGroups_[1];
         }
 
         /** Returns the number of `0` characters following the [[CustomSpecifiersMap.exponent]] specifier. */
         public getExponentPlaceholderCount(): number {
-            return Math.min(this.exponentGroups[2].length, 10);
+            return Math.min(this.exponentGroups_[2].length, 10);
         }
 
         /**
@@ -132,24 +132,24 @@ namespace Format.Globalization.Numeric.Specifiers {
          */
         public getIndexFromDecimal(): number {
 
-            let offset = this.decimalPointIndex;
+            let offset = this.decimalPointIndex_;
 
             if (!this.isAfterDecimal()) {
-                let lookahead = this.lookahead.getValue();
+                let lookahead = this.lookahead_.getValue();
 
-                offset = lookahead.decimalPointIndex || (lookahead.innerNumericSpecifiersIndex + 1);
+                offset = lookahead.decimalPointIndex_ || (lookahead.innerNumericSpecifiersIndex_ + 1);
 
-                if (lookahead.lastGroupSeparatorIndex > this.firstNumericSpecifierIndex) {
-                    offset += Math.floor((offset - this.innerNumericSpecifiersIndex - 2) / 3);
+                if (lookahead.lastGroupSeparatorIndex_ > this.firstNumericSpecifierIndex_) {
+                    offset += Math.floor((offset - this.innerNumericSpecifiersIndex_ - 2) / 3);
                 }
             }
 
-            return this.innerNumericSpecifiersIndex - offset;
+            return this.innerNumericSpecifiersIndex_ - offset;
         }
 
         /** Returns `true` if the parser has already encountered a [[CustomSpecifiersMap.decimalPoint]] specifier; otherwise, `false`. */
         public isAfterDecimal(): boolean {
-            return this.decimalPointIndex >= 0;
+            return this.decimalPointIndex_ >= 0;
         }
 
         /**
@@ -157,7 +157,7 @@ namespace Format.Globalization.Numeric.Specifiers {
          * otherwise, `false`.
          */
         public isBeforeNumericSpecifiers(): boolean {
-            return this.firstNumericSpecifierIndex === undefined;
+            return this.firstNumericSpecifierIndex_ === undefined;
         }
 
         /**
@@ -167,7 +167,7 @@ namespace Format.Globalization.Numeric.Specifiers {
          * Always requires a [[lookahead]] evaluation.
          */
         public isAfterNumericSpecifiers(): boolean {
-            return this.index > this.lookahead.getValue().lastNumericSpecifierIndex;
+            return this.index_ > this.lookahead_.getValue().lastNumericSpecifierIndex_;
         }
 
         /**
@@ -178,9 +178,9 @@ namespace Format.Globalization.Numeric.Specifiers {
          */
         public isImmediateAfterNumericSpecifiers(): boolean {
 
-            let lookahead = this.lookahead.getValue();
-            if (lookahead.lastNumericSpecifierIndex + 1 === this.index) {
-                lookahead.lastNumericSpecifierIndex += 1;
+            let lookahead = this.lookahead_.getValue();
+            if (lookahead.lastNumericSpecifierIndex_ + 1 === this.index_) {
+                lookahead.lastNumericSpecifierIndex_ += 1;
                 return true;
             }
 
@@ -189,7 +189,7 @@ namespace Format.Globalization.Numeric.Specifiers {
 
         /** Returns `true` if the current parser position is exactly at the first [[CustomSpecifiersMap.exponent]] occurrence; otherwise, `false`. */
         public isExponentMatched(): boolean {
-            return this.index === this.exponentMatchIndex;
+            return this.index_ === this.exponentMatchIndex_;
         }
 
         /**
@@ -198,7 +198,7 @@ namespace Format.Globalization.Numeric.Specifiers {
          * Call only when [[isExponentMatched]] returned a `true` value to guarantee correct behavior.
          */
         public isExponentUppercase(): boolean {
-            let exponentSpecifier = this.exponentGroups[0][0];
+            let exponentSpecifier = this.exponentGroups_[0][0];
             return exponentSpecifier === exponentSpecifier.toUpperCase();
         }
 
@@ -210,35 +210,35 @@ namespace Format.Globalization.Numeric.Specifiers {
          */
         public doParse(resolvers: Specifiers.CustomSpecifiersMap<() => void>, charResolver: () => void): void {
 
-            let handlers = this.getHandlers();
+            let handlers = this.getHandlers_();
 
-            for (let len = this.format.length; this.index < len; this.index += 1) {
-                this.addToSection();
-                this.handleSpecifier(handlers, resolvers, charResolver);
-                this.addExponentOffset();
+            for (let len = this.format_.length; this.index_ < len; this.index_ += 1) {
+                this.addToSection_();
+                this.handleSpecifier_(handlers, resolvers, charResolver);
+                this.addExponentOffset_();
             }
         }
 
-        private doDetachedParse(): void {
+        private doDetachedParse_(): void {
             this.doParse(undefined, undefined);
         }
 
-        private addToSection(): void {
-            if (this.sections && this.sectionIndex < 3 &&
-                (this.escapeOne || this.escapeManyChar ||
-                    this.getCurrentChar() !== CustomSpecifiers.sectionSeparator)) {
+        private addToSection_(): void {
+            if (this.sections_ && this.sectionIndex_ < 3 &&
+                (this.escapeOne_ || this.escapeManyChar_ ||
+                    this.getCurrentChar() !== Specifiers.Custom.sectionSeparator)) {
 
-                this.sections[this.sectionIndex] += this.getCurrentChar();
+                this.sections_[this.sectionIndex_] += this.getCurrentChar();
             }
         }
 
-        private handleSpecifier(handlers: Specifiers.CustomSpecifiersMap<() => void>, resolvers?: Specifiers.CustomSpecifiersMap<() => void>, charResolver?: () => void): void {
+        private handleSpecifier_(handlers: Specifiers.CustomSpecifiersMap<() => void>, resolvers?: Specifiers.CustomSpecifiersMap<() => void>, charResolver?: () => void): void {
 
-            let customSpecifier = CustomSpecifiers[this.getCurrentChar().toUpperCase()],
+            let customSpecifier = Specifiers.Custom[this.getCurrentChar().toUpperCase()],
                 resolver = resolvers && resolvers[customSpecifier],
                 handler = handlers[customSpecifier];
 
-            if (this.canHandleSpecifier(handler)) {
+            if (this.canHandleSpecifier_(handler)) {
                 handler();
 
                 if (resolver) {
@@ -250,140 +250,143 @@ namespace Format.Globalization.Numeric.Specifiers {
                     charResolver();
                 }
 
-                this.escapeOne = false;
+                this.escapeOne_ = false;
             }
         }
 
-        private canHandleSpecifier(handler: () => void): boolean {
-            return !this.escapeOne
+        private canHandleSpecifier_(handler: () => void): boolean {
+            return !this.escapeOne_
                 && (handler &&
-                    !(this.escapeManyChar && this.getCurrentChar() !== this.escapeManyChar));
+                    !(this.escapeManyChar_ && this.getCurrentChar() !== this.escapeManyChar_));
         }
 
-        private addExponentOffset(): void {
+        private addExponentOffset_(): void {
             if (this.isExponentMatched()) {
-                this.index += this.exponentGroups[0].length - 1;
+                this.index_ += this.exponentGroups_[0].length - 1;
             }
-            else if (this.secondaryExponent) {
-                this.index += this.secondaryExponent.length - 1;
-                delete this.secondaryExponent;
+            else if (this.secondaryExponent_) {
+                this.index_ += this.secondaryExponent_.length - 1;
+                delete this.secondaryExponent_;
             }
         }
 
-        private handleNumericSpecifier(): void {
+        private handleNumericSpecifier_(): void {
 
-            this.lastNumericSpecifierIndex = this.index;
+            this.lastNumericSpecifierIndex_ = this.index_;
 
-            if (this.firstNumericSpecifierIndex === undefined) {
-                this.firstNumericSpecifierIndex = this.index;
-                this.innerNumericSpecifiersIndex = 0;
+            if (this.firstNumericSpecifierIndex_ === undefined) {
+                this.firstNumericSpecifierIndex_ = this.index_;
+                this.innerNumericSpecifiersIndex_ = 0;
             }
             else {
-                this.innerNumericSpecifiersIndex += 1;
+                this.innerNumericSpecifiersIndex_ += 1;
             }
         }
 
-        private handleLiteralStringDelimeter(): void {
+        private handleLiteralStringDelimeter_(): void {
             let currentChar = this.getCurrentChar();
-            this.escapeManyChar = this.escapeManyChar !== currentChar ? currentChar : undefined;
+            this.escapeManyChar_ = this.escapeManyChar_ !== currentChar ? currentChar : undefined;
         }
 
-        private getExponentGroups(): RegExpExecArray {
+        private getExponentGroups_(): RegExpExecArray {
 
-            if (!this.lookahead.isValueCreated()) {
-                return this.matchExponent();
+            if (!this.lookahead_.isValueCreated()) {
+                return this.matchExponent_();
             }
 
-            let lookahead = this.lookahead.getValue();
-            if (lookahead.exponentMatchIndex === this.index) {
-                return lookahead.exponentGroups;
+            let lookahead = this.lookahead_.getValue();
+            if (lookahead.exponentMatchIndex_ === this.index_) {
+                return lookahead.exponentGroups_;
             }
         }
 
-        private matchExponent(): RegExpExecArray {
-            return CustomExponentRexExp.exec(this.format.substring(this.index));
+        private matchExponent_(): RegExpExecArray {
+            return CustomExponentRexExp.exec(this.format_.substring(this.index_));
         }
 
-        private getNumberPlaceholderCountBeforeDecimal(): number {
+        private getNumberPlaceholderCountBeforeDecimal_(): number {
 
             if (!this.isAfterDecimal()) {
-                return this.innerNumericSpecifiersIndex + 1;
+                return this.innerNumericSpecifiersIndex_ + 1;
             }
 
-            if (this.decimalPointIndex > 0) {
-                return this.decimalPointIndex;
-            }
-        }
-
-        private getZeroPlaceholderCountBeforeDecimal(): number {
-            let numberPlaceholderCountBeforeDecimal = this.getNumberPlaceholderCountBeforeDecimal();
-            if (numberPlaceholderCountBeforeDecimal > this.firstZeroSpecifierIndex) {
-                return numberPlaceholderCountBeforeDecimal - this.firstZeroSpecifierIndex;
+            if (this.decimalPointIndex_ > 0) {
+                return this.decimalPointIndex_;
             }
         }
 
-        private getHandlers(): Specifiers.CustomSpecifiersMap<() => void> {
+        private getZeroPlaceholderCountBeforeDecimal_(): number {
+            let numberPlaceholderCountBeforeDecimal = this.getNumberPlaceholderCountBeforeDecimal_();
+            if (numberPlaceholderCountBeforeDecimal > this.firstZeroSpecifierIndex_) {
+                return numberPlaceholderCountBeforeDecimal - this.firstZeroSpecifierIndex_;
+            }
+        }
+
+        private getHandlers_(): Specifiers.CustomSpecifiersMap<() => void> {
             return {
                 zeroPlaceholder: (): void => {
-                    this.handleNumericSpecifier();
-                    this.lastZeroSpecifierIndex = this.innerNumericSpecifiersIndex;
-                    if (this.firstZeroSpecifierIndex === undefined) {
-                        this.firstZeroSpecifierIndex = this.innerNumericSpecifiersIndex;
+                    this.handleNumericSpecifier_();
+                    this.lastZeroSpecifierIndex_ = this.innerNumericSpecifiersIndex_;
+                    if (this.firstZeroSpecifierIndex_ === undefined) {
+                        this.firstZeroSpecifierIndex_ = this.innerNumericSpecifiersIndex_;
                     }
                 },
 
                 digitPlaceholder: (): void => {
-                    this.handleNumericSpecifier();
+                    this.handleNumericSpecifier_();
                 },
 
                 decimalPoint: (): void => {
-                    this.handleNumericSpecifier();
-                    if (this.decimalPointIndex === undefined) {
-                        this.decimalPointIndex = this.innerNumericSpecifiersIndex;
+                    this.handleNumericSpecifier_();
+                    if (this.decimalPointIndex_ === undefined) {
+                        this.decimalPointIndex_ = this.innerNumericSpecifiersIndex_;
                     }
                 },
 
                 groupSeparatorOrNumberScaling: (): void => {
                     if (!this.isAfterDecimal()) {
-                        this.lastGroupSeparatorIndex = this.index;
+                        this.lastGroupSeparatorIndex_ = this.index_;
                     }
                 },
 
                 exponent: (): void => {
-                    if (!this.exponentGroups) {
-                        let exponentGroups = this.getExponentGroups();
+                    if (!this.exponentGroups_) {
+                        let exponentGroups = this.getExponentGroups_();
                         if (exponentGroups) {
-                            this.exponentGroups = exponentGroups;
-                            this.exponentMatchIndex = this.index;
+                            this.exponentGroups_ = exponentGroups;
+                            this.exponentMatchIndex_ = this.index_;
                         }
                     }
                     else {
-                        let secondaryExponent = this.matchExponent();
+                        let secondaryExponent = this.matchExponent_();
                         if (secondaryExponent) {
-                            this.secondaryExponent = secondaryExponent[0];
+                            this.secondaryExponent_ = secondaryExponent[0];
                         }
                     }
                 },
 
                 escapeChar: (): void => {
-                    this.escapeOne = true;
+                    this.escapeOne_ = true;
                 },
 
                 literalStringDelimeterSingle: (): void => {
-                    this.handleLiteralStringDelimeter();
+                    this.handleLiteralStringDelimeter_();
                 },
 
                 literalStringDelimeterDouble: (): void => {
-                    this.handleLiteralStringDelimeter();
+                    this.handleLiteralStringDelimeter_();
                 },
 
                 sectionSeparator: (): void => {
-                    this.sectionIndex += 1;
+                    this.sectionIndex_ += 1;
                 },
 
-                percentagePlaceholder: Utils.Function.getEmpty(),
-                perMillePlaceholder: Utils.Function.getEmpty()
+                percentagePlaceholder: empty,
+                perMillePlaceholder: empty
             };
         }
     }
+
+    /** @private */
+    var empty = Utils.Function.getEmpty();
 }

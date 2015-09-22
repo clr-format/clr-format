@@ -18,25 +18,9 @@ namespace Format.Globalization.Numeric.Specifiers {
      */
     export class IntlCustomOptionsProvider implements Globalization.OptionsProvider<Intl.NumberFormatOptions, number> {
 
-        private options: Intl.NumberFormatOptions;
+        private options_: Intl.NumberFormatOptions;
 
-        private parser: CustomParser;
-
-        // Arrow syntax used to preserve 'this' context inside the function at compile time
-        private decoractingCharResolver: () => void = (): void => {
-
-            let formatChar = this.parser.getCurrentChar();
-
-            if (this.parser.isBeforeNumericSpecifiers()) {
-                this.options.prefixDecorator += formatChar;
-            }
-            else if (this.parser.isAfterNumericSpecifiers()) {
-                this.options.suffixDecorator += formatChar;
-            }
-            else {
-                this.setInternalDecorator(formatChar);
-            }
-        };
+        private parser_: CustomParser;
 
         /**
          * Creates an instance with base formatting options which will be extended and/or overridden by resolved options.
@@ -48,7 +32,7 @@ namespace Format.Globalization.Numeric.Specifiers {
                 throw new Errors.ArgumentNullError("numberOptions");
             }
 
-            this.options = Utils.extend(numberOptions, <Intl.NumberFormatOptions> {
+            this.options_ = Utils.extend(numberOptions, <Intl.NumberFormatOptions> {
                 noDigits: true,
                 noLeadingZeroIntegerDigit: true,
                 valueDivisor: 1,
@@ -65,181 +49,200 @@ namespace Format.Globalization.Numeric.Specifiers {
          */
         public resolveOptions(format: string, value: number): Intl.NumberFormatOptions {
 
-            format = this.getSectionFormat(format, value);
+            format = this.getSectionFormat_(format, value);
 
-            this.parseOptions(format);
+            this.parseOptions_(format);
 
-            return this.stripDefaultOptions(value);
+            return this.stripDefaultOptions_(value);
         }
 
-        private parseOptions(format: string): void {
+        private parseOptions_(format: string): void {
 
             if (!format) {
                 return;
             }
 
-            this.parser = new CustomParser(format);
-            this.parser.doParse(this.resolvers, this.decoractingCharResolver);
+            this.parser_ = new CustomParser(format);
+            this.parser_.doParse(this.resolvers_, this.resolveDecoractingChar_);
 
-            this.options.minimumIntegerDigits = this.parser.getDigitsBeforeDecimal();
-            this.options.minimumFractionDigits = this.parser.getZeroPlaceholderCountAfterDecimal();
-            this.options.maximumFractionDigits = this.parser.getNumberPlaceholderCountAfterDecimal();
+            this.options_.minimumIntegerDigits = this.parser_.getDigitsBeforeDecimal();
+            this.options_.minimumFractionDigits = this.parser_.getZeroPlaceholderCountAfterDecimal();
+            this.options_.maximumFractionDigits = this.parser_.getNumberPlaceholderCountAfterDecimal();
         }
 
-        private stripDefaultOptions(value: number): Intl.NumberFormatOptions {
+        private stripDefaultOptions_(value: number): Intl.NumberFormatOptions {
 
-            if (this.options.valueDivisor === 1) {
-                delete this.options.valueDivisor;
+            if (this.options_.valueDivisor === 1) {
+                delete this.options_.valueDivisor;
             }
 
-            if (Utils.isEmpty(this.options.internalDecorators)) {
-                delete this.options.internalDecorators;
+            if (Utils.isEmpty(this.options_.internalDecorators)) {
+                delete this.options_.internalDecorators;
             }
 
-            return this.stripDigitOptions(value);
+            return this.stripDigitOptions_(value);
         }
 
-        private stripDigitOptions(value: number): Intl.NumberFormatOptions {
+        private stripDigitOptions_(value: number): Intl.NumberFormatOptions {
 
-            if (this.options.valueDivisor) {
-                value /= this.options.valueDivisor;
+            if (this.options_.valueDivisor) {
+                value /= this.options_.valueDivisor;
             }
 
-            if (this.options.style === StandardSpecifiers[StandardSpecifiers.exponential] ||
-                !(this.options.noLeadingZeroIntegerDigit && Math.abs(value) < 1)) {
-                delete this.options.noLeadingZeroIntegerDigit;
+            let styles = Specifiers.Standard;
+
+            if (this.options_.style === styles[styles.exponential] ||
+                !(this.options_.noLeadingZeroIntegerDigit && Math.abs(value) < 1)) {
+                delete this.options_.noLeadingZeroIntegerDigit;
             }
 
-            if (!this.options.noDigits) {
-                delete this.options.noDigits;
+            if (!this.options_.noDigits) {
+                delete this.options_.noDigits;
             }
 
-            return Utils.removeEmpty(this.options);
+            return Utils.removeEmpty(this.options_);
         }
 
-        private getSectionFormat(format: string, value: number): string {
+        private getSectionFormat_(format: string, value: number): string {
 
-            if (format.indexOf(CustomSpecifiers.sectionSeparator) === -1) {
+            if (format.indexOf(Specifiers.Custom.sectionSeparator) === -1) {
                 return format;
             }
 
             let sections = CustomParser.getSections(format);
-            if (this.tryNonZeroSectionFormat(sections, value)) {
+            if (this.tryNonZeroSectionFormat_(sections, value)) {
                 return "";
             }
 
             return sections[2] || sections[0];
         }
 
-        private tryNonZeroSectionFormat(sections: string[], value: number): boolean {
+        private tryNonZeroSectionFormat_(sections: string[], value: number): boolean {
             if (value > 0) {
-                return this.tryRoundToZeroFormat(sections[0], value);
+                return this.tryRoundToZeroFormat_(sections[0], value);
             }
             if (value < 0) {
-                return this.tryNegativeZeroSectionFormat(sections, value);
+                return this.tryNegativeZeroSectionFormat_(sections, value);
             }
         }
 
-        private tryNegativeZeroSectionFormat(sections: string[], value: number): boolean {
+        private tryNegativeZeroSectionFormat_(sections: string[], value: number): boolean {
 
             let nonZeroSectionFormat = sections[1];
             if (nonZeroSectionFormat) {
-                this.options.valueDivisor = -1;
+                this.options_.valueDivisor = -1;
             }
             else {
                 nonZeroSectionFormat = sections[0];
             }
 
-            return this.tryRoundToZeroFormat(nonZeroSectionFormat, value);
+            return this.tryRoundToZeroFormat_(nonZeroSectionFormat, value);
         }
 
-        private tryRoundToZeroFormat(nonZeroSectionFormat: string, value: number): boolean {
+        private tryRoundToZeroFormat_(nonZeroSectionFormat: string, value: number): boolean {
 
             let nonZeroProvider = new IntlCustomOptionsProvider({});
-            nonZeroProvider.parseOptions(nonZeroSectionFormat);
+            nonZeroProvider.parseOptions_(nonZeroSectionFormat);
 
-            if (+value.toFixed(nonZeroProvider.options.maximumFractionDigits) !== 0) {
-                nonZeroProvider.options.valueDivisor *= this.options.valueDivisor;
-                Utils.extend(this.options, nonZeroProvider.options);
+            if (+value.toFixed(nonZeroProvider.options_.maximumFractionDigits) !== 0) {
+                nonZeroProvider.options_.valueDivisor *= this.options_.valueDivisor;
+                Utils.extend(this.options_, nonZeroProvider.options_);
 
                 return true;
             }
         }
 
-        private setInternalDecorator(formatChar: string): void {
+        private resetValueDivisor_(): void {
 
-            let indexFromDecimal = this.parser.getIndexFromDecimal(),
-                currentDecorator = this.options.internalDecorators[indexFromDecimal] || "";
-
-            this.options.internalDecorators[indexFromDecimal] = currentDecorator + formatChar;
-        }
-
-        private resetValueDivisor(): void {
-
-            let absoluteDivisor = Math.abs(this.options.valueDivisor);
+            let absoluteDivisor = Math.abs(this.options_.valueDivisor);
             if (absoluteDivisor >= 1) {
-                this.options.valueDivisor /= absoluteDivisor;
+                this.options_.valueDivisor /= absoluteDivisor;
             }
         }
 
         /* tslint:disable:member-ordering */
 
-        private resolvers: Specifiers.CustomSpecifiersMap< () => void> = {
+        // Arrow syntax used to preserve 'this' context inside the function at compile time
+        private resolveDecoractingChar_: () => void = (): void => {
+
+            let formatChar = this.parser_.getCurrentChar();
+
+            if (this.parser_.isBeforeNumericSpecifiers()) {
+                this.options_.prefixDecorator += formatChar;
+            }
+            else if (this.parser_.isAfterNumericSpecifiers()) {
+                this.options_.suffixDecorator += formatChar;
+            }
+            else {
+                this.setInternalDecorator_(formatChar);
+            }
+        };
+
+        private setInternalDecorator_(formatChar: string): void {
+
+            let indexFromDecimal = this.parser_.getIndexFromDecimal(),
+                currentDecorator = this.options_.internalDecorators[indexFromDecimal] || "";
+
+            this.options_.internalDecorators[indexFromDecimal] = currentDecorator + formatChar;
+        }
+
+        private resolvers_: Specifiers.CustomSpecifiersMap< () => void> = {
 
             /** See: https://msdn.microsoft.com/library/0c899ak8.aspx#Specifier0 */
             zeroPlaceholder: (): void => {
-                this.resolvers.digitPlaceholder();
-                if (!this.parser.isAfterDecimal()) {
-                    this.options.noLeadingZeroIntegerDigit = false;
+                this.resolvers_.digitPlaceholder();
+                if (!this.parser_.isAfterDecimal()) {
+                    this.options_.noLeadingZeroIntegerDigit = false;
                 }
             },
 
             /** See: https://msdn.microsoft.com/library/0c899ak8.aspx#SpecifierD */
             digitPlaceholder: (): void => {
-                this.options.noDigits = false;
+                this.options_.noDigits = false;
             },
 
             /** See: https://msdn.microsoft.com/library/0c899ak8.aspx#SpecifierPt */
             decimalPoint: (): void => {
-                this.resolvers.digitPlaceholder();
+                this.resolvers_.digitPlaceholder();
             },
 
             /** See: https://msdn.microsoft.com/library/0c899ak8.aspx#SpecifierTh */
             groupSeparatorOrNumberScaling: (): void => {
-                if (!this.parser.isBeforeNumericSpecifiers()) {
-                    if (!this.parser.isAfterDecimal() && !this.parser.isAfterNumericSpecifiers()) {
-                        this.options.useGrouping = true;
+                if (!this.parser_.isBeforeNumericSpecifiers()) {
+                    if (!this.parser_.isAfterDecimal() && !this.parser_.isAfterNumericSpecifiers()) {
+                        this.options_.useGrouping = true;
                     }
-                    else if (Math.abs(this.options.valueDivisor) >= 1 && this.parser.isImmediateAfterNumericSpecifiers()) {
-                        this.options.valueDivisor *= 1000;
+                    else if (Math.abs(this.options_.valueDivisor) >= 1 && this.parser_.isImmediateAfterNumericSpecifiers()) {
+                        this.options_.valueDivisor *= 1000;
                     }
                 }
             },
 
             /** See: https://msdn.microsoft.com/library/0c899ak8.aspx#SpecifierPct */
             percentagePlaceholder: (): void => {
-                this.decoractingCharResolver();
-                this.resetValueDivisor();
-                this.options.valueDivisor /= 100;
+                this.resolveDecoractingChar_();
+                this.resetValueDivisor_();
+                this.options_.valueDivisor /= 100;
             },
 
             /** See: https://msdn.microsoft.com/library/0c899ak8.aspx#SpecifierPerMille */
             perMillePlaceholder: (): void => {
-                this.decoractingCharResolver();
-                this.resetValueDivisor();
-                this.options.valueDivisor /= 1000;
+                this.resolveDecoractingChar_();
+                this.resetValueDivisor_();
+                this.options_.valueDivisor /= 1000;
             },
 
             /** See: https://msdn.microsoft.com/library/0c899ak8.aspx#SpecifierExponent */
             exponent: (): void => {
-                if (this.parser.isExponentMatched()) {
-                    this.options.style = StandardSpecifiers[StandardSpecifiers.exponential];
-                    this.options.upperCase = this.parser.isExponentUppercase();
-                    this.options.negativellySignedExponent = this.parser.getExponentSign() !== "+";
-                    this.options.minimumExponentDigits = this.parser.getExponentPlaceholderCount();
+                if (this.parser_.isExponentMatched()) {
+                    let styles = Specifiers.Standard;
+                    this.options_.style = styles[styles.exponential];
+                    this.options_.upperCase = this.parser_.isExponentUppercase();
+                    this.options_.negativellySignedExponent = this.parser_.getExponentSign() !== "+";
+                    this.options_.minimumExponentDigits = this.parser_.getExponentPlaceholderCount();
                 }
                 else {
-                    this.decoractingCharResolver();
+                    this.resolveDecoractingChar_();
                 }
             },
 

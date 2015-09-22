@@ -4,7 +4,7 @@
 
 namespace Format.Globalization.Numeric {
 
-    describe("IntlOptionsProvider", () => {
+    describe("Numeric.IntlOptionsProvider", () => {
 
         let intlOptions: Intl.NumberFormatOptions;
         let intlOptionsProvider: IntlOptionsProvider;
@@ -24,8 +24,9 @@ namespace Format.Globalization.Numeric {
 
             createInstance({ minimumFractionDigits: 1 });
 
-            expect(intlOptionsProviderAccessor.options).toEqual(intlOptions);
-            expect(intlOptionsProviderAccessor.options).not.toBe(intlOptions);
+            expect(intlOptionsProvider).toBeDefined();
+            expect(intlOptionsProviderAccessor.options_).toEqual(intlOptions);
+            expect(intlOptionsProviderAccessor.options_).not.toBe(intlOptions);
         });
 
         it("constructor should throw an ArgumentNullError for parameter(s) with null or undefined values", () => {

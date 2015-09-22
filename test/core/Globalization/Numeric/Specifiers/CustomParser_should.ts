@@ -19,9 +19,10 @@ namespace Format.Globalization.Numeric.Specifiers {
 
             createInstance("#.000");
 
-            expect(customParserAccessor.index).toBe(0);
-            expect(customParserAccessor.format).toBe(numericFormat);
-            expect(customParserAccessor.lookahead).toBeDefined();
+            expect(customParser).toBeDefined();
+            expect(customParserAccessor.index_).toBe(0);
+            expect(customParserAccessor.format_).toBe(numericFormat);
+            expect(customParserAccessor.lookahead_).toBeDefined();
         });
 
         it("constructor should throw an ArgumentNullError for parameter(s) with null or undefined values", () => {

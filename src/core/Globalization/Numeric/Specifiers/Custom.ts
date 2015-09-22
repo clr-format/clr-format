@@ -64,7 +64,7 @@ namespace Format.Globalization.Numeric.Specifiers {
      *
      * See: https://msdn.microsoft.com/library/0c899ak8.aspx
      */
-    export let CustomSpecifiers = Utils.mapValuesAsKeys(<CustomSpecifiersMap<string>> {
+    export let Custom = Utils.mapValuesAsKeys(<CustomSpecifiersMap<string>> {
         zeroPlaceholder: "0",
         digitPlaceholder: "#",
         decimalPoint: ".",

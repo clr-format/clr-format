@@ -8,7 +8,7 @@
 namespace Format.Globalization.Numeric {
 
     /** @private */
-    let styles = Specifiers.StandardSpecifiers;
+    let styles = Specifiers.Standard;
 
     /**
      * Provides culture-specific formatting for numeric values by using the Intl namespace.

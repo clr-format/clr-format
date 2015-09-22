@@ -48,7 +48,7 @@ namespace Format.Globalization.Numeric.Specifiers {
      *
      * See: https://msdn.microsoft.com/library/dwhawy9k.aspx
      */
-    export let StandardSpecifiers = Utils.mapValuesAsKeys(<StandardSpecifiersMap<string>> {
+    export let Standard = Utils.mapValuesAsKeys(<StandardSpecifiersMap<string>> {
         currency: "C",
         decimal: "D",
         exponential: "E",

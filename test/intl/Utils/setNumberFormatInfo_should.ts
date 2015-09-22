@@ -24,7 +24,7 @@ namespace Format.Utils {
         it("should set the proper values for different locales", () => {
 
             let locale = "en-US",
-                styles = Globalization.Numeric.Specifiers.StandardSpecifiers,
+                styles = Globalization.Numeric.Specifiers.Standard,
                 decimalOptions = { style: styles[styles.decimal] },
                 currencyOptions = { style: styles[styles.currency], currency: "USD", useGrouping: true };
 

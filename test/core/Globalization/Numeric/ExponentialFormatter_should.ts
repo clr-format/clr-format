@@ -27,11 +27,12 @@ namespace Format.Globalization.Numeric {
 
             setOptions(intlOptions);
 
-            expect(exponentialFormatterAccessor.minimumIntegerDigits).toBe(intlOptions.minimumIntegerDigits);
-            expect(exponentialFormatterAccessor.minimumFractionDigits).toBe(intlOptions.minimumFractionDigits);
-            expect(exponentialFormatterAccessor.maximumFractionDigits).toBe(intlOptions.maximumFractionDigits);
-            expect(exponentialFormatterAccessor.minimumExponentDigits).toBe(intlOptions.minimumExponentDigits);
-            expect(exponentialFormatterAccessor.negativellySignedExponent).toBe(intlOptions.negativellySignedExponent);
+            expect(exponentialFormatter).toBeDefined();
+            expect(exponentialFormatterAccessor.minimumIntegerDigits_).toBe(intlOptions.minimumIntegerDigits);
+            expect(exponentialFormatterAccessor.minimumFractionDigits_).toBe(intlOptions.minimumFractionDigits);
+            expect(exponentialFormatterAccessor.maximumFractionDigits_).toBe(intlOptions.maximumFractionDigits);
+            expect(exponentialFormatterAccessor.minimumExponentDigits_).toBe(intlOptions.minimumExponentDigits);
+            expect(exponentialFormatterAccessor.negativellySignedExponent_).toBe(intlOptions.negativellySignedExponent);
         });
 
         it("constructor should throw an ArgumentNullError for parameter(s) with null or undefined values", () => {

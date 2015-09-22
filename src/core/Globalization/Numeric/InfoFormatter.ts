@@ -28,10 +28,10 @@ namespace Format.Globalization.Numeric {
         protected formatInfo: NumberFormatInfo;
         protected decorationFormatter: DecorationFormatter<T>;
 
-        private value: number;
-        private baseOptions: T;
-        private optionsProvider: OptionsProvider<T>;
-        private optionsProviderConstructor: { new (baseOptions: T): OptionsProvider<T> };
+        private value_: number;
+        private baseOptions_: T;
+        private optionsProvider_: OptionsProvider<T>;
+        private optionsProviderConstructor_: { new (baseOptions: T): OptionsProvider<T> };
 
         /**
          * Creates an instance with base formatting options and initializes an options provider that resolves concrete format options.
@@ -49,9 +49,9 @@ namespace Format.Globalization.Numeric {
                 throw new Errors.ArgumentNullError("formatInfo");
             }
 
-            this.optionsProviderConstructor = optionsProviderConstructor;
+            this.optionsProviderConstructor_ = optionsProviderConstructor;
             this.formatInfo = formatInfo;
-            this.baseOptions = options || <T> {};
+            this.baseOptions_ = options || <T> {};
         }
 
         /**
@@ -62,10 +62,10 @@ namespace Format.Globalization.Numeric {
          */
         public format(format: string, value: number): string {
             try {
-                return this.innerFormat(format, value);
+                return this.innerFormat_(format, value);
             }
             finally {
-                this.cleanup();
+                this.cleanup_();
             }
         }
 
@@ -76,79 +76,80 @@ namespace Format.Globalization.Numeric {
          */
         protected applyOptions(value: number): string {
 
-            let style = this.optionsProvider.getStyle();
+            let style = this.optionsProvider_.getStyle();
             if (style) {
 
-                if (this.formatters.hasOwnProperty(style)) {
-                    return this.formatters[style]();
+                if (this.formatters_.hasOwnProperty(style)) {
+                    return this.formatters_[style]();
                 }
 
                 throw new Errors.ArgumentError(`Option 'style' with base or resolved value '${style}' is not supported`);
             }
 
-            let result = Utils.Numeric.toFixedMinMax(
-                this.value,
-                this.optionsProvider.getMinimumFractionDigits(),
-                this.optionsProvider.getMaximumFractionDigits());
+            let decorationFormatter = this.decorationFormatter,
+                result = Utils.Numeric.toFixedMinMax(
+                    this.value_,
+                    this.optionsProvider_.getMinimumFractionDigits(),
+                    this.optionsProvider_.getMaximumFractionDigits());
 
-            result = this.decorationFormatter.applyIntegerPadding(this.value, result, this.optionsProvider.getMinimumIntegerDigits());
+            result = decorationFormatter.applyIntegerPadding(this.value_, result, this.optionsProvider_.getMinimumIntegerDigits());
 
-            return this.decorationFormatter.applyGrouping(result);
+            return decorationFormatter.applyGrouping(result);
         }
 
-        private innerFormat(format: string, value: number): string {
+        private innerFormat_(format: string, value: number): string {
 
-            this.optionsProvider = new this.optionsProviderConstructor(this.baseOptions);
-            this.resolvedOptions = this.optionsProvider.resolveOptions(format, value);
+            this.optionsProvider_ = new this.optionsProviderConstructor_(this.baseOptions_);
+            this.resolvedOptions = this.optionsProvider_.resolveOptions(format, value);
 
             if (!Utils.isObject(this.resolvedOptions)) {
                 throw new Errors.InvalidOperationError(
                     "Invocation of 'optionsProvider' member's method 'resolveOptions' did not initialize instance member 'resolvedOptions' properly");
             }
 
-            this.setValue(value);
-            this.decorationFormatter = new DecorationFormatter(this.optionsProvider, this.formatInfo);
+            this.setValue_(value);
+            this.decorationFormatter = new DecorationFormatter(this.optionsProvider_, this.formatInfo);
 
-            return this.decorationFormatter.applyOptions(this.value, this.applyOptions(this.value));
+            return this.decorationFormatter.applyOptions(this.value_, this.applyOptions(this.value_));
         }
 
-        private setValue(value: number): void {
+        private setValue_(value: number): void {
 
-            this.value = value;
+            this.value_ = value;
 
-            let valueDivisor = this.optionsProvider.getValueDivisor();
+            let valueDivisor = this.optionsProvider_.getValueDivisor();
             if (valueDivisor) {
-                this.value /= valueDivisor;
+                this.value_ /= valueDivisor;
             }
         }
 
-        private cleanup(): void {
-            delete this.value;
+        private cleanup_(): void {
             delete this.resolvedOptions;
-            delete this.optionsProvider;
             delete this.decorationFormatter;
+            delete this.value_;
+            delete this.optionsProvider_;
         }
 
-        private applyDecimalFormat(): string {
+        private applyDecimalFormat_(): string {
 
             let formatInfo = this.formatInfo;
 
-            let minimumFractionDigits = this.optionsProvider.getMinimumFractionDigits();
+            let minimumFractionDigits = this.optionsProvider_.getMinimumFractionDigits();
             if (minimumFractionDigits === undefined) {
                 minimumFractionDigits = formatInfo.NumberDecimalDigits;
             }
 
-            let maximumFractionDigits = this.optionsProvider.getMaximumFractionDigits();
+            let maximumFractionDigits = this.optionsProvider_.getMaximumFractionDigits();
             if (maximumFractionDigits === undefined) {
                 maximumFractionDigits = formatInfo.NumberDecimalDigits;
             }
 
-            return this.decorationFormatter.applyGrouping(Utils.Numeric.toFixedMinMax(this.value, minimumFractionDigits, maximumFractionDigits));
+            return this.decorationFormatter.applyGrouping(Utils.Numeric.toFixedMinMax(this.value_, minimumFractionDigits, maximumFractionDigits));
         }
 
         /* tslint:disable:member-ordering */
 
-        private formatters: Specifiers.StandardSpecifiersMap<() => string> = {
+        private formatters_: Specifiers.StandardSpecifiersMap<() => string> = {
 
             /** The currency format is not supported by this basic instance. */
             currency: (): string => {
@@ -158,26 +159,26 @@ namespace Format.Globalization.Numeric {
             /** The decimal format converts a number to a string of decimal digits (0-9), prefixed by a minus sign if the number is negative. */
             decimal: (): string => {
 
-                let minimumIntegerDigits = this.optionsProvider.getMinimumSignificantDigits();
+                let minimumIntegerDigits = this.optionsProvider_.getMinimumSignificantDigits();
                 if (minimumIntegerDigits === undefined) {
-                    minimumIntegerDigits = this.optionsProvider.getMinimumIntegerDigits();
+                    minimumIntegerDigits = this.optionsProvider_.getMinimumIntegerDigits();
                 }
 
-                return this.decorationFormatter.applyIntegerPadding(this.value, this.value.toFixed(0), minimumIntegerDigits);
+                return this.decorationFormatter.applyIntegerPadding(this.value_, this.value_.toFixed(0), minimumIntegerDigits);
             },
 
             /** The exponential format converts a number to a string of the form "-d.ddd…E+ddd" or "-d.ddd…e+ddd". */
             exponential: (): string => {
 
-                let exponentialFormatter = new ExponentialFormatter(this.optionsProvider),
-                    result = exponentialFormatter.applyOptions(this.value);
+                let exponentialFormatter = new ExponentialFormatter(this.optionsProvider_),
+                    result = exponentialFormatter.applyOptions(this.value_);
 
                 return this.decorationFormatter.applyUppercase(result);
             },
 
             /** The fixed-point format converts a number to a string of the form "-ddd.ddd…" where each "d" indicates a digit (0-9). */
             fixedPoint: (): string => {
-                return this.applyDecimalFormat();
+                return this.applyDecimalFormat_();
             },
 
             /**
@@ -187,15 +188,15 @@ namespace Format.Globalization.Numeric {
              */
             general: (): string => {
 
-                let maximumSignificantDigits = this.optionsProvider.getMaximumSignificantDigits(),
-                    exponentialFormatter = new ExponentialFormatter(this.optionsProvider),
+                let maximumSignificantDigits = this.optionsProvider_.getMaximumSignificantDigits(),
+                    exponentialFormatter = new ExponentialFormatter(this.optionsProvider_),
                     result: string;
 
-                if (Math.abs(this.value) < 0.0001) {
-                    result = exponentialFormatter.applyOptions(this.value);
+                if (Math.abs(this.value_) < 0.0001) {
+                    result = exponentialFormatter.applyOptions(this.value_);
                 }
                 else {
-                    result = Utils.Numeric.toPrecisionMinMax(this.value, undefined, maximumSignificantDigits);
+                    result = Utils.Numeric.toPrecisionMinMax(this.value_, undefined, maximumSignificantDigits);
                     result = exponentialFormatter.applyExponentPadding(result);
                 }
 
@@ -207,31 +208,32 @@ namespace Format.Globalization.Numeric {
              * "d" indicates a digit (0-9), "," indicates a group separator, and "." indicates a decimal point symbol.
              */
             number: (): string => {
-                return this.applyDecimalFormat();
+                return this.applyDecimalFormat_();
             },
 
             /** The percent format multiplies a number by 100 and converts it to a string that represents a percentage. */
             percent: (): string => {
-                this.value *= 100;
-                return this.formatters.number() + " %";
+                this.value_ *= 100;
+                return this.formatters_.number() + " %";
             },
 
             /** The round-trip format is used to ensure that a numeric value that is converted to a string will be parsed back into the same numeric value. */
             roundTrip: (): string => {
-                return JSON.stringify(this.value);
+                return JSON.stringify(this.value_);
             },
 
             /** The hexadecimal format converts a number to a string of hexadecimal digits. */
             hex: (): string => {
 
-                let minimumHexDigits = this.optionsProvider.getMinimumSignificantDigits();
+                let minimumHexDigits = this.optionsProvider_.getMinimumSignificantDigits();
                 if (minimumHexDigits === undefined) {
-                    minimumHexDigits = this.optionsProvider.getMinimumIntegerDigits();
+                    minimumHexDigits = this.optionsProvider_.getMinimumIntegerDigits();
                 }
 
-                let result = this.decorationFormatter.applyIntegerPadding(this.value, this.value.toString(16), minimumHexDigits);
+                let decorationFormatter = this.decorationFormatter,
+                    result = decorationFormatter.applyIntegerPadding(this.value_, this.value_.toString(16), minimumHexDigits);
 
-                return this.decorationFormatter.applyUppercase(result);
+                return decorationFormatter.applyUppercase(result);
             }
         };
 
