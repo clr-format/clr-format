@@ -41,14 +41,17 @@ namespace Format {
         return innerFormat(provider, format, args);
     };
 
+    /** @private */
+    let CultureInfo = Globalization.CultureInfo;
+
     /**
      * Sets the current default culture (the [[CurrentCulture]] property) based on the supplied locale parameter.
      * @param locale A string holding a [BCP 47 language tag](http://tools.ietf.org/html/rfc5646).
      */
     export function setCulture(locale: string): void {
-        Globalization.CultureInfo.CurrentCulture = locale === "" ?
-            Globalization.CultureInfo.InvariantCulture :
-            new Globalization.CultureInfo(locale);
+        CultureInfo.CurrentCulture = locale === "" ?
+            CultureInfo.InvariantCulture :
+            new CultureInfo(locale);
     }
 
     /**
@@ -79,7 +82,7 @@ namespace Format {
             throw new Errors.ArgumentNullError("format");
         }
 
-        provider = provider || Globalization.CultureInfo.CurrentCulture;
+        provider = provider || CultureInfo.CurrentCulture;
 
         return format.replace(formatItemRegExp, (formatItem: string, indexComponent: string, alignmentComponent: string, formatStringComponent: string) =>
             replaceFormatItem(provider, args, {
@@ -101,7 +104,7 @@ namespace Format {
      */
     export function innerComponentFormat(formatStringComponent: string, value: Object, provider?: Globalization.FormatProvider): string {
         let valueType = Utils.getType(value);
-        provider = provider || Globalization.CultureInfo.CurrentCulture;
+        provider = provider || CultureInfo.CurrentCulture;
         return provider.getFormatter(valueType).format(formatStringComponent, value);
     }
 
@@ -185,7 +188,8 @@ namespace Format {
     };
 
     /** @private */
-    let directions = Utils.Padding.Direction;
+    let padding = Utils.Padding, paddingDirection = padding.Direction;
+
     /** @private */
     var applyAlignment = (formattedString: string, options: FormatItemOptions): string => {
 
@@ -195,18 +199,18 @@ namespace Format {
                 `Alignment component '${options.alignmentComponent}' in format item '${options.formatItem}' must be an integer`);
         }
 
-        let direction = totalWidth < 0 ? directions.Right : directions.Left;
+        let direction = totalWidth < 0 ? paddingDirection.Right : paddingDirection.Left;
         totalWidth = Math.abs(totalWidth);
 
-        return Utils.Padding.pad(formattedString, { totalWidth, direction });
+        return padding.pad(formattedString, { totalWidth, direction });
     };
 
     /** @private */
     var padBraces = (formattedString: string, escapedBracesCount: number, paddingChar: string): string => {
 
-        let direction = paddingChar === "}" ? directions.Right : directions.Left,
+        let direction = paddingChar === "}" ? paddingDirection.Right : paddingDirection.Left,
             totalWidth = formattedString.length + escapedBracesCount;
 
-        return Utils.Padding.pad(formattedString, { totalWidth, direction, paddingChar });
+        return padding.pad(formattedString, { totalWidth, direction, paddingChar });
     };
 }

@@ -123,10 +123,13 @@ namespace Format.Globalization.Numeric {
             numericParts[0] = this.removeNegativeSign_(value, numericParts[0]);
 
             if (numericParts[0].length < paddingWidth) {
-                numericParts[0] = Utils.Padding.pad(numericParts[0], {
+
+                let padding = Utils.Padding;
+
+                numericParts[0] = padding.pad(numericParts[0], {
                     totalWidth: paddingWidth,
                     paddingChar: "0",
-                    direction: Utils.Padding.Direction.Left
+                    direction: padding.Direction.Left
                 });
             }
 

@@ -186,7 +186,8 @@ namespace Format.Globalization.DateTime {
     }
 
     /** @private */
-    var pad = (value: number, totalWidth: number) => Utils.Padding.pad(value + "", { totalWidth, paddingChar: "0", direction: Utils.Padding.Direction.Left }),
+    var padding = Utils.Padding,
+        pad = (value: number, totalWidth: number) => padding.pad(value + "", { totalWidth, paddingChar: "0", direction: padding.Direction.Left }),
         pad2 = (value: number, totalWidth: number = 2) => pad(value, Math.min(totalWidth, 2)),
         customSpecifiers = Specifiers.Custom;
 }
