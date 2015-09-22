@@ -11,7 +11,7 @@ namespace Format.Utils {
         let formatInfo = new Globalization.NumberFormatInfo();
         let supportsIntl = typeof Intl !== "undefined" && typeof Intl.NumberFormat !== "undefined";
 
-        if (!(Utils.IntlResovlers && supportsIntl)) {
+        if (!(Utils.IntlResovlers && IntlResovlers.setNumberFormatInfo_ && supportsIntl)) {
             return;
         }
 
@@ -28,7 +28,7 @@ namespace Format.Utils {
                 decimalOptions = { style: styles[styles.decimal] },
                 currencyOptions = { style: styles[styles.currency], currency: "USD", useGrouping: true };
 
-            IntlResovlers.setNumberFormatInfo(
+            IntlResovlers.setNumberFormatInfo_(
                 formatInfo,
                 getNativeFormatter(locale, decimalOptions),
                 getNativeFormatter(locale, currencyOptions));
@@ -47,7 +47,7 @@ namespace Format.Utils {
 
             locale = "de-DE";
 
-            IntlResovlers.setNumberFormatInfo(
+            IntlResovlers.setNumberFormatInfo_(
                 formatInfo,
                 getNativeFormatter(locale, decimalOptions),
                 getNativeFormatter(locale, currencyOptions));
@@ -62,7 +62,7 @@ namespace Format.Utils {
 
             locale = "fr-FR";
 
-            IntlResovlers.setNumberFormatInfo(
+            IntlResovlers.setNumberFormatInfo_(
                 formatInfo,
                 getNativeFormatter(locale, decimalOptions),
                 getNativeFormatter(locale, currencyOptions));

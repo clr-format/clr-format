@@ -83,7 +83,7 @@ namespace Format.Globalization.Numeric {
         }
 
         private setResolvedFormatInfo(formatInfo: NumberFormatInfo): void {
-            Utils.IntlResovlers.setNumberFormatInfo(
+            Utils.IntlResovlers.setNumberFormatInfo_(
                 this.formatInfo,
                 this.getNativeFormatter({ style: styles[styles.decimal] }),
                 this.getNativeFormatter({ style: styles[styles.currency], currency: "USD", useGrouping: true }));
@@ -108,7 +108,7 @@ namespace Format.Globalization.Numeric {
                 let currencyCode = NumberFormatInfo.CurrentCurrency;
                 if (currencyCode) {
                     this.resolvedOptions.currency = currencyCode;
-                    this.overrideFractionDigits(Utils.IntlResovlers.getCurrencyDecimalDigits(this.formatInfo, currencyCode));
+                    this.overrideFractionDigits(Utils.IntlResovlers.getCurrencyDecimalDigits_(this.formatInfo, currencyCode));
                 }
                 else {
                     throw new Errors.InvalidOperationError("No currency was set (use the Format.setCurrency method to do so)");
@@ -142,7 +142,7 @@ namespace Format.Globalization.Numeric {
                 return invariantlyFormattedString;
             }
 
-            return Utils.IntlResovlers.applyNumberCultureFormatting(
+            return Utils.IntlResovlers.applyNumberCultureFormatting_(
                 invariantlyFormattedString,
                 this.replaceInvariantSymbols);
         }

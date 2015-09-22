@@ -1,13 +1,19 @@
 /// <reference path="../../use-strict" />
 
+/**
+ * An internal [[Format.Utils]] sub-module containing methods related to culture formatting information resolution.
+ *
+ * Because the module and its members cannot be truly internal, refrain from calling its methods directly.
+ */
 namespace Format.Utils.IntlResovlers {
     /**
      * Sets resolved number format info options to the formatInfo instance.
      * @param formatInfo An instance that will provide culture-specific number format information.
      * @param numberSampler An Intl.NumberFormat instance that is set to sample decimal styled numbers.
      * @param currencySampler An Intl.NumberFormat instance that is set to sample currency styled numbers.
+     * @private
      */
-    export function setNumberFormatInfo(formatInfo: Globalization.NumberFormatInfo, decimalSampler: Intl.NumberFormat, currencySampler: Intl.NumberFormat): void {
+    export function setNumberFormatInfo_(formatInfo: Globalization.NumberFormatInfo, decimalSampler: Intl.NumberFormat, currencySampler: Intl.NumberFormat): void {
 
         let sampleValue = 1.2, groupValue = -123456,
             decimalOptions = decimalSampler.resolvedOptions(),
@@ -35,8 +41,9 @@ namespace Format.Utils.IntlResovlers {
      * Returns the currency decimal digits defined in the currenty format info instance or the one that matches the curreny currency.
      * @param formatInfo An instance that provides culture-specific number format information.
      * @param currencyCode The currency code.
+     * @private
      */
-    export function getCurrencyDecimalDigits(formatInfo: Globalization.NumberFormatInfo, currencyCode: string): number {
+    export function getCurrencyDecimalDigits_(formatInfo: Globalization.NumberFormatInfo, currencyCode: string): number {
 
         if (formatInfo.CurrencyDecimalDigits != null) {
             return formatInfo.CurrencyDecimalDigits;
@@ -61,8 +68,9 @@ namespace Format.Utils.IntlResovlers {
      * Returns a culture-variant version of the given invariantly formatted string. Matches decimal separators and negative signs for the callback.
      * @param invariantlyFormattedString An invariantly formatted string to replace with culture-specific symbols.
      * @param replaceInvariantSymbolsCallback A function that handles the symbol replacement.
+     * @private
      */
-    export function applyNumberCultureFormatting(invariantlyFormattedString: string, replaceInvariantSymbolsCallback: (replaceChar: string) => string): string {
+    export function applyNumberCultureFormatting_(invariantlyFormattedString: string, replaceInvariantSymbolsCallback: (replaceChar: string) => string): string {
         return invariantlyFormattedString.replace(
             partialNumberFormatReplacementsRexExp,
             replaceInvariantSymbolsCallback);

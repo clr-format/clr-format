@@ -8,7 +8,7 @@ namespace Format.Utils {
 
     describe("IntlResovlers applyNumberCultureFormatting", () => {
 
-        if (!Utils.IntlResovlers) {
+        if (!(Utils.IntlResovlers && IntlResovlers.applyNumberCultureFormatting_)) {
             return;
         }
 
@@ -26,9 +26,9 @@ namespace Format.Utils {
         };
 
         it("should replace the culture invariant symbols with culture-specific ones", () => {
-            expect(IntlResovlers.applyNumberCultureFormatting("1.2", replaceInvariantSymbols)).toBe("1,2");
-            expect(IntlResovlers.applyNumberCultureFormatting("-123", replaceInvariantSymbols)).toBe("#123");
-            expect(IntlResovlers.applyNumberCultureFormatting("-123.4", replaceInvariantSymbols)).toBe("#123,4");
+            expect(IntlResovlers.applyNumberCultureFormatting_("1.2", replaceInvariantSymbols)).toBe("1,2");
+            expect(IntlResovlers.applyNumberCultureFormatting_("-123", replaceInvariantSymbols)).toBe("#123");
+            expect(IntlResovlers.applyNumberCultureFormatting_("-123.4", replaceInvariantSymbols)).toBe("#123,4");
         });
     });
 }
