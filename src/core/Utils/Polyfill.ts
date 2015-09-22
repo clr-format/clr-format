@@ -83,6 +83,7 @@ namespace Format.Utils.Polyfill {
         return +(valueParts[0] + "e" + exponent);
     };
 
+    // IE8 rounding workaround
     if (+(0.005).toFixed(2) === 0) {
         let originalToFixed = Number.prototype.toFixed;
         Number.prototype.toFixed = function(fractionDigits: number): string {

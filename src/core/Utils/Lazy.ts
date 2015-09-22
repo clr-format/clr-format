@@ -1,9 +1,7 @@
 /// <reference path="../../use-strict" />
 
 /// <reference path="Function" />
-/// <reference path="Constructable" />
 
-/// <reference path="../Errors/ArgumentError" />
 /// <reference path="../Errors/ArgumentNullError" />
 
 namespace Format.Utils {
@@ -19,7 +17,7 @@ namespace Format.Utils {
         private valueError: Error;
         private valueCreated: boolean;
         private valueFactory: () => T;
-        private valueConstructor: Constructable<T>;
+        private valueConstructor: { new (): T; };
 
         /**
          * Initializes a new instance of the class that uses the supplied value factory.
@@ -40,7 +38,7 @@ namespace Format.Utils {
          * @param TStatic The type of object that is being lazily initialized.
          * @param valueConstructor The parameterless constructor that is invoked to produce the lazily initialized value when it is needed.
          */
-        public static fromConstructor<TStatic>(valueConstructor: Constructable<TStatic>): Lazy<TStatic> {
+        public static fromConstructor<TStatic>(valueConstructor: { new (): TStatic; }): Lazy<TStatic> {
 
             if (valueConstructor == null) {
                 throw new Errors.ArgumentNullError("valueConstructor");

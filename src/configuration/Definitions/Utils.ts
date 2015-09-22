@@ -5,27 +5,30 @@
 namespace Format.Config.Definitions {
 
     /** @private */
+    let utils = Utils, text = utils.Text, numeric = utils.Numeric, func = utils.Function, enumerable = utils.Enumerable;
+
+    /** @private */
     let globalRegistry: Indexable<Indexable<Function>> = {},
         globalExceptions: Function[] = [],
         prototypeRegistry: Indexable<Indexable<Function>> = {},
         prototypeExceptions: Function[] = [
-            Utils.Text.isNullOrWhitespace,
-            Utils.Function.getEmpty
+            text.isNullOrWhitespace,
+            func.getEmpty
         ];
 
     export var addUtilsToGlobals = () => {
-        addAll(asStatic, Utils, Object);
-        addAll(asStatic, Utils.Text, String);
-        addAll(asStatic, Utils.Numeric, Number);
-        addAll(asStatic, Utils.Enumerable, Array);
-        addAll(asStatic, Utils.Function, Function);
+        addAll(asStatic, utils, Object);
+        addAll(asStatic, text, String);
+        addAll(asStatic, numeric, Number);
+        addAll(asStatic, enumerable, Array);
+        addAll(asStatic, func, Function);
     };
 
     export var addUtilsToPrototype = () => {
-        addAll(asPrototype, Utils.Text, String.prototype);
-        addAll(asPrototype, Utils.Numeric, Number.prototype);
-        addAll(asPrototype, Utils.Enumerable, Array.prototype);
-        addAll(asPrototype, Utils.Function, Function.prototype);
+        addAll(asPrototype, text, String.prototype);
+        addAll(asPrototype, numeric, Number.prototype);
+        addAll(asPrototype, enumerable, Array.prototype);
+        addAll(asPrototype, func, Function.prototype);
     };
 
     export var removeUtilGlobals = () => unregister(globalRegistry);
@@ -33,7 +36,7 @@ namespace Format.Config.Definitions {
 
     export var addToPrototype = (bareFunction: Function, hostObject: any, name: string) => {
 
-        let actualName = Utils.Function.getName(bareFunction);
+        let actualName = func.getName(bareFunction);
         if (actualName === "" && !name) {
             throw new Errors.ArgumentError("Argument 'name' must be supplied for anonymous function declarations");
         }
@@ -67,7 +70,7 @@ namespace Format.Config.Definitions {
             unregister(globalRegistry);
 
             throw new Errors.InvalidOperationError(
-                `Argument 'name' is invalid. A property named '${name}' already exists in '${ Utils.Function.getName(<any> globalObject) }'`);
+                `Argument 'name' is invalid. A property named '${name}' already exists in '${ func.getName(<any> globalObject) }'`);
         }
 
         globalObject[name] = utilFunction;
@@ -85,7 +88,7 @@ namespace Format.Config.Definitions {
             unregister(prototypeRegistry);
 
             throw new Errors.InvalidOperationError(
-                `Argument 'name' is invalid. A property named '${name}' already exists in '${ Utils.Function.getName(protoObject.constructor) }.prototype'`);
+                `Argument 'name' is invalid. A property named '${name}' already exists in '${ func.getName(protoObject.constructor) }.prototype'`);
         }
 
         protoObject[name] = getProtoWrapper(utilFunction);
@@ -94,7 +97,7 @@ namespace Format.Config.Definitions {
 
     /** @private */
     var ignoreUtil = (utilFunction: Function, registryEntry: Indexable<Function>, exceptions: Function[]): boolean => {
-        return registryEntry !== undefined || Utils.Polyfill.indexOf(exceptions, utilFunction) !== -1;
+        return registryEntry !== undefined || utils.Polyfill.indexOf(exceptions, utilFunction) !== -1;
     };
 
     /** @private */

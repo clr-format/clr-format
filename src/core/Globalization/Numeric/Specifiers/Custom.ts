@@ -60,7 +60,7 @@ namespace Format.Globalization.Numeric.Specifiers {
     }
 
     /**
-     * Exposes a map of the custom numeric format specifiers to their character or regexp representation as well as the inverse relation.
+     * Exposes a map of the custom numeric format specifiers to their character representation as well as the inverse relation.
      *
      * See: https://msdn.microsoft.com/library/0c899ak8.aspx
      */

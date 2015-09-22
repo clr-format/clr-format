@@ -9,6 +9,7 @@
 /// <reference path="../CustomFormatter" />
 /// <reference path="../NumberFormatInfo" />
 
+/// <reference path="../../Utils/Object" />
 /// <reference path="../../Utils/Numeric" />
 
 /// <reference path="../../Errors/ArgumentError" />
@@ -23,11 +24,8 @@ namespace Format.Globalization.Numeric {
      */
     export class InfoFormatter<T> implements CustomFormatter {
 
-        /** Gets the result of the [[baseOptions]] field extended with concrete options returned from the [[optionsProvider]] instance. */
         protected resolvedOptions: T;
         protected formatInfo: NumberFormatInfo;
-
-        /** Gets the initialized formatting [[DecorationFormatter]] instance. */
         protected decorationFormatter: DecorationFormatter<T>;
 
         private value: number;

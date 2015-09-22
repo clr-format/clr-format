@@ -61,14 +61,16 @@ namespace Format.Config.Definitions {
     };
 
     /** @private */
-    let getPaddingProto = (direction: Utils.Padding.Direction): (width: number, char?: string) => string =>
+    let padding = Utils.Padding,
+        getPaddingProto = (direction: Utils.Padding.Direction): (width: number, char?: string) => string =>
         function(totalWidth: number, paddingChar?: string): string {
-            return Utils.Padding.pad(this, { direction, totalWidth, paddingChar });
+            return padding.pad(this, { direction, totalWidth, paddingChar });
         };
 
     /** @private */
-    var padLeftProto = getPaddingProto(Utils.Padding.Direction.Left),
-        padRightProto = getPaddingProto(Utils.Padding.Direction.Right),
+    var paddingDirection = padding.Direction,
+        padLeftProto = getPaddingProto(paddingDirection.Left),
+        padRightProto = getPaddingProto(paddingDirection.Right),
         numberToStringProto = Number.prototype.toString,
         dateToStringProto = Date.prototype.toString;
 

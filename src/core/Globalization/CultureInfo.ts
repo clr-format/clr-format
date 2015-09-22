@@ -24,32 +24,14 @@ namespace Format.Globalization {
         /** Gets the [[CultureInfo]] object that is culture-independent (invariant). */
         public static InvariantCulture: CultureInfo;
 
-        /** Core implementation of a [[CustomFormatter]] for `Object` and `Array` instances. */
-        private static objectFormatter: CustomFormatter = {
-            /**
-             * Converts the value of the given object using `JSON.stringify`.
-             * @param value An object to format.
-             */
-            format: (format: string, value: Object): string => value ? JSON.stringify(value) : ""
-        };
-
-        /** Fallback implementation of a [[CustomFormatter]] for any objects. */
-        private static fallbackFormatter: CustomFormatter = {
-            /**
-             * Converts the value of the given object using the `+ ""` operator.
-             * @param value An object to format.
-             */
-            format: (format: string, value: Object): string => value != null ? value + "" : ""
-        };
-
         /** Gets or sets a [[DateTimeFormatInfo]] that defines the culturally appropriate format of displaying dates and times. */
         public DateTimeFormat: DateTimeFormatInfo;
 
         /** Gets or sets a [[NumberFormatInfo]] that defines the culturally appropriate format of displaying numbers, currency, and percentage. */
         public NumberFormat: NumberFormatInfo;
 
-        protected locales: string|string[];
-        protected formatters: Indexable<CustomFormatter>;
+        private locales: string|string[];
+        private formatters: Indexable<CustomFormatter>;
 
         /**
          * Initializes a new instance of the [[CultureInfo]] class based on the culture specified by *locales*.
@@ -70,23 +52,41 @@ namespace Format.Globalization {
         }
 
         public getFormatter(type: string): CustomFormatter {
-            return this.formatters[type] || this.getFallbackFormatter();
+            return this.formatters[type] || CultureInfo.fallbackFormatter;
         }
 
-        protected getFormatters(locales: string|string[]): Indexable<CustomFormatter> {
+        private getFormatters(locales: string|string[]): Indexable<CustomFormatter> {
 
-            let formatters: Indexable<CustomFormatter> = {};
+            let formatters: Indexable<CustomFormatter> = {}, types = Utils.Types;
 
-            formatters[Utils.Types.Date] = this.DateTimeFormat.getFormatter(Utils.Types.Date);
-            formatters[Utils.Types.Number] = this.NumberFormat.getFormatter(Utils.Types.Number);
-            formatters[Utils.Types.Object] = formatters[Utils.Types.Array] = CultureInfo.objectFormatter;
+            formatters[types.Date] = this.DateTimeFormat.getFormatter(types.Date);
+            formatters[types.Number] = this.NumberFormat.getFormatter(types.Number);
+            formatters[types.Object] = formatters[types.Array] = CultureInfo.objectFormatter;
 
             return formatters;
         }
 
-        protected getFallbackFormatter(): CustomFormatter {
-            return CultureInfo.fallbackFormatter;
-        }
+        /* tslint:disable:member-ordering */
+
+        /** Core implementation of a [[CustomFormatter]] for `Object` and `Array` instances. */
+        private static objectFormatter: CustomFormatter = {
+            /**
+             * Converts the value of the given object using `JSON.stringify`.
+             * @param value An object to format.
+             */
+            format: (format: string, value: Object): string => value ? JSON.stringify(value) : ""
+        };
+
+        /** Fallback implementation of a [[CustomFormatter]] for any objects. */
+        private static fallbackFormatter: CustomFormatter = {
+            /**
+             * Converts the value of the given object using the `+ ""` operator.
+             * @param value An object to format.
+             */
+            format: (format: string, value: Object): string => value != null ? value + "" : ""
+        };
+
+        /* tslint:enable:member-ordering */
     }
 
     CultureInfo.CurrentCulture = CultureInfo.InvariantCulture = new CultureInfo("");

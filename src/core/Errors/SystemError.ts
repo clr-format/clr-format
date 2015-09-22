@@ -1,7 +1,5 @@
 /// <reference path="../../use-strict" />
 
-/// <reference path="../Utils/Function" />
-
 /// <reference path="ErrorClass" />
 
 namespace Format.Errors {

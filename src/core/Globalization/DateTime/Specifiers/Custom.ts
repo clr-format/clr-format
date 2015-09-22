@@ -55,7 +55,7 @@ namespace Format.Globalization.DateTime.Specifiers {
     }
 
     /**
-     * Exposes a map of the custom date and time format specifiers to their character or regexp representation as well as the inverse relation.
+     * Exposes a map of the custom date and time format specifiers to their character representation as well as the inverse relation.
      *
      * See: https://msdn.microsoft.com/library/8kb3ddd4.aspx
      */

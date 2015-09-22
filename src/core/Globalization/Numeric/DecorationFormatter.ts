@@ -224,11 +224,12 @@ namespace Format.Globalization.Numeric {
 
         private applyInternalDecorator(numericParts: string[], index: number, decorator: string): void {
 
-            let integralPart = numericParts[0];
+            let integralPart = numericParts[0],
+                insert = Utils.Text.insert;
 
             if (index < 0) {
                 index += integralPart.length + 1;
-                numericParts[0] = Utils.Text.insert(integralPart, Math.max(0, index), decorator);
+                numericParts[0] = insert(integralPart, Math.max(0, index), decorator);
             }
             else {
                 index += this.decimalOffset;
@@ -236,10 +237,10 @@ namespace Format.Globalization.Numeric {
 
                 let decimalPart = numericParts[1];
                 if (decimalPart) {
-                    numericParts[1] = Utils.Text.insert(decimalPart, index, decorator);
+                    numericParts[1] = insert(decimalPart, index, decorator);
                 }
                 else {
-                    numericParts[0] = Utils.Text.insert(integralPart, Math.min(index, integralPart.length), decorator);
+                    numericParts[0] = insert(integralPart, Math.min(index, integralPart.length), decorator);
                 }
             }
         }

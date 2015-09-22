@@ -16,15 +16,14 @@ namespace Format.Globalization.DateTime {
      */
     export class InfoFormatter<T> implements CustomFormatter {
 
-        /** Gets the result of the [[baseOptions]] field extended with concrete options returned from the [[optionsProvider]] instance. */
         protected resolvedOptions: T;
         protected formatInfo: DateTimeFormatInfo;
 
         private value: Date;
         private baseOptions: T;
+        private specifiersFormatter: CustomFormatter;
         private optionsProvider: OptionsProvider<T>;
         private optionsProviderConstructor: { new (baseOptions: T): OptionsProvider<T> };
-        private specifiersFormatter: CustomFormatter;
 
         /**
          * Creates an instance with base formatting options and initializes an options provider that resolves concrete format options.

@@ -115,9 +115,12 @@ namespace Format.Globalization.Numeric {
         }
 
         private getPaddedExponent(exponent: string): string {
-            return Utils.Padding.pad(exponent, {
+
+            let padding = Utils.Padding;
+
+            return padding.pad(exponent, {
                 totalWidth: this.minimumExponentDigits,
-                direction: Utils.Padding.Direction.Left,
+                direction: padding.Direction.Left,
                 paddingChar: "0"
             });
         }
@@ -252,8 +255,10 @@ namespace Format.Globalization.Numeric {
 
         private resolveOffset(exponentialValue: string, customState: CustomExponentialState): string {
 
+            let padding = Utils.Padding;
+
             if (customState.offset > 0) {
-                exponentialValue = Utils.Padding.pad(exponentialValue, {
+                exponentialValue = padding.pad(exponentialValue, {
                     totalWidth: exponentialValue.length + customState.offset,
                     paddingChar: "0"
                 });
@@ -265,7 +270,7 @@ namespace Format.Globalization.Numeric {
 
             let decimalOffset = this.minimumFractionDigits - (customState.decimalDigits || 0);
             if (decimalOffset > 0) {
-                exponentialValue = Utils.Padding.pad(exponentialValue, {
+                exponentialValue = padding.pad(exponentialValue, {
                     totalWidth: exponentialValue.length + decimalOffset,
                     paddingChar: "0"
                 });
