@@ -52,7 +52,7 @@ module.exports.test = function (minifyOpts) {
 
     var build = gulp.src(paths.tests)
         .pipe(tsc(tsProjects.testsBrowser)).js
-        .pipe(stripLine(/\(\w+Accessor\.\w+_\)/))
+        .pipe(stripLine(/\(\w+Accessor\.\w+_(?:\.\w+)?\)/))
         .pipe(concat(files.testsBrowser))
         .pipe(wrap({ src: paths.iifeTemplate }));
 
