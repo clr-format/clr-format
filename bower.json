@@ -15,8 +15,14 @@
     "clr",
     "number",
     "date",
+    "time",
     "globalization",
-    "intl"
+    "intl",
+    "composite",
+    "formatting",
+    "custom",
+    "standard",
+    "specifiers"
   ],
   "authors": [
     "Viktor Mitev"

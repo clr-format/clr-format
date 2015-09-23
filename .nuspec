@@ -9,36 +9,18 @@
         <projectUrl>https://github.com/clr-format/clr-format</projectUrl>
         <iconUrl>https://avatars3.githubusercontent.com/u/13048800</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <summary>A lightweight, modular and stand-alone JavaScript implementation of a string formatting function that supports composite format strings, globalization and customization</summary>
+        <summary>A lightweight, modular and stand-alone JavaScript implementation of a string formatting function that fully supports composite formatting, globalization and customization</summary>
         <description>
-The implementation of this string formatting function is inspired by .NET's (and other Microsoft® products') Composite Formatting feature. Therefore the final behaviour should be similar to what's described in the Getting started with the String.Format method MSDN article. The main difference is that method names in JavaScript are intrinsically camelcase therefore String.format should be used instead.
+The implementation of this string formatting function is inspired by .NET's (and other Microsoft® products') Composite Formatting feature. Therefore the behaviour and method signatures match what's described in the "Getting started with the String.Format method" MSDN article as closely as possible. The main difference is that method names in JavaScript are intrinsically camelcase therefore String.format should be used instead.
 
-The API documentation can be refered for more details at http://clr-format.github.io/clr-format/
-
-Usage:
-  var formatted = String.format("Value: {0:00-00}", 345.6); // formatted = "Value: 03-46"
-  formatted = String.format("Value: {0,-2}{1}", 1, "text"); // formatted = "Value: 1 text"
-
-  // Using the globalization API (clr-format-intl.js)
-  Format.setCulture("de-DE");
-  formatted = String.format("{0:N2}", -1234.56); // formatted = "-1.234,56"
-  formatted = String.format("{0:#0.0#;(#0.0#,);-0-}", -1234.5); // formatted = "(1,23)"
-
-  Format.setCurrency("EUR");
-  formatted = String.format("{0:c}", 1230); // formatted = "1.230,00 €"
-
-  // Using the chainable configuration API (clr-format-config.js)
-  Format.Config.addFormatToPrototype().addToStringOverload();
-
-  formatted = "Value:{0,10}".format("prototype"); // formatted = "Value: prototype"
-  formatted = (1234.5678).toString("#,0.00"); // formatted = "1,234.57"
+The project's site or the API documentation can be refered for more details at http://clr-format.github.io/clr-format/
         </description>
         <releaseNotes>
-1. Support for all of .NET's standard and custom numeric format strings (except for currency with the invariant culture).
-2. Optional globalization API contained in clr-format-intl.js that allows for culture-specific number and currency formatting via the Format.setCulture and Format.setCurrency methods.
+1. Support for all of .NET's standard and custom format specifiers for number and date objects (except for some currency specifier cases).
+2. Optional globalization API contained in clr-format-intl.js that allows for culture-specific globalization formatting via the Format.setCulture and Format.setCurrency methods.
 3. Optional configuration API contained in clr-format-config.js and defined under the Format.Config namespace. See http://clr-format.github.io/clr-format/modules/format.config.html
         </releaseNotes>
-        <tags>string format javascript typescript number date globalization intl</tags>
+        <tags>string format javascript typescript number date time globalization intl composite formatting custom standard specifiers</tags>
     </metadata>
     <files>
         <file src="dist\*.d.ts" target="content\" />
