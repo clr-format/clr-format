@@ -241,33 +241,35 @@ namespace Format {
             expect(String.format("{0:prefix .X2 suffix}", -1.2)).toBe("-prefix 1X2 suffix");
         });
 
+        let expectStripped = (value: string) => expect(value.replace(/\u200E|\u200F/g, ""));
+
         it("should apply the optional format items' standard date and time format string component to values", () => {
 
             let date = new Date(2015, 8, 21, 13, 4, 55);
             let utcDate = new Date("2015-09-21T10:04:55.000Z");
 
             /** Short Date - https://msdn.microsoft.com/library/az4se3k1.aspx#ShortDate */
-            expect(String.format("{0:d}", date)).toBe("21.9.2015");
+            expectStripped(String.format("{0:d}", date)).toMatch(/21.0?9.2015/);
 
             /** Long Date - https://msdn.microsoft.com/library/az4se3k1.aspx#LongDate */
-            expect(String.format("{0:D}", date)).toBe("Montag, 21. September 2015");
+            expectStripped(String.format("{0:D}", date)).toBe("Montag, 21. September 2015");
 
             /** Full Date Short Time - https://msdn.microsoft.com/library/az4se3k1.aspx#FullDateShortTime */
-            expect(String.format("{0:f}", date)).toBe("Montag, 21. September 2015 13:04");
+            expectStripped(String.format("{0:f}", date)).toMatch(/Montag, 21. September 2015,? 13:04/);
 
             /** Full Date Long Time - https://msdn.microsoft.com/library/az4se3k1.aspx#FullDateLongTime */
-            expect(String.format("{0:F}", date)).toBe("Montag, 21. September 2015 13:04:55");
+            expectStripped(String.format("{0:F}", date)).toMatch(/Montag, 21. September 2015,? 13:04:55/);
 
             /** General Date Short Time - https://msdn.microsoft.com/library/az4se3k1.aspx#GeneralDateShortTime */
-            expect(String.format("{0:g}", date)).toBe("21.9.2015 13:04");
+            expectStripped(String.format("{0:g}", date)).toMatch(/21.0?9.2015,? 13:04/);
 
             /** General Date Long Time - https://msdn.microsoft.com/library/az4se3k1.aspx#GeneralDateLongTime */
-            expect(String.format("{0}", date)).toBe("21.9.2015 13:04:55");
-            expect(String.format("{0:G}", date)).toBe("21.9.2015 13:04:55");
+            expectStripped(String.format("{0}", date)).toMatch(/21.0?9.2015,? 13:04:55/);
+            expectStripped(String.format("{0:G}", date)).toMatch(/21.0?9.2015,? 13:04:55/);
 
             /** Month Day - https://msdn.microsoft.com/library/az4se3k1.aspx#MonthDay */
-            expect(String.format("{0:m}", date)).toBe("21. September");
-            expect(String.format("{0:M}", date)).toBe("21. September");
+            expectStripped(String.format("{0:m}", date)).toBe("21. September");
+            expectStripped(String.format("{0:M}", date)).toBe("21. September");
 
             /** Round-trip - https://msdn.microsoft.com/library/az4se3k1.aspx#Roundtrip */
             expect(String.format("{0:o}", utcDate)).toBe("2015-09-21T10:04:55.000Z");
@@ -281,20 +283,20 @@ namespace Format {
             expect(String.format("{0:s}", date)).toBe("2015-09-21T13:04:55");
 
             /** Short Time - https://msdn.microsoft.com/library/az4se3k1.aspx#ShortTime */
-            expect(String.format("{0:t}", date)).toBe("13:04");
+            expectStripped(String.format("{0:t}", date)).toBe("13:04");
 
             /** Long Time - https://msdn.microsoft.com/library/az4se3k1.aspx#LongTime */
-            expect(String.format("{0:T}", date)).toBe("13:04:55");
+            expectStripped(String.format("{0:T}", date)).toBe("13:04:55");
 
             /** Universal Sortable - https://msdn.microsoft.com/library/az4se3k1.aspx#UniversalSortable */
             expect(String.format("{0:u}", utcDate)).toBe("2015-09-21 10:04:55Z");
 
             /** Universal Full - https://msdn.microsoft.com/library/az4se3k1.aspx#UniversalFull */
-            expect(String.format("{0:U}", utcDate)).toBe("Montag, 21. September 2015 10:04:55");
+            expectStripped(String.format("{0:U}", utcDate)).toMatch(/Montag, 21. September 2015,? 10:04:55/);
 
             /** YearMonth - https://msdn.microsoft.com/library/az4se3k1.aspx#YearMonth */
-            expect(String.format("{0:y}", date)).toBe("September 2015");
-            expect(String.format("{0:Y}", date)).toBe("September 2015");
+            expectStripped(String.format("{0:y}", date)).toBe("September 2015");
+            expectStripped(String.format("{0:Y}", date)).toBe("September 2015");
 
             // Unknown date specifier
             expect(() => String.format("{0:Z}", date)).toThrowError(Errors.FormatError);
@@ -308,13 +310,13 @@ namespace Format {
             date.setDate(6); // 2015-09-06
             expect(String.format("{0:%d}", date)).toBe("6");
             expect(String.format("{0:dd}", date)).toBe("06");
-            expect(String.format("{0:ddd}", date)).toBe("So.");
-            expect(String.format("{0:dddd}", date)).toBe("Sonntag");
+            expect(String.format("{0:ddd}", date)).toMatch(/So\.?/);
+            expectStripped(String.format("{0:dddd}", date)).toBe("Sonntag");
 
             date.setDate(16); // 2015-09-16
             expect(String.format("{0:%d}", date)).toBe("16");
-            expect(String.format("{0:ddd}", date)).toBe("Mi.");
-            expect(String.format("{0:ddddd}", date)).toBe("Mittwoch");
+            expect(String.format("{0:ddd}", date)).toMatch(/Mi\.?/);
+            expectStripped(String.format("{0:ddddd}", date)).toBe("Mittwoch");
 
             // Digit Sub-Second placeholder - https://msdn.microsoft.com/library/8kb3ddd4.aspx#fSpecifier
             date.setMilliseconds(4); // 2015-09-16T00:00:00.003
@@ -359,13 +361,13 @@ namespace Format {
             expect(() => String.format("{0:FFFF}", date)).toThrowError(Errors.FormatError);
 
             // Era placeholder - https://msdn.microsoft.com/library/8kb3ddd4.aspx#gSpecifier
-            date.setFullYear(-date.getFullYear() - 1); // 0001-09-16 B.C.
-            expect(String.format("{0:%g}", date)).toBe("v. Chr.");
-            expect(String.format("{0:gg}", date)).toBe("v. Chr.");
+            date.setFullYear(-1); // -0001-09-16 B.C.
+            expect(String.format("{0:%g}", date)).toMatch(/(?:v\. Chr\.)|(?:B\.C\.)/);
+            expect(String.format("{0:gg}", date)).toMatch(/(?:v\. Chr\.)|(?:B\.C\.)/);
 
             date.setFullYear(2015); // 2015-09-16
-            expect(String.format("{0:gg}", date)).toBe("n. Chr.");
-            expect(String.format("{0:ggg}", date)).toBe("n. Chr.");
+            expect(String.format("{0:gg}", date)).toMatch(/(?:n\. Chr\.)|(?:A\.D\.)/);
+            expect(String.format("{0:ggg}", date)).toMatch(/(?:n\. Chr\.)|(?:A\.D\.)/);
 
             // Hour (12) placeholder - https://msdn.microsoft.com/library/8kb3ddd4.aspx#hSpecifier
             date.setHours(3); // 2015-09-16T03:00:00
@@ -415,13 +417,13 @@ namespace Format {
             date.setMonth(11); // 2015-12-16
             expect(String.format("{0:%M}", date)).toBe("12");
             expect(String.format("{0:MMM}", date)).toBe("Dez");
-            expect(String.format("{0:MMMMM}", date)).toBe("Dezember");
+            expectStripped(String.format("{0:MMMMM}", date)).toBe("Dezember");
 
             date.setMonth(8); // 2015-09-16
             expect(String.format("{0:%M}", date)).toBe("9");
             expect(String.format("{0:MM}", date)).toBe("09");
             expect(String.format("{0:MMM}", date)).toBe("Sep");
-            expect(String.format("{0:MMMM}", date)).toBe("September");
+            expectStripped(String.format("{0:MMMM}", date)).toBe("September");
 
             // Second placeholder - https://msdn.microsoft.com/library/8kb3ddd4.aspx#sSpecifier
             date.setSeconds(8); // 2015-09-16T00:00:08

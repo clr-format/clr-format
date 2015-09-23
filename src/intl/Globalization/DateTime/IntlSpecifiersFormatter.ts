@@ -24,7 +24,10 @@ namespace Format.Globalization.DateTime {
 
         private overrideBaseFormatters(): void {
 
-            this.formatters.eraPlaceholder = () => resolvers.getEra_(this.value, this.formatProvider);
+            let baseEraFormatter = this.formatters.eraPlaceholder;
+
+            this.formatters.eraPlaceholder = () =>
+                resolvers.getEra_(this.value, this.formatProvider) || baseEraFormatter();
 
             let baseMonthFormatter = this.formatters.monthPlaceholder;
 

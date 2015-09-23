@@ -28,7 +28,12 @@ namespace Format.Utils.IntlResovlers {
 
     /** @private */
     export function getEra_(date: any, formatProvider: (resolvedOptions: Intl.DateTimeFormatOptions) => Intl.DateTimeFormat): string {
-        return removeFormatDigits(formatProvider({ year: numeric, era: short }).format(date));
+        try {
+            return removeFormatDigits(formatProvider({ year: numeric, era: short }).format(date));
+        }
+        catch (error) {
+            return "";
+        }
     }
 
     /** @private */
@@ -120,7 +125,7 @@ namespace Format.Utils.IntlResovlers {
 
     /** @private */
     var removeFormatDigits = (formattedValue: string): string => formattedValue.replace(digitsWithWhitespaceRegExp, ""),
-        digitsWithWhitespaceRegExp = /\s*\d+\s*/;
+        digitsWithWhitespaceRegExp = /\s*\d+.?\s*/;
 
     /** @private */
     var getFirstNonDigit = (sample: string, offset: number): string => sample.substring(offset).match(nonDigitSymbolRegExp)[0],

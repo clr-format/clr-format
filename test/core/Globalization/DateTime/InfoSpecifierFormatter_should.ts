@@ -91,7 +91,7 @@ namespace Format.Globalization.DateTime {
             expect(() => infoSpecifierFormatter.format("FFFF", date)).toThrowError(Errors.FormatError);
 
             // Era placeholder - https://msdn.microsoft.com/library/8kb3ddd4.aspx#gSpecifier
-            date.setFullYear(-date.getFullYear() - 1); // 0001-09-16 B.C.
+            date.setFullYear(-1); // -0001-09-16 B.C.
             expect(infoSpecifierFormatter.format("g", date)).toBe("B.C.");
             expect(infoSpecifierFormatter.format("gg", date)).toBe("B.C.");
 

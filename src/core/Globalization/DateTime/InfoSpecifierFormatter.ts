@@ -76,7 +76,7 @@ namespace Format.Globalization.DateTime {
             },
 
             /** See: https://msdn.microsoft.com/library/8kb3ddd4.aspx#gSpecifier */
-            eraPlaceholder: (specifierCount: number): Object =>
+            eraPlaceholder: (): Object =>
                 this.value.getFullYear() < 0 ? "B.C." : "A.D.",
 
             /** See: https://msdn.microsoft.com/library/8kb3ddd4.aspx#hSpecifier */

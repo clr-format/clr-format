@@ -313,7 +313,7 @@ namespace Format {
             expect(() => String.format("{0:FFFF}", date)).toThrowError(Errors.FormatError);
 
             // Era placeholder - https://msdn.microsoft.com/library/8kb3ddd4.aspx#gSpecifier
-            date.setFullYear(-date.getFullYear() - 1); // 0001-09-16 B.C.
+            date.setFullYear(-1); // -0001-09-16 B.C.
             expect(String.format("{0:%g}", date)).toBe("B.C.");
             expect(String.format("{0:gg}", date)).toBe("B.C.");
 
