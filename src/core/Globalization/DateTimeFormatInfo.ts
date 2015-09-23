@@ -98,10 +98,10 @@ namespace Format.Globalization {
         private setInvariantFormatInfo_(): void {
 
             this.AbbreviatedDayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-            this.AbbreviatedMonthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", ""];
+            this.AbbreviatedMonthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
             this.DayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-            this.MonthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", ""];
+            this.MonthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
             this.AMDesignator = "AM";
             this.PMDesignator = "PM";

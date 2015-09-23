@@ -1,10 +1,9 @@
 /// <reference path="../../../use-strict" />
+/// <reference path="../../API" />
 
 /// <reference path="IntlSpecifiersFormatter" />
 
-/// <reference path="../../API" />
-
-/// <reference path="../../../core/Globalization/DateTime/IntlFormatOptions" />
+/// <reference path="../../Utils/IntlResolvers" />
 
 namespace Format.Globalization.DateTime {
 
@@ -19,6 +18,9 @@ namespace Format.Globalization.DateTime {
     export class IntlFormatter extends InfoFormatter<Intl.DateTimeFormatOptions> {
 
         private locales: string|string[];
+
+        private getNativeFormatter: (resolvedOptions: Intl.DateTimeFormatOptions) => Intl.DateTimeFormat = (resolvedOptions?: Intl.DateTimeFormatOptions): Intl.DateTimeFormat =>
+            <any> new Intl.DateTimeFormat(<string> this.locales, resolvedOptions);
 
         /**
          * Initializes a new object that enables language sensitive date and time formatting.
@@ -37,6 +39,8 @@ namespace Format.Globalization.DateTime {
             }
 
             this.locales = locales;
+
+            Utils.IntlResovlers.setDateTimeFormatInfo_(this.formatInfo, this.getNativeFormatter);
         }
 
         /**
@@ -71,14 +75,7 @@ namespace Format.Globalization.DateTime {
 
         /** Returns the formatter instance that will be used to replace all custom date and time specifiers. */
         protected getSpecifiersFormatter(): CustomFormatter {
-            return new IntlSpecifiersFormatter(
-                this.formatInfo,
-                (resolvedOptions: Intl.DateTimeFormatOptions) =>
-                    this.getNativeFormatter(resolvedOptions));
-        }
-
-        private getNativeFormatter(resolvedOptions?: Intl.DateTimeFormatOptions): Intl.DateTimeFormat {
-            return <any> new Intl.DateTimeFormat(<string> this.locales, resolvedOptions);
+            return new IntlSpecifiersFormatter(this.formatInfo, this.getNativeFormatter);
         }
     }
 

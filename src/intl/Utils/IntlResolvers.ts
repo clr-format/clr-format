@@ -1,18 +1,50 @@
 /// <reference path="../../use-strict" />
 
+/// <reference path="../../core/Globalization/DateTime/IntlFormatOptions" />
+
 /**
  * An internal [[Format.Utils]] sub-module containing methods related to culture formatting information resolution.
  *
  * Because the module and its members cannot be truly internal, refrain from calling its methods directly.
  */
 namespace Format.Utils.IntlResovlers {
-    /**
-     * Sets resolved number format info options to the formatInfo instance.
-     * @param formatInfo An instance that will provide culture-specific number format information.
-     * @param numberSampler An Intl.NumberFormat instance that is set to sample decimal styled numbers.
-     * @param currencySampler An Intl.NumberFormat instance that is set to sample currency styled numbers.
-     * @private
-     */
+    /** @private */
+    export function setDateTimeFormatInfo_(formatInfo: Globalization.DateTimeFormatInfo, formatProvider: (resolvedOptions: Intl.DateTimeFormatOptions) => Intl.DateTimeFormat): void {
+
+        setDayNames(
+            formatInfo,
+            formatProvider({ weekday: short }),
+            formatProvider({ weekday: long }));
+
+        setAmPmDesignators(
+            formatInfo,
+            formatProvider({ hour: numeric, hour12: true }));
+
+        setSeparators(
+            formatInfo,
+            formatProvider({ month: twoDigit, day: twoDigit }),
+            formatProvider({ hour: twoDigit, minute: twoDigit, hour12: false }));
+    }
+
+    /** @private */
+    export function getEra_(date: any, formatProvider: (resolvedOptions: Intl.DateTimeFormatOptions) => Intl.DateTimeFormat): string {
+        return removeFormatDigits(formatProvider({ year: numeric, era: short }).format(date));
+    }
+
+    /** @private */
+    export function getShortMonth_(date: any, formatProvider: (resolvedOptions: Intl.DateTimeFormatOptions) => Intl.DateTimeFormat): string {
+        return removeFormatDigits(formatProvider({ month: short }).format(date));
+    }
+
+    /** @private */
+    export function getLongMonth_(date: any, formatProvider: (resolvedOptions: Intl.DateTimeFormatOptions) => Intl.DateTimeFormat): string {
+        return removeFormatDigits(formatProvider({ month: long }).format(date));
+    }
+
+    /** @private */
+    var short = "short", long = "long", numeric = "numeric", twoDigit = "2-digit";
+
+    /** @private */
     export function setNumberFormatInfo_(formatInfo: Globalization.NumberFormatInfo, decimalSampler: Intl.NumberFormat, currencySampler: Intl.NumberFormat): void {
 
         let sampleValue = 1.2, groupValue = -123456,
@@ -29,20 +61,8 @@ namespace Format.Utils.IntlResovlers {
         formatInfo.CurrencyGroupSeparator = getFirstNonDigit(currencySampler.format(groupValue), 4);
         formatInfo.CurrencyDecimalSeparator = getFirstNonDigit(currencySample, 1);
     }
-    /** @private */
-    var nonDigitSymbolRegExp = /[^\d]/;
 
     /** @private */
-    var getFirstNonDigit = (sample: string, offset: number): string => {
-        return sample.substring(offset).match(nonDigitSymbolRegExp)[0];
-    };
-
-    /**
-     * Returns the currency decimal digits defined in the currenty format info instance or the one that matches the curreny currency.
-     * @param formatInfo An instance that provides culture-specific number format information.
-     * @param currencyCode The currency code.
-     * @private
-     */
     export function getCurrencyDecimalDigits_(formatInfo: Globalization.NumberFormatInfo, currencyCode: string): number {
 
         if (formatInfo.CurrencyDecimalDigits != null) {
@@ -58,24 +78,58 @@ namespace Format.Utils.IntlResovlers {
     }
 
     /** @private */
-    var nonStandardCurrencyDecimalDigits: Indexable<number> = {
-        ADP: 0, AFA: 0, BEF: 0, BHD: 3, BIF: 0, BYB: 0, BYR: 0, CLP: 0, CLF: 4, COP: 0, DJF: 0, ECS: 0, ESP: 0, GNF: 0, GRD: 0, HUF: 0,
-        IDR: 0, IQD: 3, ITL: 0, JOD: 3, JPY: 0, KMF: 0, KRW: 0, KWD: 3, LAK: 0, LUF: 0, LYD: 3, MGF: 0, MZM: 0, OMR: 3, PTE: 0, PYG: 0,
-        ROL: 0, RWF: 0, TJR: 0, TMM: 0, TND: 3, TPE: 0, TRL: 0, TWD: 0, UGX: 0, VND: 0, VUV: 0, XAF: 0, XOF: 0, XPF: 0
-    };
-
-    /**
-     * Returns a culture-variant version of the given invariantly formatted string. Matches decimal separators and negative signs for the callback.
-     * @param invariantlyFormattedString An invariantly formatted string to replace with culture-specific symbols.
-     * @param replaceInvariantSymbolsCallback A function that handles the symbol replacement.
-     * @private
-     */
     export function applyNumberCultureFormatting_(invariantlyFormattedString: string, replaceInvariantSymbolsCallback: (replaceChar: string) => string): string {
         return invariantlyFormattedString.replace(
             partialNumberFormatReplacementsRexExp,
             replaceInvariantSymbolsCallback);
     }
-
     /** @private */
     var partialNumberFormatReplacementsRexExp = /[-.]/g;
+
+    /** @private */
+    var setDayNames = (formatInfo: Globalization.DateTimeFormatInfo, shortDayFormatter: Intl.DateTimeFormat, longDayFormatter: Intl.DateTimeFormat): void => {
+
+        let weekday: any = new Date(70, 2, 1);
+
+        formatInfo.AbbreviatedDayNames = [];
+        formatInfo.DayNames = [];
+
+        for (let i = 1; i <= 7; i += 1, weekday.setDate(i)) {
+            formatInfo.AbbreviatedDayNames.push(shortDayFormatter.format(weekday));
+            formatInfo.DayNames.push(longDayFormatter.format(weekday));
+        }
+    };
+
+    /** @private */
+    var setAmPmDesignators = (formatInfo: Globalization.DateTimeFormatInfo, amPmDesignatorFormatter: Intl.DateTimeFormat): void => {
+
+        let amDate: any = new Date(0, 0, 1, 6), pmDate: any = new Date(0, 0, 1, 18);
+
+        formatInfo.AMDesignator = removeFormatDigits(amPmDesignatorFormatter.format(amDate));
+        formatInfo.PMDesignator = removeFormatDigits(amPmDesignatorFormatter.format(pmDate));
+    };
+
+    /** @private */
+    var setSeparators = (formatInfo: Globalization.DateTimeFormatInfo, dateSeparatorFormatter: Intl.DateTimeFormat, timeSeparatorFormatter: Intl.DateTimeFormat): void => {
+
+        let nowDate: any = new Date();
+
+        formatInfo.DateSeparator = dateSeparatorFormatter.format(nowDate)[2];
+        formatInfo.TimeSeparator = timeSeparatorFormatter.format(nowDate)[2];
+    };
+
+    /** @private */
+    var removeFormatDigits = (formattedValue: string): string => formattedValue.replace(digitsWithWhitespaceRegExp, ""),
+        digitsWithWhitespaceRegExp = /\s*\d+\s*/;
+
+    /** @private */
+    var getFirstNonDigit = (sample: string, offset: number): string => sample.substring(offset).match(nonDigitSymbolRegExp)[0],
+        nonDigitSymbolRegExp = /[^\d]/;
+
+    /** @private */
+    var nonStandardCurrencyDecimalDigits: Indexable<number> = {
+        ADP: 0, AFA: 0, BEF: 0, BHD: 3, BIF: 0, BYB: 0, BYR: 0, CLP: 0, CLF: 4, COP: 0, DJF: 0, ECS: 0, ESP: 0, GNF: 0, GRD: 0, HUF: 0,
+        IDR: 0, IQD: 3, ITL: 0, JOD: 3, JPY: 0, KMF: 0, KRW: 0, KWD: 3, LAK: 0, LUF: 0, LYD: 3, MGF: 0, MZM: 0, OMR: 3, PTE: 0, PYG: 0,
+        ROL: 0, RWF: 0, TJR: 0, TMM: 0, TND: 3, TPE: 0, TRL: 0, TWD: 0, UGX: 0, VND: 0, VUV: 0, XAF: 0, XOF: 0, XPF: 0
+    };
 }

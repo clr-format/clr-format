@@ -25,9 +25,9 @@ namespace Format.Globalization {
             expect(dateTimeFormatInfoAccessor.isWritable_).toBe(false);
 
             expect(dateTimeFormatInfo.AbbreviatedDayNames).toEqual(["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]);
-            expect(dateTimeFormatInfo.AbbreviatedMonthNames).toEqual(["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", ""]);
+            expect(dateTimeFormatInfo.AbbreviatedMonthNames).toEqual(["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]);
             expect(dateTimeFormatInfo.DayNames).toEqual(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]);
-            expect(dateTimeFormatInfo.MonthNames).toEqual(["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", ""]);
+            expect(dateTimeFormatInfo.MonthNames).toEqual(["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]);
             expect(dateTimeFormatInfo.AMDesignator).toBe("AM");
             expect(dateTimeFormatInfo.PMDesignator).toBe("PM");
             expect(dateTimeFormatInfo.DateSeparator).toBe("/");

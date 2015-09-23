@@ -1,6 +1,7 @@
 /// <reference path="../../../use-strict" />
-
 /// <reference path="../../API" />
+
+/// <reference path="../../Utils/IntlResolvers" />
 
 namespace Format.Globalization.DateTime {
 
@@ -12,6 +13,7 @@ namespace Format.Globalization.DateTime {
         /**
          * Creates an instance that uses the resolved options from the specified options provider and applies culture-specific formatting based on the given format info.
          * @param formatInfo An instance that provides culture-specific date and time format information.
+         * @param formatProvider A function that returns a localized instance of Intl.DateTimeFormat with the supplied options.
          */
         constructor(formatInfo: DateTimeFormatInfo, formatProvider: (resolvedOptions: Intl.DateTimeFormatOptions) => Intl.DateTimeFormat) {
             super(formatInfo);
@@ -22,39 +24,20 @@ namespace Format.Globalization.DateTime {
 
         private overrideBaseFormatters(): void {
 
-            let baseFormatters = Utils.clone(this.formatters);
+            this.formatters.eraPlaceholder = () => resolvers.getEra_(this.value, this.formatProvider);
 
-            this.formatters.dayPlaceholder = (specifierCount: number): Object => {
-                switch (specifierCount) {
-                    case 1: case 2: return baseFormatters.dayPlaceholder(specifierCount);
-                    case 3: return this.applyOptions({ weekday: "short" });
-                    default: return this.applyOptions({ weekday: "long" });
-                }
-            };
-
-            this.formatters.eraPlaceholder = () =>
-                this.applyOptions({ year: "numeric", era: "narrow" }).replace(/ *\d+ */, "");
+            let baseMonthFormatter = this.formatters.monthPlaceholder;
 
             this.formatters.monthPlaceholder = (specifierCount: number) => {
                 switch (specifierCount) {
-                    case 1: case 2: return baseFormatters.monthPlaceholder(specifierCount);
-                    case 3: return this.applyOptions({ month: "short" });
-                    default: return this.applyOptions({ month: "long" });
+                    case 1: case 2: return baseMonthFormatter(specifierCount);
+                    case 3: return resolvers.getShortMonth_(this.value, this.formatProvider);
+                    default: return resolvers.getLongMonth_(this.value, this.formatProvider);
                 }
             };
-
-            this.formatters.amPmPlaceholder = (specifierCount: number) =>
-                this.applyOptions({ hour: "numeric", hour12: true }).replace(/ *\d+ */, "").substring(0, specifierCount === 1 ? 1 : undefined);
-
-            this.formatters.timeSeparator = () =>
-                this.applyOptions({ hour: "2-digit", minute: "2-digit", hour12: false })[2];
-
-            this.formatters.dateSeparator = () =>
-                this.applyOptions({ month: "2-digit", day: "2-digit" })[2];
-        }
-
-        private applyOptions(options: Intl.DateTimeFormatOptions): string {
-            return this.formatProvider(options).format(<any> this.value);
         }
     }
+
+    /** @private */
+    var resolvers = Utils.IntlResovlers;
 }

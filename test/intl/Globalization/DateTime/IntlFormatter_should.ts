@@ -33,5 +33,9 @@ namespace Format.Globalization.DateTime {
             expect(() => new IntlFormatter("en-US", null)).toThrowError(Errors.ArgumentNullError);
             expect(() => new IntlFormatter("en-US", undefined)).toThrowError(Errors.ArgumentNullError);
         });
+
+        it("constructor should throw a RangeError for invalid locales values", () => {
+            expect(() => createInstance("")).toThrowError(RangeError);
+        });
     });
 }

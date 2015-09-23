@@ -1,8 +1,8 @@
 /// <reference path="../../../use-strict" />
+/// <reference path="../../API" />
 
 /// <reference path="IntlFormatOptions" />
 
-/// <reference path="../../API" />
 /// <reference path="../../Utils/IntlResolvers" />
 
 namespace Format.Globalization.Numeric {
@@ -38,6 +38,9 @@ namespace Format.Globalization.Numeric {
         };
 
         private locales: string|string[];
+
+        private getNativeFormatter: (resolvedOptions: Intl.NumberFormatOptions) => Intl.NumberFormat = (resolvedOptions: Intl.NumberFormatOptions): Intl.NumberFormat =>
+            <any> new Intl.NumberFormat(<string> this.locales, resolvedOptions);
 
         /**
          * Initializes a new object that enables language sensitive number formatting.
@@ -140,10 +143,6 @@ namespace Format.Globalization.Numeric {
                 resolvedOptions.minimumFractionDigits = overrideValue;
                 resolvedOptions.maximumFractionDigits = overrideValue;
             }
-        }
-
-        private getNativeFormatter(resolvedOptions: Intl.NumberFormatOptions): Intl.NumberFormat {
-            return <any> new Intl.NumberFormat(<string> this.locales, resolvedOptions);
         }
 
         private applyCultureSpecificFormatting(invariantlyFormattedString: string): string {
