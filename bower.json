@@ -35,6 +35,7 @@
     "TODO.md",
     "build",
     "src",
+    "docs",
     "test",
     "dist/*.nupkg",
     "dist/*npm*.js"
