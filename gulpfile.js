@@ -80,5 +80,6 @@ gulp.task("release-minor", ["bump-minor", "release-pack"], release);
 gulp.task("release-patch", ["bump-patch", "release-pack"], release);
 gulp.task("release-pack", ["nuget-pack", "release-docs"]);
 gulp.task("release-docs", docs.release);
+gulp.task("release", release);
 
 gulp.task("publish", ["nuget-download"], publish);
