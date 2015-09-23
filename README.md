@@ -4,10 +4,12 @@ A lightweight, modular and stand-alone JavaScript implementation of a string for
 [![Build Status](https://travis-ci.org/clr-format/clr-format.svg?branch=master)](https://travis-ci.org/clr-format/clr-format)
 [![Dev Dependencies](https://david-dm.org/clr-format/clr-format/dev-status.svg)](https://david-dm.org/clr-format/clr-format/#info=devDependencies&view=table)
 
-- [Documentation][String.format]
+- [Usage](#usage)
 - [Capabilities](#latest-version-capabilities)
+- [Documentation][String.format]
 - [Development](#development)
 - [Roadmap](#planned-releases)
+
 
 Installation
 ------------
@@ -21,6 +23,7 @@ The following commands can be used to install the script from your favorite pack
 
 #### [![NPM](https://badge.fury.io/js/clr-format.svg)](https://www.npmjs.com/package/clr-format)
 `npm install clr-format`
+
 
 Usage
 -----
@@ -51,6 +54,7 @@ format.Config.addFormatToPrototype().addToStringOverload();
 formatted = "Value:{0,10}".format("prototype"); // formatted = "Value: prototype"
 formatted = new Date("T23:12:32").toString("Value\: hh:mm:ss tt"); // formatted = "Value: 11:12:32 PM"
 ```
+
 
 Latest Version Capabilities
 ---------------------------
@@ -119,6 +123,7 @@ as well as the declarations of private ones.
 
 Do not rely on any privates; even though for classes and some modules they are technically exported they are most likely subject to change in the future.
 
+
 Development
 -----------
 The implementation of this string formatting function is inspired by .NET's (and other Microsoft® products') [Composite Formatting] feature.
@@ -147,6 +152,7 @@ which means it will block the console and continuously rebuild the project when 
 - In VSCode pressing **Ctrl** + **Shift** + **B** or **T** will trigger the default build or test command respectively.
 - The `--ignore-scripts` option is used to stop errors caused by `node-gyp` rebuild scripts introduced by `karma`.
 Overall, it doesn't seem to affect this project's build.
+
 
 Planned releases
 ----------------
