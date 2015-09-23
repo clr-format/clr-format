@@ -54,6 +54,11 @@ gulp.task("watch", function () {
     gulp.watch([paths.sources, paths.tests], ["test-jasmine", "build-test"]);
 });
 
+gulp.task("watch-release", function () {
+    gulp.watch([paths.sources], ["build-release"]);
+    gulp.watch([paths.sources, paths.tests], ["minify-tests"]);
+});
+
 // Release tasks
 gulp.task("minify", ["minify-tests", "minify-sources"]);
 gulp.task("minify-tests", ["minify-jasmine", "minify-browser"]);

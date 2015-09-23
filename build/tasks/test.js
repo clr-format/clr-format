@@ -2,7 +2,6 @@ var dirs = require("../config/dirs.js");
 var paths = require("../config/paths.js");
 var tsProjects = require("../config/tsProjects.js");
 var testReporter = require("../reporters/jasmine-nunit.js");
-var testExports = require("../../test/exports_should.js");
 
 var gulp = require("gulp");
 var tsc = require("gulp-typescript");
@@ -25,5 +24,6 @@ module.exports.jasmine = function (minifyOpts) {
 };
 
 module.exports.npm = function () {
+    var testExports = require("../../test/exports_should.js");
     testExports();
 };
