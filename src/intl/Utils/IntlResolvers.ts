@@ -92,8 +92,8 @@ namespace Format.Utils.IntlResovlers {
     var partialNumberFormatReplacementsRexExp = /[-.]/g;
 
     /** @private */
-    export function isBlank(value: string): boolean {
-        return Utils.Text.isNullOrWhitespace(value) || !removeControlChars(value);
+    export function isBlank(value: string, customBlankChar: string = ""): boolean {
+        return Utils.Text.isNullOrWhitespace(value) || removeControlChars(value) === customBlankChar;
     }
 
     /** @private */
@@ -123,7 +123,7 @@ namespace Format.Utils.IntlResovlers {
             formatInfo.AMDesignator = invariantInfo.AMDesignator;
         }
 
-        if (isBlank(formatInfo.PMDesignator)) {
+        if (isBlank(formatInfo.PMDesignator, ".")) {
             formatInfo.PMDesignator = invariantInfo.PMDesignator;
         }
     };
