@@ -416,13 +416,13 @@ namespace Format {
             // Month placeholder - https://msdn.microsoft.com/library/8kb3ddd4.aspx#M_Specifier
             date.setMonth(11); // 2015-12-16
             expect(String.format("{0:%M}", date)).toBe("12");
-            expect(String.format("{0:MMM}", date)).toBe("Dez");
+            expectStripped(String.format("{0:MMM}", date)).toBe("Dez");
             expectStripped(String.format("{0:MMMMM}", date)).toBe("Dezember");
 
             date.setMonth(8); // 2015-09-16
             expect(String.format("{0:%M}", date)).toBe("9");
             expect(String.format("{0:MM}", date)).toBe("09");
-            expect(String.format("{0:MMM}", date)).toBe("Sep");
+            expectStripped(String.format("{0:MMM}", date)).toBe("Sep");
             expectStripped(String.format("{0:MMMM}", date)).toBe("September");
 
             // Second placeholder - https://msdn.microsoft.com/library/8kb3ddd4.aspx#sSpecifier
@@ -440,12 +440,12 @@ namespace Format {
 
             // AM/PM placeholder - https://msdn.microsoft.com/library/8kb3ddd4.aspx#tSpecifier
             date.setHours(18); // 2015-09-16T18:00:00
-            expect(String.format("{0:%t}", date)).toBe("n");
-            expect(String.format("{0:tt}", date)).toBe("nachm.");
+            expect(String.format("{0:%t}", date)).toMatch(/n|P/);
+            expect(String.format("{0:tt}", date)).toMatch(/(?:nachm\.)|(?:PM)/);
 
             date.setHours(0); // 2015-09-16T00:00:00
-            expect(String.format("{0:%t}", date)).toBe("v");
-            expect(String.format("{0:ttt}", date)).toBe("vorm.");
+            expect(String.format("{0:%t}", date)).toMatch(/v|A/);
+            expect(String.format("{0:ttt}", date)).toMatch(/(?:vorm\.)|(?:AM)/);
 
             // Year placeholder - https://msdn.microsoft.com/library/8kb3ddd4.aspx#ySpecifier
             date.setFullYear(209); // 209-09-16

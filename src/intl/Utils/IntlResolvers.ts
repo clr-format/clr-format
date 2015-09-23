@@ -92,6 +92,11 @@ namespace Format.Utils.IntlResovlers {
     var partialNumberFormatReplacementsRexExp = /[-.]/g;
 
     /** @private */
+    export function isBlank(value: string): boolean {
+        return Utils.Text.isNullOrWhitespace(value) || !removeControlChars(value);
+    }
+
+    /** @private */
     var setDayNames = (formatInfo: Globalization.DateTimeFormatInfo, shortDayFormatter: Intl.DateTimeFormat, longDayFormatter: Intl.DateTimeFormat): void => {
 
         let weekday: any = new Date(70, 2, 1);
@@ -108,10 +113,19 @@ namespace Format.Utils.IntlResovlers {
     /** @private */
     var setAmPmDesignators = (formatInfo: Globalization.DateTimeFormatInfo, amPmDesignatorFormatter: Intl.DateTimeFormat): void => {
 
-        let amDate: any = new Date(0, 0, 1, 6), pmDate: any = new Date(0, 0, 1, 18);
+        let amDate: any = new Date(0, 0, 1, 6), pmDate: any = new Date(0, 0, 1, 18),
+            invariantInfo = Globalization.DateTimeFormatInfo.InvariantInfo;
 
         formatInfo.AMDesignator = removeFormatDigits(amPmDesignatorFormatter.format(amDate));
         formatInfo.PMDesignator = removeFormatDigits(amPmDesignatorFormatter.format(pmDate));
+
+        if (isBlank(formatInfo.AMDesignator)) {
+            formatInfo.AMDesignator = invariantInfo.AMDesignator;
+        }
+
+        if (isBlank(formatInfo.PMDesignator)) {
+            formatInfo.AMDesignator = invariantInfo.AMDesignator;
+        }
     };
 
     /** @private */
@@ -119,13 +133,18 @@ namespace Format.Utils.IntlResovlers {
 
         let nowDate: any = new Date();
 
-        formatInfo.DateSeparator = dateSeparatorFormatter.format(nowDate)[2];
-        formatInfo.TimeSeparator = timeSeparatorFormatter.format(nowDate)[2];
+        formatInfo.DateSeparator = removeControlChars(dateSeparatorFormatter.format(nowDate))[2];
+        formatInfo.TimeSeparator = removeControlChars(timeSeparatorFormatter.format(nowDate))[2];
     };
 
     /** @private */
     var removeFormatDigits = (formattedValue: string): string => formattedValue.replace(digitsWithWhitespaceRegExp, ""),
         digitsWithWhitespaceRegExp = /\s*\d+.?\s*/;
+
+
+    /** @private */
+    var removeControlChars = (formattedValue: string): string => formattedValue.replace(controlCharsRegExp, ""),
+        controlCharsRegExp = /\u200E|\u200F/g;
 
     /** @private */
     var getFirstNonDigit = (sample: string, offset: number): string => sample.substring(offset).match(nonDigitSymbolRegExp)[0],
