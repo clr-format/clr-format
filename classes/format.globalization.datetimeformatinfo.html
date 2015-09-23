@@ -78,8 +78,8 @@
 					<div class="lead">
 						<p>Provides culture-specific information about the format of date and time values.</p>
 					</div>
-					<p>Information about the culture itself and the application of overrides will be made available through this class at a later point.</p>
-					<p>See: <a href="https://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.aspx">https://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.aspx</a></p>
+					<p>Full information about the culture and the application of overrides will be made available through this class at a later point.</p>
+					<p>See: <a href="https://msdn.microsoft.com/library/system.globalization.datetimeformatinfo.aspx">https://msdn.microsoft.com/library/system.globalization.datetimeformatinfo.aspx</a></p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
@@ -109,9 +109,17 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="format.globalization.datetimeformatinfo.html#formatter" class="tsd-kind-icon">formatter</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="format.globalization.datetimeformatinfo.html#iswritable" class="tsd-kind-icon">is<wbr>Writable</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="format.globalization.datetimeformatinfo.html#locales" class="tsd-kind-icon">locales</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="format.globalization.datetimeformatinfo.html#amdesignator" class="tsd-kind-icon">AMDesignator</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="format.globalization.datetimeformatinfo.html#abbreviateddaynames" class="tsd-kind-icon">Abbreviated<wbr>Day<wbr>Names</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="format.globalization.datetimeformatinfo.html#abbreviatedmonthnames" class="tsd-kind-icon">Abbreviated<wbr>Month<wbr>Names</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="format.globalization.datetimeformatinfo.html#dateseparator" class="tsd-kind-icon">Date<wbr>Separator</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="format.globalization.datetimeformatinfo.html#daynames" class="tsd-kind-icon">Day<wbr>Names</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="format.globalization.datetimeformatinfo.html#monthnames" class="tsd-kind-icon">Month<wbr>Names</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="format.globalization.datetimeformatinfo.html#pmdesignator" class="tsd-kind-icon">PMDesignator</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="format.globalization.datetimeformatinfo.html#timeseparator" class="tsd-kind-icon">Time<wbr>Separator</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="format.globalization.datetimeformatinfo.html#formatter_" class="tsd-kind-icon">formatter_</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="format.globalization.datetimeformatinfo.html#iswritable_" class="tsd-kind-icon">is<wbr>Writable_</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="format.globalization.datetimeformatinfo.html#locales_" class="tsd-kind-icon">locales_</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="format.globalization.datetimeformatinfo.html#formatterconstructor" class="tsd-kind-icon">Formatter<wbr>Constructor</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="format.globalization.datetimeformatinfo.html#invariantinfo" class="tsd-kind-icon">Invariant<wbr>Info</a></li>
 							</ul>
@@ -120,7 +128,8 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="format.globalization.datetimeformatinfo.html#getformatter" class="tsd-kind-icon">get<wbr>Formatter</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="format.globalization.datetimeformatinfo.html#resolveformatinfo" class="tsd-kind-icon">resolve<wbr>Format<wbr>Info</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="format.globalization.datetimeformatinfo.html#resolveformatinfo_" class="tsd-kind-icon">resolve<wbr>Format<wbr>Info_</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="format.globalization.datetimeformatinfo.html#setinvariantformatinfo_" class="tsd-kind-icon">set<wbr>Invariant<wbr>Format<wbr>Info_</a></li>
 							</ul>
 						</section>
 					</div>
@@ -139,7 +148,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/core/Globalization/DateTimeFormatInfo.ts#L33">core/Globalization/DateTimeFormatInfo.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTimeFormatInfo.ts#L56">core/Globalization/DateTimeFormatInfo.ts:56</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -152,7 +161,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/core/Globalization/DateTimeFormatInfo.ts#L36">core/Globalization/DateTimeFormatInfo.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTimeFormatInfo.ts#L59">core/Globalization/DateTimeFormatInfo.ts:59</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -178,33 +187,153 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="formatter" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> formatter</h3>
-					<div class="tsd-signature tsd-kind-icon">formatter<span class="tsd-signature-symbol">:</span> <a href="../interfaces/format.globalization.customformatter.html" class="tsd-signature-type">CustomFormatter</a></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="amdesignator" class="tsd-anchor"></a>
+					<h3>AMDesignator</h3>
+					<div class="tsd-signature tsd-kind-icon">AMDesignator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/core/Globalization/DateTimeFormatInfo.ts#L33">core/Globalization/DateTimeFormatInfo.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTimeFormatInfo.ts#L37">core/Globalization/DateTimeFormatInfo.ts:37</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Gets or sets the string designator for hours that are &quot;ante meridiem&quot; (before noon).</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="abbreviateddaynames" class="tsd-anchor"></a>
+					<h3>Abbreviated<wbr>Day<wbr>Names</h3>
+					<div class="tsd-signature tsd-kind-icon">Abbreviated<wbr>Day<wbr>Names<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTimeFormatInfo.ts#L31">core/Globalization/DateTimeFormatInfo.ts:31</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Gets or sets a one-dimensional array of type String containing the culture-specific abbreviated names of the days of the week.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="abbreviatedmonthnames" class="tsd-anchor"></a>
+					<h3>Abbreviated<wbr>Month<wbr>Names</h3>
+					<div class="tsd-signature tsd-kind-icon">Abbreviated<wbr>Month<wbr>Names<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTimeFormatInfo.ts#L34">core/Globalization/DateTimeFormatInfo.ts:34</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Gets or sets a one-dimensional string array that contains the culture-specific abbreviated names of the months.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="dateseparator" class="tsd-anchor"></a>
+					<h3>Date<wbr>Separator</h3>
+					<div class="tsd-signature tsd-kind-icon">Date<wbr>Separator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTimeFormatInfo.ts#L40">core/Globalization/DateTimeFormatInfo.ts:40</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Gets or sets the string that separates the components of a date, that is, the year, month, and day.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="daynames" class="tsd-anchor"></a>
+					<h3>Day<wbr>Names</h3>
+					<div class="tsd-signature tsd-kind-icon">Day<wbr>Names<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTimeFormatInfo.ts#L43">core/Globalization/DateTimeFormatInfo.ts:43</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Gets or sets a one-dimensional string array that contains the culture-specific full names of the days of the week.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="monthnames" class="tsd-anchor"></a>
+					<h3>Month<wbr>Names</h3>
+					<div class="tsd-signature tsd-kind-icon">Month<wbr>Names<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTimeFormatInfo.ts#L46">core/Globalization/DateTimeFormatInfo.ts:46</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Gets or sets a one-dimensional array of type String containing the culture-specific full names of the months.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="pmdesignator" class="tsd-anchor"></a>
+					<h3>PMDesignator</h3>
+					<div class="tsd-signature tsd-kind-icon">PMDesignator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTimeFormatInfo.ts#L49">core/Globalization/DateTimeFormatInfo.ts:49</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Gets or sets the string designator for hours that are &quot;post meridiem&quot; (after noon).</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="timeseparator" class="tsd-anchor"></a>
+					<h3>Time<wbr>Separator</h3>
+					<div class="tsd-signature tsd-kind-icon">Time<wbr>Separator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTimeFormatInfo.ts#L52">core/Globalization/DateTimeFormatInfo.ts:52</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Gets or sets the string that separates the components of time, that is, the hour, minutes, and seconds.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="formatter_" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> formatter_</h3>
+					<div class="tsd-signature tsd-kind-icon">formatter_<span class="tsd-signature-symbol">:</span> <a href="../interfaces/format.globalization.customformatter.html" class="tsd-signature-type">CustomFormatter</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTimeFormatInfo.ts#L56">core/Globalization/DateTimeFormatInfo.ts:56</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="iswritable" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> is<wbr>Writable</h3>
-					<div class="tsd-signature tsd-kind-icon">is<wbr>Writable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="iswritable_" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> is<wbr>Writable_</h3>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Writable_<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/core/Globalization/DateTimeFormatInfo.ts#L32">core/Globalization/DateTimeFormatInfo.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTimeFormatInfo.ts#L54">core/Globalization/DateTimeFormatInfo.ts:54</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-					<a name="locales" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> locales</h3>
-					<div class="tsd-signature tsd-kind-icon">locales<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="locales_" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> locales_</h3>
+					<div class="tsd-signature tsd-kind-icon">locales_<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/core/Globalization/DateTimeFormatInfo.ts#L30">core/Globalization/DateTimeFormatInfo.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTimeFormatInfo.ts#L55">core/Globalization/DateTimeFormatInfo.ts:55</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -214,7 +343,7 @@
 					<div class="tsd-signature tsd-kind-icon">Formatter<wbr>Constructor<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/core/Globalization/DateTimeFormatInfo.ts#L28">core/Globalization/DateTimeFormatInfo.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTimeFormatInfo.ts#L28">core/Globalization/DateTimeFormatInfo.ts:28</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -234,7 +363,7 @@
 									<li class="tsd-description">
 										<aside class="tsd-sources">
 											<ul>
-												<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/core/Globalization/DateTimeFormatInfo.ts#L28">core/Globalization/DateTimeFormatInfo.ts:28</a></li>
+												<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTimeFormatInfo.ts#L28">core/Globalization/DateTimeFormatInfo.ts:28</a></li>
 											</ul>
 										</aside>
 										<h4 class="tsd-parameters-title">Parameters</h4>
@@ -258,7 +387,7 @@
 					<div class="tsd-signature tsd-kind-icon">Invariant<wbr>Info<span class="tsd-signature-symbol">:</span> <a href="format.globalization.datetimeformatinfo.html" class="tsd-signature-type">DateTimeFormatInfo</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/core/Globalization/DateTimeFormatInfo.ts#L25">core/Globalization/DateTimeFormatInfo.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTimeFormatInfo.ts#L25">core/Globalization/DateTimeFormatInfo.ts:25</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -281,7 +410,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/format.globalization.formatprovider.html">FormatProvider</a>.<a href="../interfaces/format.globalization.formatprovider.html#getformatter">getFormatter</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/core/Globalization/DateTimeFormatInfo.ts#L53">core/Globalization/DateTimeFormatInfo.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTimeFormatInfo.ts#L76">core/Globalization/DateTimeFormatInfo.ts:76</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -303,16 +432,16 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="resolveformatinfo" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> resolve<wbr>Format<wbr>Info</h3>
+					<a name="resolveformatinfo_" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> resolve<wbr>Format<wbr>Info_</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">resolve<wbr>Format<wbr>Info<span class="tsd-signature-symbol">(</span>locales<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">resolve<wbr>Format<wbr>Info_<span class="tsd-signature-symbol">(</span>locales<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/core/Globalization/DateTimeFormatInfo.ts#L62">core/Globalization/DateTimeFormatInfo.ts:62</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTimeFormatInfo.ts#L85">core/Globalization/DateTimeFormatInfo.ts:85</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -321,6 +450,23 @@
 									<h5>locales: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="setinvariantformatinfo_" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> set<wbr>Invariant<wbr>Format<wbr>Info_</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Invariant<wbr>Format<wbr>Info_<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTimeFormatInfo.ts#L98">core/Globalization/DateTimeFormatInfo.ts:98</a></li>
+								</ul>
+							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -373,14 +519,38 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="format.globalization.datetimeformatinfo.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="format.globalization.datetimeformatinfo.html#formatter" class="tsd-kind-icon">formatter</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="format.globalization.datetimeformatinfo.html#amdesignator" class="tsd-kind-icon">AMDesignator</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="format.globalization.datetimeformatinfo.html#abbreviateddaynames" class="tsd-kind-icon">Abbreviated<wbr>Day<wbr>Names</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="format.globalization.datetimeformatinfo.html#abbreviatedmonthnames" class="tsd-kind-icon">Abbreviated<wbr>Month<wbr>Names</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="format.globalization.datetimeformatinfo.html#dateseparator" class="tsd-kind-icon">Date<wbr>Separator</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="format.globalization.datetimeformatinfo.html#daynames" class="tsd-kind-icon">Day<wbr>Names</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="format.globalization.datetimeformatinfo.html#monthnames" class="tsd-kind-icon">Month<wbr>Names</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="format.globalization.datetimeformatinfo.html#pmdesignator" class="tsd-kind-icon">PMDesignator</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="format.globalization.datetimeformatinfo.html#timeseparator" class="tsd-kind-icon">Time<wbr>Separator</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="format.globalization.datetimeformatinfo.html#iswritable" class="tsd-kind-icon">is<wbr>Writable</a>
+								<a href="format.globalization.datetimeformatinfo.html#formatter_" class="tsd-kind-icon">formatter_</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="format.globalization.datetimeformatinfo.html#locales" class="tsd-kind-icon">locales</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="format.globalization.datetimeformatinfo.html#iswritable_" class="tsd-kind-icon">is<wbr>Writable_</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="format.globalization.datetimeformatinfo.html#locales_" class="tsd-kind-icon">locales_</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
 								<a href="format.globalization.datetimeformatinfo.html#formatterconstructor" class="tsd-kind-icon">Formatter<wbr>Constructor</a>
@@ -392,7 +562,10 @@
 								<a href="format.globalization.datetimeformatinfo.html#getformatter" class="tsd-kind-icon">get<wbr>Formatter</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="format.globalization.datetimeformatinfo.html#resolveformatinfo" class="tsd-kind-icon">resolve<wbr>Format<wbr>Info</a>
+								<a href="format.globalization.datetimeformatinfo.html#resolveformatinfo_" class="tsd-kind-icon">resolve<wbr>Format<wbr>Info_</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="format.globalization.datetimeformatinfo.html#setinvariantformatinfo_" class="tsd-kind-icon">set<wbr>Invariant<wbr>Format<wbr>Info_</a>
 							</li>
 						</ul>
 					</li>

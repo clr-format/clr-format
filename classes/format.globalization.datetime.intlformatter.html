@@ -88,7 +88,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="format.globalization.datetime.invariantformatter.html" class="tsd-signature-type">InvariantFormatter</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">DateTimeFormatOptions</span><span class="tsd-signature-symbol">&gt;</span>
+						<a href="format.globalization.datetime.infoformatter.html" class="tsd-signature-type">InfoFormatter</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">DateTimeFormatOptions</span><span class="tsd-signature-symbol">&gt;</span>
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">IntlFormatter</span>
@@ -116,7 +116,7 @@
 						<section class="tsd-index-section tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="format.globalization.datetime.intlformatter.html#formatinfo" class="tsd-kind-icon">format<wbr>Info</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="format.globalization.datetime.intlformatter.html#formatinfo" class="tsd-kind-icon">format<wbr>Info</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="format.globalization.datetime.intlformatter.html#locales" class="tsd-kind-icon">locales</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="format.globalization.datetime.intlformatter.html#resolvedoptions" class="tsd-kind-icon">resolved<wbr>Options</a></li>
 							</ul>
@@ -126,8 +126,8 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected"><a href="format.globalization.datetime.intlformatter.html#applyoptions" class="tsd-kind-icon">apply<wbr>Options</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="format.globalization.datetime.intlformatter.html#format" class="tsd-kind-icon">format</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="format.globalization.datetime.intlformatter.html#getformatinfo" class="tsd-kind-icon">get<wbr>Format<wbr>Info</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="format.globalization.datetime.intlformatter.html#getnativeformatter" class="tsd-kind-icon">get<wbr>Native<wbr>Formatter</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected"><a href="format.globalization.datetime.intlformatter.html#getspecifiersformatter" class="tsd-kind-icon">get<wbr>Specifiers<wbr>Formatter</a></li>
 							</ul>
 						</section>
 					</div>
@@ -144,9 +144,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overwrites <a href="format.globalization.datetime.invariantformatter.html">InvariantFormatter</a>.<a href="format.globalization.datetime.invariantformatter.html#constructor">constructor</a></p>
+								<p>Overwrites <a href="format.globalization.datetime.infoformatter.html">InfoFormatter</a>.<a href="format.globalization.datetime.infoformatter.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/intl/Globalization/DateTime/IntlFormatter.ts#L16">intl/Globalization/DateTime/IntlFormatter.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/intl/Globalization/DateTime/IntlFormatter.ts#L23">intl/Globalization/DateTime/IntlFormatter.ts:23</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -161,7 +161,7 @@
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>The locales argument must be either a string holding a BCP 47 language tag, or an array of such language tags.
-											See: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_identification_and_negotiation">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_identification_and_negotiation</a></p>
+											See: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_identification_and_negotiation">https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_identification_and_negotiation</a></p>
 										</div>
 									</div>
 								</li>
@@ -178,7 +178,7 @@
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>Optional object with some or all of the standardized properties.
-											See: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat</a></p>
+											See: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat</a></p>
 										</div>
 									</div>
 								</li>
@@ -190,13 +190,14 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 					<a name="formatinfo" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> format<wbr>Info</h3>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> format<wbr>Info</h3>
 					<div class="tsd-signature tsd-kind-icon">format<wbr>Info<span class="tsd-signature-symbol">:</span> <a href="format.globalization.datetimeformatinfo.html" class="tsd-signature-type">DateTimeFormatInfo</a></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="format.globalization.datetime.infoformatter.html">InfoFormatter</a>.<a href="format.globalization.datetime.infoformatter.html#formatinfo">formatInfo</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/intl/Globalization/DateTime/IntlFormatter.ts#L16">intl/Globalization/DateTime/IntlFormatter.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTime/InfoFormatter.ts#L20">core/Globalization/DateTime/InfoFormatter.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -206,7 +207,7 @@
 					<div class="tsd-signature tsd-kind-icon">locales<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/intl/Globalization/DateTime/IntlFormatter.ts#L15">intl/Globalization/DateTime/IntlFormatter.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/intl/Globalization/DateTime/IntlFormatter.ts#L20">intl/Globalization/DateTime/IntlFormatter.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -215,16 +216,11 @@
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> resolved<wbr>Options</h3>
 					<div class="tsd-signature tsd-kind-icon">resolved<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">DateTimeFormatOptions</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="format.globalization.datetime.invariantformatter.html">InvariantFormatter</a>.<a href="format.globalization.datetime.invariantformatter.html#resolvedoptions">resolvedOptions</a></p>
+						<p>Inherited from <a href="format.globalization.datetime.infoformatter.html">InfoFormatter</a>.<a href="format.globalization.datetime.infoformatter.html#resolvedoptions">resolvedOptions</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/core/Globalization/DateTime/InvariantFormatter.ts#L15">core/Globalization/DateTime/InvariantFormatter.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTime/InfoFormatter.ts#L19">core/Globalization/DateTime/InfoFormatter.ts:19</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Gets the result of the <a href="format.globalization.datetime.invariantformatter.html#baseoptions">baseOptions</a> field extended with concrete options returned from the <a href="format.globalization.datetime.invariantformatter.html#optionsprovider">optionsProvider</a> instance.</p>
-						</div>
-					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -238,9 +234,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overwrites <a href="format.globalization.datetime.invariantformatter.html">InvariantFormatter</a>.<a href="format.globalization.datetime.invariantformatter.html#applyoptions">applyOptions</a></p>
+								<p>Overwrites <a href="format.globalization.datetime.infoformatter.html">InfoFormatter</a>.<a href="format.globalization.datetime.infoformatter.html#applyoptions">applyOptions</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/intl/Globalization/DateTime/IntlFormatter.ts#L49">intl/Globalization/DateTime/IntlFormatter.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/intl/Globalization/DateTime/IntlFormatter.ts#L61">intl/Globalization/DateTime/IntlFormatter.ts:61</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -272,14 +268,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/format.globalization.customformatter.html">CustomFormatter</a>.<a href="../interfaces/format.globalization.customformatter.html#format">format</a></p>
-								<p>Overwrites <a href="format.globalization.datetime.invariantformatter.html">InvariantFormatter</a>.<a href="format.globalization.datetime.invariantformatter.html#format">format</a></p>
+								<p>Overwrites <a href="format.globalization.datetime.infoformatter.html">InfoFormatter</a>.<a href="format.globalization.datetime.infoformatter.html#format">format</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/intl/Globalization/DateTime/IntlFormatter.ts#L40">intl/Globalization/DateTime/IntlFormatter.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/intl/Globalization/DateTime/IntlFormatter.ts#L52">intl/Globalization/DateTime/IntlFormatter.ts:52</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Converts the date to an equivalent string representation using specified format and invariant culture formatting information.</p>
+									<p>Converts the date to an equivalent string representation using specified format and culture formatting information.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -299,28 +295,6 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<a name="getformatinfo" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Format<wbr>Info</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Format<wbr>Info<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="format.globalization.datetimeformatinfo.html" class="tsd-signature-type">DateTimeFormatInfo</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/intl/Globalization/DateTime/IntlFormatter.ts#L54">intl/Globalization/DateTime/IntlFormatter.ts:54</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the format info instance used for culture-specific formatting.</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <a href="format.globalization.datetimeformatinfo.html" class="tsd-signature-type">DateTimeFormatInfo</a></h4>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
 					<a name="getnativeformatter" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Native<wbr>Formatter</h3>
@@ -331,7 +305,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/intl/Globalization/DateTime/IntlFormatter.ts#L58">intl/Globalization/DateTime/IntlFormatter.ts:58</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/intl/Globalization/DateTime/IntlFormatter.ts#L22">intl/Globalization/DateTime/IntlFormatter.ts:22</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -341,6 +315,29 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">DateTimeFormat</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+					<a name="getspecifiersformatter" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Specifiers<wbr>Formatter</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Specifiers<wbr>Formatter<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/format.globalization.customformatter.html" class="tsd-signature-type">CustomFormatter</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overwrites <a href="format.globalization.datetime.infoformatter.html">InfoFormatter</a>.<a href="format.globalization.datetime.infoformatter.html#getspecifiersformatter">getSpecifiersFormatter</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/intl/Globalization/DateTime/IntlFormatter.ts#L77">intl/Globalization/DateTime/IntlFormatter.ts:77</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the formatter instance that will be used to replace all custom date and time specifiers.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/format.globalization.customformatter.html" class="tsd-signature-type">CustomFormatter</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -366,6 +363,11 @@
 								<ul>
 									<li class="current tsd-kind-module tsd-parent-kind-module">
 										<a href="../modules/format.globalization.datetime.html">Date<wbr>Time</a>
+										<ul>
+											<li class=" tsd-kind-module tsd-parent-kind-module">
+												<a href="../modules/format.globalization.datetime.specifiers.html">Specifiers</a>
+											</li>
+										</ul>
 									</li>
 									<li class=" tsd-kind-module tsd-parent-kind-module">
 										<a href="../modules/format.globalization.numeric.html">Numeric</a>
@@ -381,6 +383,12 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="format.globalization.datetime.infoformatter.html" class="tsd-kind-icon">Info<wbr>Formatter</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="format.globalization.datetime.infospecifierformatter.html" class="tsd-kind-icon">Info<wbr>Specifier<wbr>Formatter</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-module">
@@ -389,7 +397,7 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 								<a href="format.globalization.datetime.intlformatter.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 								<a href="format.globalization.datetime.intlformatter.html#formatinfo" class="tsd-kind-icon">format<wbr>Info</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
@@ -404,11 +412,11 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 								<a href="format.globalization.datetime.intlformatter.html#format" class="tsd-kind-icon">format</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-								<a href="format.globalization.datetime.intlformatter.html#getformatinfo" class="tsd-kind-icon">get<wbr>Format<wbr>Info</a>
-							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="format.globalization.datetime.intlformatter.html#getnativeformatter" class="tsd-kind-icon">get<wbr>Native<wbr>Formatter</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+								<a href="format.globalization.datetime.intlformatter.html#getspecifiersformatter" class="tsd-kind-icon">get<wbr>Specifiers<wbr>Formatter</a>
 							</li>
 						</ul>
 					</li>
@@ -417,11 +425,38 @@
 					<li class=" tsd-kind-class tsd-parent-kind-module">
 						<a href="format.globalization.datetime.intloptionsprovider.html" class="tsd-kind-icon">Intl<wbr>Options<wbr>Provider</a>
 					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="format.globalization.datetime.invariantformatter.html" class="tsd-kind-icon">Invariant<wbr>Formatter</a>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="format.globalization.datetime.intlspecifiersformatter.html" class="tsd-kind-icon">Intl<wbr>Specifiers<wbr>Formatter</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
 						<a href="../interfaces/format.globalization.datetime.optionsprovider.html" class="tsd-kind-icon">Options<wbr>Provider</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="../modules/format.globalization.datetime.html#customspecifiers" class="tsd-kind-icon">custom<wbr>Specifiers</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="../modules/format.globalization.datetime.html#empty" class="tsd-kind-icon">empty</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="../modules/format.globalization.datetime.html#long" class="tsd-kind-icon">long</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="../modules/format.globalization.datetime.html#numeric" class="tsd-kind-icon">numeric</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="../modules/format.globalization.datetime.html#padding" class="tsd-kind-icon">padding</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="../modules/format.globalization.datetime.html#resolvers" class="tsd-kind-icon">resolvers</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="../modules/format.globalization.datetime.html#styles" class="tsd-kind-icon">styles</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="../modules/format.globalization.datetime.html#pad" class="tsd-kind-icon">pad</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="../modules/format.globalization.datetime.html#pad2" class="tsd-kind-icon">pad2</a>
 					</li>
 				</ul>
 			</nav>

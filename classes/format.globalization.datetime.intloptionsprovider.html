@@ -79,9 +79,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>An <a href="../interfaces/format.globalization.datetime.optionsprovider.html">OptionsProvider</a> implementation that handles both <a href="https://msdn.microsoft.com/en-us/library/az4se3k1.aspx">Standard Date and Time Format Strings</a> and
-							<a href="https://msdn.microsoft.com/en-us/library/8kb3ddd4.aspx">Custom Date and Time Format Strings</a>. The type of the returned options object is an
-						extended version of <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat#Parameters">Intl.DateTimeFormat&#39;s options</a> parameter.</p>
+						<p>An <a href="../interfaces/format.globalization.datetime.optionsprovider.html">OptionsProvider</a> implementation that handles <a href="https://msdn.microsoft.com/library/az4se3k1.aspx">Standard Date and Time Format Specifiers</a>. The type of the returned options object
+						is an extended version of <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat#Parameters">Intl.DateTimeFormat&#39;s options</a> parameter.</p>
 					</div>
 				</div>
 			</section>
@@ -112,13 +111,23 @@
 						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="format.globalization.datetime.intloptionsprovider.html#resolvedoptions" class="tsd-kind-icon">resolved<wbr>Options</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="format.globalization.datetime.intloptionsprovider.html#options_" class="tsd-kind-icon">options_</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="format.globalization.datetime.intloptionsprovider.html#style_" class="tsd-kind-icon">style_</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="format.globalization.datetime.intloptionsprovider.html#getstyle" class="tsd-kind-icon">get<wbr>Style</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="format.globalization.datetime.intloptionsprovider.html#resolveoptions" class="tsd-kind-icon">resolve<wbr>Options</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="format.globalization.datetime.intloptionsprovider.html#tryinitializespecifieroptions_" class="tsd-kind-icon">try<wbr>Initialize<wbr>Specifier<wbr>Options_</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="format.globalization.datetime.intloptionsprovider.html#useutc" class="tsd-kind-icon">useUTC</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
+							<h3>Object literals</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-object-literal tsd-parent-kind-class tsd-is-private"><a href="format.globalization.datetime.intloptionsprovider.html#resolvers_" class="tsd-kind-icon">resolvers_</a></li>
 							</ul>
 						</section>
 					</div>
@@ -136,7 +145,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/core/Globalization/DateTime/IntlOptionsProvider.ts#L16">core/Globalization/DateTime/IntlOptionsProvider.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTime/IntlOptionsProvider.ts#L23">core/Globalization/DateTime/IntlOptionsProvider.ts:23</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -163,18 +172,51 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="resolvedoptions" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> resolved<wbr>Options</h3>
-					<div class="tsd-signature tsd-kind-icon">resolved<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">DateTimeFormatOptions</span></div>
+					<a name="options_" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> options_</h3>
+					<div class="tsd-signature tsd-kind-icon">options_<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">DateTimeFormatOptions</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/core/Globalization/DateTime/IntlOptionsProvider.ts#L16">core/Globalization/DateTime/IntlOptionsProvider.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTime/IntlOptionsProvider.ts#L23">core/Globalization/DateTime/IntlOptionsProvider.ts:23</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="style_" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> style_</h3>
+					<div class="tsd-signature tsd-kind-icon">style_<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTime/IntlOptionsProvider.ts#L22">core/Globalization/DateTime/IntlOptionsProvider.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getstyle" class="tsd-anchor"></a>
+					<h3>get<wbr>Style</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Style<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/format.globalization.datetime.optionsprovider.html">OptionsProvider</a>.<a href="../interfaces/format.globalization.datetime.optionsprovider.html#getstyle">getStyle</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTime/IntlOptionsProvider.ts#L54">core/Globalization/DateTime/IntlOptionsProvider.ts:54</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the formatting style to use. Values should match the property names defined in <a href="../interfaces/format.globalization.datetime.specifiers.standardspecifiersmap.html">Specifiers.StandardSpecifiersMap</a>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="resolveoptions" class="tsd-anchor"></a>
 					<h3>resolve<wbr>Options</h3>
@@ -186,12 +228,12 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/format.globalization.datetime.optionsprovider.html">OptionsProvider</a>.<a href="../interfaces/format.globalization.datetime.optionsprovider.html#resolveoptions">resolveOptions</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/src/core/Globalization/DateTime/IntlOptionsProvider.ts#L31">core/Globalization/DateTime/IntlOptionsProvider.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTime/IntlOptionsProvider.ts#L43">core/Globalization/DateTime/IntlOptionsProvider.ts:43</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns an object that provides date and time formatting options resolved from date and time format specifiers.</p>
+									<p>Returns an object that provides date and time formatting options resolved from standard date and time specifiers.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -199,19 +241,432 @@
 								<li>
 									<h5>format: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>A format string containing formatting specifications.</p>
+										<p>A format string representing a <a href="https://msdn.microsoft.com/library/az4se3k1.aspx">Standard Date and Time Format Specifiers</a>.</p>
 									</div>
 								</li>
 								<li>
 									<h5>value: <span class="tsd-signature-type">Date</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The value object from which to infer additional options.</p>
+										<p>The date object from which to infer additional options.</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">DateTimeFormatOptions</span></h4>
 						</li>
 					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="tryinitializespecifieroptions_" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> try<wbr>Initialize<wbr>Specifier<wbr>Options_</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">try<wbr>Initialize<wbr>Specifier<wbr>Options_<span class="tsd-signature-symbol">(</span>format<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTime/IntlOptionsProvider.ts#L63">core/Globalization/DateTime/IntlOptionsProvider.ts:63</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>format: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="useutc" class="tsd-anchor"></a>
+					<h3>useUTC</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">useUTC<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/format.globalization.datetime.optionsprovider.html">OptionsProvider</a>.<a href="../interfaces/format.globalization.datetime.optionsprovider.html#useutc">useUTC</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTime/IntlOptionsProvider.ts#L59">core/Globalization/DateTime/IntlOptionsProvider.ts:59</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns whether to use UTC time or not.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
+				<h2>Object literals</h2>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-class tsd-is-private">
+					<a name="resolvers_" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> resolvers_</h3>
+					<div class="tsd-signature tsd-kind-icon">resolvers_<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTime/IntlOptionsProvider.ts#L82">core/Globalization/DateTime/IntlOptionsProvider.ts:82</a></li>
+						</ul>
+					</aside>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="resolvers_.rfc1123" class="tsd-anchor"></a>
+						<h3>rfc1123</h3>
+						<div class="tsd-signature tsd-kind-icon">rfc1123<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTime/IntlOptionsProvider.ts#L132">core/Globalization/DateTime/IntlOptionsProvider.ts:132</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>See: <a href="https://msdn.microsoft.com/library/az4se3k1.aspx#RFC1123">https://msdn.microsoft.com/library/az4se3k1.aspx#RFC1123</a></p>
+							</div>
+						</div>
+						<div class="tsd-type-declaration">
+							<h4>Type declaration</h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter-siganture">
+									<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable tsd-is-not-exported">
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+									</ul>
+									<ul class="tsd-descriptions">
+										<li class="tsd-description">
+											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="resolvers_.roundtrip" class="tsd-anchor"></a>
+						<h3>round<wbr>Trip</h3>
+						<div class="tsd-signature tsd-kind-icon">round<wbr>Trip<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTime/IntlOptionsProvider.ts#L129">core/Globalization/DateTime/IntlOptionsProvider.ts:129</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>See: <a href="https://msdn.microsoft.com/library/az4se3k1.aspx#Roundtrip">https://msdn.microsoft.com/library/az4se3k1.aspx#Roundtrip</a></p>
+							</div>
+						</div>
+						<div class="tsd-type-declaration">
+							<h4>Type declaration</h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter-siganture">
+									<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable tsd-is-not-exported">
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+									</ul>
+									<ul class="tsd-descriptions">
+										<li class="tsd-description">
+											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="resolvers_.sortable" class="tsd-anchor"></a>
+						<h3>sortable</h3>
+						<div class="tsd-signature tsd-kind-icon">sortable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTime/IntlOptionsProvider.ts#L135">core/Globalization/DateTime/IntlOptionsProvider.ts:135</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>See: <a href="https://msdn.microsoft.com/library/az4se3k1.aspx#Sortable">https://msdn.microsoft.com/library/az4se3k1.aspx#Sortable</a></p>
+							</div>
+						</div>
+						<div class="tsd-type-declaration">
+							<h4>Type declaration</h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter-siganture">
+									<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable tsd-is-not-exported">
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+									</ul>
+									<ul class="tsd-descriptions">
+										<li class="tsd-description">
+											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="resolvers_.fulldatelongtime" class="tsd-anchor"></a>
+						<h3>full<wbr>Date<wbr>Long<wbr>Time</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">full<wbr>Date<wbr>Long<wbr>Time<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTime/IntlOptionsProvider.ts#L105">core/Globalization/DateTime/IntlOptionsProvider.ts:105</a></li>
+									</ul>
+								</aside>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>See: <a href="https://msdn.microsoft.com/library/az4se3k1.aspx#FullDateLongTime">https://msdn.microsoft.com/library/az4se3k1.aspx#FullDateLongTime</a></p>
+									</div>
+								</div>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="resolvers_.fulldateshorttime" class="tsd-anchor"></a>
+						<h3>full<wbr>Date<wbr>Short<wbr>Time</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">full<wbr>Date<wbr>Short<wbr>Time<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTime/IntlOptionsProvider.ts#L99">core/Globalization/DateTime/IntlOptionsProvider.ts:99</a></li>
+									</ul>
+								</aside>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>See: <a href="https://msdn.microsoft.com/library/az4se3k1.aspx#FullDateShortTime">https://msdn.microsoft.com/library/az4se3k1.aspx#FullDateShortTime</a></p>
+									</div>
+								</div>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="resolvers_.generaldatelongtime" class="tsd-anchor"></a>
+						<h3>general<wbr>Date<wbr>Long<wbr>Time</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">general<wbr>Date<wbr>Long<wbr>Time<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTime/IntlOptionsProvider.ts#L117">core/Globalization/DateTime/IntlOptionsProvider.ts:117</a></li>
+									</ul>
+								</aside>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>See: <a href="https://msdn.microsoft.com/library/az4se3k1.aspx#GeneralDateLongTime">https://msdn.microsoft.com/library/az4se3k1.aspx#GeneralDateLongTime</a></p>
+									</div>
+								</div>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="resolvers_.generaldateshorttime" class="tsd-anchor"></a>
+						<h3>general<wbr>Date<wbr>Short<wbr>Time</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">general<wbr>Date<wbr>Short<wbr>Time<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTime/IntlOptionsProvider.ts#L111">core/Globalization/DateTime/IntlOptionsProvider.ts:111</a></li>
+									</ul>
+								</aside>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>See: <a href="https://msdn.microsoft.com/library/az4se3k1.aspx#GeneralDateShortTime">https://msdn.microsoft.com/library/az4se3k1.aspx#GeneralDateShortTime</a></p>
+									</div>
+								</div>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="resolvers_.longdate" class="tsd-anchor"></a>
+						<h3>long<wbr>Date</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">long<wbr>Date<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTime/IntlOptionsProvider.ts#L92">core/Globalization/DateTime/IntlOptionsProvider.ts:92</a></li>
+									</ul>
+								</aside>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>See: <a href="https://msdn.microsoft.com/library/az4se3k1.aspx#LongDate">https://msdn.microsoft.com/library/az4se3k1.aspx#LongDate</a></p>
+									</div>
+								</div>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="resolvers_.longtime" class="tsd-anchor"></a>
+						<h3>long<wbr>Time</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">long<wbr>Time<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTime/IntlOptionsProvider.ts#L144">core/Globalization/DateTime/IntlOptionsProvider.ts:144</a></li>
+									</ul>
+								</aside>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>See: <a href="https://msdn.microsoft.com/library/az4se3k1.aspx#LongTime">https://msdn.microsoft.com/library/az4se3k1.aspx#LongTime</a></p>
+									</div>
+								</div>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="resolvers_.monthdate" class="tsd-anchor"></a>
+						<h3>month<wbr>Date</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">month<wbr>Date<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTime/IntlOptionsProvider.ts#L123">core/Globalization/DateTime/IntlOptionsProvider.ts:123</a></li>
+									</ul>
+								</aside>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>See: <a href="https://msdn.microsoft.com/library/az4se3k1.aspx#MonthDay">https://msdn.microsoft.com/library/az4se3k1.aspx#MonthDay</a></p>
+									</div>
+								</div>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="resolvers_.shortdate" class="tsd-anchor"></a>
+						<h3>short<wbr>Date</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">short<wbr>Date<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTime/IntlOptionsProvider.ts#L85">core/Globalization/DateTime/IntlOptionsProvider.ts:85</a></li>
+									</ul>
+								</aside>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>See: <a href="https://msdn.microsoft.com/library/az4se3k1.aspx#ShortDate">https://msdn.microsoft.com/library/az4se3k1.aspx#ShortDate</a></p>
+									</div>
+								</div>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="resolvers_.shorttime" class="tsd-anchor"></a>
+						<h3>short<wbr>Time</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">short<wbr>Time<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTime/IntlOptionsProvider.ts#L138">core/Globalization/DateTime/IntlOptionsProvider.ts:138</a></li>
+									</ul>
+								</aside>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>See: <a href="https://msdn.microsoft.com/library/az4se3k1.aspx#ShortTime">https://msdn.microsoft.com/library/az4se3k1.aspx#ShortTime</a></p>
+									</div>
+								</div>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="resolvers_.universalfull" class="tsd-anchor"></a>
+						<h3>universal<wbr>Full</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">universal<wbr>Full<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTime/IntlOptionsProvider.ts#L155">core/Globalization/DateTime/IntlOptionsProvider.ts:155</a></li>
+									</ul>
+								</aside>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>See: <a href="https://msdn.microsoft.com/library/az4se3k1.aspx#UniversalFull">https://msdn.microsoft.com/library/az4se3k1.aspx#UniversalFull</a></p>
+									</div>
+								</div>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="resolvers_.universalsortable" class="tsd-anchor"></a>
+						<h3>universal<wbr>Sortable</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">universal<wbr>Sortable<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTime/IntlOptionsProvider.ts#L150">core/Globalization/DateTime/IntlOptionsProvider.ts:150</a></li>
+									</ul>
+								</aside>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>See: <a href="https://msdn.microsoft.com/library/az4se3k1.aspx#UniversalSortable">https://msdn.microsoft.com/library/az4se3k1.aspx#UniversalSortable</a></p>
+									</div>
+								</div>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="resolvers_.yearmonth" class="tsd-anchor"></a>
+						<h3>year<wbr>Month</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">year<wbr>Month<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/src/core/Globalization/DateTime/IntlOptionsProvider.ts#L161">core/Globalization/DateTime/IntlOptionsProvider.ts:161</a></li>
+									</ul>
+								</aside>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>See: <a href="https://msdn.microsoft.com/library/az4se3k1.aspx#YearMonth">https://msdn.microsoft.com/library/az4se3k1.aspx#YearMonth</a></p>
+									</div>
+								</div>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							</li>
+						</ul>
+					</section>
 				</section>
 			</section>
 		</div>
@@ -235,6 +690,11 @@
 								<ul>
 									<li class="current tsd-kind-module tsd-parent-kind-module">
 										<a href="../modules/format.globalization.datetime.html">Date<wbr>Time</a>
+										<ul>
+											<li class=" tsd-kind-module tsd-parent-kind-module">
+												<a href="../modules/format.globalization.datetime.specifiers.html">Specifiers</a>
+											</li>
+										</ul>
 									</li>
 									<li class=" tsd-kind-module tsd-parent-kind-module">
 										<a href="../modules/format.globalization.numeric.html">Numeric</a>
@@ -250,6 +710,12 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="format.globalization.datetime.infoformatter.html" class="tsd-kind-icon">Info<wbr>Formatter</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="format.globalization.datetime.infospecifierformatter.html" class="tsd-kind-icon">Info<wbr>Specifier<wbr>Formatter</a>
+					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-module">
 						<a href="format.globalization.datetime.intlformatter.html" class="tsd-kind-icon">Intl<wbr>Formatter</a>
 					</li>
@@ -262,20 +728,62 @@
 								<a href="format.globalization.datetime.intloptionsprovider.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="format.globalization.datetime.intloptionsprovider.html#resolvedoptions" class="tsd-kind-icon">resolved<wbr>Options</a>
+								<a href="format.globalization.datetime.intloptionsprovider.html#options_" class="tsd-kind-icon">options_</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="format.globalization.datetime.intloptionsprovider.html#style_" class="tsd-kind-icon">style_</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="format.globalization.datetime.intloptionsprovider.html#getstyle" class="tsd-kind-icon">get<wbr>Style</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="format.globalization.datetime.intloptionsprovider.html#resolveoptions" class="tsd-kind-icon">resolve<wbr>Options</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="format.globalization.datetime.intloptionsprovider.html#tryinitializespecifieroptions_" class="tsd-kind-icon">try<wbr>Initialize<wbr>Specifier<wbr>Options_</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="format.globalization.datetime.intloptionsprovider.html#useutc" class="tsd-kind-icon">useUTC</a>
+							</li>
+							<li class=" tsd-kind-object-literal tsd-parent-kind-class tsd-is-private">
+								<a href="format.globalization.datetime.intloptionsprovider.html#resolvers_" class="tsd-kind-icon">resolvers_</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="format.globalization.datetime.invariantformatter.html" class="tsd-kind-icon">Invariant<wbr>Formatter</a>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="format.globalization.datetime.intlspecifiersformatter.html" class="tsd-kind-icon">Intl<wbr>Specifiers<wbr>Formatter</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
 						<a href="../interfaces/format.globalization.datetime.optionsprovider.html" class="tsd-kind-icon">Options<wbr>Provider</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="../modules/format.globalization.datetime.html#customspecifiers" class="tsd-kind-icon">custom<wbr>Specifiers</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="../modules/format.globalization.datetime.html#empty" class="tsd-kind-icon">empty</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="../modules/format.globalization.datetime.html#long" class="tsd-kind-icon">long</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="../modules/format.globalization.datetime.html#numeric" class="tsd-kind-icon">numeric</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="../modules/format.globalization.datetime.html#padding" class="tsd-kind-icon">padding</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="../modules/format.globalization.datetime.html#resolvers" class="tsd-kind-icon">resolvers</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="../modules/format.globalization.datetime.html#styles" class="tsd-kind-icon">styles</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="../modules/format.globalization.datetime.html#pad" class="tsd-kind-icon">pad</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="../modules/format.globalization.datetime.html#pad2" class="tsd-kind-icon">pad2</a>
 					</li>
 				</ul>
 			</nav>

@@ -66,62 +66,36 @@
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
 				<h1 id="-clr-format-https-github-com-clr-format-clr-format-"><a href="https://github.com/clr-format/clr-format">clr-format</a></h1>
-				<p>A lightweight, modular and stand-alone JavaScript implementation of a string formatting function that supports composite format strings, globalization and customization</p>
+				<p>A lightweight, modular and stand-alone JavaScript implementation of a string formatting function that fully supports <a href="https://msdn.microsoft.com/en-us/library/txafckwd.aspx">composite formatting</a>, globalization and customization</p>
 				<p><a href="https://travis-ci.org/clr-format/clr-format"><img src="https://travis-ci.org/clr-format/clr-format.svg?branch=master" alt="Build Status"></a>
 				<a href="https://david-dm.org/clr-format/clr-format/#info=devDependencies&amp;view=table"><img src="https://david-dm.org/clr-format/clr-format/dev-status.svg" alt="Dev Dependencies"></a></p>
+				<ul>
+					<li><a href="#usage">Usage</a></li>
+					<li><a href="#latest-version-capabilities">Capabilities</a></li>
+					<li><a href="http://clr-format.github.io/clr-format/interfaces/stringconstructor.html#format">Documentation</a></li>
+					<li><a href="#development">Development</a></li>
+					<li><a href="#planned-releases">Roadmap</a></li>
+				</ul>
 				<h2 id="installation">Installation</h2>
-				<p>The following commands can be used to install the script in a context of your choice.</p>
+				<p>The following commands can be used to install the script from your favorite package manager.</p>
 				<h4 id="-nuget-https-badge-fury-io-nu-clr-format-js-svg-https-www-nuget-org-packages-clr-format-js-"><a href="https://www.nuget.org/packages/clr-format.js"><img src="https://badge.fury.io/nu/clr-format.js.svg" alt="NuGet"></a></h4>
 				<p><code>Install-Package clr-format.js</code></p>
 				<h4 id="-bower-https-badge-fury-io-bo-clr-format-svg-http-bower-io-search-q-clr-format-"><a href="http://bower.io/search/?q=clr-format"><img src="https://badge.fury.io/bo/clr-format.svg" alt="Bower"></a></h4>
 				<p><code>bower install clr-format</code></p>
 				<h4 id="-npm-https-badge-fury-io-js-clr-format-svg-https-www-npmjs-com-package-clr-format-"><a href="https://www.npmjs.com/package/clr-format"><img src="https://badge.fury.io/js/clr-format.svg" alt="NPM"></a></h4>
 				<p><code>npm install clr-format</code></p>
-				<h2 id="latest-version-capabilities">Latest Version Capabilities</h2>
-				<p><a href="https://saucelabs.com/u/clr-format"><img src="https://saucelabs.com/browser-matrix/clr-format.svg" alt="Sauce Test Status"></a></p>
-				<ol>
-					<li><p>Support for all of .NET&#39;s <a href="https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx">standard</a> and <a href="https://msdn.microsoft.com/en-us/library/0c899ak8.aspx">custom</a> numeric format strings (except for currency).
-						For lack of a better medium (other than MSDN) please refer to the <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/test/core/String/formatInvariant_should.ts">invariant test cases</a> for a more in-depth showcase of what can be expected as input/output.</p>
-						<pre><code class="lang-javascript"> expect(<span class="hljs-built_in">String</span>.format(<span class="hljs-string">"{0:P1}"</span>, -<span class="hljs-number">0.39678</span>)).toBe(<span class="hljs-string">"-39.7 %"</span>);
- expect(<span class="hljs-built_in">String</span>.format(<span class="hljs-string">"{0:#0.0E00}"</span>, <span class="hljs-number">987654</span>)).toBe(<span class="hljs-string">"98.8E04"</span>);
-
- expect(<span class="hljs-built_in">String</span>.format(<span class="hljs-string">"{0:C}"</span>, <span class="hljs-number">35.23</span>)).toThrowError(Format.Errors.FormatError);
-</code></pre>
-					</li>
-					<li><p>Optional globalization API contained in <em>clr-format-intl.js</em> that allows for culture-specific number and currency formatting via the <a href="http://clr-format.github.io/clr-format/modules/format.html#setculture">Format.setCulture</a> and <a href="http://clr-format.github.io/clr-format/modules/format.html#setcurrency">Format.setCurrency</a> methods.
-							You can find all MSDN-like examples compiled in the <a href="https://github.com/clr-format/clr-format/blob/v0.4.1/test/core/String/formatCulture_should.ts#L33">culture-enabled test cases</a>.
-						Requires contextual support for the <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Intl">ECMAScript Intl namespace</a>. For older browsers and cultures outside of &quot;en-US&quot; in Node.JS consider polyfilling with <a href="https://github.com/andyearnshaw/Intl.js">Intl.js</a>.</p>
-						<pre><code class="lang-javascript"> Format.setCulture(<span class="hljs-string">"de-DE"</span>);
- expect(<span class="hljs-built_in">String</span>.format(<span class="hljs-string">"{0:N2}"</span>, -<span class="hljs-number">1234.56</span>)).toBe(<span class="hljs-string">"-1.234,56"</span>);
- expect(<span class="hljs-built_in">String</span>.format(<span class="hljs-string">"{0:#0.0#;(#0.0#,);-0-}"</span>, -<span class="hljs-number">1234.5</span>)).toBe(<span class="hljs-string">"(1,23)"</span>);
-
- Format.setCurrency(<span class="hljs-string">"EUR"</span>);
- expect(<span class="hljs-built_in">String</span>.format(<span class="hljs-string">"{0:c}"</span>, <span class="hljs-number">1230</span>)).toBe(<span class="hljs-string">"1.230,00 €"</span>);
-</code></pre>
-					</li>
-					<li><p>Support for mixed index and alignment components.</p>
-						<pre><code class="lang-javascript"> expect(
-     <span class="hljs-built_in">String</span>.format(
-         <span class="hljs-string">"Format primitives: {0}{5}, {4}, {3}, {1,-8},{2,4}"</span>,
-         <span class="hljs-number">0</span>, { <span class="hljs-string">"a"</span>: <span class="hljs-number">1</span> }, [<span class="hljs-number">2</span>], <span class="hljs-string">"3"</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">undefined</span>))
-     .toBe(<span class="hljs-string">"Format primitives: 0, true, 3, {\"a\":1} , [2]"</span>);
-</code></pre>
-					</li>
-					<li><p>Optional configuration API contained in <em>clr-format-config.js</em> and defined under the <a href="http://clr-format.github.io/clr-format/modules/format.config.html">Format.Config</a> namespace.</p>
-						<pre><code class="lang-javascript"> Format.Config.addFormatToPrototype();
- expect(<span class="hljs-string">"Format using the injected {0} method"</span>.format(<span class="hljs-string">"prototype"</span>))
-     .toBe(<span class="hljs-string">"Format using the injected prototype method"</span>);
-
- Format.Config.addToStringOverload();
- expect((<span class="hljs-number">1234.5678</span>).toString(<span class="hljs-string">"#,0.00"</span>)).toBe(<span class="hljs-string">"1,234.57"</span>);
-</code></pre>
-					</li>
-				</ol>
 				<h2 id="usage">Usage</h2>
-				<h4 id="as-a-browser-script">As a browser script</h4>
+				<h3 id="as-a-browser-script">As a browser script</h3>
+				<p>Include the <em>clr-format.js</em> script (and optionally the <em>config</em> and/or <em>intl</em> sub-modules).
+				<strong>Only</strong> the <a href="http://clr-format.github.io/clr-format/modules/format">Format</a> namesace will ever be added as a global object and, of course, the declaration for the <a href="http://clr-format.github.io/clr-format/interfaces/stringconstructor.html#format">String.format</a> method.</p>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> formatted = <span class="hljs-built_in">String</span>.format(<span class="hljs-string">"Value: {0:00-00}"</span>, <span class="hljs-number">345.6</span>); <span class="hljs-comment">// formatted = "Value: 03-46"</span>
+
+<span class="hljs-keyword">var</span> culture = <span class="hljs-keyword">new</span> Format.Globalization.CultureInfo(<span class="hljs-string">"en-US"</span>); <span class="hljs-comment">// or use Format.setCulture, requires the intl sub-module</span>
+
+formatted = <span class="hljs-built_in">String</span>.format(culture, <span class="hljs-string">"Value: {0:Y}"</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-number">2015</span>, <span class="hljs-number">8</span>)); <span class="hljs-comment">// formatted = "Value: September 2015"</span>
 </code></pre>
-				<h4 id="as-a-module">As a module</h4>
+				<h3 id="as-a-module">As a module</h3>
+				<p><code>require</code> returns the formatting method which should be assigned to <code>String.format</code> for clarity. The returned object also has properties that expose the <em>config</em> and <em>intl</em> sub-module implementations.</p>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> format = <span class="hljs-built_in">String</span>.format = <span class="hljs-built_in">require</span>(<span class="hljs-string">"clr-format"</span>);
 
 format.setCulture(<span class="hljs-string">"en-US"</span>);
@@ -132,16 +106,66 @@ format.setCurrency(<span class="hljs-string">"USD"</span>);
 <span class="hljs-comment">// Using the chainable configuration API</span>
 format.Config.addFormatToPrototype().addToStringOverload();
 formatted = <span class="hljs-string">"Value:{0,10}"</span>.format(<span class="hljs-string">"prototype"</span>); <span class="hljs-comment">// formatted = "Value: prototype"</span>
-formatted = (<span class="hljs-number">1234.5678</span>).toString(<span class="hljs-string">"D6"</span>); <span class="hljs-comment">// formatted = "001235"</span>
+formatted = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">"T23:12:32"</span>).toString(<span class="hljs-string">"Value\: hh:mm:ss tt"</span>); <span class="hljs-comment">// formatted = "Value: 11:12:32 PM"</span>
 </code></pre>
+				<h2 id="latest-version-capabilities">Latest Version Capabilities</h2>
+				<p><a href="https://saucelabs.com/u/clr-format"><img src="https://saucelabs.com/browser-matrix/clr-format.svg" alt="Sauce Test Status"></a></p>
+				<ol>
+					<li><p><em>Core</em> implentation of index and alignment components&#39; replacement.</p>
+						<pre><code class="lang-javascript"> expect(
+     <span class="hljs-built_in">String</span>.format(
+         <span class="hljs-string">"Format primitives: {0}{5}, {4}, {3}, {1,-8},{2,4}"</span>,
+         <span class="hljs-number">0</span>, { <span class="hljs-string">"a"</span>: <span class="hljs-number">1</span> }, [<span class="hljs-number">2</span>], <span class="hljs-string">"3"</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">undefined</span>))
+     .toBe(<span class="hljs-string">"Format primitives: 0, true, 3, {\"a\":1} , [2]"</span>);
+</code></pre>
+					</li>
+					<li><p><em>Core</em> culture-invariant support for all of .NET&#39;s <a href="https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx">standard numeric</a> and <a href="https://msdn.microsoft.com/en-us/library/0c899ak8.aspx">custom numeric</a> format strings (except for currency),
+							as well as all <a href="https://msdn.microsoft.com/en-us/library/az4se3k1.aspx">standard date/time</a> and <a href="https://msdn.microsoft.com/en-us/library/8kb3ddd4.aspx">custom date/time</a> specifiers.
+						For lack of a better medium (other than MSDN) please refer to the <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/test/core/String/formatInvariant_should.ts#L14">invariant test cases</a> for a more in-depth showcase of what can be expected as input/output.</p>
+						<pre><code class="lang-javascript"> expect(<span class="hljs-built_in">String</span>.format(<span class="hljs-string">"{0:P1}"</span>, -<span class="hljs-number">0.39678</span>)).toBe(<span class="hljs-string">"-39.7 %"</span>);
+ expect(<span class="hljs-built_in">String</span>.format(<span class="hljs-string">"{0:#0.0E00}"</span>, <span class="hljs-number">987654</span>)).toBe(<span class="hljs-string">"98.8E04"</span>);
+
+ expect(<span class="hljs-built_in">String</span>.format(<span class="hljs-string">"{0:C}"</span>, <span class="hljs-number">35.23</span>)).toThrowError(Format.Errors.FormatError);
+
+ expect(<span class="hljs-built_in">String</span>.format(<span class="hljs-string">"{0:F}"</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-number">2015</span>, <span class="hljs-number">8</span>, <span class="hljs-number">21</span>, <span class="hljs-number">13</span>, <span class="hljs-number">4</span>, <span class="hljs-number">55</span>)))
+     .toBe(<span class="hljs-string">"Monday, 21 September 2015 13:04:55"</span>);
+</code></pre>
+					</li>
+					<li><p><em>Optional</em> browser globalization API contained in <em>clr-format-intl.js</em> that allows for culture-specific number and currency formatting via the <a href="http://clr-format.github.io/clr-format/modules/format.html#setculture">Format.setCulture</a> and <a href="http://clr-format.github.io/clr-format/modules/format.html#setcurrency">Format.setCurrency</a> methods.
+							You can find all MSDN-like examples compiled in the <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/test/core/String/formatCulture_should.ts#L33">culture-specific test cases</a>.
+						<strong>Requires</strong> contextual support for the <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Intl">ECMAScript Intl namespace</a>. For older browsers and cultures outside of <code>&quot;en-US&quot;</code> in NodeJS consider polyfilling with <a href="https://github.com/andyearnshaw/Intl.js">Intl.js</a>.</p>
+						<pre><code class="lang-javascript"> Format.setCulture(<span class="hljs-string">"de-DE"</span>);
+ expect(<span class="hljs-built_in">String</span>.format(<span class="hljs-string">"{0:N2}"</span>, -<span class="hljs-number">1234.56</span>)).toBe(<span class="hljs-string">"-1.234,56"</span>);
+ expect(<span class="hljs-built_in">String</span>.format(<span class="hljs-string">"{0:#0.0#;(#0.0#,);-0-}"</span>, -<span class="hljs-number">1234.5</span>)).toBe(<span class="hljs-string">"(1,23)"</span>);
+
+ Format.setCurrency(<span class="hljs-string">"EUR"</span>);
+ expect(<span class="hljs-built_in">String</span>.format(<span class="hljs-string">"{0:c}"</span>, <span class="hljs-number">1230</span>)).toBe(<span class="hljs-string">"1.230,00 €"</span>);
+
+ expect(<span class="hljs-built_in">String</span>.format(<span class="hljs-string">"{0:D}"</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-number">2015</span>, <span class="hljs-number">8</span>, <span class="hljs-number">21</span>, <span class="hljs-number">13</span>, <span class="hljs-number">4</span>, <span class="hljs-number">55</span>)))
+     .toBe(<span class="hljs-string">"Montag, 21. September 2015"</span>);
+</code></pre>
+					</li>
+					<li><p><em>Optional</em> browser configuration API contained in <em>clr-format-config.js</em> and defined under the <a href="http://clr-format.github.io/clr-format/modules/format.config.html">Format.Config</a> namespace.</p>
+						<pre><code class="lang-javascript"> Format.Config.addFormatToPrototype();
+ expect(<span class="hljs-string">"Format using the injected {0} method"</span>.format(<span class="hljs-string">"prototype"</span>))
+     .toBe(<span class="hljs-string">"Format using the injected prototype method"</span>);
+
+ Format.Config.addToStringOverload();
+ expect((<span class="hljs-number">1234.5678</span>).toString(<span class="hljs-string">"#,0.00"</span>)).toBe(<span class="hljs-string">"1,234.57"</span>);
+ expect(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().toString(<span class="hljs-string">"dd/MM/yyyy"</span>)).toBe(<span class="hljs-string">"16/09/2015"</span>);
+</code></pre>
+					</li>
+				</ol>
+				<h4 id="note">Note</h4>
+				<p>All optional browser APIs are included inside the NodeJS package with slightly different usage than on browsers. See the <a href="#usage">Usage</a> section for details.</p>
 				<h2 id="api-documentation">API Documentation</h2>
 				<p>The <a href="http://clr-format.github.io/clr-format">GitHub pages documentation</a> is generated from the latest release&#39;s source files. It includes the jsdoc comments and signatures of public/exported members,
 				as well as the declarations of private ones.</p>
-				<p>Do not rely on any privates; even though for classes they are technically exported they are most likely subject to change in the future.</p>
+				<p>Do not rely on any privates; even though for classes and some modules they are technically exported they are most likely subject to change in the future.</p>
 				<h2 id="development">Development</h2>
 				<p>The implementation of this string formatting function is inspired by .NET&#39;s (and other Microsoft® products&#39;) <a href="https://msdn.microsoft.com/en-us/library/txafckwd.aspx">Composite Formatting</a> feature.
-					Therefore the final behaviour should be similar to what&#39;s described in the <a href="https://msdn.microsoft.com/en-us/library/system.string.format.aspx#Starting">Getting started with the String.Format method</a> article.
-				The main difference is that method names in JavaScript are intrinsically camelcase therefore <a href="http://clr-format.github.io/clr-format/interfaces/stringconstructor.html#format">String.format</a> should be used instead.</p>
+					Therefore the behaviour and method signatures match what&#39;s described in the <a href="https://msdn.microsoft.com/en-us/library/system.string.format.aspx#Starting">Getting started with the String.Format method</a> article as closely as possible.
+				The main difference is that method names in JavaScript are intrinsically camelcase therefore <a href="http://clr-format.github.io/clr-format/interfaces/stringconstructor.html#format">String.format</a> is used instead.</p>
 				<p>To develop and contribute simply install NodeJS, clone the repository, install npm dependencies and run <a href="http://gulpjs.com/">Gulp</a>.</p>
 				<h4 id="tools-download-and-install-">Tools (download and install)</h4>
 				<ol>
@@ -158,7 +182,7 @@ gulp
 </code></pre>
 				<h4 id="notes">Notes</h4>
 				<ul>
-					<li>The default gulp build tasks&#39; list contains a <a href="https://github.com/gulpjs/gulp/blob/v0.4.1/docs/API.md#gulpwatchglob-opts-cb">watch task</a>
+					<li>The default gulp build tasks&#39; list contains a <a href="https://github.com/gulpjs/gulp/blob/v0.5.0/docs/API.md#gulpwatchglob-opts-cb">watch task</a>
 					which means it will block the console and continuously rebuild the project when files in the source or tests folder are changed.</li>
 					<li>In VSCode pressing <strong>Ctrl</strong> + <strong>Shift</strong> + <strong>B</strong> or <strong>T</strong> will trigger the default build or test command respectively.</li>
 					<li>The <code>--ignore-scripts</code> option is used to stop errors caused by <code>node-gyp</code> rebuild scripts introduced by <code>karma</code>.
@@ -174,8 +198,10 @@ gulp
 				<p>Implementation of an invariant number formatting provider and numeric format string components.</p>
 				<h5 id="0-4-released-">0.4 (Released)</h5>
 				<p>Addition of a <em>clr-format-intl.js</em> sub-module/package which can be optionally installed to provide globalization via a bridge to the <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Intl">ECMAScript Intl namespace</a>.</p>
-				<h5 id="0-5">0.5</h5>
+				<h5 id="0-5-released-">0.5 (Released)</h5>
 				<p>Complete the implementation with a date formatting provider and date/time format string components.</p>
+				<h5 id="0-6">0.6</h5>
+				<p>Cleanup, bugfixing and refinement of the existing implementation while maintaining the current API.</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -196,9 +222,6 @@ gulp
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="interfaces/arrayconstructor.html" class="tsd-kind-icon">Array<wbr>Constructor</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
-						<a href="interfaces/constructable.html" class="tsd-kind-icon">Constructable</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="interfaces/date.html" class="tsd-kind-icon">Date</a>
