@@ -6,7 +6,7 @@
 /** A [[Globalization.DateTime]] sub-module containing classes related to date and time format specifier operations. */
 namespace Format.Globalization.DateTime.Specifiers {
 
-    /** The default standard exponential precision specifier. */
+    /** The maximum allowed precision of a `Date` object's sub-seconds time. */
     export let MaxSubSecondPrecision = 3;
 
     /**
@@ -87,6 +87,7 @@ namespace Format.Globalization.DateTime.Specifiers {
         getLiteralPattern = (literalStringDelimeter: string): string =>
             `${literalStringDelimeter}[^${literalStringDelimeter}]*?${literalStringDelimeter}`;
 
+    /** A regular expression matching all custom date and time specifiers and escape literal combinations. */
     export let CustomSpecifiersRegExp = new RegExp(
         [
             getLiteralPattern(specifiers.literalStringDelimeterSingle),
