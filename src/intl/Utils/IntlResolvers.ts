@@ -124,7 +124,7 @@ namespace Format.Utils.IntlResovlers {
         }
 
         if (isBlank(formatInfo.PMDesignator)) {
-            formatInfo.AMDesignator = invariantInfo.AMDesignator;
+            formatInfo.PMDesignator = invariantInfo.PMDesignator;
         }
     };
 
