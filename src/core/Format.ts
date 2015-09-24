@@ -56,7 +56,7 @@ namespace Format {
 
     /**
      * Sets the current default currency (the [[CurrentCurrency]] property) based on the supplied currency code.
-     * @param currencyCode The currency to use in currency formatting. See [current currency & funds code list](http://www.currency-iso.org/home/tables/table-a1.html).
+     * @param currencyCode The currency to use in currency formatting. See [current currency & funds code list](http://www.currency-iso.org/en/home/tables/table-a1.html).
      */
     export function setCurrency(currencyCode: string): void {
 
