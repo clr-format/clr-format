@@ -3,9 +3,6 @@
   "version": "0.5.0",
   "description": "A lightweight, modular and stand-alone JavaScript implementation of a string formatting function that supports composite format strings, globalization and customization",
   "main": "./dist/clr-format-npm.js",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
     "test": "gulp build-release && karma start && karma start karma.conf.intl.js"
   },
@@ -40,7 +37,7 @@
   },
   "homepage": "https://github.com/clr-format/clr-format",
   "devDependencies": {
-    "clr-format": "^0.5.0",
+    "clr-format": "latest",
     "del": "^2.0.2",
     "gulp": "^3.9.0",
     "gulp-add-src": "^0.2.0",

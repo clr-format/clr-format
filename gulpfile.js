@@ -1,3 +1,4 @@
+/// <binding BeforeBuild="build" AfterBuild="minify" Clean="clean" />
 "use strict";
 
 // Root
