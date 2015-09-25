@@ -121,7 +121,7 @@ formatted = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Da
 					</li>
 					<li><p><em>Core</em> culture-invariant support for all of .NET&#39;s <a href="https://msdn.microsoft.com/en-us/library/dwhawy9k.aspx">standard numeric</a> and <a href="https://msdn.microsoft.com/en-us/library/0c899ak8.aspx">custom numeric</a> format strings (except for currency),
 							as well as all <a href="https://msdn.microsoft.com/en-us/library/az4se3k1.aspx">standard date/time</a> and <a href="https://msdn.microsoft.com/en-us/library/8kb3ddd4.aspx">custom date/time</a> specifiers.
-						For lack of a better medium (other than MSDN) please refer to the <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/test/core/String/formatInvariant_should.ts#L14">invariant test cases</a> for a more in-depth showcase of what can be expected as input/output.</p>
+						For lack of a better medium (other than MSDN) please refer to the <a href="https://github.com/clr-format/clr-format/blob/v0.5.1/test/core/String/formatInvariant_should.ts#L14">invariant test cases</a> for a more in-depth showcase of what can be expected as input/output.</p>
 						<pre><code class="lang-javascript"> expect(<span class="hljs-built_in">String</span>.format(<span class="hljs-string">"{0:P1}"</span>, -<span class="hljs-number">0.39678</span>)).toBe(<span class="hljs-string">"-39.7 %"</span>);
  expect(<span class="hljs-built_in">String</span>.format(<span class="hljs-string">"{0:#0.0E00}"</span>, <span class="hljs-number">987654</span>)).toBe(<span class="hljs-string">"98.8E04"</span>);
 
@@ -132,7 +132,7 @@ formatted = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Da
 </code></pre>
 					</li>
 					<li><p><em>Optional</em> browser globalization API contained in <em>clr-format-intl.js</em> that allows for culture-specific number and currency formatting via the <a href="http://clr-format.github.io/clr-format/modules/format.html#setculture">Format.setCulture</a> and <a href="http://clr-format.github.io/clr-format/modules/format.html#setcurrency">Format.setCurrency</a> methods.
-							You can find all MSDN-like examples compiled in the <a href="https://github.com/clr-format/clr-format/blob/v0.5.0/test/core/String/formatCulture_should.ts#L33">culture-specific test cases</a>.
+							You can find all MSDN-like examples compiled in the <a href="https://github.com/clr-format/clr-format/blob/v0.5.1/test/core/String/formatCulture_should.ts#L33">culture-specific test cases</a>.
 						<strong>Requires</strong> contextual support for the <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Intl">ECMAScript Intl namespace</a>. For older browsers and cultures outside of <code>&quot;en-US&quot;</code> in NodeJS consider polyfilling with <a href="https://github.com/andyearnshaw/Intl.js">Intl.js</a>.</p>
 						<pre><code class="lang-javascript"> Format.setCulture(<span class="hljs-string">"de-DE"</span>);
  expect(<span class="hljs-built_in">String</span>.format(<span class="hljs-string">"{0:N2}"</span>, -<span class="hljs-number">1234.56</span>)).toBe(<span class="hljs-string">"-1.234,56"</span>);
@@ -182,7 +182,7 @@ gulp
 </code></pre>
 				<h4 id="notes">Notes</h4>
 				<ul>
-					<li>The default gulp build tasks&#39; list contains a <a href="https://github.com/gulpjs/gulp/blob/v0.5.0/docs/API.md#gulpwatchglob-opts-cb">watch task</a>
+					<li>The default gulp build tasks&#39; list contains a <a href="https://github.com/gulpjs/gulp/blob/v0.5.1/docs/API.md#gulpwatchglob-opts-cb">watch task</a>
 					which means it will block the console and continuously rebuild the project when files in the source or tests folder are changed.</li>
 					<li>In VSCode pressing <strong>Ctrl</strong> + <strong>Shift</strong> + <strong>B</strong> or <strong>T</strong> will trigger the default build or test command respectively.</li>
 					<li>The <code>--ignore-scripts</code> option is used to stop errors caused by <code>node-gyp</code> rebuild scripts introduced by <code>karma</code>.
@@ -202,6 +202,8 @@ gulp
 				<p>Complete the implementation with a date formatting provider and date/time format string components.</p>
 				<h5 id="0-6">0.6</h5>
 				<p>Cleanup, bugfixing and refinement of the existing implementation while maintaining the current API.</p>
+				<h5 id="0-7">0.7</h5>
+				<p>Add parsing support based on customized CultureInfo objects or info properties inferred from the Intl format providers.</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
