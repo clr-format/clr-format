@@ -58,6 +58,10 @@ namespace Format.Globalization.Numeric {
                 throw new Errors.ArgumentNullError("locales");
             }
 
+            if (typeof Intl === "undefined" || typeof Intl.NumberFormat === "undefined") {
+                throw new Format.Errors.InvalidOperationError("Intl.NumberFormat is not supported by the executing context");
+            }
+
             this.locales = locales;
 
             Utils.IntlResovlers.setNumberFormatInfo_(

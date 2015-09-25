@@ -10,6 +10,8 @@ namespace Format.Globalization.DateTime {
             return;
         }
 
+        let supportsIntl = typeof Intl !== "undefined" && typeof Intl.DateTimeFormat !== "undefined";
+
         let formatInfo: DateTimeFormatInfo;
         let intlFormatter: IntlFormatter;
         let intlFormatterAccessor: any;
@@ -21,10 +23,15 @@ namespace Format.Globalization.DateTime {
 
         it("constructor should initialize the locales and format info fields", () => {
 
-            createInstance("en-US");
+            if (supportsIntl) {
+                createInstance("en-US");
 
-            expect(intlFormatterAccessor.locales).toBe("en-US");
-            expect(intlFormatterAccessor.formatInfo).toBe(formatInfo);
+                expect(intlFormatterAccessor.locales).toBe("en-US");
+                expect(intlFormatterAccessor.formatInfo).toBe(formatInfo);
+            }
+            else {
+                expect(() => createInstance("en-US")).toThrowError(Errors.InvalidOperationError);
+            }
         });
 
         it("constructor should throw an ArgumentNullError for parameter(s) with null or undefined values", () => {
@@ -33,6 +40,10 @@ namespace Format.Globalization.DateTime {
             expect(() => new IntlFormatter("en-US", null)).toThrowError(Errors.ArgumentNullError);
             expect(() => new IntlFormatter("en-US", undefined)).toThrowError(Errors.ArgumentNullError);
         });
+
+        if (!supportsIntl) {
+            return;
+        }
 
         it("constructor should throw a RangeError for invalid locales values", () => {
             expect(() => createInstance("")).toThrowError(RangeError);

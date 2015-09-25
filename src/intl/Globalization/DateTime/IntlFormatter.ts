@@ -17,7 +17,7 @@ namespace Format.Globalization.DateTime {
      */
     export class IntlFormatter extends InfoFormatter<Intl.DateTimeFormatOptions> {
 
-        private locales: string|string[];
+        private locales: string | string[];
 
         private getNativeFormatter: (resolvedOptions: Intl.DateTimeFormatOptions) => Intl.DateTimeFormat = (resolvedOptions?: Intl.DateTimeFormatOptions): Intl.DateTimeFormat =>
             <any> new Intl.DateTimeFormat(<string> this.locales, resolvedOptions);
@@ -30,12 +30,16 @@ namespace Format.Globalization.DateTime {
          * @param dateOptions Optional object with some or all of the standardized properties.
          * See: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat
          */
-        constructor(locales: string|string[], formatInfo: DateTimeFormatInfo, dateOptions?: Intl.DateTimeFormatOptions) {
+        constructor(locales: string | string[], formatInfo: DateTimeFormatInfo, dateOptions?: Intl.DateTimeFormatOptions) {
 
             super(IntlOptionsProvider, formatInfo, dateOptions);
 
             if (locales == null) {
                 throw new Errors.ArgumentNullError("locales");
+            }
+
+            if (typeof Intl === "undefined" || typeof Intl.DateTimeFormat === "undefined") {
+                throw new Format.Errors.InvalidOperationError("Intl.DateTimeFormat is not supported by the executing context");
             }
 
             this.locales = locales;
