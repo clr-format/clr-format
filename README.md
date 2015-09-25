@@ -175,6 +175,9 @@ Complete the implementation with a date formatting provider and date/time format
 ##### 0.6
 Cleanup, bugfixing and refinement of the existing implementation while maintaining the current API.
 
+##### 0.7
+Add parsing support based on customized CultureInfo objects or info properties inferred from the Intl format providers.
+
 [GIT]: http://git-scm.com/download/
 [Gulp]: http://gulpjs.com/
 [NodeJS]: https://nodejs.org/download/
