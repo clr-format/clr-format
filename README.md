@@ -85,7 +85,7 @@ expect(String.format("{0:F}", new Date(2015, 8, 21, 13, 4, 55)))
     .toBe("Monday, 21 September 2015 13:04:55");
 ```
 
-### Culture-specific numeric and date formatting
+### Culture-specific formatting (browser-optional)
 Including *clr-format-intl.js* allows for culture-specific number and currency formatting via the [Format.setCulture] and [Format.setCurrency] methods.
 You can find all MSDN-like examples compiled in the [culture-specific test cases][formatCulture_should.ts].
 
