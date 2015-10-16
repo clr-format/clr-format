@@ -29,7 +29,7 @@ Usage
 -----
 
 ### As a browser script
-Include the *clr-format.js* script (and optionally the *config* and/or *intl* sub-modules).
+Include the *clr-format.js* script (and optional browser sub-module [files](#files)).
 **Only** the [Format] namesace will ever be added as a global object and, of course, the declaration for the [String.format] method.
 ```javascript
 var formatted = String.format("Value: {0:00-00}", 345.6); // formatted = "Value: 03-46"
@@ -61,60 +61,73 @@ Latest Version Capabilities
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/clr-format.svg)](https://saucelabs.com/u/clr-format)
 
-1. *Core* implentation of index and alignment components' replacement.
+### Value injection and alignment
+```javascript
+expect(
+    String.format(
+        "Format primitives: {0}{5}, {4}, {3}, {1,-8},{2,4}",
+        0, { "a": 1 }, [2], "3", true, undefined))
+    .toBe("Format primitives: 0, true, 3, {\"a\":1} , [2]");
+```
 
-    ```javascript
-    expect(
-        String.format(
-            "Format primitives: {0}{5}, {4}, {3}, {1,-8},{2,4}",
-            0, { "a": 1 }, [2], "3", true, undefined))
-        .toBe("Format primitives: 0, true, 3, {\"a\":1} , [2]");
-    ```
-
-2. *Core* culture-invariant support for all of .NET's [standard numeric][Standard Numeric Format Specifiers] and [custom numeric][Custom Numeric Format String] format strings (except for currency),
+### Invariant numeric and date formatting
+Culture-invariant support for all of .NET's [standard numeric][Standard Numeric Format Specifiers] and [custom numeric][Custom Numeric Format String] format strings,
 as well as all [standard date/time][Standard Date Time Format Specifiers] and [custom date/time][Custom Date Time Format String] specifiers.
 For lack of a better medium (other than MSDN) please refer to the [invariant test cases][formatInvariant_should.ts] for a more in-depth showcase of what can be expected as input/output.
 
-    ```javascript
-    expect(String.format("{0:P1}", -0.39678)).toBe("-39.7 %");
-    expect(String.format("{0:#0.0E00}", 987654)).toBe("98.8E04");
+```javascript
+expect(String.format("{0:P1}", -0.39678)).toBe("-39.7 %");
+expect(String.format("{0:#0.0E00}", 987654)).toBe("98.8E04");
 
-    expect(String.format("{0:C}", 35.23)).toThrowError(Format.Errors.FormatError);
+expect(String.format("{0:C}", 35.23)).toThrowError(Format.Errors.FormatError);
 
-    expect(String.format("{0:F}", new Date(2015, 8, 21, 13, 4, 55)))
-        .toBe("Monday, 21 September 2015 13:04:55");
-    ```
+expect(String.format("{0:F}", new Date(2015, 8, 21, 13, 4, 55)))
+    .toBe("Monday, 21 September 2015 13:04:55");
+```
 
-3. *Optional* browser globalization API contained in *clr-format-intl.js* that allows for culture-specific number and currency formatting via the [Format.setCulture] and [Format.setCurrency] methods.
+### Culture-specific numeric and date formatting
+Including *clr-format-intl.js* allows for culture-specific number and currency formatting via the [Format.setCulture] and [Format.setCurrency] methods.
 You can find all MSDN-like examples compiled in the [culture-specific test cases][formatCulture_should.ts].
+
 **Requires** contextual support for the [ECMAScript Intl namespace]. For older browsers and cultures outside of `"en-US"` in NodeJS consider polyfilling with [Intl.js].
 
-    ```javascript
-    Format.setCulture("de-DE");
-    expect(String.format("{0:N2}", -1234.56)).toBe("-1.234,56");
-    expect(String.format("{0:#0.0#;(#0.0#,);-0-}", -1234.5)).toBe("(1,23)");
+```javascript
+Format.setCulture("de-DE");
+expect(String.format("{0:N2}", -1234.56)).toBe("-1.234,56");
+expect(String.format("{0:#0.0#;(#0.0#,);-0-}", -1234.5)).toBe("(1,23)");
 
-    Format.setCurrency("EUR");
-    expect(String.format("{0:c}", 1230)).toBe("1.230,00 €");
+Format.setCurrency("EUR");
+expect(String.format("{0:c}", 1230)).toBe("1.230,00 €");
 
-    expect(String.format("{0:D}", new Date(2015, 8, 21, 13, 4, 55)))
-        .toBe("Montag, 21. September 2015");
-    ```
+expect(String.format("{0:D}", new Date(2015, 8, 21, 13, 4, 55)))
+    .toBe("Montag, 21. September 2015");
+```
 
-4. *Optional* browser configuration API contained in *clr-format-config.js* and defined under the [Format.Config] namespace.
+### Configuration API (browser-optional)
+Including *clr-format-config.js* defines the [Format.Config] namespace and its methods.
 
-    ```javascript
-    Format.Config.addFormatToPrototype();
-    expect("Format using the injected {0} method".format("prototype"))
-        .toBe("Format using the injected prototype method");
+```javascript
+Format.Config.addFormatToPrototype();
+expect("Format using the injected {0} method".format("prototype"))
+    .toBe("Format using the injected prototype method");
 
-    Format.Config.addToStringOverload();
-    expect((1234.5678).toString("#,0.00")).toBe("1,234.57");
-    expect(new Date().toString("dd/MM/yyyy")).toBe("16/09/2015");
-    ```
+Format.Config.addToStringOverload();
+expect((1234.5678).toString("#,0.00")).toBe("1,234.57");
+expect(new Date().toString("dd/MM/yyyy")).toBe("16/09/2015");
+```
 
-#### Note
-All optional browser APIs are included inside the NodeJS package with slightly different usage than on browsers. See the [Usage](#usage) section for details.
+Files
+-----
+
+| File                         | Description                                                  | Size (min/gzip) |
+| ---------------------------- | -------------------------------------------------------------|-----------------|
+| clr-format.js                | Core browser implementation file compiled to javascript      | 11 369 bytes    |
+| clr-format-intl.js           | Optional browser script that enables culture formatting      | 2 341 bytes     |
+| clr-format-config.js         | Optional browser script that defines [Format.Config]         | 1 614 bytes     |
+| clr-format-npm.js            | Core Node.js implementation file (contains all of the above) | Not applicable  |
+| *.d.ts                       | Ambient TypeScript definitions                               | Not applicable  |
+| *.min.js                     | Compressed versions, ready for production.                   | 15 324 bytes    |
+
 
 API Documentation
 -----------------
