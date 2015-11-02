@@ -248,14 +248,6 @@ namespace Format {
             let date = new Date(2015, 8, 21, 13, 4, 55);
             let utcDate = new Date("2015-09-21T10:04:55.000Z");
 
-            date.setHours(13);
-            date.setMinutes(4);
-            date.setSeconds(55);
-
-            utcDate.setUTCHours(10);
-            utcDate.setUTCMinutes(4);
-            utcDate.setUTCSeconds(55);
-
             /** Short Date - https://msdn.microsoft.com/library/az4se3k1.aspx#ShortDate */
             expectStripped(String.format("{0:d}", date)).toMatch(/21.0?9.2015/);
 
