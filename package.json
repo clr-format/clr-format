@@ -36,6 +36,10 @@
     "url": "https://github.com/clr-format/clr-format/issues"
   },
   "homepage": "https://github.com/clr-format/clr-format",
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "engineStrict": true,
   "devDependencies": {
     "clr-format": "latest",
     "del": "^2.0.2",

@@ -107,7 +107,7 @@ namespace Format.Globalization.DateTime {
 
             this.value_ = value;
 
-            if (this.optionsProvider_.useUTC()) {
+            if (this.optionsProvider_.useUTC() === true) {
                 this.value_ = new Date(this.value_.getTime() + this.value_.getTimezoneOffset() * 60000);
             }
         }
