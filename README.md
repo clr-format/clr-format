@@ -86,7 +86,7 @@ expect(String.format("{0:F}", new Date(2015, 8, 21, 13, 4, 55)))
 ```
 
 ### Culture-specific formatting (browser-optional)
-Including *clr-format-intl.js* allows for culture-specific number and currency formatting via the [Format.setCulture] and [Format.setCurrency] methods.
+Including *clr-format-intl.js* allows for culture-specific number, currency and date formatting via the [Format.setCulture] and [Format.setCurrency] methods.
 You can find all MSDN-like examples compiled in the [culture-specific test cases][formatCulture_should.ts].
 
 **Requires** contextual support for the [ECMAScript Intl namespace]. For older browsers and cultures outside of `"en-US"` in NodeJS consider polyfilling with [Intl.js].
