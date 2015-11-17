@@ -41,24 +41,24 @@
   },
   "engineStrict": true,
   "devDependencies": {
-    "clr-format": "latest",
-    "del": "^2.0.2",
+    "clr-format": "^0.5.2",
+    "del": "^2.1.0",
     "gulp": "^3.9.0",
     "gulp-add-src": "^0.2.0",
     "gulp-concat": "^2.6.0",
     "gulp-empty": "^0.1.1",
-    "gulp-jasmine": "^2.2.0",
+    "gulp-jasmine": "^2.2.1",
     "gulp-nuget": "0.0.3",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
     "gulp-strip-line": "0.0.1",
-    "gulp-tslint": "^3.5.0",
+    "gulp-tslint": "^3.6.0",
     "gulp-typedoc": "^1.2.1",
     "gulp-typescript": "^2.9.2",
-    "gulp-uglify": "^1.4.2",
+    "gulp-uglify": "^1.5.1",
     "gulp-wrap": "^0.11.0",
     "jasmine-core": "^2.3.4",
-    "karma": "^0.13.14",
+    "karma": "^0.13.15",
     "karma-jasmine": "^0.3.6",
     "karma-sauce-launcher": "^0.2.14",
     "mversion": "^1.10.1",
@@ -66,7 +66,6 @@
     "shelljs": "^0.5.3",
     "through2": "^2.0.0",
     "typescript": "^1.6.2",
-    "uglify-js": "^2.5.0"
+    "uglify-js": "^2.6.1"
   }
-
 }
