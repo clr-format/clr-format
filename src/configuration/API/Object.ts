@@ -49,7 +49,6 @@ interface ObjectConstructor {
      */
     mapValuesAsKeys<T>(object: T): T;
 
-
     /**
      * Merge the contents of two or more objects together into the first object.
      *

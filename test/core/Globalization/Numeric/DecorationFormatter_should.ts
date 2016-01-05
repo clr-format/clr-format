@@ -80,7 +80,6 @@ namespace Format.Globalization.Numeric {
             });
             expect(decorationFormatter.applyOptions(12345.12345, "12345.1235")).toBe("prefix 12-3<->45.1-2<->35 suffix");
 
-
             /* tslint:disable:align */
             resolveOptions({
                 style: styles[styles.general],
@@ -90,6 +89,7 @@ namespace Format.Globalization.Numeric {
                 internalDecorators: { 1: "-", 2: "<->" }
             }, alternativeFormatInfo);
             /* tslint:enable:align */
+
             expect(decorationFormatter.applyOptions(-0.12345, "!0,1235")).toBe("!prefix 0,1-2<->35 suffix");
         });
 

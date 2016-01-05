@@ -21,7 +21,6 @@ namespace Format.Globalization.DateTime {
             return intlOptionsProvider.resolveOptions(formatString, undefined);
         };
 
-
         it("constructor should initialize the resolved options' object with a cloned copy", () => {
 
             createInstance({ day: numeric });

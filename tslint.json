@@ -40,20 +40,22 @@
         "no-arg": true,
         "no-bitwise": true,
         "no-conditional-assignment": true,
+        "no-consecutive-blank-lines": true,
         "no-console": false,
         "no-construct": true,
         "no-constructor-vars": true,
         "no-debugger": true,
         "no-duplicate-key": true,
-        "no-shadowed-variable": true,
         "no-duplicate-variable": true,
         "no-empty": true,
         "no-eval": true,
+        "no-inferrable-types": false,
         "no-internal-module": true,
+        "no-null-keyword": true,
         "no-require-imports": true,
+        "no-shadowed-variable": true,
         "no-string-literal": true,
         "no-switch-case-fall-through": true,
-        "no-trailing-comma": true,
         "no-trailing-whitespace": true,
         "no-unreachable": true,
         "no-unused-expression": true,
@@ -61,6 +63,7 @@
         "no-use-before-declare": false,
         "no-var-keyword": false,
         "no-var-requires": true,
+        "object-literal-sort-keys": false,
         "one-line": [
             true,
             "check-open-brace",
@@ -68,12 +71,19 @@
         ],
         "quotemark": [
             true,
-            "double"
+            "double",
+            "avoid-escape"
         ],
         "radix": true,
-        "sort-object-literal-keys": false,
         "semicolon": true,
         "switch-default": true,
+        "trailing-comma": [
+            true,
+            {
+                "multiline": "never",
+                "singleline": "never"
+            }
+        ],
         "triple-equals": [
             true,
             "allow-null-check"
@@ -103,8 +113,7 @@
             "check-decl",
             "check-operator",
             "check-separator",
-            "check-type",
-            "check-typecast"
+            "check-type"
         ]
     }
 }

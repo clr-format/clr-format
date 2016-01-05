@@ -141,7 +141,6 @@ namespace Format.Utils.IntlResovlers {
     var removeFormatDigits = (formattedValue: string): string => formattedValue.replace(digitsWithWhitespaceRegExp, ""),
         digitsWithWhitespaceRegExp = /\s*\d+.?\s*/;
 
-
     /** @private */
     var removeControlChars = (formattedValue: string): string => formattedValue.replace(controlCharsRegExp, ""),
         controlCharsRegExp = /\u200E|\u200F/g;
