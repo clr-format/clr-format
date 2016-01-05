@@ -1,8 +1,6 @@
 /// <reference path="../../../use-strict" />
 /// <reference path="../../API" />
 
-/// <reference path="IntlFormatOptions" />
-
 /// <reference path="../../Utils/IntlResolvers" />
 
 namespace Format.Globalization.Numeric {

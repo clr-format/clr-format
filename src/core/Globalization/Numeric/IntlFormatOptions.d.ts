@@ -1,7 +1,5 @@
 /// <reference path="../../Utils/Indexable" />
 
-/// <reference path="../../../intl/Globalization/Numeric/IntlFormatOptions" />
-
 declare module Intl {
     /** Represents an object that provides formatting options according to the Intl.NumberFormat object's constructor. */
     interface NumberFormatOptions {
