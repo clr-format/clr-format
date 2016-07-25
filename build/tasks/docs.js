@@ -7,7 +7,6 @@ var negate = require("../utils/negate.js");
 var getVersion = require("../utils/getVersion.js");
 
 var gulp = require("gulp");
-var format = require("clr-format");
 var typedoc = require("gulp-typedoc");
 var replace = require("gulp-replace");
 
@@ -54,20 +53,22 @@ function replaceSourceLinks(publish) {
 
 function validateState() {
     if (git.getBranchName() !== branches.master) {
-        throw new Error(format("Documentation can only be generated from the '{0}' branch, aborting documentation process", branches.master));
+        throw new Error(
+            `Documentation can only be generated from the '${branches.master}' branch, aborting documentation process`);
     }
 
     if (git.isDirty()) {
-        throw new Error("Local changes detected, aborting documentation process");
+        throw new Error(
+            "Local changes detected, aborting documentation process");
     }
 }
 
 function reinitSubmodule() {
-    git.submodule.reinit(dirs.docs, format("Could not reinit '{0}' submodule", dirs.docs));
+    git.submodule.reinit(dirs.docs, `Could not reinit '${dirs.docs}' submodule`);
     git.submodule.checkout(
         dirs.docs,
         branches.ghPages,
-        format("Could not checkout '{0}' submodule to '{1}' branch", dirs.docs, branches.ghPages));
+        `Could not checkout '${dirs.docs}' submodule to '${branches.ghPages}' branch`);
 }
 
 function commitDocs() {
@@ -81,12 +82,12 @@ function commitDocs() {
             return console.log("Output documentation files resulted in no changes");
         }
 
-        var commitArgs = format("--all -m \"{0}\"", module.exports.getCommitMessage());
+        var commitArgs = `--all -m "${module.exports.getCommitMessage()}"`;
 
-        git.submodule.commit(dirs.docs, commitArgs, format("Could not commit output files to '{0}' submodule", dirs.docs));
+        git.submodule.commit(dirs.docs, commitArgs, `Could not commit output files to '${dirs.docs}' submodule`);
         resetSubmodule = true;
 
-        git.commit(commitArgs, format("Could not commit the latest ref of '{0}' submodule in superproject", dirs.docs));
+        git.commit(commitArgs, `Could not commit the latest ref of '${dirs.docs}' submodule in superproject`);
     }
     catch (error) {
         if (resetSubmodule) {
@@ -98,5 +99,5 @@ function commitDocs() {
 }
 
 function stageDocs() {
-    git.submodule.add(dirs.docs, "--all", format("Could not stage output files to '{0}' submodule", branches.ghPages));
+    git.submodule.add(dirs.docs, "--all", `Could not stage output files to '${branches.ghPages}' submodule`);
 }

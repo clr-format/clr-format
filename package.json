@@ -41,7 +41,6 @@
   },
   "engineStrict": true,
   "devDependencies": {
-    "clr-format": "^0.5.2",
     "del": "^2.2.0",
     "gulp": "^3.9.0",
     "gulp-add-src": "^0.2.0",

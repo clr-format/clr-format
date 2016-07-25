@@ -3,7 +3,6 @@ var branches = require("../config/branches.js");
 
 var git = require("../utils/git.js");
 var docs = require("./docs.js");
-var format = require("clr-format");
 var version = require("./version.js");
 var getVersion = require("../utils/getVersion.js");
 
@@ -18,7 +17,7 @@ module.exports = function (done) {
 
 function validateState(branch) {
     if (branch !== branches.master) {
-        throw new Error(format("Releases can only be created from the '{0}' branch, aborting release process", branches.master));
+        throw new Error(`Releases can only be created from the '${branches.master}' branch, aborting release process`);
     }
 
     if (git.isDirty()) {
@@ -48,7 +47,7 @@ function commitDist(branch) {
 
         var tagName = "v" + getVersion();
         git.commit(
-            format("-m \"{0}\"", tagName),
+            `-m "${tagName}"`,
             "Could not commit output files for release tag");
 
         createTag(branch, tagName);
@@ -62,8 +61,8 @@ function commitDist(branch) {
 function createTag(branch, tagName) {
     try {
         git.tag(
-            format("-m \"{0}\" {0}", tagName),
-            format("Could not create the release tag {0} (it might already exist)", tagName));
+            `-m "${tagName}" ${tagName}`,
+            `Could not create the release tag ${tagName} (it might already exist)`);
 
         git.checkout(branch, "Could not checkout the origin release branch to initiate push");
         git.push("--tags", "Could not push release tag to remote");

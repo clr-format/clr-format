@@ -1,6 +1,5 @@
 var git = require("../utils/git.js");
 
-var format = require("clr-format");
 var mversion = require("mversion");
 
 module.exports = function (versionType) {
@@ -17,7 +16,7 @@ module.exports = function (versionType) {
             }
 
             git.commit(
-                format("-a -m \"{0}\"", module.exports.getCommitMessage(data.newVersion)),
+                `-a -m "${module.exports.getCommitMessage(data.newVersion)}"`,
                 "Could not commit bumped component files' version");
 
             done();

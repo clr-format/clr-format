@@ -7,7 +7,7 @@
             // Type of configuration. Possible values: "node", "mono".
             "type": "node",
             // Workspace relative or absolute path to the program.
-            "program": "dist/clr-format-npm.js",
+            "program": "${workspace.root}/dist/clr-format-npm.js",
             // Automatically stop program after launch.
             "stopOnEntry": false,
             // Command line arguments passed to the program.
