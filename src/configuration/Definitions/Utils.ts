@@ -107,7 +107,8 @@ namespace Format.Config.Definitions {
     /** @private */
     var getProtoWrapper = (utilFunction: Function): Function => {
         return function(...args: Object[]): Function {
-            return utilFunction(this, ...args);
+            let context = utils.isType("Number", this) ? +this : this;
+            return utilFunction(context, ...args);
         };
     };
 

@@ -23,7 +23,6 @@ var beautifyOptions = {
         sequences: false,
         hoist_vars: true,
         comparisons: false,
-        drop_console: true,
         conditionals: false,
         negate_iife: false
     }

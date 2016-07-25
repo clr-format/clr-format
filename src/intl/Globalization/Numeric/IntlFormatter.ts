@@ -37,9 +37,6 @@ namespace Format.Globalization.Numeric {
 
         private locales: string|string[];
 
-        private getNativeFormatter: (resolvedOptions: Intl.NumberFormatOptions) => Intl.NumberFormat = (resolvedOptions: Intl.NumberFormatOptions): Intl.NumberFormat =>
-            <any> new Intl.NumberFormat(<string> this.locales, resolvedOptions);
-
         /**
          * Initializes a new object that enables language sensitive number formatting.
          * @param locales The locales argument must be either a string holding a BCP 47 language tag, or an array of such language tags.
@@ -90,6 +87,9 @@ namespace Format.Globalization.Numeric {
 
             return formattedValue;
         }
+
+        private getNativeFormatter = (resolvedOptions: Intl.NumberFormatOptions): Intl.NumberFormat =>
+            <any> new Intl.NumberFormat(<string> this.locales, resolvedOptions);
 
         private overrideOptions(overrideStyle: boolean|string): void {
 

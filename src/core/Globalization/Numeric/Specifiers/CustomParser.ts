@@ -31,38 +31,7 @@ namespace Format.Globalization.Numeric.Specifiers {
         private firstZeroSpecifierIndex_: number;
         private lastZeroSpecifierIndex_: number;
         private lastGroupSeparatorIndex_: number;
-
         private lookahead_: Utils.Lazy<CustomParser>;
-
-        // Arrow syntax used to preserve 'this' context inside the function at compile time
-        private getLookahead_: () => CustomParser = (): CustomParser => {
-
-            let lookahead = this;
-
-            if (this.index_ < this.format_.length - 1) {
-                lookahead = Utils.clone(this);
-                lookahead.index_ += 1;
-                lookahead.escapeOne_ = false;
-                lookahead.doDetachedParse_();
-            }
-
-            return lookahead;
-        };
-
-        /**
-         * Creates an instance that parses the format string when [[doParse]] is called.
-         * @param format A format string containing formatting specifications.
-         */
-        constructor(format: string) {
-
-            if (format == null) {
-                throw new Errors.ArgumentNullError("format");
-            }
-
-            this.index_ = 0;
-            this.format_ = format;
-            this.lookahead_ = new Utils.Lazy(this.getLookahead_);
-        }
 
         /**
          * Creates and executes a special detached parser instance that returns only the matched format sections that are separated by [[CustomSpecifiersMap.sectionSeparator]].
@@ -78,6 +47,21 @@ namespace Format.Globalization.Numeric.Specifiers {
             parser.doDetachedParse_();
 
             return parser.sections_;
+        }
+
+        /**
+         * Creates an instance that parses the format string when [[doParse]] is called.
+         * @param format A format string containing formatting specifications.
+         */
+        constructor(format: string) {
+
+            if (format == null) {
+                throw new Errors.ArgumentNullError("format");
+            }
+
+            this.index_ = 0;
+            this.format_ = format;
+            this.lookahead_ = new Utils.Lazy(this.getLookahead_);
         }
 
         /** Returns the current character visited by the parser. */
@@ -218,6 +202,21 @@ namespace Format.Globalization.Numeric.Specifiers {
                 this.addExponentOffset_();
             }
         }
+
+        // Arrow syntax used to preserve 'this' context inside the function at compile time
+        private getLookahead_: () => CustomParser = (): CustomParser => {
+
+            let lookahead = this;
+
+            if (this.index_ < this.format_.length - 1) {
+                lookahead = Utils.clone(this);
+                lookahead.index_ += 1;
+                lookahead.escapeOne_ = false;
+                lookahead.doDetachedParse_();
+            }
+
+            return lookahead;
+        };
 
         private doDetachedParse_(): void {
             this.doParse(undefined, undefined);

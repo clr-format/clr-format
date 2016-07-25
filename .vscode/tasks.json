@@ -16,19 +16,25 @@
     "tasks": [
         {
             "taskName": "build",
-            "args": ["build"],
+            "args": [
+                "build"
+            ],
             "isBuildCommand": true,
             "problemMatcher": "$msCompile"
         },
         {
             "taskName": "test",
-            "args": ["test"],
+            "args": [
+                "test"
+            ],
             "isTestCommand": true,
             "problemMatcher": "$msCompile"
         },
         {
             "taskName": "continuous",
-            "args": ["default"],
+            "args": [
+                "default"
+            ],
             "isWatching": true,
             "problemMatcher": "$msCompile"
         }

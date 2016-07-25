@@ -52,8 +52,8 @@ namespace Format.Utils.Numeric {
         return (value & 1) === 0;
     }
 
-    Numeric.isInteger = Number.isInteger || function(value: number): boolean {
-        return value !== null && +value === value >> 0;
+    Numeric.isInteger = Number.isInteger || function (value: number): boolean {
+        return value !== null && value === value >> 0;
     };
 
     /**

@@ -19,9 +19,6 @@ namespace Format.Globalization.DateTime {
 
         private locales: string | string[];
 
-        private getNativeFormatter: (resolvedOptions: Intl.DateTimeFormatOptions) => Intl.DateTimeFormat = (resolvedOptions?: Intl.DateTimeFormatOptions): Intl.DateTimeFormat =>
-            <any> new Intl.DateTimeFormat(<string> this.locales, resolvedOptions);
-
         /**
          * Initializes a new object that enables language sensitive date and time formatting.
          * @param locales The locales argument must be either a string holding a BCP 47 language tag, or an array of such language tags.
@@ -74,13 +71,16 @@ namespace Format.Globalization.DateTime {
                 return super.applyOptions(value);
             }
 
-            return this.getNativeFormatter(resolvedOptions).format(<any> value);
+            return this.getNativeFormatter(resolvedOptions).format(<any>value);
         }
 
         /** Returns the formatter instance that will be used to replace all custom date and time specifiers. */
         protected getSpecifiersFormatter(): CustomFormatter {
             return new IntlSpecifiersFormatter(this.formatInfo, this.getNativeFormatter);
         }
+
+        private getNativeFormatter = (resolvedOptions?: Intl.DateTimeFormatOptions): Intl.DateTimeFormat =>
+            <any>new Intl.DateTimeFormat(<string>this.locales, resolvedOptions);
     }
 
     DateTimeFormatInfo.FormatterConstructor = IntlFormatter;

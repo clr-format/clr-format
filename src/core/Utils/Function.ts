@@ -13,10 +13,6 @@ namespace Format.Utils.Function {
 
         validateFunctionArgument(func, "getName");
 
-        if (func.name !== undefined) {
-            return func.name;
-        }
-
         let typeNameGroups = typeNameRegExp.exec(func.toString());
 
         return typeNameGroups && typeNameGroups[1] ? typeNameGroups[1] : "";

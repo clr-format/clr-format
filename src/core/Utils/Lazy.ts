@@ -20,20 +20,6 @@ namespace Format.Utils {
         private valueConstructor: { new (): T; };
 
         /**
-         * Initializes a new instance of the class that uses the supplied value factory.
-         * @param valueFactory The delegate that is invoked to produce the lazily initialized value when it is needed.
-         */
-        constructor(valueFactory: () => T) {
-
-            if (valueFactory == null) {
-                throw new Errors.ArgumentNullError("valueFactory");
-            }
-
-            this.valueCreated = false;
-            this.valueFactory = valueFactory;
-        }
-
-        /**
          * Returns a new instance of the class that uses the specified constructor to create a value of its type.
          * @param TStatic The type of object that is being lazily initialized.
          * @param valueConstructor The parameterless constructor that is invoked to produce the lazily initialized value when it is needed.
@@ -48,6 +34,20 @@ namespace Format.Utils {
             instance.valueConstructor = valueConstructor;
 
             return instance;
+        }
+
+        /**
+         * Initializes a new instance of the class that uses the supplied value factory.
+         * @param valueFactory The delegate that is invoked to produce the lazily initialized value when it is needed.
+         */
+        constructor(valueFactory: () => T) {
+
+            if (valueFactory == null) {
+                throw new Errors.ArgumentNullError("valueFactory");
+            }
+
+            this.valueCreated = false;
+            this.valueFactory = valueFactory;
         }
 
         /**

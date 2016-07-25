@@ -70,7 +70,7 @@ namespace Format.Utils {
     /** @private */
     var isEnumerable = (object: Object): boolean => (typeof object === "object" || typeof object === "function") && object !== null;
 
-    Utils.mapValuesAsKeys = <T extends Indexable<string>>(object: T): T => {
+    Utils.mapValuesAsKeys = <T extends Indexable<string|number>>(object: T): T => {
 
         if (object == null) {
             throw new Errors.ArgumentNullError("object");
@@ -98,13 +98,13 @@ namespace Format.Utils {
     };
 
     /** @private */
-    var validateValueAsKey = <T>(object: T, result: T, value: string): void => {
+    var validateValueAsKey = <T>(object: T, result: T, value: string|number): void => {
 
         if (value == null) {
             throw new Errors.ArgumentError("Cannot call method 'enumerateValues' on objects that contain undefined or null values");
         }
 
-        if (object.hasOwnProperty(value) || result.hasOwnProperty(value)) {
+        if (object.hasOwnProperty(value.toString()) || result.hasOwnProperty(value.toString())) {
             throw new Errors.ArgumentError(`Cannot enumerate value '${value}' because such a key already exists in ${object}`);
         }
     };
